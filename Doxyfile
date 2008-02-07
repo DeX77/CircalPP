@@ -35,7 +35,7 @@ SUBGROUPING = YES
 #---------------------------------------------------------------------------
 EXTRACT_ALL = YES
 EXTRACT_PRIVATE = YES
-EXTRACT_STATIC = YES
+EXTRACT_STATIC = NO
 EXTRACT_LOCAL_CLASSES = YES
 EXTRACT_LOCAL_METHODS = NO
 HIDE_UNDOC_MEMBERS = NO
@@ -68,11 +68,11 @@ WARN_IF_UNDOCUMENTED = YES
 WARN_IF_DOC_ERROR = YES
 WARN_NO_PARAMDOC = NO
 WARN_FORMAT = "$file:$line: $text"
-WARN_LOGFILE = 
+WARN_LOGFILE = doxygen.warn
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT = src include 
+INPUT = src include
 FILE_PATTERNS = *.c *.cc *.cxx *.cpp *.c++ *.d *.java *.ii *.ixx *.ipp *.i++ *.inl *.h *.hh *.hxx *.hpp *.h++ *.idl *.odl *.cs *.php *.php3 *.inc *.m *.mm *.dox *.py *.C *.CC *.C++ *.II *.I++ *.H *.HH *.H++ *.CS *.PHP *.PHP3 *.M *.MM *.PY *.C *.H *.tlh *.diff *.patch *.moc *.xpm *.dox
 RECURSIVE = YES
 EXCLUDE = 
@@ -125,7 +125,7 @@ TREEVIEW_WIDTH = 250
 #---------------------------------------------------------------------------
 # configuration options related to the LaTeX output
 #---------------------------------------------------------------------------
-GENERATE_LATEX = YES
+GENERATE_LATEX = NO
 LATEX_OUTPUT = latex
 LATEX_CMD_NAME = latex
 MAKEINDEX_CMD_NAME = makeindex
@@ -140,7 +140,7 @@ LATEX_HIDE_INDICES = NO
 #---------------------------------------------------------------------------
 # configuration options related to the RTF output
 #---------------------------------------------------------------------------
-GENERATE_RTF = NO
+GENERATE_RTF = YES
 RTF_OUTPUT = rtf
 COMPACT_RTF = NO
 RTF_HYPERLINKS = NO
@@ -149,7 +149,7 @@ RTF_EXTENSIONS_FILE =
 #---------------------------------------------------------------------------
 # configuration options related to the man page output
 #---------------------------------------------------------------------------
-GENERATE_MAN = NO
+GENERATE_MAN = YES
 MAN_OUTPUT = man
 MAN_EXTENSION = .3
 MAN_LINKS = NO

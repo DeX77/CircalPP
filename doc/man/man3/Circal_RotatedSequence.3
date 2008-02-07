@@ -1,0 +1,181 @@
+.TH "Circal::RotatedSequence" 3 "8 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Circal::RotatedSequence \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <RotatedSequence.h>\fP
+.PP
+Inherited by \fBCircal::MetaRotatedSequence\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBRotatedSequence\fP (const bpp::Sequence *a, const uint &i)"
+.br
+.ti -1c
+.RI "virtual \fB~RotatedSequence\fP ()"
+.br
+.ti -1c
+.RI "virtual int \fBgetValue\fP (unsigned int pos) const   throw (bpp::IndexOutOfBoundsException)"
+.br
+.RI "\fIGet the element at position 'pos' as an int. \fP"
+.ti -1c
+.RI "virtual string \fBgetChar\fP (unsigned int pos) const   throw (bpp::IndexOutOfBoundsException)"
+.br
+.RI "\fIGet the element at position 'pos' as a character. \fP"
+.ti -1c
+.RI "std::string \fBtoString\fP () const "
+.br
+.RI "\fIConvert the list as a string. \fP"
+.in -1c
+.PP
+.RI "\fBProvide direct access to the list content.\fP"
+.br
+\fBWarning:\fP
+.RS 4
+These operators allow you to modifiy the list content. No alphabet checking is performed for your modifications, so use with care, or consider using the setContent() method. 
+.RE
+.PP
+
+.PP
+.in +1c
+.in +1c
+.ti -1c
+.RI "virtual const int & \fBoperator[]\fP (unsigned int i) const "
+.br
+.RI "\fIOperator [] overloaded for quick access to a character in list. \fP"
+.ti -1c
+.RI "virtual int & \fBoperator[]\fP (unsigned int i)"
+.br
+.RI "\fIOperator [] overloaded for quick access to a character in list. \fP"
+.in -1c
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "uint \fBoffset\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 32 of file RotatedSequence.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Circal::RotatedSequence::RotatedSequence (const bpp::Sequence * a, const uint & i)"
+.PP
+Definition at line 26 of file RotatedSequence.cpp.
+.PP
+References offset.
+.SS "Circal::RotatedSequence::~RotatedSequence ()\fC [virtual]\fP"
+.PP
+Definition at line 32 of file RotatedSequence.cpp.
+.SH "Member Function Documentation"
+.PP 
+.SS "int Circal::RotatedSequence::getValue (unsigned int pos) const  throw (bpp::IndexOutOfBoundsException)\fC [virtual]\fP"
+.PP
+Get the element at position 'pos' as an int. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpos\fP The position of the character to retrieve. 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBCircal::MetaRotatedSequence\fP.
+.PP
+Definition at line 36 of file RotatedSequence.cpp.
+.PP
+References offset.
+.PP
+Referenced by toString().
+.SS "string Circal::RotatedSequence::getChar (unsigned int pos) const  throw (bpp::IndexOutOfBoundsException)\fC [virtual]\fP"
+.PP
+Get the element at position 'pos' as a character. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpos\fP The position of the character to retrieve. 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBCircal::MetaRotatedSequence\fP.
+.PP
+Definition at line 46 of file RotatedSequence.cpp.
+.PP
+References offset.
+.SS "const int & Circal::RotatedSequence::operator[] (unsigned int i) const\fC [virtual]\fP"
+.PP
+Operator [] overloaded for quick access to a character in list. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIi\fP The position to retrieve. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The integer value of character at position i. 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBCircal::MetaRotatedSequence\fP.
+.PP
+Definition at line 65 of file RotatedSequence.cpp.
+.PP
+References offset.
+.SS "int & Circal::RotatedSequence::operator[] (unsigned int i)\fC [virtual]\fP"
+.PP
+Operator [] overloaded for quick access to a character in list. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIi\fP The position to retrieve. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The integer value of character at position i. 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBCircal::MetaRotatedSequence\fP.
+.PP
+Definition at line 70 of file RotatedSequence.cpp.
+.PP
+References offset.
+.SS "string Circal::RotatedSequence::toString () const"
+.PP
+Convert the list as a string. 
+.PP
+This method is useful for dumping a list to a file or to the screen for display.
+.PP
+\fBReturns:\fP
+.RS 4
+The whole list as a string. 
+.RE
+.PP
+
+.PP
+Definition at line 75 of file RotatedSequence.cpp.
+.PP
+References getValue().
+.SH "Member Data Documentation"
+.PP 
+.SS "uint \fBCircal::RotatedSequence::offset\fP\fC [private]\fP"
+.PP
+Definition at line 34 of file RotatedSequence.h.
+.PP
+Referenced by getChar(), getValue(), operator[](), and RotatedSequence().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CircalPP from the source code.

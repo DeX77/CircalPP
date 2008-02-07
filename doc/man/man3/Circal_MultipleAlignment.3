@@ -1,0 +1,75 @@
+.TH "Circal::MultipleAlignment" 3 "8 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Circal::MultipleAlignment \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <MultipleAlignment.h>\fP
+.PP
+Inherits \fBCircal::Alignment\fP.
+.PP
+Inherited by \fBCircal::MultipleCircularAlignment\fP, and \fBCircal::MultipleMetaCircularAlignment\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBMultipleAlignment\fP (const bpp::Alphabet *alpha)"
+.br
+.ti -1c
+.RI "\fBMultipleAlignment\fP (const VectorSequenceContainer *input, const \fBScoringModel\fP *scoreM)"
+.br
+.ti -1c
+.RI "virtual \fB~MultipleAlignment\fP ()"
+.br
+.ti -1c
+.RI "void \fBGotohalignMultiple\fP (const VectorSequenceContainer *input, const \fBScoringModel\fP *scoreM)"
+.br
+.ti -1c
+.RI "void \fBNMWalignMultiple\fP (const VectorSequenceContainer *input, const \fBScoringModel\fP *scoreM)"
+.br
+.ti -1c
+.RI "\fBMultipleAlignment\fP * \fBTopologicSortedAlignment\fP (\fBBoolMatrix\fP G, const \fBAlignment\fP *pairWiseAlignments)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 30 of file MultipleAlignment.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Circal::MultipleAlignment::MultipleAlignment (const bpp::Alphabet * alpha)\fC [explicit]\fP"
+.PP
+Definition at line 26 of file MultipleAlignment.cpp.
+.PP
+Referenced by TopologicSortedAlignment().
+.SS "Circal::MultipleAlignment::MultipleAlignment (const VectorSequenceContainer * input, const \fBScoringModel\fP * scoreM)"
+.PP
+Definition at line 35 of file MultipleAlignment.cpp.
+.SS "Circal::MultipleAlignment::~MultipleAlignment ()\fC [virtual]\fP"
+.PP
+Definition at line 31 of file MultipleAlignment.cpp.
+.SH "Member Function Documentation"
+.PP 
+.SS "void Circal::MultipleAlignment::GotohalignMultiple (const VectorSequenceContainer * input, const \fBScoringModel\fP * scoreM)"
+.PP
+Definition at line 42 of file MultipleAlignment.cpp.
+.PP
+References Circal::Output::AlignmentPrettyPrint(), Circal::Alignment::GotohAlignment(), Circal::Alignment::prettyPrint, and Circal::Alignment::set_origSize().
+.PP
+Referenced by Circal::MultipleCircularAlignment::MultipleCircularAlignment(), and Circal::MultipleMetaCircularAlignment::MultipleMetaCircularAlignment().
+.SS "void Circal::MultipleAlignment::NMWalignMultiple (const VectorSequenceContainer * input, const \fBScoringModel\fP * scoreM)"
+.PP
+Definition at line 63 of file MultipleAlignment.cpp.
+.PP
+References Circal::Output::AlignmentPrettyPrint(), Circal::Alignment::NeedlemanWunschAlignment(), and Circal::Alignment::prettyPrint.
+.SS "\fBMultipleAlignment\fP * Circal::MultipleAlignment::TopologicSortedAlignment (\fBBoolMatrix\fP G, const \fBAlignment\fP * pairWiseAlignments)"
+.PP
+Definition at line 92 of file MultipleAlignment.cpp.
+.PP
+References MultipleAlignment().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CircalPP from the source code.

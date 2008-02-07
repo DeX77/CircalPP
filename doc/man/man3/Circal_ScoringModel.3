@@ -1,0 +1,159 @@
+.TH "Circal::ScoringModel" 3 "8 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Circal::ScoringModel \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <ScoringModel.h>\fP
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBScoringModel\fP ()"
+.br
+.ti -1c
+.RI "\fBScoringModel\fP (const std::string &path)"
+.br
+.ti -1c
+.RI "\fBScoringModel\fP (std::istream &input)"
+.br
+.ti -1c
+.RI "virtual \fB~ScoringModel\fP ()"
+.br
+.ti -1c
+.RI "void \fBread\fP (const std::string &path)"
+.br
+.ti -1c
+.RI "void \fBread\fP (std::istream &input)"
+.br
+.ti -1c
+.RI "double \fBScoreOf\fP (const std::string &A, const std::string &B) const "
+.br
+.ti -1c
+.RI "double \fBScoreOfGapOpen\fP (const std::string A) const "
+.br
+.ti -1c
+.RI "double \fBScoreOfGapExtend\fP (const std::string A) const "
+.br
+.ti -1c
+.RI "int \fBGetModelSize\fP (void) const "
+.br
+.ti -1c
+.RI "const double & \fBBestOfTwo\fP (const double &A, const double &B) const "
+.br
+.ti -1c
+.RI "const double & \fBBestOfThree\fP (double &A, double &B, double &C) const "
+.br
+.ti -1c
+.RI "ModelValues::const_iterator \fBitBegin\fP (void) const "
+.br
+.ti -1c
+.RI "ModelValues::const_iterator \fBitEnd\fP (void) const "
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBModelValues\fP \fBmodel\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 31 of file ScoringModel.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Circal::ScoringModel::ScoringModel ()"
+.PP
+Definition at line 25 of file ScoringModel.cpp.
+.SS "Circal::ScoringModel::ScoringModel (const std::string & path)\fC [explicit]\fP"
+.PP
+Definition at line 28 of file ScoringModel.cpp.
+.PP
+References read().
+.SS "Circal::ScoringModel::ScoringModel (std::istream & input)\fC [explicit]\fP"
+.PP
+Definition at line 33 of file ScoringModel.cpp.
+.PP
+References read().
+.SS "Circal::ScoringModel::~ScoringModel ()\fC [virtual]\fP"
+.PP
+Definition at line 38 of file ScoringModel.cpp.
+.SH "Member Function Documentation"
+.PP 
+.SS "void Circal::ScoringModel::read (const std::string & path)"
+.PP
+Definition at line 90 of file ScoringModel.cpp.
+.PP
+Referenced by ScoringModel().
+.SS "void Circal::ScoringModel::read (std::istream & input)"
+.PP
+Definition at line 41 of file ScoringModel.cpp.
+.PP
+References Circal::AlignmentSymbol::gapExtend, Circal::AlignmentSymbol::gapOpen, model, Circal::AlignmentSymbol::symbol, and Circal::AlignmentSymbol::type.
+.SS "double Circal::ScoringModel::ScoreOf (const std::string & A, const std::string & B) const"
+.PP
+Definition at line 97 of file ScoringModel.cpp.
+.PP
+Referenced by Circal::Alignment::BacktrackingGotoh(), Circal::Alignment::BacktrackingNMW(), Circal::Alignment::ForwardRecursionGotoh(), and Circal::Alignment::ForwardRecursionNMW().
+.SS "double Circal::ScoringModel::ScoreOfGapOpen (const std::string A) const"
+.PP
+Definition at line 106 of file ScoringModel.cpp.
+.PP
+References model.
+.PP
+Referenced by Circal::Alignment::BacktrackingGotoh(), Circal::Alignment::BacktrackingNMW(), Circal::Alignment::ForwardRecursionGotoh(), Circal::Alignment::ForwardRecursionNMW(), and Circal::MatrixHelper::InitializeScoreMatrixDistances().
+.SS "double Circal::ScoringModel::ScoreOfGapExtend (const std::string A) const"
+.PP
+Definition at line 111 of file ScoringModel.cpp.
+.PP
+References model.
+.PP
+Referenced by Circal::Alignment::BacktrackingGotoh(), Circal::Alignment::BacktrackingNMW(), Circal::Alignment::ForwardRecursionGotoh(), Circal::Alignment::ForwardRecursionNMW(), and Circal::MatrixHelper::InitializeScoreMatrixDistances().
+.SS "int Circal::ScoringModel::GetModelSize (void) const"
+.PP
+Definition at line 116 of file ScoringModel.cpp.
+.PP
+References model.
+.PP
+Referenced by Circal::VertebrateMitochondrialGenomeAlphabet::convertModeltoAlphabet().
+.SS "const double & Circal::ScoringModel::BestOfTwo (const double & A, const double & B) const"
+.PP
+Definition at line 121 of file ScoringModel.cpp.
+.PP
+Referenced by Circal::Alignment::BacktrackingGotoh(), BestOfThree(), Circal::Alignment::ForwardRecursionGotoh(), Circal::CircularAlignment::GotohAlignment(), Circal::MatrixHelper::SearchMinimuminlastColumn(), Circal::MatrixHelper::SearchMinimuminlastRow(), and Circal::MatrixHelper::SearchMinimumPosition().
+.SS "const double & Circal::ScoringModel::BestOfThree (double & A, double & B, double & C) const"
+.PP
+Definition at line 129 of file ScoringModel.cpp.
+.PP
+References BestOfTwo().
+.PP
+Referenced by Circal::Alignment::ForwardRecursionGotoh(), and Circal::Alignment::ForwardRecursionNMW().
+.SS "ModelValues::const_iterator Circal::ScoringModel::itBegin (void) const"
+.PP
+Definition at line 135 of file ScoringModel.cpp.
+.PP
+References model.
+.PP
+Referenced by Circal::VertebrateMitochondrialGenomeAlphabet::convertModeltoAlphabet().
+.SS "ModelValues::const_iterator Circal::ScoringModel::itEnd (void) const"
+.PP
+Definition at line 139 of file ScoringModel.cpp.
+.PP
+References model.
+.PP
+Referenced by Circal::VertebrateMitochondrialGenomeAlphabet::convertModeltoAlphabet().
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBModelValues\fP \fBCircal::ScoringModel::model\fP\fC [private]\fP"
+.PP
+Definition at line 34 of file ScoringModel.h.
+.PP
+Referenced by GetModelSize(), itBegin(), itEnd(), read(), ScoreOfGapExtend(), and ScoreOfGapOpen().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CircalPP from the source code.

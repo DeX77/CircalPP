@@ -1,0 +1,203 @@
+.TH "Circal::Alignment" 3 "8 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Circal::Alignment \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <Alignment.h>\fP
+.PP
+Inherited by \fBCircal::CircularAlignment\fP\fC [virtual]\fP, and \fBCircal::MultipleAlignment\fP\fC [virtual]\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAlignment\fP (const bpp::Alphabet *alpha)"
+.br
+.ti -1c
+.RI "virtual \fB~Alignment\fP ()"
+.br
+.ti -1c
+.RI "uint \fBget_origSize\fP () const "
+.br
+.ti -1c
+.RI "int \fBget_Score\fP () const "
+.br
+.ti -1c
+.RI "void \fBset_score\fP (const int &s)"
+.br
+.ti -1c
+.RI "void \fBset_origSize\fP (const uint &orig)"
+.br
+.ti -1c
+.RI "void \fBaddSequence\fP (const bpp::Sequence &sequence, bool checkNames)  throw (bpp::Exception)"
+.br
+.ti -1c
+.RI "void \fBaddSequence\fP (const bpp::Sequence &sequence)  throw (bpp::Exception)"
+.br
+.ti -1c
+.RI "virtual \fBAlignment\fP * \fBNeedlemanWunschAlignment\fP (const bpp::Sequence *inA, const bpp::Sequence *inB, const \fBScoringModel\fP *scoreM)"
+.br
+.ti -1c
+.RI "virtual void \fBForwardRecursionNMW\fP (const bpp::Sequence *A, const bpp::Sequence *B, const \fBScoringModel\fP *scoreM, \fBScoreMatrix\fP *D)"
+.br
+.ti -1c
+.RI "virtual \fBAlignment\fP * \fBBacktrackingNMW\fP (const bpp::Sequence *outA, const bpp::Sequence *outB, const \fBScoringModel\fP *scoreM, const \fBScoreMatrix\fP *D)"
+.br
+.ti -1c
+.RI "virtual \fBAlignment\fP * \fBGotohAlignment\fP (const bpp::Sequence *inA, const bpp::Sequence *inB, const \fBScoringModel\fP *scoreM)"
+.br
+.ti -1c
+.RI "virtual void \fBForwardRecursionGotoh\fP (const bpp::Sequence *A, const bpp::Sequence *B, const \fBScoringModel\fP *scoreM, \fBScoreMatrix\fP *D, \fBScoreMatrix\fP *P, \fBScoreMatrix\fP *Q)"
+.br
+.ti -1c
+.RI "virtual \fBAlignment\fP * \fBBacktrackingGotoh\fP (const bpp::Sequence *outA, const bpp::Sequence *outB, const \fBScoringModel\fP *scoreM, const \fBScoreMatrix\fP *D, const \fBScoreMatrix\fP *P, const \fBScoreMatrix\fP *Q)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBScore\fP"
+.br
+.ti -1c
+.RI "\fBOutput\fP * \fBprettyPrint\fP"
+.br
+.ti -1c
+.RI "\fBMatrixHelper\fP * \fBmatrix\fP"
+.br
+.ti -1c
+.RI "uint \fBorigSize\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 41 of file Alignment.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Circal::Alignment::Alignment (const bpp::Alphabet * alpha)\fC [explicit]\fP"
+.PP
+Definition at line 27 of file Alignment.cpp.
+.PP
+References set_score().
+.PP
+Referenced by BacktrackingGotoh(), and BacktrackingNMW().
+.SS "Circal::Alignment::~Alignment ()\fC [virtual]\fP"
+.PP
+Definition at line 34 of file Alignment.cpp.
+.PP
+References matrix, and prettyPrint.
+.SH "Member Function Documentation"
+.PP 
+.SS "uint Circal::Alignment::get_origSize () const"
+.PP
+Definition at line 39 of file Alignment.cpp.
+.PP
+References origSize.
+.PP
+Referenced by Circal::Output::TCoffeeLibFormat().
+.SS "int Circal::Alignment::get_Score (void) const"
+.PP
+Definition at line 48 of file Alignment.cpp.
+.PP
+References Score.
+.PP
+Referenced by Circal::Output::AlignmentPrettyPrint(), Circal::CircularAlignment::GotohAlignment(), and Circal::CircularAlignment::NeedlemanWunschAlignment().
+.SS "void Circal::Alignment::set_score (const int & s)"
+.PP
+Definition at line 53 of file Alignment.cpp.
+.PP
+References Score.
+.PP
+Referenced by Alignment(), BacktrackingGotoh(), and BacktrackingNMW().
+.SS "void Circal::Alignment::set_origSize (const uint & orig)"
+.PP
+Definition at line 43 of file Alignment.cpp.
+.PP
+References origSize.
+.PP
+Referenced by Circal::MultipleAlignment::GotohalignMultiple().
+.SS "void Circal::Alignment::addSequence (const bpp::Sequence & sequence, bool checkNames)  throw (bpp::Exception)"
+.PP
+Definition at line 58 of file Alignment.cpp.
+.PP
+Referenced by addSequence(), BacktrackingGotoh(), and BacktrackingNMW().
+.SS "void Circal::Alignment::addSequence (const bpp::Sequence & sequence)  throw (bpp::Exception)"
+.PP
+Definition at line 64 of file Alignment.cpp.
+.PP
+References addSequence().
+.SS "\fBAlignment\fP * Circal::Alignment::NeedlemanWunschAlignment (const bpp::Sequence * inA, const bpp::Sequence * inB, const \fBScoringModel\fP * scoreM)\fC [virtual]\fP"
+.PP
+Reimplemented in \fBCircal::CircularAlignment\fP.
+.PP
+Definition at line 416 of file Alignment.cpp.
+.PP
+References BacktrackingNMW(), ForwardRecursionNMW(), Circal::MatrixHelper::InitializeScoreMatrixDistances(), and matrix.
+.PP
+Referenced by Circal::CircularAlignment::NeedlemanWunschAlignment(), and Circal::MultipleAlignment::NMWalignMultiple().
+.SS "void Circal::Alignment::ForwardRecursionNMW (const bpp::Sequence * A, const bpp::Sequence * B, const \fBScoringModel\fP * scoreM, \fBScoreMatrix\fP * D)\fC [virtual]\fP"
+.PP
+Definition at line 256 of file Alignment.cpp.
+.PP
+References Circal::ScoringModel::BestOfThree(), Circal::ScoringModel::ScoreOf(), Circal::ScoringModel::ScoreOfGapExtend(), and Circal::ScoringModel::ScoreOfGapOpen().
+.PP
+Referenced by NeedlemanWunschAlignment().
+.SS "\fBAlignment\fP * Circal::Alignment::BacktrackingNMW (const bpp::Sequence * outA, const bpp::Sequence * outB, const \fBScoringModel\fP * scoreM, const \fBScoreMatrix\fP * D)\fC [virtual]\fP"
+.PP
+Definition at line 284 of file Alignment.cpp.
+.PP
+References addSequence(), Alignment(), Circal::ScoringModel::ScoreOf(), Circal::ScoringModel::ScoreOfGapExtend(), Circal::ScoringModel::ScoreOfGapOpen(), and set_score().
+.PP
+Referenced by NeedlemanWunschAlignment().
+.SS "\fBAlignment\fP * Circal::Alignment::GotohAlignment (const bpp::Sequence * inA, const bpp::Sequence * inB, const \fBScoringModel\fP * scoreM)\fC [virtual]\fP"
+.PP
+Reimplemented in \fBCircal::CircularAlignment\fP, and \fBCircal::MetaCircularAlignment\fP.
+.PP
+Definition at line 429 of file Alignment.cpp.
+.PP
+References BacktrackingGotoh(), ForwardRecursionGotoh(), Circal::MatrixHelper::InitScoreMatrixWith(), and matrix.
+.PP
+Referenced by Circal::CircularAlignment::GotohAlignment(), and Circal::MultipleAlignment::GotohalignMultiple().
+.SS "void Circal::Alignment::ForwardRecursionGotoh (const bpp::Sequence * A, const bpp::Sequence * B, const \fBScoringModel\fP * scoreM, \fBScoreMatrix\fP * D, \fBScoreMatrix\fP * P, \fBScoreMatrix\fP * Q)\fC [virtual]\fP"
+.PP
+Definition at line 70 of file Alignment.cpp.
+.PP
+References Circal::ScoringModel::BestOfThree(), Circal::ScoringModel::BestOfTwo(), Circal::ScoringModel::ScoreOf(), Circal::ScoringModel::ScoreOfGapExtend(), and Circal::ScoringModel::ScoreOfGapOpen().
+.PP
+Referenced by Circal::MetaCircularAlignment::GotohAlignment(), and GotohAlignment().
+.SS "\fBAlignment\fP * Circal::Alignment::BacktrackingGotoh (const bpp::Sequence * outA, const bpp::Sequence * outB, const \fBScoringModel\fP * scoreM, const \fBScoreMatrix\fP * D, const \fBScoreMatrix\fP * P, const \fBScoreMatrix\fP * Q)\fC [virtual]\fP"
+.PP
+Definition at line 110 of file Alignment.cpp.
+.PP
+References addSequence(), Alignment(), Circal::ScoringModel::BestOfTwo(), matrix, Circal::ScoringModel::ScoreOf(), Circal::ScoringModel::ScoreOfGapExtend(), Circal::ScoringModel::ScoreOfGapOpen(), Circal::MatrixHelper::SearchMinimumPosition(), and set_score().
+.PP
+Referenced by Circal::MetaCircularAlignment::GotohAlignment(), and GotohAlignment().
+.SH "Member Data Documentation"
+.PP 
+.SS "int \fBCircal::Alignment::Score\fP\fC [protected]\fP"
+.PP
+Definition at line 44 of file Alignment.h.
+.PP
+Referenced by get_Score(), and set_score().
+.SS "\fBOutput\fP* \fBCircal::Alignment::prettyPrint\fP\fC [protected]\fP"
+.PP
+Definition at line 45 of file Alignment.h.
+.PP
+Referenced by Circal::MultipleAlignment::GotohalignMultiple(), Circal::MultipleAlignment::NMWalignMultiple(), and ~Alignment().
+.SS "\fBMatrixHelper\fP* \fBCircal::Alignment::matrix\fP\fC [protected]\fP"
+.PP
+Definition at line 46 of file Alignment.h.
+.PP
+Referenced by BacktrackingGotoh(), Circal::MetaCircularAlignment::GotohAlignment(), GotohAlignment(), NeedlemanWunschAlignment(), and ~Alignment().
+.SS "uint \fBCircal::Alignment::origSize\fP\fC [protected]\fP"
+.PP
+Definition at line 47 of file Alignment.h.
+.PP
+Referenced by get_origSize(), and set_origSize().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CircalPP from the source code.

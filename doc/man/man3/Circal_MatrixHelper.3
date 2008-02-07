@@ -1,0 +1,103 @@
+.TH "Circal::MatrixHelper" 3 "8 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Circal::MatrixHelper \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <MatrixHelper.h>\fP
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBMatrixHelper\fP ()"
+.br
+.ti -1c
+.RI "virtual \fB~MatrixHelper\fP ()"
+.br
+.ti -1c
+.RI "\fBScoreMatrix\fP \fBInitializeScoreMatrixDistances\fP (const bpp::Sequence *A, const bpp::Sequence *B, const \fBScoringModel\fP *scoreM)"
+.br
+.ti -1c
+.RI "\fBScoreMatrix\fP \fBInitScoreMatrixWith\fP (const bpp::Sequence *A, const bpp::Sequence *B, const double &init)"
+.br
+.ti -1c
+.RI "\fBBoolMatrix\fP \fBCreateAdjacenceGraph\fP (\fBAlignment\fP *pairWiseAlignments, uint biggestSequenceSize)"
+.br
+.ti -1c
+.RI "void \fBCutRowFromTo\fP (\fBScoreMatrix\fP *D, const uint &start, const uint &end)"
+.br
+.ti -1c
+.RI "void \fBCutColumnFromTo\fP (\fBScoreMatrix\fP *D, const uint &start, const uint &end)"
+.br
+.ti -1c
+.RI "double & \fBSearchMinimumPosition\fP (const \fBScoreMatrix\fP *M, int &i, int &j, double &minScore, const \fBScoringModel\fP *scoreM)"
+.br
+.ti -1c
+.RI "int \fBSearchMinimuminlastRow\fP (const \fBScoreMatrix\fP *M, const \fBScoringModel\fP *scoreM)"
+.br
+.ti -1c
+.RI "int \fBSearchMinimuminlastColumn\fP (const \fBScoreMatrix\fP *M, const \fBScoringModel\fP *scoreM)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 37 of file MatrixHelper.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Circal::MatrixHelper::MatrixHelper ()"
+.PP
+Definition at line 28 of file MatrixHelper.cpp.
+.SS "Circal::MatrixHelper::~MatrixHelper ()\fC [virtual]\fP"
+.PP
+Definition at line 32 of file MatrixHelper.cpp.
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBScoreMatrix\fP Circal::MatrixHelper::InitializeScoreMatrixDistances (const bpp::Sequence * A, const bpp::Sequence * B, const \fBScoringModel\fP * scoreM)"
+.PP
+Definition at line 72 of file MatrixHelper.cpp.
+.PP
+References InitScoreMatrixWith(), Circal::ScoringModel::ScoreOfGapExtend(), and Circal::ScoringModel::ScoreOfGapOpen().
+.PP
+Referenced by Circal::Alignment::NeedlemanWunschAlignment().
+.SS "\fBScoreMatrix\fP Circal::MatrixHelper::InitScoreMatrixWith (const bpp::Sequence * A, const bpp::Sequence * B, const double & init)"
+.PP
+Definition at line 95 of file MatrixHelper.cpp.
+.PP
+Referenced by Circal::MetaCircularAlignment::GotohAlignment(), Circal::Alignment::GotohAlignment(), and InitializeScoreMatrixDistances().
+.SS "\fBBoolMatrix\fP Circal::MatrixHelper::CreateAdjacenceGraph (\fBAlignment\fP * pairWiseAlignments, uint biggestSequenceSize)"
+.PP
+Definition at line 104 of file MatrixHelper.cpp.
+.SS "void Circal::MatrixHelper::CutRowFromTo (\fBScoreMatrix\fP * D, const uint & start, const uint & end)"
+.PP
+Definition at line 35 of file MatrixHelper.cpp.
+.SS "void Circal::MatrixHelper::CutColumnFromTo (\fBScoreMatrix\fP * D, const uint & start, const uint & end)"
+.PP
+Definition at line 52 of file MatrixHelper.cpp.
+.SS "double & Circal::MatrixHelper::SearchMinimumPosition (const \fBScoreMatrix\fP * M, int & i, int & j, double & minScore, const \fBScoringModel\fP * scoreM)"
+.PP
+Definition at line 167 of file MatrixHelper.cpp.
+.PP
+References Circal::ScoringModel::BestOfTwo(), SearchMinimuminlastColumn(), and SearchMinimuminlastRow().
+.PP
+Referenced by Circal::Alignment::BacktrackingGotoh().
+.SS "int Circal::MatrixHelper::SearchMinimuminlastRow (const \fBScoreMatrix\fP * M, const \fBScoringModel\fP * scoreM)"
+.PP
+Definition at line 130 of file MatrixHelper.cpp.
+.PP
+References Circal::ScoringModel::BestOfTwo().
+.PP
+Referenced by SearchMinimumPosition().
+.SS "int Circal::MatrixHelper::SearchMinimuminlastColumn (const \fBScoreMatrix\fP * M, const \fBScoringModel\fP * scoreM)"
+.PP
+Definition at line 149 of file MatrixHelper.cpp.
+.PP
+References Circal::ScoringModel::BestOfTwo().
+.PP
+Referenced by SearchMinimumPosition().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CircalPP from the source code.

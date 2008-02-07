@@ -1,0 +1,63 @@
+.TH "Circal::CircularAlignment" 3 "8 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Circal::CircularAlignment \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <CircularAlignment.h>\fP
+.PP
+Inherits \fBCircal::Alignment\fP.
+.PP
+Inherited by \fBCircal::MetaCircularAlignment\fP, and \fBCircal::MultipleCircularAlignment\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCircularAlignment\fP (const bpp::Alphabet *alpha)"
+.br
+.ti -1c
+.RI "virtual \fB~CircularAlignment\fP ()"
+.br
+.ti -1c
+.RI "virtual \fBAlignment\fP * \fBNeedlemanWunschAlignment\fP (const bpp::Sequence *A, const bpp::Sequence *B, const \fBScoringModel\fP *scoreM)"
+.br
+.ti -1c
+.RI "virtual \fBAlignment\fP * \fBGotohAlignment\fP (const bpp::Sequence *A, const bpp::Sequence *B, const \fBScoringModel\fP *scoreM)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 28 of file CircularAlignment.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Circal::CircularAlignment::CircularAlignment (const bpp::Alphabet * alpha)\fC [explicit]\fP"
+.PP
+Definition at line 28 of file CircularAlignment.cpp.
+.SS "Circal::CircularAlignment::~CircularAlignment ()\fC [virtual]\fP"
+.PP
+Definition at line 33 of file CircularAlignment.cpp.
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBAlignment\fP * Circal::CircularAlignment::NeedlemanWunschAlignment (const bpp::Sequence * A, const bpp::Sequence * B, const \fBScoringModel\fP * scoreM)\fC [virtual]\fP"
+.PP
+Reimplemented from \fBCircal::Alignment\fP.
+.PP
+Definition at line 56 of file CircularAlignment.cpp.
+.PP
+References Circal::Alignment::get_Score(), and Circal::Alignment::NeedlemanWunschAlignment().
+.SS "\fBAlignment\fP * Circal::CircularAlignment::GotohAlignment (const bpp::Sequence * A, const bpp::Sequence * B, const \fBScoringModel\fP * scoreM)\fC [virtual]\fP"
+.PP
+Reimplemented from \fBCircal::Alignment\fP.
+.PP
+Reimplemented in \fBCircal::MetaCircularAlignment\fP.
+.PP
+Definition at line 37 of file CircularAlignment.cpp.
+.PP
+References Circal::ScoringModel::BestOfTwo(), Circal::Alignment::get_Score(), and Circal::Alignment::GotohAlignment().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CircalPP from the source code.

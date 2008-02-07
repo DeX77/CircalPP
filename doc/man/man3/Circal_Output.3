@@ -1,0 +1,77 @@
+.TH "Circal::Output" 3 "8 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Circal::Output \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <Output.h>\fP
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBOutput\fP ()"
+.br
+.ti -1c
+.RI "virtual \fB~Output\fP ()"
+.br
+.ti -1c
+.RI "std::string \fBSequencePrettyPrint\fP (const bpp::Sequence *A)"
+.br
+.ti -1c
+.RI "std::string \fBScoreMatrixPrettyPrint\fP (const bpp::Sequence *A, const bpp::Sequence *B, const \fBScoreMatrix\fP &D)"
+.br
+.ti -1c
+.RI "std::string \fBAlignmentPrettyPrint\fP (const \fBAlignment\fP *aln)"
+.br
+.ti -1c
+.RI "std::string \fBAdjacenceMatrixPrettyPrint\fP (const \fBBoolMatrix\fP &G)"
+.br
+.ti -1c
+.RI "std::string \fBTCoffeeLibFormat\fP (const \fBAlignment\fP *aln)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 38 of file Output.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Circal::Output::Output ()"
+.PP
+Definition at line 34 of file Output.cpp.
+.SS "Circal::Output::~Output ()\fC [virtual]\fP"
+.PP
+Definition at line 38 of file Output.cpp.
+.SH "Member Function Documentation"
+.PP 
+.SS "std::string Circal::Output::SequencePrettyPrint (const bpp::Sequence * A)"
+.PP
+Definition at line 93 of file Output.cpp.
+.PP
+Referenced by AlignmentPrettyPrint().
+.SS "std::string Circal::Output::ScoreMatrixPrettyPrint (const bpp::Sequence * A, const bpp::Sequence * B, const \fBScoreMatrix\fP & D)"
+.PP
+Definition at line 43 of file Output.cpp.
+.SS "std::string Circal::Output::AlignmentPrettyPrint (const \fBAlignment\fP * aln)"
+.PP
+Definition at line 64 of file Output.cpp.
+.PP
+References Circal::Alignment::get_Score(), and SequencePrettyPrint().
+.PP
+Referenced by Circal::MultipleAlignment::GotohalignMultiple(), and Circal::MultipleAlignment::NMWalignMultiple().
+.SS "std::string Circal::Output::AdjacenceMatrixPrettyPrint (const \fBBoolMatrix\fP & G)"
+.PP
+Definition at line 80 of file Output.cpp.
+.SS "std::string Circal::Output::TCoffeeLibFormat (const \fBAlignment\fP * aln)"
+.PP
+Definition at line 104 of file Output.cpp.
+.PP
+References Circal::Alignment::get_origSize().
+.PP
+Referenced by main().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CircalPP from the source code.
