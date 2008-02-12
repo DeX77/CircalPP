@@ -81,11 +81,17 @@ namespace Circal
 
         D[0][1] = scoreM->ScoreOfGapOpen(B->getChar(0))
             + scoreM->ScoreOfGapExtend(B->getChar(0));
+#ifdef _OPENMP            
+#pragma omp parallel for
+#endif 
         for (uint i=2; i<D[0].size(); i++)
           D[0][i] = D[0][i-1] + scoreM->ScoreOfGapExtend(B->getChar(i-1));
 
         D[1][0] = scoreM->ScoreOfGapOpen(A->getChar(0))
             + scoreM->ScoreOfGapExtend(A->getChar(0));
+#ifdef _OPENMP            
+#pragma omp parallel for
+#endif         
         for (uint i=2; i<D.size(); i++)
           D[i][0] = D[i-1][0] + scoreM->ScoreOfGapExtend(A->getChar(i-1));
 

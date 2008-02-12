@@ -17,25 +17,25 @@
  St, Fifth Floor, Boston, MA 02110, USA
  */
 
-#include "MetaRotatedSequence.h"
+#include "PseudoRotatedSequence.h"
 
 namespace Circal
   {
 
-    MetaRotatedSequence::MetaRotatedSequence(const bpp::Sequence* a) :
+    PseudoRotatedSequence::PseudoRotatedSequence(const bpp::Sequence* a) :
       RotatedSequence(a, 0)
       {
       }
 
-    MetaRotatedSequence::~MetaRotatedSequence()
+    PseudoRotatedSequence::~PseudoRotatedSequence()
       {
       }
-    unsigned int MetaRotatedSequence::size() const
+    unsigned int PseudoRotatedSequence::size() const
       {
         //Since this Sequence is metarotated return twice the size minus one
         return ((2* _content.size())-1);
       }
-    int MetaRotatedSequence::getValue(unsigned int pos) const
+    int PseudoRotatedSequence::getValue(unsigned int pos) const
         throw (bpp::IndexOutOfBoundsException)
       {
         pos = pos % _content.size();
@@ -44,7 +44,7 @@ namespace Circal
         return _content[pos];
       }
 
-    string MetaRotatedSequence::getChar(unsigned int pos) const
+    string PseudoRotatedSequence::getChar(unsigned int pos) const
         throw (bpp::IndexOutOfBoundsException)
       {
 
@@ -63,12 +63,12 @@ namespace Circal
           }
         return c;
       }
-    const int & MetaRotatedSequence::operator[](unsigned int i) const
+    const int & PseudoRotatedSequence::operator[](unsigned int i) const
       {
         i = i % _content.size();
         return _content[i];
       }
-    int & MetaRotatedSequence::operator[](unsigned int i)
+    int & PseudoRotatedSequence::operator[](unsigned int i)
       {
         i = i % _content.size();
         return _content[i];

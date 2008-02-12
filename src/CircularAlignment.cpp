@@ -40,7 +40,9 @@ namespace Circal
         Alignment* temp = Alignment::GotohAlignment(A, B, scoreM);
         Alignment* out = temp;
         int score = temp->get_Score();
-
+#ifdef _OPENMP            
+#pragma omp parallel for
+#endif 
         for (uint i=1; i<=A->size(); i++)
           {
             temp = Alignment::GotohAlignment(A,

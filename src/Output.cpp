@@ -22,7 +22,7 @@
 #include "Alignment.h"
 #include "VertebrateMitochondrialGenomeAlphabet.h"
 #include "CircularAlignment.h"
-#include "MetaRotatedSequence.h"
+#include "PseudoRotatedSequence.h"
 #include <Seq/SymbolList.h>
 
 #include <Seq/sequences>
@@ -114,7 +114,7 @@ namespace Circal
 
         out << aln->getSequence(0)->getName() << " ";
         out << aln->getSequence(0)->size() << " ";
-        out << MetaRotatedSequence(aln->getSequence(0)).toString();
+        out << PseudoRotatedSequence(aln->getSequence(0)).toString();
         out << std::endl;
 
         //Followed by a line with SeqName, Nr of Sited, Sequence for each Sequence        
@@ -122,7 +122,7 @@ namespace Circal
           {
             out << aln->getSequence(i)->getName() << " ";
             out << aln->getSequence(i)->size() << " ";
-            out << MetaRotatedSequence(aln->getSequence(i)).toString();
+            out << PseudoRotatedSequence(aln->getSequence(i)).toString();
             out << std::endl;
           }
 

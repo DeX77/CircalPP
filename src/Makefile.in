@@ -48,12 +48,13 @@ am__objects_1 = Alignment.$(OBJEXT) AlignmentSymbol.$(OBJEXT) \
 	CircularAlignment.$(OBJEXT) ErrorClasses.$(OBJEXT) \
 	ExtendedFasta.$(OBJEXT) GenomeAlphabet.$(OBJEXT) \
 	main.$(OBJEXT) MatrixHelper.$(OBJEXT) \
-	MetaCircularAlignment.$(OBJEXT) MultipleAlignment.$(OBJEXT) \
+	PseudoCircularAlignment.$(OBJEXT) MultipleAlignment.$(OBJEXT) \
 	MultipleCircularAlignment.$(OBJEXT) \
-	MultipleMetaCircularAlignment.$(OBJEXT) Output.$(OBJEXT) \
+	MultiplePseudoCircularAlignment.$(OBJEXT) Output.$(OBJEXT) \
 	ScoringModel.$(OBJEXT) RotatedSequence.$(OBJEXT) \
-	MetaRotatedSequence.$(OBJEXT) \
-	VertebrateMitochondrialGenomeAlphabet.$(OBJEXT)
+	PseudoRotatedSequence.$(OBJEXT) \
+	VertebrateMitochondrialGenomeAlphabet.$(OBJEXT) \
+	RandomSequence.$(OBJEXT)
 am__objects_2 =
 am_CircalPP_OBJECTS = $(am__objects_1) $(am__objects_2)
 CircalPP_OBJECTS = $(am_CircalPP_OBJECTS)
@@ -88,6 +89,7 @@ CFLAGS = @CFLAGS@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
 CXX = @CXX@
+CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
@@ -175,15 +177,16 @@ ExtendedFasta.cpp\
 GenomeAlphabet.cpp\
 main.cpp\
 MatrixHelper.cpp\
-MetaCircularAlignment.cpp\
+PseudoCircularAlignment.cpp\
 MultipleAlignment.cpp\
 MultipleCircularAlignment.cpp\
-MultipleMetaCircularAlignment.cpp\
+MultiplePseudoCircularAlignment.cpp\
 Output.cpp\
 ScoringModel.cpp\
 RotatedSequence.cpp\
-MetaRotatedSequence.cpp\
-VertebrateMitochondrialGenomeAlphabet.cpp
+PseudoRotatedSequence.cpp\
+VertebrateMitochondrialGenomeAlphabet.cpp\
+RandomSequence.cpp
 
 H_Files = \
 Alignment.h\
@@ -193,15 +196,16 @@ ErrorClasses.h\
 ExtendedFasta.h\
 GenomeAlphabet.h\
 MatrixHelper.h\
-MetaCircularAlignment.h\
+PseudoCircularAlignment.h\
 MultipleAlignment.h\
 MultipleCircularAlignment.h\
-MultipleMetaCircularAlignment.h\
+MultiplePseudoCircularAlignment.h\
 Output.h\
 ScoringModel.h\
 RotatedSequence.h\
-MetaRotatedSequence.h\
-VertebrateMitochondrialGenomeAlphabet.h
+PseudoRotatedSequence.h\
+VertebrateMitochondrialGenomeAlphabet.h\
+RandomSequence.h
 
 CircalPP_SOURCES = $(CPP_Files) $(H_Files)
 all: all-am
@@ -277,12 +281,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ExtendedFasta.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/GenomeAlphabet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MatrixHelper.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MetaCircularAlignment.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MetaRotatedSequence.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MultipleAlignment.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MultipleCircularAlignment.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MultipleMetaCircularAlignment.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MultiplePseudoCircularAlignment.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Output.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PseudoCircularAlignment.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PseudoRotatedSequence.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RandomSequence.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RotatedSequence.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ScoringModel.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/VertebrateMitochondrialGenomeAlphabet.Po@am__quote@

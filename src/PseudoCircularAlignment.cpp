@@ -17,29 +17,29 @@
  St, Fifth Floor, Boston, MA 02110, USA
  */
 
-#include "MetaCircularAlignment.h"
+#include "PseudoCircularAlignment.h"
 #include "ScoringModel.h"
 #include "MatrixHelper.h"
-#include "MetaRotatedSequence.h"
+#include "PseudoRotatedSequence.h"
 #include "Output.h"
 
 namespace Circal
   {
-    MetaCircularAlignment::MetaCircularAlignment(const bpp::Alphabet* alpha) :
+    PseudoCircularAlignment::PseudoCircularAlignment(const bpp::Alphabet* alpha) :
       VectorSequenceContainer(alpha), Alignment(alpha),
           CircularAlignment(alpha)
       {
       }
 
-    MetaCircularAlignment::~MetaCircularAlignment()
+    PseudoCircularAlignment::~PseudoCircularAlignment()
       {
       }
 
-    Alignment* MetaCircularAlignment::GotohAlignment(const bpp::Sequence* inA,
+    Alignment* PseudoCircularAlignment::GotohAlignment(const bpp::Sequence* inA,
         const bpp::Sequence* inB, const ScoringModel* scoreM)
       {
         
-        MetaRotatedSequence* A = new MetaRotatedSequence(inA);
+        PseudoRotatedSequence* A = new PseudoRotatedSequence(inA);
 
         ScoreMatrix D = matrix->InitScoreMatrixWith(A, inB, 0);
         ScoreMatrix P = matrix->InitScoreMatrixWith(A, inB, 0);

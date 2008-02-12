@@ -7,15 +7,16 @@ ExtendedFasta.cpp\
 GenomeAlphabet.cpp\
 main.cpp\
 MatrixHelper.cpp\
-MetaCircularAlignment.cpp\
+PseudoCircularAlignment.cpp\
 MultipleAlignment.cpp\
 MultipleCircularAlignment.cpp\
-MultipleMetaCircularAlignment.cpp\
+MultiplePseudoCircularAlignment.cpp\
 Output.cpp\
 ScoringModel.cpp\
 RotatedSequence.cpp\
-MetaRotatedSequence.cpp\
-VertebrateMitochondrialGenomeAlphabet.cpp
+PseudoRotatedSequence.cpp\
+VertebrateMitochondrialGenomeAlphabet.cpp\
+RandomSequence.cpp
 
 H_Files =\
 Alignment.h\
@@ -25,15 +26,16 @@ ErrorClasses.h\
 ExtendedFasta.h\
 GenomeAlphabet.h\
 MatrixHelper.h\
-MetaCircularAlignment.h\
+PseudoCircularAlignment.h\
 MultipleAlignment.h\
 MultipleCircularAlignment.h\
-MultipleMetaCircularAlignment.h\
+MultiplePseudoCircularAlignment.h\
 Output.h\
 ScoringModel.h\
 RotatedSequence.h\
-MetaRotatedSequence.h\
-VertebrateMitochondrialGenomeAlphabet.h
+PseudoRotatedSequence.h\
+VertebrateMitochondrialGenomeAlphabet.h\
+RandomSequence.h
 
 bin_PROGRAMS=CircalPP
 CircalPP_SOURCES= $(CPP_Files) $(H_Files)

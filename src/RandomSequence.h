@@ -17,32 +17,21 @@
  St, Fifth Floor, Boston, MA 02110, USA
  */
 
-#include "MultipleMetaCircularAlignment.h"
+#ifndef RANDOMSEQUENCE_H_
+#define RANDOMSEQUENCE_H_
+
+#include <Seq/Sequence.h>
 
 namespace Circal
   {
-    MultipleMetaCircularAlignment::MultipleMetaCircularAlignment(
-        const bpp::Alphabet* alpha) :
-      VectorSequenceContainer(alpha), Alignment(alpha),
-          MetaCircularAlignment(alpha), MultipleAlignment(alpha)
-      {
-      }
 
-    MultipleMetaCircularAlignment::MultipleMetaCircularAlignment(
-        const VectorSequenceContainer* input, const ScoringModel* scoreM) :
-
-      VectorSequenceContainer(input->getAlphabet()),
-          Alignment(input->getAlphabet()),
-          MetaCircularAlignment(input->getAlphabet()), MultipleAlignment(input,
-              scoreM)
+    class RandomSequence : public bpp::Sequence
       {
-        std::cerr << "Building multiple meta circular Alignment... "
-            << std::endl;
-        GotohalignMultiple(input, scoreM);
-      }
-
-    MultipleMetaCircularAlignment::~MultipleMetaCircularAlignment()
-      {
-      }
+  public:
+      RandomSequence(const uint &size, const bpp::Alphabet* alpha);
+      virtual ~RandomSequence();
+      };
 
   }
+
+#endif /*RANDOMSEQUENCE_H_*/

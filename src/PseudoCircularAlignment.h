@@ -17,19 +17,19 @@
  St, Fifth Floor, Boston, MA 02110, USA
  */
 
-#ifndef METACIRCULARALIGNMENT_H_
-#define METACIRCULARALIGNMENT_H_
+#ifndef PSEUDOCIRCULARALIGNMENT_H_
+#define PSEUDOCIRCULARALIGNMENT_H_
 
 #include "CircularAlignment.h"
 
 namespace Circal
   {
-    class MetaCircularAlignment : public CircularAlignment
+    class PseudoCircularAlignment : public CircularAlignment
       {
 
   public:
-      MetaCircularAlignment(const bpp::Alphabet* alpha);
-      virtual ~MetaCircularAlignment();
+      PseudoCircularAlignment(const bpp::Alphabet* alpha);
+      virtual ~PseudoCircularAlignment();
 
       //Gotoh Alignment
       Alignment* GotohAlignment(const bpp::Sequence* A,
@@ -38,4 +38,4 @@ namespace Circal
       };
   }
 
-#endif /*METACIRCULARALIGNMENT_H_*/
+#endif /*PSEUDOCIRCULARALIGNMENT_H_*/

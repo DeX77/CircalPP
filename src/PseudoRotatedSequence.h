@@ -17,20 +17,20 @@
  St, Fifth Floor, Boston, MA 02110, USA
  */
 
-#ifndef METAROTATEDSEQUENCE_H_
-#define METAROTATEDSEQUENCE_H_
+#ifndef PSEUDOROTATEDSEQUENCE_H_
+#define PSEUDOROTATEDSEQUENCE_H_
 
 #include "RotatedSequence.h"
 
 namespace Circal
   {
 
-    class MetaRotatedSequence : public RotatedSequence
+    class PseudoRotatedSequence : public RotatedSequence
       {
   public:
 
-      MetaRotatedSequence(const bpp::Sequence* a);
-      virtual ~MetaRotatedSequence();
+      PseudoRotatedSequence(const bpp::Sequence* a);
+      virtual ~PseudoRotatedSequence();
 
       /**
        * @brief Get the number of elements in the list.
@@ -86,4 +86,4 @@ namespace Circal
 
   }
 
-#endif /*METAROTATEDSEQUENCE_H_*/
+#endif /*PSEUDOROTATEDSEQUENCE_H_*/

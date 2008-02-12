@@ -37,13 +37,13 @@ namespace Circal
         delete matrix;
       }
     uint Alignment::get_origSize() const
-    {
-      return this->origSize;
-    }
+      {
+        return this->origSize;
+      }
     void Alignment::set_origSize(const uint &orig)
-    {
-      this->origSize = orig;
-    }
+      {
+        this->origSize = orig;
+      }
 
     int Alignment::get_Score(void) const
       {
@@ -125,16 +125,16 @@ namespace Circal
 
         minScore = matrix->SearchMinimumPosition(D, i, j, minScore, scoreM);
 
+        minScore = 0;
         //        minScore = std::min(D->at(matrix->SearchMinimuminlastColumn(D)).at(j), std::min(P->at(matrix->SearchMinimuminlastColumn(P)).at(j), Q->at(matrix->SearchMinimuminlastColumn(Q)).at(j) ));
 
         //        std::cout << "Gefunden in: " << i << ":" << j << " Wert=" << minScore
         //            << std::endl;
 
 
-
         while ( (i>0) && (j>0))
           {
-            //            std::cout << "Aktuelle Score: " << minScore << std::endl;
+//            std::cout << "Aktuelle Score: " << minScore << std::endl;
 
             //Change to Q
             if (scoreM->BestOfTwo(D->at(i).at(j), Q->at(i).at(j) ) == Q->at(i).at(j))
@@ -144,7 +144,7 @@ namespace Circal
                 if (Q->at(i).at(j) == D->at(i).at(j-1) + scoreM->ScoreOfGapOpen(A->getChar(i -1))
                     + scoreM->ScoreOfGapExtend(A->getChar(i-1)))
                   {
-                    minScore =+scoreM->ScoreOfGapOpen(A->getChar(i-1));
+                    minScore +=scoreM->ScoreOfGapOpen(A->getChar(i-1));
                     //                                        std::cout << "Left"<< endl;
                   }
                 //Continued Gap in A
@@ -159,7 +159,7 @@ namespace Circal
                 itA = outA.insert(itA, -1);
                 itB = outB.insert(itB, B->getValue(j-1));
                 j--;
-                minScore =+scoreM->ScoreOfGapExtend(A->getChar(i-1));
+                minScore +=scoreM->ScoreOfGapExtend(A->getChar(i-1));
                 continue;
               }
 
@@ -171,7 +171,7 @@ namespace Circal
                     + scoreM->ScoreOfGapExtend(B->getChar(j-1)))
                   {
                     //                                        std::cout << "Up"<< endl;
-                    minScore =+scoreM->ScoreOfGapOpen(B->getChar(j-1));
+                    minScore +=scoreM->ScoreOfGapOpen(B->getChar(j-1));
 
                   }
                 //Continued Gap in B
@@ -183,7 +183,7 @@ namespace Circal
                   {
                     //                    std::cout << "Changed to P but not possible?" << std::endl;
                   }
-                minScore =+scoreM->ScoreOfGapExtend(B->getChar(j-1));
+                minScore +=scoreM->ScoreOfGapExtend(B->getChar(j-1));
                 itA = outA.insert(itA, A->getValue(i-1));
                 itB = outB.insert(itB, -1);
                 i--;
@@ -213,35 +213,35 @@ namespace Circal
 
           }
 
-//                while (i > 0)
-//          {
-//            //            std::cout << "Overlapp A"<< endl;
-//
-//            if (i == 1)
-//              minScore += scoreM->ScoreOfGapOpen(A->getChar(i-1));
-//            minScore += scoreM->ScoreOfGapExtend(A->getChar(i-1));
-//            itA = outA.insert(itA, A->getValue(i-1));
-//            itB = outB.insert(itB, -1);
-//            i--;
-//          }
-//
-//        while (j > 0)
-//          {
-//            //            std::cout << "Overlapp B"<< endl;
-//            if (j == 1)
-//              minScore += scoreM->ScoreOfGapOpen(B->getChar(j-1));
-//            minScore += scoreM->ScoreOfGapExtend(B->getChar(j-1));
-//            itB = outB.insert(itB, B->getValue(j-1));
-//            itA = outA.insert(itA, -1);
-//            j--;
-//          }
+        //                while (i > 0)
+        //          {
+        //            //            std::cout << "Overlapp A"<< endl;
+        //
+        //            if (i == 1)
+        //              minScore += scoreM->ScoreOfGapOpen(A->getChar(i-1));
+        //            minScore += scoreM->ScoreOfGapExtend(A->getChar(i-1));
+        //            itA = outA.insert(itA, A->getValue(i-1));
+        //            itB = outB.insert(itB, -1);
+        //            i--;
+        //          }
+        //
+        //        while (j > 0)
+        //          {
+        //            //            std::cout << "Overlapp B"<< endl;
+        //            if (j == 1)
+        //              minScore += scoreM->ScoreOfGapOpen(B->getChar(j-1));
+        //            minScore += scoreM->ScoreOfGapExtend(B->getChar(j-1));
+        //            itB = outB.insert(itB, B->getValue(j-1));
+        //            itA = outA.insert(itA, -1);
+        //            j--;
+        //          }
 
         A = new bpp::Sequence(A->getName(),outA,A->getAlphabet());
         B = new bpp::Sequence(B->getName(),outB,B->getAlphabet());
 
         //Save Score to Container
         out->set_score(minScore);
-        
+
         //Constify the Sequences
         A = const_cast<bpp::Sequence*>(A);
         B = const_cast<bpp::Sequence*>(B);

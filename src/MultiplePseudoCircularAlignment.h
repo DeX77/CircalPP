@@ -17,24 +17,24 @@ this program; if not, write to the Free Software Foundation, Inc., 51 Franklin
 St, Fifth Floor, Boston, MA 02110, USA
 */
 
-#ifndef MULTIPLEMETACIRCULARALIGNMENT_H_
-#define MULTIPLEMETACIRCULARALIGNMENT_H_
+#ifndef MULTIPLEPSEUDOCIRCULARALIGNMENT_H_
+#define MULTIPLEPSEUDOCIRCULARALIGNMENT_H_
 
-#include "MetaCircularAlignment.h"
+#include "PseudoCircularAlignment.h"
 #include "MultipleAlignment.h"
 
 namespace Circal
   {
-    class MultipleMetaCircularAlignment : public MetaCircularAlignment,
+    class MultiplePseudoCircularAlignment : public PseudoCircularAlignment,
       public MultipleAlignment
       {
     public:
-        explicit MultipleMetaCircularAlignment(const bpp::Alphabet* alpha);
+        explicit MultiplePseudoCircularAlignment(const bpp::Alphabet* alpha);
 
-        MultipleMetaCircularAlignment(const VectorSequenceContainer* input,
+        MultiplePseudoCircularAlignment(const VectorSequenceContainer* input,
             const ScoringModel* scoreM);
-        virtual ~MultipleMetaCircularAlignment();
+        virtual ~MultiplePseudoCircularAlignment();
       };
   }
 
-#endif /*MULTIPLEMETACIRCULARALIGNMENT_H_*/
+#endif /*MULTIPLEPSEUDOCIRCULARALIGNMENT_H_*/
