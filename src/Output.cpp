@@ -21,7 +21,6 @@
 #include "MatrixHelper.h"
 #include "Alignment.h"
 #include "VertebrateMitochondrialGenomeAlphabet.h"
-#include "CircularAlignment.h"
 #include "PseudoRotatedSequence.h"
 #include <Seq/SymbolList.h>
 
@@ -37,7 +36,7 @@ namespace Circal
 
     Output::~Output()
       {
-
+        
       }
 
     std::string Output::ScoreMatrixPrettyPrint(const bpp::Sequence* A,

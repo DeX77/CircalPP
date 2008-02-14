@@ -17,32 +17,20 @@
  St, Fifth Floor, Boston, MA 02110, USA
  */
 
-#include "MultiplePseudoCircularAlignment.h"
+#include "MultipleCircularAlignmentFactory.h"
+#include "Output.h"
+#include "MatrixHelper.h"
 
 namespace Circal
   {
-    MultiplePseudoCircularAlignment::MultiplePseudoCircularAlignment(
-        const bpp::Alphabet* alpha) :
-      VectorSequenceContainer(alpha), Alignment(alpha),
-          PseudoCircularAlignment(alpha), MultipleAlignment(alpha)
+    MultipleCircularAlignmentFactory::MultipleCircularAlignmentFactory()
       {
       }
 
-    MultiplePseudoCircularAlignment::MultiplePseudoCircularAlignment(
-        const VectorSequenceContainer* input, const ScoringModel* scoreM) :
 
-      VectorSequenceContainer(input->getAlphabet()),
-          Alignment(input->getAlphabet()),
-          PseudoCircularAlignment(input->getAlphabet()), MultipleAlignment(input,
-              scoreM)
-      {
-        std::cerr << "Building multiple meta circular Alignment... "
-            << std::endl;
-        GotohalignMultiple(input, scoreM);
-      }
-
-    MultiplePseudoCircularAlignment::~MultiplePseudoCircularAlignment()
+    MultipleCircularAlignmentFactory::~MultipleCircularAlignmentFactory()
       {
       }
 
   }
+

@@ -17,34 +17,21 @@
  St, Fifth Floor, Boston, MA 02110, USA
  */
 
-#include "MultipleCircularAlignment.h"
-#include "Output.h"
-#include "MatrixHelper.h"
+#ifndef MULTIPLECIRCULARALIGNMENT_H_
+#define MULTIPLECIRCULARALIGNMENT_H_
+
+#include "CircularAlignmentFactory.h"
+#include "MultipleAlignmentFactory.h"
 
 namespace Circal
   {
-    MultipleCircularAlignment::MultipleCircularAlignment(
-        const bpp::Alphabet* alpha) :
-      VectorSequenceContainer(alpha), Alignment(alpha),
-          CircularAlignment(alpha), MultipleAlignment(alpha)
+    class MultipleCircularAlignmentFactory : public CircularAlignmentFactory,
+      public MultipleAlignmentFactory
       {
-      }
-
-    MultipleCircularAlignment::MultipleCircularAlignment(
-        const VectorSequenceContainer* input, const ScoringModel* scoreM) :
-      VectorSequenceContainer(input->getAlphabet()),
-          Alignment(input->getAlphabet()),
-          CircularAlignment(input->getAlphabet()), MultipleAlignment(input,
-              scoreM)
-
-      {
-        GotohalignMultiple(input, scoreM);
-        //NMWalignMultiple(input, scoreM);
-      }
-
-    MultipleCircularAlignment::~MultipleCircularAlignment()
-      {
-      }
-
+  public:
+      explicit MultipleCircularAlignmentFactory();
+      virtual ~MultipleCircularAlignmentFactory();
+      };
   }
 
+#endif /*MULTIPLECIRCULARALIGNMENT_H_*/

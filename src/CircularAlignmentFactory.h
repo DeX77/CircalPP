@@ -17,38 +17,25 @@
  St, Fifth Floor, Boston, MA 02110, USA
  */
 
-#ifndef ALIGNMENT_H_
-#define ALIGNMENT_H_
+#ifndef CIRCULARALIGNMENT_H_
+#define CIRCULARALIGNMENT_H_
 
-//Includes from Bio++ 
-#include <Seq/AbstractSequenceContainer.h>
-#include <Seq/ioseq>
-#include <Utils/FileTools.h>
-
-namespace bpp
-  {
-    class Sequence;
-  }
-
+#include "AlignmentFactory.h"
 namespace Circal
   {
 
-    class Alignment : public bpp::AlignedSequenceContainer
+    class CircularAlignmentFactory : public virtual AlignmentFactory
       {
-      uint origSize;
-      double Score;
 
   public:
-      explicit Alignment(const bpp::Alphabet* alpha);
-      Alignment();
-      virtual ~Alignment();
-      uint get_origSize() const;
-      double get_Score() const;
-      void set_Score(const double &s);
-      void set_origSize(const uint &orig);
-      void addSequence(const bpp::Sequence & sequence, bool checkNames)
-          throw(bpp::Exception);
-      void addSequence(const bpp::Sequence & sequence) throw(bpp::Exception);
+      explicit CircularAlignmentFactory();
+      virtual ~CircularAlignmentFactory();
+
+      virtual Alignment* NeedlemanWunschAlignment(const bpp::Sequence* A,
+          const bpp::Sequence* B, const ScoringModel* scoreM);
+
+      virtual Alignment* GotohAlignment(const bpp::Sequence* A,
+          const bpp::Sequence* B, const ScoringModel* scoreM);
       };
   }
-#endif /*ALIGNMENT_H_*/
+#endif /*CIRCULARALIGNMENT_H_*/

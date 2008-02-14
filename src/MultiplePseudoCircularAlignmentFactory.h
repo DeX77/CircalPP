@@ -17,38 +17,23 @@
  St, Fifth Floor, Boston, MA 02110, USA
  */
 
-#ifndef ALIGNMENT_H_
-#define ALIGNMENT_H_
+#ifndef MULTIPLEPSEUDOCIRCULARALIGNMENT_H_
+#define MULTIPLEPSEUDOCIRCULARALIGNMENT_H_
 
-//Includes from Bio++ 
-#include <Seq/AbstractSequenceContainer.h>
-#include <Seq/ioseq>
-#include <Utils/FileTools.h>
-
-namespace bpp
-  {
-    class Sequence;
-  }
+#include "PseudoCircularAlignmentFactory.h"
+#include "MultipleAlignmentFactory.h"
 
 namespace Circal
   {
-
-    class Alignment : public bpp::AlignedSequenceContainer
+    class MultiplePseudoCircularAlignmentFactory :
+      public PseudoCircularAlignmentFactory, public MultipleAlignmentFactory
       {
-      uint origSize;
-      double Score;
 
   public:
-      explicit Alignment(const bpp::Alphabet* alpha);
-      Alignment();
-      virtual ~Alignment();
-      uint get_origSize() const;
-      double get_Score() const;
-      void set_Score(const double &s);
-      void set_origSize(const uint &orig);
-      void addSequence(const bpp::Sequence & sequence, bool checkNames)
-          throw(bpp::Exception);
-      void addSequence(const bpp::Sequence & sequence) throw(bpp::Exception);
+      explicit MultiplePseudoCircularAlignmentFactory();
+      virtual ~MultiplePseudoCircularAlignmentFactory();
+
       };
   }
-#endif /*ALIGNMENT_H_*/
+
+#endif /*MULTIPLEPSEUDOCIRCULARALIGNMENT_H_*/

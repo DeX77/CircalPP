@@ -17,7 +17,7 @@
  St, Fifth Floor, Boston, MA 02110, USA
  */
 
-#include "PseudoCircularAlignment.h"
+#include "PseudoCircularAlignmentFactory.h"
 #include "ScoringModel.h"
 #include "MatrixHelper.h"
 #include "PseudoRotatedSequence.h"
@@ -25,20 +25,20 @@
 
 namespace Circal
   {
-    PseudoCircularAlignment::PseudoCircularAlignment(const bpp::Alphabet* alpha) :
-      VectorSequenceContainer(alpha), Alignment(alpha),
-          CircularAlignment(alpha)
+    PseudoCircularAlignmentFactory::PseudoCircularAlignmentFactory()
       {
       }
 
-    PseudoCircularAlignment::~PseudoCircularAlignment()
+
+    PseudoCircularAlignmentFactory::~PseudoCircularAlignmentFactory()
       {
       }
 
-    Alignment* PseudoCircularAlignment::GotohAlignment(const bpp::Sequence* inA,
-        const bpp::Sequence* inB, const ScoringModel* scoreM)
+    Alignment* PseudoCircularAlignmentFactory::GotohAlignment(
+        const bpp::Sequence* inA, const bpp::Sequence* inB,
+        const ScoringModel* scoreM)
       {
-        
+
         PseudoRotatedSequence* A = new PseudoRotatedSequence(inA);
 
         ScoreMatrix D = matrix->InitScoreMatrixWith(A, inB, 0);
@@ -50,5 +50,17 @@ namespace Circal
 
         return BacktrackingGotoh(A, inB, scoreM, &D, &P, &Q);
 
+      }
+    Alignment* PseudoCircularAlignmentFactory::NeedlemanWunschAlignment(
+        const bpp::Sequence* inA, const bpp::Sequence* inB,
+        const ScoringModel* scoreM)
+      {
+        PseudoRotatedSequence* A = new PseudoRotatedSequence(inA);
+        ScoreMatrix D = matrix->InitializeScoreMatrixDistances(A, inB, scoreM);
+
+        //Forward Iteration
+        ForwardRecursionNMW(A, inB, scoreM, &D);
+
+        return BacktrackingNMW(A, inB, scoreM, &D);
       }
   }

@@ -44,15 +44,16 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
-am__objects_1 = Alignment.$(OBJEXT) AlignmentSymbol.$(OBJEXT) \
-	CircularAlignment.$(OBJEXT) ErrorClasses.$(OBJEXT) \
-	ExtendedFasta.$(OBJEXT) GenomeAlphabet.$(OBJEXT) \
-	main.$(OBJEXT) MatrixHelper.$(OBJEXT) \
-	PseudoCircularAlignment.$(OBJEXT) MultipleAlignment.$(OBJEXT) \
-	MultipleCircularAlignment.$(OBJEXT) \
-	MultiplePseudoCircularAlignment.$(OBJEXT) Output.$(OBJEXT) \
-	ScoringModel.$(OBJEXT) RotatedSequence.$(OBJEXT) \
-	PseudoRotatedSequence.$(OBJEXT) \
+am__objects_1 = Alignment.$(OBJEXT) AlignmentFactory.$(OBJEXT) \
+	AlignmentSymbol.$(OBJEXT) CircularAlignmentFactory.$(OBJEXT) \
+	ErrorClasses.$(OBJEXT) ExtendedFasta.$(OBJEXT) \
+	GenomeAlphabet.$(OBJEXT) main.$(OBJEXT) MatrixHelper.$(OBJEXT) \
+	PseudoCircularAlignmentFactory.$(OBJEXT) \
+	MultipleAlignmentFactory.$(OBJEXT) \
+	MultipleCircularAlignmentFactory.$(OBJEXT) \
+	MultiplePseudoCircularAlignmentFactory.$(OBJEXT) \
+	Output.$(OBJEXT) ScoringModel.$(OBJEXT) \
+	RotatedSequence.$(OBJEXT) PseudoRotatedSequence.$(OBJEXT) \
 	VertebrateMitochondrialGenomeAlphabet.$(OBJEXT) \
 	RandomSequence.$(OBJEXT)
 am__objects_2 =
@@ -170,17 +171,18 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 CPP_Files = \
 Alignment.cpp\
+AlignmentFactory.cpp\
 AlignmentSymbol.cpp\
-CircularAlignment.cpp\
+CircularAlignmentFactory.cpp\
 ErrorClasses.cpp\
 ExtendedFasta.cpp\
 GenomeAlphabet.cpp\
 main.cpp\
 MatrixHelper.cpp\
-PseudoCircularAlignment.cpp\
-MultipleAlignment.cpp\
-MultipleCircularAlignment.cpp\
-MultiplePseudoCircularAlignment.cpp\
+PseudoCircularAlignmentFactory.cpp\
+MultipleAlignmentFactory.cpp\
+MultipleCircularAlignmentFactory.cpp\
+MultiplePseudoCircularAlignmentFactory.cpp\
 Output.cpp\
 ScoringModel.cpp\
 RotatedSequence.cpp\
@@ -190,16 +192,17 @@ RandomSequence.cpp
 
 H_Files = \
 Alignment.h\
+AlignmentFactory.h\
 AlignmentSymbol.h\
-CircularAlignment.h\
+CircularAlignmentFactory.h\
 ErrorClasses.h\
 ExtendedFasta.h\
 GenomeAlphabet.h\
 MatrixHelper.h\
-PseudoCircularAlignment.h\
-MultipleAlignment.h\
-MultipleCircularAlignment.h\
-MultiplePseudoCircularAlignment.h\
+PseudoCircularAlignmentFactory.h\
+MultipleAlignmentFactory.h\
+MultipleCircularAlignmentFactory.h\
+MultiplePseudoCircularAlignmentFactory.h\
 Output.h\
 ScoringModel.h\
 RotatedSequence.h\
@@ -275,17 +278,18 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Alignment.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/AlignmentFactory.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/AlignmentSymbol.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CircularAlignment.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CircularAlignmentFactory.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ErrorClasses.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ExtendedFasta.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/GenomeAlphabet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MatrixHelper.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MultipleAlignment.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MultipleCircularAlignment.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MultiplePseudoCircularAlignment.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MultipleAlignmentFactory.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MultipleCircularAlignmentFactory.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MultiplePseudoCircularAlignmentFactory.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Output.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PseudoCircularAlignment.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PseudoCircularAlignmentFactory.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PseudoRotatedSequence.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RandomSequence.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RotatedSequence.Po@am__quote@

@@ -1,16 +1,17 @@
 CPP_Files = \
 Alignment.cpp\
+AlignmentFactory.cpp\
 AlignmentSymbol.cpp\
-CircularAlignment.cpp\
+CircularAlignmentFactory.cpp\
 ErrorClasses.cpp\
 ExtendedFasta.cpp\
 GenomeAlphabet.cpp\
 main.cpp\
 MatrixHelper.cpp\
-PseudoCircularAlignment.cpp\
-MultipleAlignment.cpp\
-MultipleCircularAlignment.cpp\
-MultiplePseudoCircularAlignment.cpp\
+PseudoCircularAlignmentFactory.cpp\
+MultipleAlignmentFactory.cpp\
+MultipleCircularAlignmentFactory.cpp\
+MultiplePseudoCircularAlignmentFactory.cpp\
 Output.cpp\
 ScoringModel.cpp\
 RotatedSequence.cpp\
@@ -20,16 +21,17 @@ RandomSequence.cpp
 
 H_Files =\
 Alignment.h\
+AlignmentFactory.h\
 AlignmentSymbol.h\
-CircularAlignment.h\
+CircularAlignmentFactory.h\
 ErrorClasses.h\
 ExtendedFasta.h\
 GenomeAlphabet.h\
 MatrixHelper.h\
-PseudoCircularAlignment.h\
-MultipleAlignment.h\
-MultipleCircularAlignment.h\
-MultiplePseudoCircularAlignment.h\
+PseudoCircularAlignmentFactory.h\
+MultipleAlignmentFactory.h\
+MultipleCircularAlignmentFactory.h\
+MultiplePseudoCircularAlignmentFactory.h\
 Output.h\
 ScoringModel.h\
 RotatedSequence.h\

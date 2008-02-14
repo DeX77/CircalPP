@@ -17,38 +17,27 @@
  St, Fifth Floor, Boston, MA 02110, USA
  */
 
-#ifndef ALIGNMENT_H_
-#define ALIGNMENT_H_
+#ifndef MULTIPLEALIGNMENT_H_
+#define MULTIPLEALIGNMENT_H_
 
-//Includes from Bio++ 
-#include <Seq/AbstractSequenceContainer.h>
-#include <Seq/ioseq>
-#include <Utils/FileTools.h>
-
-namespace bpp
-  {
-    class Sequence;
-  }
+#include "AlignmentFactory.h"
+#include "Alignment.h"
 
 namespace Circal
   {
 
-    class Alignment : public bpp::AlignedSequenceContainer
+    class MultipleAlignmentFactory : public virtual AlignmentFactory
       {
-      uint origSize;
-      double Score;
 
   public:
-      explicit Alignment(const bpp::Alphabet* alpha);
-      Alignment();
-      virtual ~Alignment();
-      uint get_origSize() const;
-      double get_Score() const;
-      void set_Score(const double &s);
-      void set_origSize(const uint &orig);
-      void addSequence(const bpp::Sequence & sequence, bool checkNames)
-          throw(bpp::Exception);
-      void addSequence(const bpp::Sequence & sequence) throw(bpp::Exception);
+      explicit MultipleAlignmentFactory();
+      virtual ~MultipleAlignmentFactory();
+
+      Alignment GotohalignMultiple(const bpp::VectorSequenceContainer* input,
+          const ScoringModel* scoreM);
+      Alignment NMWalignMultiple(const bpp::VectorSequenceContainer* input,
+          const ScoringModel* scoreM);
+
       };
   }
-#endif /*ALIGNMENT_H_*/
+#endif /*MULTIPLEALIGNMENT_H_*/

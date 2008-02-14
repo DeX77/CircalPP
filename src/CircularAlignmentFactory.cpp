@@ -17,62 +17,60 @@
  St, Fifth Floor, Boston, MA 02110, USA
  */
 
-#include "CircularAlignment.h"
+#include "CircularAlignmentFactory.h"
 #include "ScoringModel.h"
 #include "MatrixHelper.h"
 #include "RotatedSequence.h"
-#include "Output.h"
 
 namespace Circal
   {
-    CircularAlignment::CircularAlignment(const bpp::Alphabet* alpha) :
-      bpp::VectorSequenceContainer(alpha), Alignment(alpha)
+    CircularAlignmentFactory::CircularAlignmentFactory()
       {
       }
 
-    CircularAlignment::~CircularAlignment()
+    CircularAlignmentFactory::~CircularAlignmentFactory()
       {
       }
 
-    Alignment* CircularAlignment::GotohAlignment(const bpp::Sequence* A,
+    Alignment* CircularAlignmentFactory::GotohAlignment(const bpp::Sequence* A,
         const bpp::Sequence* B, const ScoringModel* scoreM)
       {
-        Alignment* temp = Alignment::GotohAlignment(A, B, scoreM);
-        Alignment* out = temp;
-        int score = temp->get_Score();
-#ifdef _OPENMP            
-#pragma omp parallel for
-#endif 
+
+        double bestScore = 0;
+        Alignment* out;
+
         for (uint i=1; i<=A->size(); i++)
           {
-            temp = Alignment::GotohAlignment(A,
+            Alignment* temp = AlignmentFactory::GotohAlignment(A,
                 dynamic_cast<bpp::Sequence*>(new RotatedSequence(B, i)), scoreM);
-            if (scoreM->BestOfTwo(temp->get_Score(), score) != score)
+
+            if (scoreM->BestOfTwo(temp->get_Score(), bestScore) != bestScore)
               {
                 out = temp;
-                score = temp->get_Score();
+                bestScore = temp->get_Score();
               }
           }
-        return out;
+
       }
-    Alignment* CircularAlignment::NeedlemanWunschAlignment(
+
+    Alignment* CircularAlignmentFactory::NeedlemanWunschAlignment(
         const bpp::Sequence* A, const bpp::Sequence* B,
         const ScoringModel* scoreM)
       {
-        Alignment* temp = Alignment::NeedlemanWunschAlignment(A, B, scoreM);
-        Alignment* out = temp;
-        int score = temp->get_Score();
+        double bestScore = 0;
+        Alignment* out;
 
-        for (uint i=1; i<A->size(); i++)
+        for (uint i=1; i<=A->size(); i++)
           {
-            temp = Alignment::NeedlemanWunschAlignment(A,
+            Alignment* temp = AlignmentFactory::NeedlemanWunschAlignment(A,
                 dynamic_cast<bpp::Sequence*>(new RotatedSequence(B, i)), scoreM);
-            if (temp->get_Score() < score)
+
+            if (scoreM->BestOfTwo(temp->get_Score(), bestScore) != bestScore)
               {
                 out = temp;
-                score = temp->get_Score();
+                bestScore = temp->get_Score();
               }
           }
-        return out;
+
       }
   }
