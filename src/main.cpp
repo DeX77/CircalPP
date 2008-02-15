@@ -101,26 +101,28 @@ int main(int args, char* argv[])
     double AlignmentsGood = 0;
     double AlignmentsRev = 0;
 
-    Circal::CircularAlignmentFactory* cicAln;
-    Circal::PseudoCircularAlignmentFactory* pseudoCircAln;
+    Circal::CircularAlignmentFactory* cicAln =
+        new Circal::CircularAlignmentFactory();
+    Circal::PseudoCircularAlignmentFactory* pseudoCircAln =
+        new Circal::PseudoCircularAlignmentFactory();
 
-    Circal::Alignment* regCircular;
-    Circal::Alignment* pseudoCircular;
-    Circal::Alignment* pseudoCircularRev;
-    
-#ifdef _OPENMP            
-#pragma omp parallel for private(regCircular,pseudoCircular,pseudoCircularRev)
-#endif 
+//#ifdef _OPENMP            
+//#pragma omp parallel for
+//#endif      
     for (uint u=0; u<sequences->getNumberOfSequences(); u++)
       {
 
         for (uint k=u+1; k<sequences->getNumberOfSequences(); k++)
           {
-            regCircular = cicAln->GotohAlignment(
+            Circal::Alignment* regCircular = new Circal::Alignment(alpha);
+            Circal::Alignment* pseudoCircular = new Circal::Alignment(alpha);
+            Circal::Alignment* pseudoCircularRev = new Circal::Alignment(alpha);
+
+            cicAln->GotohAlignment(regCircular, sequences->getSequence(u),
+                sequences->getSequence(k), scoreM);
+            pseudoCircAln->GotohAlignment(regCircular,
                 sequences->getSequence(u), sequences->getSequence(k), scoreM);
-            pseudoCircular = pseudoCircAln->GotohAlignment(
-                sequences->getSequence(u), sequences->getSequence(k), scoreM);
-            pseudoCircularRev = pseudoCircAln->GotohAlignment(
+            pseudoCircAln->GotohAlignment(regCircular,
                 sequences->getSequence(k), sequences->getSequence(u), scoreM);
 
             if (regCircular->get_Score() > pseudoCircular->get_Score())

@@ -28,13 +28,13 @@ namespace Circal
       {
 
   public:
-      explicit CircularAlignmentFactory();
+      CircularAlignmentFactory();
       virtual ~CircularAlignmentFactory();
 
-      virtual Alignment* NeedlemanWunschAlignment(const bpp::Sequence* A,
+      void NeedlemanWunschAlignment(Alignment* out, const bpp::Sequence* A,
           const bpp::Sequence* B, const ScoringModel* scoreM);
 
-      virtual Alignment* GotohAlignment(const bpp::Sequence* A,
+      void GotohAlignment(Alignment* out, const bpp::Sequence* A,
           const bpp::Sequence* B, const ScoringModel* scoreM);
       };
   }

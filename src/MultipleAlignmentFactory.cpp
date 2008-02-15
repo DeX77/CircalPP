@@ -32,10 +32,11 @@ namespace Circal
       {
       }
 
-    Alignment MultipleAlignmentFactory::GotohalignMultiple(
+    void MultipleAlignmentFactory::GotohalignMultiple(Alignment* out,
         const bpp::VectorSequenceContainer* input, const ScoringModel* scoreM)
       {
-        Alignment* out = new Alignment(input->getAlphabet());
+
+        Alignment* temp = new Alignment(input->getAlphabet());
 
         for (uint u=0; u<input->getNumberOfSequences(); u++)
           {
@@ -43,7 +44,7 @@ namespace Circal
             for (uint k=u+1; k<input->getNumberOfSequences(); k++)
               {
 
-                Alignment* temp = GotohAlignment(input->getSequence(u),
+                GotohAlignment(temp, input->getSequence(u),
                     input->getSequence(k), scoreM);
 
                 bpp::SequenceContainerTools::append(*out, *temp);
@@ -52,10 +53,10 @@ namespace Circal
           }
 
       }
-    Alignment MultipleAlignmentFactory::NMWalignMultiple(
+    void MultipleAlignmentFactory::NMWalignMultiple(Alignment* out,
         const bpp::VectorSequenceContainer* input, const ScoringModel* scoreM)
       {
-        Alignment* out = new Alignment(input->getAlphabet());
+        Alignment* temp = new Alignment(input->getAlphabet());
 
         for (uint u=0; u<input->getNumberOfSequences(); u++)
           {
@@ -63,7 +64,7 @@ namespace Circal
             for (uint k=u+1; k<input->getNumberOfSequences(); k++)
               {
 
-                Alignment* temp = NeedlemanWunschAlignment(input->getSequence(u),
+                NeedlemanWunschAlignment(temp, input->getSequence(u),
                     input->getSequence(k), scoreM);
 
                 bpp::SequenceContainerTools::append(*out, *temp);

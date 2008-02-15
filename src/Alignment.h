@@ -39,7 +39,7 @@ namespace Circal
       double Score;
 
   public:
-      explicit Alignment(const bpp::Alphabet* alpha);
+      Alignment(const bpp::Alphabet* alpha);
       Alignment();
       virtual ~Alignment();
       uint get_origSize() const;

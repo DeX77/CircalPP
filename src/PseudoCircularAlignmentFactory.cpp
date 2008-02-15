@@ -29,16 +29,14 @@ namespace Circal
       {
       }
 
-
     PseudoCircularAlignmentFactory::~PseudoCircularAlignmentFactory()
       {
       }
 
-    Alignment* PseudoCircularAlignmentFactory::GotohAlignment(
+    void PseudoCircularAlignmentFactory::GotohAlignment(Alignment* out,
         const bpp::Sequence* inA, const bpp::Sequence* inB,
         const ScoringModel* scoreM)
       {
-
         PseudoRotatedSequence* A = new PseudoRotatedSequence(inA);
 
         ScoreMatrix D = matrix->InitScoreMatrixWith(A, inB, 0);
@@ -48,11 +46,11 @@ namespace Circal
         //Forward Iteration
         ForwardRecursionGotoh(A, inB, scoreM, &D, &P, &Q);
 
-        return BacktrackingGotoh(A, inB, scoreM, &D, &P, &Q);
+        BacktrackingGotoh(out, A, inB, scoreM, &D, &P, &Q);
 
       }
-    Alignment* PseudoCircularAlignmentFactory::NeedlemanWunschAlignment(
-        const bpp::Sequence* inA, const bpp::Sequence* inB,
+    void PseudoCircularAlignmentFactory::NeedlemanWunschAlignment(
+        Alignment* out, const bpp::Sequence* inA, const bpp::Sequence* inB,
         const ScoringModel* scoreM)
       {
         PseudoRotatedSequence* A = new PseudoRotatedSequence(inA);
@@ -61,6 +59,6 @@ namespace Circal
         //Forward Iteration
         ForwardRecursionNMW(A, inB, scoreM, &D);
 
-        return BacktrackingNMW(A, inB, scoreM, &D);
+        BacktrackingNMW(out, A, inB, scoreM, &D);
       }
   }

@@ -32,43 +32,48 @@ namespace Circal
       {
       }
 
-    Alignment* CircularAlignmentFactory::GotohAlignment(const bpp::Sequence* A,
-        const bpp::Sequence* B, const ScoringModel* scoreM)
+    void CircularAlignmentFactory::GotohAlignment(Alignment* out,
+        const bpp::Sequence* A, const bpp::Sequence* B,
+        const ScoringModel* scoreM)
       {
-
+        
         double bestScore = 0;
-        Alignment* out;
-
+        Alignment* temp = new Alignment(out->getAlphabet());
+//#ifdef _OPENMP            
+//#pragma omp parallel for
+//#endif      
         for (uint i=1; i<=A->size(); i++)
           {
-            Alignment* temp = AlignmentFactory::GotohAlignment(A,
+            AlignmentFactory::GotohAlignment(temp, A,
                 dynamic_cast<bpp::Sequence*>(new RotatedSequence(B, i)), scoreM);
 
             if (scoreM->BestOfTwo(temp->get_Score(), bestScore) != bestScore)
               {
-                out = temp;
                 bestScore = temp->get_Score();
+                out = temp;
               }
           }
 
       }
 
-    Alignment* CircularAlignmentFactory::NeedlemanWunschAlignment(
+    void CircularAlignmentFactory::NeedlemanWunschAlignment(Alignment* out,
         const bpp::Sequence* A, const bpp::Sequence* B,
         const ScoringModel* scoreM)
       {
         double bestScore = 0;
-        Alignment* out;
-
+        Alignment* temp = new Alignment(out->getAlphabet());
+//#ifdef _OPENMP            
+//#pragma omp parallel for
+//#endif      
         for (uint i=1; i<=A->size(); i++)
           {
-            Alignment* temp = AlignmentFactory::NeedlemanWunschAlignment(A,
+            AlignmentFactory::NeedlemanWunschAlignment(temp, A,
                 dynamic_cast<bpp::Sequence*>(new RotatedSequence(B, i)), scoreM);
 
             if (scoreM->BestOfTwo(temp->get_Score(), bestScore) != bestScore)
               {
-                out = temp;
                 bestScore = temp->get_Score();
+                out = temp;
               }
           }
 
