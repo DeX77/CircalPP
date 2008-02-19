@@ -32,50 +32,66 @@ namespace Circal
       {
       }
 
-    void CircularAlignmentFactory::GotohAlignment(Alignment* out,
-        const bpp::Sequence* A, const bpp::Sequence* B,
-        const ScoringModel* scoreM)
+    Alignment* CircularAlignmentFactory::GotohAlignment(const bpp::Sequence* A,
+        const bpp::Sequence* B, const ScoringModel* scoreM)
       {
-        
+
         double bestScore = 0;
-        Alignment* temp = new Alignment(out->getAlphabet());
+        uint offset = 0;
+        Alignment* temp = new Alignment(A->getAlphabet());
+        Alignment* out = new Alignment(A->getAlphabet());
+
 //#ifdef _OPENMP            
-//#pragma omp parallel for
+//#pragma omp parallel for shared(offset)
 //#endif      
         for (uint i=1; i<=A->size(); i++)
           {
-            AlignmentFactory::GotohAlignment(temp, A,
+            temp = AlignmentFactory::GotohAlignment(A,
                 dynamic_cast<bpp::Sequence*>(new RotatedSequence(B, i)), scoreM);
-
             if (scoreM->BestOfTwo(temp->get_Score(), bestScore) != bestScore)
               {
+                offset = i;
                 bestScore = temp->get_Score();
+                std::cout << "Neue Highscore " << bestScore << " bei Offset: "
+                    << i << std::endl;
                 out = temp;
+
               }
+
           }
+        return out;
 
       }
 
-    void CircularAlignmentFactory::NeedlemanWunschAlignment(Alignment* out,
+    Alignment* CircularAlignmentFactory::NeedlemanWunschAlignment(
         const bpp::Sequence* A, const bpp::Sequence* B,
         const ScoringModel* scoreM)
       {
         double bestScore = 0;
-        Alignment* temp = new Alignment(out->getAlphabet());
-//#ifdef _OPENMP            
-//#pragma omp parallel for
-//#endif      
+        uint offset = 0;
+        Alignment* temp = new Alignment(A->getAlphabet());
+        Alignment* out = new Alignment(A->getAlphabet());
+
+#ifdef _OPENMP            
+#pragma omp parallel for
+#endif      
         for (uint i=1; i<=A->size(); i++)
           {
-            AlignmentFactory::NeedlemanWunschAlignment(temp, A,
+            temp = AlignmentFactory::NeedlemanWunschAlignment(A,
                 dynamic_cast<bpp::Sequence*>(new RotatedSequence(B, i)), scoreM);
-
             if (scoreM->BestOfTwo(temp->get_Score(), bestScore) != bestScore)
               {
+                offset = i;
                 bestScore = temp->get_Score();
+                std::cout << "Neue Highscore " << bestScore << " bei Offset: "
+                    << i << std::endl;
+                delete out;
                 out = temp;
+
               }
+
           }
+        return out;
 
       }
   }

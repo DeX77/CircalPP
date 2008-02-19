@@ -44,17 +44,17 @@ namespace Circal
       {
         std::stringstream out;
 
-        out << "\t";
+        out << " ";
         for (uint k=0; k<B->size(); k++)
-          out << "\t"<< B->getChar(k);
+          out << " "<< B->getChar(k);
         out << std::endl;
         for (uint i=0; i<D.size(); i++)
           {
             if (i != 0)
               out << A->getChar(i-1);
-            out << "\t";
+            out << " ";
             for (uint j=0; j<D.at(i).size(); j++)
-              out << D.at(i).at(j)<< "\t";
+              out << D.at(i).at(j)<< " ";
             out << std::endl;
           }
         return out.str();

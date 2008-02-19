@@ -106,44 +106,30 @@ int main(int args, char* argv[])
     Circal::PseudoCircularAlignmentFactory* pseudoCircAln =
         new Circal::PseudoCircularAlignmentFactory();
 
-//#ifdef _OPENMP            
-//#pragma omp parallel for
-//#endif      
+    //#ifdef _OPENMP            
+    //#pragma omp parallel for
+    //#endif      
     for (uint u=0; u<sequences->getNumberOfSequences(); u++)
       {
 
         for (uint k=u+1; k<sequences->getNumberOfSequences(); k++)
           {
-            Circal::Alignment* regCircular = new Circal::Alignment(alpha);
-            Circal::Alignment* pseudoCircular = new Circal::Alignment(alpha);
-            Circal::Alignment* pseudoCircularRev = new Circal::Alignment(alpha);
 
-            cicAln->GotohAlignment(regCircular, sequences->getSequence(u),
-                sequences->getSequence(k), scoreM);
-            pseudoCircAln->GotohAlignment(regCircular,
+            Circal::Alignment* regCircular = cicAln->GotohAlignment(
                 sequences->getSequence(u), sequences->getSequence(k), scoreM);
-            pseudoCircAln->GotohAlignment(regCircular,
-                sequences->getSequence(k), sequences->getSequence(u), scoreM);
-
-            if (regCircular->get_Score() > pseudoCircular->get_Score())
+            Circal::Alignment* pseudoCircular= pseudoCircAln->GotohAlignment(
+                sequences->getSequence(u), sequences->getSequence(k), scoreM);
+            if (regCircular->get_Score() != pseudoCircular->get_Score())
               {
-                if (regCircular->get_Score() > pseudoCircularRev->get_Score())
-                  {
-                    std::clog << "Optimum: " << std::endl;
-                    std::clog << out->AlignmentPrettyPrint(regCircular)
-                        << std::endl;
-                    std::clog << "Heuristik: " << std::endl;
-                    std::clog << out->AlignmentPrettyPrint(pseudoCircular)
-                        << std::endl;
-                    std::clog << "Heuristik Reverse: " << std::endl;
-                    std::clog << out->AlignmentPrettyPrint(pseudoCircularRev)
-                        << std::endl;
-                  }
+
               }
             else
               AlignmentsGood++;
             Alignments++;
-
+            std::cout << "Optimum: " << std::endl;
+            std::cout << out->AlignmentPrettyPrint(regCircular) << std::endl;
+            std::cout << "Heuristik: " << std::endl;
+            std::cout << out->AlignmentPrettyPrint(pseudoCircular) << std::endl;
             std::cout << "Insgesamt: " << Alignments << " davon schlecht: "
                 << (Alignments-AlignmentsGood) << " Rate: " << (AlignmentsGood
                 /Alignments) << std::endl;
@@ -166,6 +152,11 @@ int main(int args, char* argv[])
     //Clean up
     delete alpha;
     delete sequences;
+    delete out;
+    delete scoreM;
+    delete cicAln;
+    delete pseudoCircAln;
+
     return 0;
 
     /*
@@ -223,18 +214,18 @@ int main(int args, char* argv[])
      new Circal::PseudoCircularAlignment(gotoh, test2, test1, scoreM);
      if (cicAln->get_Score()> pseudoCircAln->get_Score())
      {
-     std::clog << "Optimum: " << std::endl;
-     std::clog << out->AlignmentPrettyPrint(cicAln) << std::endl;
-     std::clog << "Heuristik: " << std::endl;
-     std::clog << out->AlignmentPrettyPrint(pseudoCircAln)
+     std::cout << "Optimum: " << std::endl;
+     std::cout << out->AlignmentPrettyPrint(cicAln) << std::endl;
+     std::cout << "Heuristik: " << std::endl;
+     std::cout << out->AlignmentPrettyPrint(pseudoCircAln)
      << std::endl;
      }
      else if (cicAln->get_Score()> pseudoCircAlnRev->get_Score())
      {
-     std::clog << "Optimum: " << std::endl;
-     std::clog << out->AlignmentPrettyPrint(cicAln) << std::endl;
-     std::clog << "Heuristik: " << std::endl;
-     std::clog << out->AlignmentPrettyPrint(pseudoCircAlnRev)
+     std::cout << "Optimum: " << std::endl;
+     std::cout << out->AlignmentPrettyPrint(cicAln) << std::endl;
+     std::cout << "Heuristik: " << std::endl;
+     std::cout << out->AlignmentPrettyPrint(pseudoCircAlnRev)
      << std::endl;
      }
      else

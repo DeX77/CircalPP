@@ -31,11 +31,11 @@ namespace Circal
       PseudoCircularAlignmentFactory();
       virtual ~PseudoCircularAlignmentFactory();
 
-      void NeedlemanWunschAlignment(Alignment* out, const bpp::Sequence* A,
+      Alignment* NeedlemanWunschAlignment(const bpp::Sequence* A,
           const bpp::Sequence* B, const ScoringModel* scoreM);
 
-      void GotohAlignment(Alignment* out, const bpp::Sequence* A,
-          const bpp::Sequence* B, const ScoringModel* scoreM);
+      Alignment* GotohAlignment(const bpp::Sequence* A, const bpp::Sequence* B,
+          const ScoringModel* scoreM);
 
       };
   }

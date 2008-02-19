@@ -47,16 +47,16 @@ namespace Circal
           const bpp::Sequence* B, const double &init);
 
       BoolMatrix CreateAdjacenceGraph(Alignment* pairWiseAlignments,
-          uint biggestSequenceSize);
-      void CutRowFromTo(ScoreMatrix* D, const uint &start, const uint &end);
-      void CutColumnFromTo(ScoreMatrix* D, const uint &start, const uint &end);
+          int biggestSequenceSize);
+      void CutRowFromTo(ScoreMatrix* D, const int &start, const int &end);
+      void CutColumnFromTo(ScoreMatrix* D, const int &start, const int &end);
 
-      double &SearchMinimumPosition(const ScoreMatrix* M, int &i, int &j,
-          double &minScore, const ScoringModel* scoreM);
-      int SearchMinimuminlastRow(const ScoreMatrix* M,
+      double SearchBestPositionFrom(const ScoreMatrix* M, int &i, int &j,
           const ScoringModel* scoreM);
-      int SearchMinimuminlastColumn(const ScoreMatrix* M,
-          const ScoringModel* scoreM);
+      int SearchBestInRow(const ScoreMatrix* M, const ScoringModel* scoreM,
+          const int &start, const int &row);
+      int SearchBestInColumn(const ScoreMatrix* M, const ScoringModel* scoreM,
+          const int &start, const int &column);
       };
   }
 #endif /*MATRIXHELPER_H_*/

@@ -33,7 +33,7 @@ namespace Circal
     unsigned int PseudoRotatedSequence::size() const
       {
         //Since this Sequence is metarotated return twice the size minus one
-        return ((2* _content.size())-1);
+        return ((2* _content.size()));
       }
     int PseudoRotatedSequence::getValue(unsigned int pos) const
         throw (bpp::IndexOutOfBoundsException)

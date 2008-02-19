@@ -20,6 +20,8 @@
 #include "AlignmentFactory.h"
 #include "ScoringModel.h"
 #include "MatrixHelper.h"
+#include "Output.h"
+#include <algorithm>
 
 namespace Circal
   {
@@ -34,7 +36,7 @@ namespace Circal
       }
     void AlignmentFactory::ForwardRecursionGotoh(const bpp::Sequence* A,
         const bpp::Sequence* B, const ScoringModel* scoreM, ScoreMatrix* D,
-        ScoreMatrix* P, ScoreMatrix* Q)
+        ScoreMatrix* P, ScoreMatrix* Q, ScoreMatrix* L)
       {
         double gapOpenP;
         double gapExtendP;
@@ -46,6 +48,7 @@ namespace Circal
         for (uint i=1; i<A->size()+1; i++)
           for (uint j=1; j<B->size()+1; j++)
             {
+
               //Score of Match eg. Mismatch
               diagScore = D->at(i-1).at(j-1) + scoreM->ScoreOf(A->getChar(i-1), B->getChar(j
                   -1));
@@ -70,31 +73,23 @@ namespace Circal
               D->at(i).at(j) = scoreM->BestOfThree(diagScore, P->at(i).at(j), Q->at(i).at(j) );
 
             }
+
       }
 
-    void AlignmentFactory::BacktrackingGotoh(Alignment* out,
-        const bpp::Sequence* A, const bpp::Sequence* B,
-        const ScoringModel* scoreM, const ScoreMatrix* D, const ScoreMatrix* P,
-        const ScoreMatrix* Q)
+    Alignment* AlignmentFactory::BacktrackingGotohLocal(const bpp::Sequence* A,
+        const bpp::Sequence* B, const ScoringModel* scoreM,
+        const ScoreMatrix* D, const ScoreMatrix* P, const ScoreMatrix* Q,
+        int &i, int &j)
       {
 
-        int i = D->size()-1;
-        int j = D->at(0).size()-1;
-        double minScore = D->at(i).at(j);
+        Alignment* out = new Alignment(A->getAlphabet());
 
         vector<int> outA;
         vector<int>::iterator itA = outA.begin();
         vector<int> outB;
         vector<int>::iterator itB = outB.begin();
 
-        minScore = matrix->SearchMinimumPosition(D, i, j, minScore, scoreM);
-
-        minScore = 0;
-        //        minScore = std::min(D->at(matrix->SearchMinimuminlastColumn(D)).at(j), std::min(P->at(matrix->SearchMinimuminlastColumn(P)).at(j), Q->at(matrix->SearchMinimuminlastColumn(Q)).at(j) ));
-
-        //        std::cout << "Gefunden in: " << i << ":" << j << " Wert=" << minScore
-        //            << std::endl;
-
+        double minScore = 0;
 
         while ( (i>0) && (j>0))
           {
@@ -186,8 +181,9 @@ namespace Circal
 
           }
 
-        //                while (i > 0)
+        //        while (i > 0)
         //          {
+        //
         //            //            std::cout << "Overlapp A"<< endl;
         //
         //            if (i == 1)
@@ -198,7 +194,7 @@ namespace Circal
         //            i--;
         //          }
         //
-        //        while (j > 0)
+        //        while (j> 0)
         //          {
         //            //            std::cout << "Overlapp B"<< endl;
         //            if (j == 1)
@@ -219,8 +215,151 @@ namespace Circal
         out->addSequence(seqA);
         out->addSequence(seqB);
 
-      }
+        return out;
 
+      }
+    Alignment* AlignmentFactory::BacktrackingGotohGlobal(
+        const bpp::Sequence* A, const bpp::Sequence* B,
+        const ScoringModel* scoreM, const ScoreMatrix* D, const ScoreMatrix* P,
+        const ScoreMatrix* Q, int &i, int &j)
+      {
+
+        Alignment* out = new Alignment(A->getAlphabet());
+
+        vector<int> outA;
+        vector<int>::iterator itA = outA.begin();
+        vector<int> outB;
+        vector<int>::iterator itB = outB.begin();
+
+        double minScore = 0;
+
+        while ( (i>0) && (j>0))
+          {
+            //                        std::cout << "Aktuelle Score: " << minScore << std::endl;
+
+            //Change to Q
+            if (scoreM->BestOfTwo(D->at(i).at(j), Q->at(i).at(j) ) == Q->at(i).at(j))
+              {
+
+                //Lonely Gap in A
+                if (Q->at(i).at(j) == D->at(i).at(j-1) + scoreM->ScoreOfGapOpen(A->getChar(i -1))
+                    + scoreM->ScoreOfGapExtend(A->getChar(i-1)))
+                  {
+                    minScore +=scoreM->ScoreOfGapOpen(A->getChar(i-1));
+                    //                                        std::cout << "Left"<< endl;
+                    //                    std::cout << "Score + " << scoreM->ScoreOfGapOpen(A->getChar(i-1))
+                    //                    << std::endl;
+                  }
+                //Continued Gap in A
+                else if (Q->at(i).at(j) == Q->at(i).at(j-1) + scoreM->ScoreOfGapExtend(A->getChar(i-1)))
+                  {
+                    //                                        std::cout << "Left cont "<< endl;
+                  }
+                else
+                  {
+                    //                    std::cout << "Changed to Q but not possible?" << std::endl;
+                  }
+                itA = outA.insert(itA, -1);
+                itB = outB.insert(itB, B->getValue(j-1));
+                j--;
+                minScore +=scoreM->ScoreOfGapExtend(A->getChar(i-1));
+                //                std::cout << "Score + " << scoreM->ScoreOfGapExtend(A->getChar(i-1))
+                //                << std::endl;
+                continue;
+              }
+
+            //Change to P
+            if (scoreM->BestOfTwo(D->at(i).at(j) , P->at(i).at(j) ) == P->at(i).at(j))
+              {
+                //Lonely Gap in B
+                if (P->at(i).at(j) == D->at(i-1).at(j) + scoreM->ScoreOfGapOpen(B->getChar(j-1))
+                    + scoreM->ScoreOfGapExtend(B->getChar(j-1)))
+                  {
+                    //                                        std::cout << "Up"<< endl;
+                    minScore +=scoreM->ScoreOfGapOpen(B->getChar(j-1));
+                    //                    std::cout << "Score + " << scoreM->ScoreOfGapOpen(B->getChar(j-1))
+                    //                    << std::endl;
+                  }
+                //Continued Gap in B
+                else if (P->at(i).at(j) == P->at(i-1).at(j) + scoreM->ScoreOfGapExtend(B->getChar(j -1)))
+                  {
+                    //                                        std::cout << "Up cont"<< endl;
+                  }
+                else
+                  {
+                    //                    std::cout << "Changed to P but not possible?" << std::endl;
+                  }
+                minScore +=scoreM->ScoreOfGapExtend(B->getChar(j-1));
+                //                std::cout << "Score + " << scoreM->ScoreOfGapExtend(B->getChar(j-1))
+                //                << std::endl;
+                itA = outA.insert(itA, A->getValue(i-1));
+                itB = outB.insert(itB, -1);
+                i--;
+                continue;
+
+              }
+
+            //Diagonal
+            else if (D->at(i).at(j) == D->at(i-1).at(j-1)
+                + scoreM->ScoreOf(A->getChar(i-1), B->getChar(j-1)))
+              {
+                minScore += scoreM->ScoreOf(A->getChar(i-1), B->getChar(j-1));
+                //                                                std::cout << "Diag"<< endl;
+                //                std::cout << "Score + " << scoreM->ScoreOf(A->getChar(i-1), B->getChar(j-1))
+                //                << std::endl;
+                itA = outA.insert(itA, A->getValue(i-1));
+                itB = outB.insert(itB, B->getValue(j-1));
+                i--;
+                j--;
+                continue;
+              }
+
+            else
+              {
+
+                std::cout << "42!!!"<< std::endl;
+                break;
+              }
+
+          }
+
+        while (i > 0)
+          {
+
+            //            std::cout << "Overlapp A"<< endl;
+
+            if (i == 1)
+              minScore += scoreM->ScoreOfGapOpen(A->getChar(i-1));
+            minScore += scoreM->ScoreOfGapExtend(A->getChar(i-1));
+            itA = outA.insert(itA, A->getValue(i-1));
+            itB = outB.insert(itB, -1);
+            i--;
+          }
+
+        while (j> 0)
+          {
+            //            std::cout << "Overlapp B"<< endl;
+            if (j == 1)
+              minScore += scoreM->ScoreOfGapOpen(B->getChar(j-1));
+            minScore += scoreM->ScoreOfGapExtend(B->getChar(j-1));
+            itB = outB.insert(itB, B->getValue(j-1));
+            itA = outA.insert(itA, -1);
+            j--;
+          }
+
+        bpp::Sequence seqA(A->getName(), outA, A->getAlphabet());
+        bpp::Sequence seqB(B->getName(), outB, B->getAlphabet());
+
+        //Save Score to Container
+        out->set_Score(minScore);
+
+        //Add Alinged Sequences to Container
+        out->addSequence(seqA);
+        out->addSequence(seqB);
+
+        return out;
+
+      }
     void AlignmentFactory::ForwardRecursionNMW(const bpp::Sequence* A,
         const bpp::Sequence* B, const ScoringModel* scoreM, ScoreMatrix* D)
       {
@@ -249,47 +388,19 @@ namespace Circal
 
             }
       }
-    void AlignmentFactory::BacktrackingNMW(Alignment* out,
-        const bpp::Sequence* A, const bpp::Sequence* B,
-        const ScoringModel* scoreM, const ScoreMatrix* D)
+    Alignment* AlignmentFactory::BacktrackingNMW(const bpp::Sequence* A,
+        const bpp::Sequence* B, const ScoringModel* scoreM,
+        const ScoreMatrix* D, int &i, int &j)
       {
-
-        int i = D->size()-1;
-        int j = D->at(0).size()-1;
 
         vector<int> outA;
         vector<int>::iterator itA = outA.begin();
         vector<int> outB;
         vector<int>::iterator itB = outB.begin();
 
+        Alignment* out = new Alignment(A->getAlphabet());
+
         double minScore = double(0);
-
-        /*
-         //Search minimum Score in last row
-         for (uint k=1; k<=A->size(); k++)
-         {
-
-         if (T[k][B->size()] < minScore)
-         {
-         i = k;
-         j = B->size();
-         minScore = T[i][j];
-         }
-         }
-
-         //Search minimum Score in last column    
-         for (uint k=1; k<=B->size(); k++)
-         {
-         if (T[A->size()][k] < minScore)
-         {
-         i = A->size();
-         j = k;
-         minScore = T[i][j];
-         }
-         }
-
-         std::cout << "Gefunden in: "<< i << ":"<< j << " Wert: "<< T[i][j]<< endl;
-         */
 
         double ScoreD;
         double ScoreDiag;
@@ -374,9 +485,11 @@ namespace Circal
         out->addSequence(seqA);
         out->addSequence(seqB);
 
+        return out;
+
       }
 
-    void AlignmentFactory::NeedlemanWunschAlignment(Alignment* out,
+    Alignment* AlignmentFactory::NeedlemanWunschAlignment(
         const bpp::Sequence* inA, const bpp::Sequence* inB,
         const ScoringModel* scoreM)
       {
@@ -386,23 +499,30 @@ namespace Circal
         //Forward Iteration
         ForwardRecursionNMW(inA, inB, scoreM, &D);
 
-        BacktrackingNMW(out, inA, inB, scoreM, &D);
+        int i = D.size()-1;
+        int j = D.at(0).size()-1;
+
+
+        return BacktrackingNMW(inA, inB, scoreM, &D, i, j);
 
       }
 
-    void AlignmentFactory::GotohAlignment(Alignment* out,
-        const bpp::Sequence* inA, const bpp::Sequence* inB,
-        const ScoringModel* scoreM)
+    Alignment* AlignmentFactory::GotohAlignment(const bpp::Sequence* inA,
+        const bpp::Sequence* inB, const ScoringModel* scoreM)
       {
 
         ScoreMatrix D = matrix->InitScoreMatrixWith(inA, inB, 0);
         ScoreMatrix P = matrix->InitScoreMatrixWith(inA, inB, 0);
         ScoreMatrix Q = matrix->InitScoreMatrixWith(inA, inB, 0);
+        ScoreMatrix L = matrix->InitScoreMatrixWith(inA, inB, 0);
 
         //Forward Iteration
-        ForwardRecursionGotoh(inA, inB, scoreM, &D, &P, &Q);
+        ForwardRecursionGotoh(inA, inB, scoreM, &D, &P, &Q, &L);
 
-        BacktrackingGotoh(out, inA, inB, scoreM, &D, &P, &Q);
+        int i = D.size()-1;
+        int j = D.at(0).size()-1;
+
+        return BacktrackingGotohGlobal(inA, inB, scoreM, &D, &P, &Q, i, j);
 
       }
   }

@@ -33,7 +33,17 @@ namespace Circal
       {
       }
 
-    void PseudoCircularAlignmentFactory::GotohAlignment(Alignment* out,
+    Alignment* PseudoCircularAlignmentFactory::NeedlemanWunschAlignment(
+        const bpp::Sequence* inA, const bpp::Sequence* inB,
+        const ScoringModel* scoreM)
+      {
+        PseudoRotatedSequence* A = new PseudoRotatedSequence(inA);
+
+        return AlignmentFactory::NeedlemanWunschAlignment(A, inB, scoreM);
+
+      }
+
+    Alignment* PseudoCircularAlignmentFactory::GotohAlignment(
         const bpp::Sequence* inA, const bpp::Sequence* inB,
         const ScoringModel* scoreM)
       {
@@ -42,23 +52,29 @@ namespace Circal
         ScoreMatrix D = matrix->InitScoreMatrixWith(A, inB, 0);
         ScoreMatrix P = matrix->InitScoreMatrixWith(A, inB, 0);
         ScoreMatrix Q = matrix->InitScoreMatrixWith(A, inB, 0);
+        ScoreMatrix L = matrix->InitScoreMatrixWith(A, inB, 0);
 
         //Forward Iteration
-        ForwardRecursionGotoh(A, inB, scoreM, &D, &P, &Q);
+        ForwardRecursionGotoh(A, inB, scoreM, &D, &P, &Q, &L);
 
-        BacktrackingGotoh(out, A, inB, scoreM, &D, &P, &Q);
+        //Search Starting Node
+        int i = D.size()-1;
+        int j = D.at(0).size()-1;
+        i = matrix->SearchBestInColumn(&D, scoreM, i, j);
 
-      }
-    void PseudoCircularAlignmentFactory::NeedlemanWunschAlignment(
-        Alignment* out, const bpp::Sequence* inA, const bpp::Sequence* inB,
-        const ScoringModel* scoreM)
-      {
-        PseudoRotatedSequence* A = new PseudoRotatedSequence(inA);
-        ScoreMatrix D = matrix->InitializeScoreMatrixDistances(A, inB, scoreM);
+        int horizontalStart = i;
+        Alignment* temp = BacktrackingGotohLocal(A, inB, scoreM, &D, &P, &Q, i,
+            j);
+        int horizontalEnd = i;
 
-        //Forward Iteration
-        ForwardRecursionNMW(A, inB, scoreM, &D);
+        if ((horizontalStart-horizontalEnd) > inA->size())
+          {
+            std::cout << "Alignment Laenge=" << (horizontalStart-horizontalEnd)
+            << " richtig waere aber: "
+            << inA->size()
+            << std::endl;
+          }
+        return temp;
 
-        BacktrackingNMW(out, A, inB, scoreM, &D);
       }
   }

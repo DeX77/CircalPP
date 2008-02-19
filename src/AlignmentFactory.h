@@ -25,9 +25,9 @@
 
 namespace Circal
   {
-    class Alignment;
     class ScoringModel;
     class MatrixHelper;
+    class Output;
     typedef std::vector< std::vector<double> > ScoreMatrix;
 
     class AlignmentFactory
@@ -35,31 +35,37 @@ namespace Circal
   protected:
 
       MatrixHelper* matrix;
+      Output* prettyPrint;
 
       //Needleman Wunsch Alignment
 
 
       virtual void ForwardRecursionNMW(const bpp::Sequence* A,
           const bpp::Sequence* B, const ScoringModel* scoreM, ScoreMatrix* D);
-      virtual void BacktrackingNMW(Alignment* out, const bpp::Sequence* outA,
+      virtual Alignment* BacktrackingNMW(const bpp::Sequence* outA,
           const bpp::Sequence* outB, const ScoringModel* scoreM,
-          const ScoreMatrix* D);
+          const ScoreMatrix* D, int &i, int &j);
 
       //Gotoh Alignment
 
       virtual void ForwardRecursionGotoh(const bpp::Sequence* A,
           const bpp::Sequence* B, const ScoringModel* scoreM, ScoreMatrix* D,
-          ScoreMatrix* P, ScoreMatrix* Q);
-      virtual void BacktrackingGotoh(Alignment* out, const bpp::Sequence* outA,
+          ScoreMatrix* P, ScoreMatrix* Q, ScoreMatrix* L);
+      virtual Alignment* BacktrackingGotohLocal(const bpp::Sequence* outA,
           const bpp::Sequence* outB, const ScoringModel* scoreM,
-          const ScoreMatrix* D, const ScoreMatrix* P, const ScoreMatrix* Q);
+          const ScoreMatrix* D, const ScoreMatrix* P, const ScoreMatrix* Q,
+          int &i, int &j);
+      virtual Alignment* BacktrackingGotohGlobal(const bpp::Sequence* outA,
+          const bpp::Sequence* outB, const ScoringModel* scoreM,
+          const ScoreMatrix* D, const ScoreMatrix* P, const ScoreMatrix* Q,
+          int &i, int &j);
   public:
       AlignmentFactory();
       virtual ~AlignmentFactory();
 
-      virtual void NeedlemanWunschAlignment(Alignment* out, const bpp::Sequence* inA,
+      virtual Alignment* NeedlemanWunschAlignment(const bpp::Sequence* inA,
           const bpp::Sequence* inB, const ScoringModel* scoreM);
-      virtual void GotohAlignment(Alignment* out, const bpp::Sequence* inA,
+      virtual Alignment* GotohAlignment(const bpp::Sequence* inA,
           const bpp::Sequence* inB, const ScoringModel* scoreM);
 
       };
