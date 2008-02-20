@@ -48,20 +48,27 @@ namespace Circal
 
       ScoreMatrix InitScoreMatrixWith(const bpp::Sequence* A,
           const bpp::Sequence* B, const double &init);
-      ScoreMatrix3D InitScoreMatrix3DWith(const PseudoRotatedSequence* A,
-          const bpp::Sequence* B, const int &delta, const double &init);
+      ScoreMatrix3D
+          InitScoreMatrix3DWith(const bpp::Sequence* A,
+              const PseudoRotatedSequence* B, const int &delta,
+              const double &init);
 
       BoolMatrix CreateAdjacenceGraph(Alignment* pairWiseAlignments,
           int biggestSequenceSize);
-      void CutRowFromTo(ScoreMatrix* D, const int &start, const int &end);
-      void CutColumnFromTo(ScoreMatrix* D, const int &start, const int &end);
+      void CutRowFromTo(ScoreMatrix* D, const uint &start, const uint &end);
+      void CutColumnFromTo(ScoreMatrix* D, const uint &start, const uint &end);
 
-      double SearchBestPositionFrom(const ScoreMatrix* M, int &i, int &j,
+      double SearchBestPositionFrom(const ScoreMatrix* M, uint &i, uint &j,
           const ScoringModel* scoreM);
       int SearchBestInRow(const ScoreMatrix* M, const ScoringModel* scoreM,
-          const int &start, const int &row);
+          const uint &start, const uint &row);
+      int SearchBestInRow3D(const ScoreMatrix3D* M, const ScoringModel* scoreM,
+          const uint &start, const uint &row, uint &k);
       int SearchBestInColumn(const ScoreMatrix* M, const ScoringModel* scoreM,
-          const int &start, const int &column);
+          const uint &start, const uint &column);
+      int SearchBestInColumn3D(const ScoreMatrix3D* M,
+          const ScoringModel* scoreM, const uint &start, const uint &column,
+          uint &k);
       };
   }
 #endif /*MATRIXHELPER_H_*/

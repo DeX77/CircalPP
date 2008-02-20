@@ -50,18 +50,33 @@ namespace Circal
 
         double gapStart;
         double gapExtend;
+        double match;
+        double missmatch;
+
         uint Size = 1;
+
+        ModelValues::iterator it;
 
         // Main loop : for all file lines
         while (!input.eof())
           {
+            it = model.begin();
             getline(input, temp, '\n'); // Copy current line in temporary string
 
             if (temp[0] != '#')
               {
                 istringstream istring(temp);
-                istring >> type >> gapStart >> gapExtend;
+                istring >> type >> gapStart >> gapExtend >> match >> missmatch;
                 istring >> temp; //Cut out the ":" char
+
+                //                //We normalize all scores by the highest one: the Match Score
+                //                //..and check for stupid users 
+                //                if (match > 0)
+                //                  {
+                //                    gapStart /= match;
+                //                    gapExtend /= match;
+                //                    missmatch /= match;
+                //                  }
 
                 while (istring)
                   {
@@ -76,10 +91,17 @@ namespace Circal
                         //Changed gapOpen & gapExtend to negative Values to correspond with Maximize
                         sc.gapOpen = -gapStart;
                         sc.gapExtend = -gapExtend;
-                        model[sc.symbol] = sc;
+                        sc.match = match;
+                        sc.missmatch = -missmatch;
+
+                        model.insert(it, pair<const std::string,
+                            AlignmentSymbol>(sc.symbol, sc));
+                        it++;
                         //Also add negative Symbol Version
                         sc.symbol = "-" + sc.symbol;
-                        model[sc.symbol] = sc;
+                        model.insert(it, pair<const std::string,
+                            AlignmentSymbol>(sc.symbol, sc));
+                        it++;
                       }
                   }
 
@@ -98,9 +120,20 @@ namespace Circal
       {
         //Check if two symbols are completly identical
         if (A.compare(B) == 0)
-          return 20;
+          {
+            ModelValues::const_iterator foo = model.find(A);
+            return foo->second.match;
+          }
         else
-          return -10;
+          {
+            ModelValues::const_iterator foo = model.find(A);
+            double out= foo->second.missmatch;
+            foo = model.find(B);
+            if (BestOfTwo(foo->second.missmatch, out) != out)
+              return out;
+            else
+              return foo->second.missmatch;
+          }
       }
 
     double ScoringModel::ScoreOfGapOpen(const std::string A) const

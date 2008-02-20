@@ -51,6 +51,7 @@ namespace Circal
               }
 
           }
+        return out;
 
       }
     Alignment* MultipleAlignmentFactory::NMWalignMultiple(
@@ -71,6 +72,7 @@ namespace Circal
               }
 
           }
+        return out;
 
       }
 

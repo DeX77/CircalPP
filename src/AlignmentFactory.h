@@ -42,21 +42,21 @@ namespace Circal
           const bpp::Sequence* B, const ScoringModel* scoreM, ScoreMatrix* D);
       virtual Alignment* BacktrackingNMW(const bpp::Sequence* outA,
           const bpp::Sequence* outB, const ScoringModel* scoreM,
-          const ScoreMatrix* D, int &i, int &j);
+          const ScoreMatrix* D, uint &i, uint &j);
 
       //Gotoh Alignment
 
       virtual void ForwardRecursionGotoh(const bpp::Sequence* A,
           const bpp::Sequence* B, const ScoringModel* scoreM, ScoreMatrix* D,
           ScoreMatrix* P, ScoreMatrix* Q);
-      virtual Alignment* BacktrackingGotohLocal(const bpp::Sequence* outA,
+      virtual Alignment* BacktrackingGotohGlocal(const bpp::Sequence* outA,
           const bpp::Sequence* outB, const ScoringModel* scoreM,
           const ScoreMatrix* D, const ScoreMatrix* P, const ScoreMatrix* Q,
-          int &i, int &j);
+          uint &i, uint &j);
       virtual Alignment* BacktrackingGotohGlobal(const bpp::Sequence* outA,
           const bpp::Sequence* outB, const ScoringModel* scoreM,
           const ScoreMatrix* D, const ScoreMatrix* P, const ScoreMatrix* Q,
-          int &i, int &j);
+          uint &i, uint &j);
   public:
       AlignmentFactory();
       virtual ~AlignmentFactory();

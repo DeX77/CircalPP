@@ -40,13 +40,13 @@ namespace Circal
   public:
       Output();
       virtual ~Output();
-      std::string SequencePrettyPrint(const bpp::Sequence* A);
-      std::string ScoreMatrixPrettyPrint(const bpp::Sequence* A,
-          const bpp::Sequence* B, const ScoreMatrix &D);
-      std::string AlignmentPrettyPrint(const Alignment* aln);
+      std::string SequencePrettyPrint(bpp::Sequence* A);
+      std::string ScoreMatrixPrettyPrint(bpp::Sequence* A, bpp::Sequence* B,
+          const ScoreMatrix &D);
+      std::string AlignmentPrettyPrint(Alignment* aln);
       std::string AdjacenceMatrixPrettyPrint(const BoolMatrix &G);
-      std::string TCoffeeLibFormat(const Alignment* aln);
-      
+      std::string TCoffeeLibFormat(Alignment* aln);
+
       };
   }
 #endif /*OUTPUT_H_*/

@@ -36,7 +36,7 @@ namespace Circal
       {
 
       }
-    uint Alignment::get_origSize() const
+    uint Alignment::get_origSize()
       {
         return this->origSize;
       }
@@ -45,7 +45,7 @@ namespace Circal
         this->origSize = orig;
       }
 
-    double Alignment::get_Score(void) const
+    double Alignment::get_Score(void)
       {
         return this->Score;
       }
@@ -66,6 +66,5 @@ namespace Circal
       {
         this->addSequence(sequence, false);
       }
-
 
   }

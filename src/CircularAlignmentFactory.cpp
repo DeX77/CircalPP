@@ -30,6 +30,7 @@ namespace Circal
 
     CircularAlignmentFactory::~CircularAlignmentFactory()
       {
+        delete matrix;
       }
 
     Alignment* CircularAlignmentFactory::GotohAlignment(const bpp::Sequence* A,
@@ -37,28 +38,28 @@ namespace Circal
       {
 
         double bestScore = 0;
-        uint offset = 0;
-        Alignment* temp = new Alignment(A->getAlphabet());
-        Alignment* out = new Alignment(A->getAlphabet());
 
-//#ifdef _OPENMP            
-//#pragma omp parallel for shared(offset)
-//#endif      
-        for (uint i=1; i<=A->size(); i++)
+        Alignment* temp;
+        Alignment* out;
+
+        //#ifdef _OPENMP            
+        //#pragma omp parallel for
+        //#endif      
+        for (uint i=2; i<=A->size(); i++)
           {
-            temp = AlignmentFactory::GotohAlignment(A,
-                dynamic_cast<bpp::Sequence*>(new RotatedSequence(B, i)), scoreM);
+            std::cout << "*" << std::flush;
+            RotatedSequence* rotB = new RotatedSequence(B, i);
+            temp = AlignmentFactory::GotohAlignment(A, rotB, scoreM);
             if (scoreM->BestOfTwo(temp->get_Score(), bestScore) != bestScore)
               {
-                offset = i;
                 bestScore = temp->get_Score();
-                std::cout << "Neue Highscore " << bestScore << " bei Offset: "
-                    << i << std::endl;
                 out = temp;
 
               }
 
           }
+        std::cout << std::endl;
+
         return out;
 
       }

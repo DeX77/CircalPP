@@ -80,6 +80,6 @@ namespace Circal
             result += _alphabet -> intToChar(getValue(i));
           }
         return result;
-      };
+      }
 
   }

@@ -42,8 +42,8 @@ namespace Circal
       Alignment(const bpp::Alphabet* alpha);
       Alignment();
       virtual ~Alignment();
-      uint get_origSize() const;
-      double get_Score() const;
+      uint get_origSize();
+      double get_Score();
       void set_Score(const double &s);
       void set_origSize(const uint &orig);
       void addSequence(const bpp::Sequence & sequence, bool checkNames)

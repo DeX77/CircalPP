@@ -36,11 +36,11 @@ namespace Circal
 
     Output::~Output()
       {
-        
+
       }
 
-    std::string Output::ScoreMatrixPrettyPrint(const bpp::Sequence* A,
-        const bpp::Sequence* B, const ScoreMatrix &D)
+    std::string Output::ScoreMatrixPrettyPrint(bpp::Sequence* A,
+        bpp::Sequence* B, const ScoreMatrix &D)
       {
         std::stringstream out;
 
@@ -60,7 +60,7 @@ namespace Circal
         return out.str();
       }
 
-    std::string Output::AlignmentPrettyPrint(const Alignment* aln)
+    std::string Output::AlignmentPrettyPrint(Alignment* aln)
       {
         std::stringstream out;
         for (uint i=0; i<aln->getNumberOfSequences(); i++)
@@ -89,10 +89,11 @@ namespace Circal
         return out.str();
       }
 
-    std::string Output::SequencePrettyPrint(const bpp::Sequence* A)
+    std::string Output::SequencePrettyPrint(bpp::Sequence* A)
       {
         std::stringstream out;
-        out << "Sequenz " << A->getName() << " Laenge: " << A->size() << " :" << std::endl;
+        out << "Sequenz " << A->getName() << " Laenge: " << A->size() << " :"
+            << std::endl;
 
         for (uint i=0; i< A->size(); i++)
           out << " "<< A->getChar(i);
@@ -100,16 +101,15 @@ namespace Circal
 
       }
     //Shamelessly stolen from MARNA 
-    std::string Output::TCoffeeLibFormat(const Alignment* aln)
+    std::string Output::TCoffeeLibFormat(Alignment* aln)
       {
         std::stringstream out;
         int p1 = 1;
         int p2 = 1;
 
-        int index1 = 1;
-        int index2 = 2;
+        uint index1 = 1;
+        uint index2 = 2;
         out << aln->get_origSize() << endl;
-
 
         out << aln->getSequence(0)->getName() << " ";
         out << aln->getSequence(0)->size() << " ";

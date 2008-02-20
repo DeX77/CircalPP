@@ -28,11 +28,12 @@ namespace Circal
 
     AlignmentFactory::AlignmentFactory()
       {
-        this->matrix = new Circal::MatrixHelper();
+        //this->matrix = new Circal::MatrixHelper();
       }
 
     AlignmentFactory::~AlignmentFactory()
       {
+        delete matrix;
       }
     void AlignmentFactory::ForwardRecursionGotoh(const bpp::Sequence* A,
         const bpp::Sequence* B, const ScoringModel* scoreM, ScoreMatrix* D,
@@ -76,10 +77,10 @@ namespace Circal
 
       }
 
-    Alignment* AlignmentFactory::BacktrackingGotohLocal(const bpp::Sequence* A,
-        const bpp::Sequence* B, const ScoringModel* scoreM,
-        const ScoreMatrix* D, const ScoreMatrix* P, const ScoreMatrix* Q,
-        int &i, int &j)
+    Alignment* AlignmentFactory::BacktrackingGotohGlocal(
+        const bpp::Sequence* A, const bpp::Sequence* B,
+        const ScoringModel* scoreM, const ScoreMatrix* D, const ScoreMatrix* P,
+        const ScoreMatrix* Q, uint &i, uint &j)
       {
 
         Alignment* out = new Alignment(A->getAlphabet());
@@ -181,6 +182,16 @@ namespace Circal
 
           }
 
+//        while (j> 0)
+//          {
+//            //            std::cout << "Overlapp B"<< endl;
+//            if (j == 1)
+//              minScore += scoreM->ScoreOfGapOpen(B->getChar(j-1));
+//            minScore += scoreM->ScoreOfGapExtend(B->getChar(j-1));
+//            itB = outB.insert(itB, B->getValue(j-1));
+//            itA = outA.insert(itA, -1);
+//            j--;
+//          }
 
         bpp::Sequence seqA(A->getName(), outA, A->getAlphabet());
         bpp::Sequence seqB(B->getName(), outB, B->getAlphabet());
@@ -198,7 +209,7 @@ namespace Circal
     Alignment* AlignmentFactory::BacktrackingGotohGlobal(
         const bpp::Sequence* A, const bpp::Sequence* B,
         const ScoringModel* scoreM, const ScoreMatrix* D, const ScoreMatrix* P,
-        const ScoreMatrix* Q, int &i, int &j)
+        const ScoreMatrix* Q, uint &i, uint &j)
       {
 
         Alignment* out = new Alignment(A->getAlphabet());
@@ -367,7 +378,7 @@ namespace Circal
       }
     Alignment* AlignmentFactory::BacktrackingNMW(const bpp::Sequence* A,
         const bpp::Sequence* B, const ScoringModel* scoreM,
-        const ScoreMatrix* D, int &i, int &j)
+        const ScoreMatrix* D, uint &i, uint &j)
       {
 
         vector<int> outA;
@@ -476,8 +487,8 @@ namespace Circal
         //Forward Iteration
         ForwardRecursionNMW(inA, inB, scoreM, &D);
 
-        int i = D.size()-1;
-        int j = D.at(0).size()-1;
+        uint i = D.size()-1;
+        uint j = D.at(0).size()-1;
 
         return BacktrackingNMW(inA, inB, scoreM, &D, i, j);
 
@@ -494,8 +505,8 @@ namespace Circal
         //Forward Iteration
         ForwardRecursionGotoh(inA, inB, scoreM, &D, &P, &Q);
 
-        int i = D.size()-1;
-        int j = D.at(0).size()-1;
+        uint i = D.size()-1;
+        uint j = D.at(0).size()-1;
 
         return BacktrackingGotohGlobal(inA, inB, scoreM, &D, &P, &Q, i, j);
 

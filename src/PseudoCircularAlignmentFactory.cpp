@@ -33,27 +33,35 @@ namespace Circal
       {
       }
     void PseudoCircularAlignmentFactory::ForwardRecursionGotoh(
-        const PseudoRotatedSequence* A, const bpp::Sequence* B,
+        const bpp::Sequence* A, const PseudoRotatedSequence* B,
         const ScoringModel* scoreM, const int &delta, ScoreMatrix3D* D,
         ScoreMatrix3D* P, ScoreMatrix3D* Q)
       {
+
         double gapOpenP;
         double gapExtendP;
         double gapOpenQ;
         double gapExtendQ;
         double diagScore;
+        double maxScore = 0;
+        double maxScoreJ = 0;
 
-        //A is doubled=pseudorotated so correct size is A/2
-        int slaps = A->size();
+        //B is doubled=pseudorotated so correct size is B/2
+        int slaps = B->size()/2;
+        //catch (stupid User Exception)
         if (delta != 0)
           slaps /= delta;
 
         //Forward
+        //#ifdef _OPENMP            
+        //#pragma omp parallel for
+        //#endif           
         for (uint i=1; i<A->size()+1; i++)
           for (uint j=1; j<B->size()+1; j++)
             {
               if (j % delta == 1)
                 {
+
                   //Score of Match eg. Mismatch
                   diagScore = D->at(i-1).at(j-1).at(0) + scoreM->ScoreOf(A->getChar(i-1),
                       B->getChar(j -1));
@@ -104,11 +112,18 @@ namespace Circal
                       //Set Distance Matrix Value
                       D->at(i).at(j).at(k) = scoreM->BestOfThree(diagScore, P->at(i).at(j).at(k), Q->at(i).at(j).at(k) );
 
+                      //Save actual best Score
+                      if (scoreM->BestOfTwo(maxScore, D->at(i).at(j).at(k)) != maxScore)
+                        {
+                          maxScore = D->at(i).at(j).at(k);
+                          maxScoreJ = j;
+                        }
                     }
                 }
               else
                 for (int k=0; k<slaps; k++)
                   {
+
                     //Score of Match eg. Mismatch
                     diagScore = D->at(i-1).at(j-1).at(k) + scoreM->ScoreOf(A->getChar(i-1),
                         B->getChar(j -1));
@@ -132,16 +147,28 @@ namespace Circal
                     //Set Distance Matrix Value
                     D->at(i).at(j).at(k) = scoreM->BestOfThree(diagScore, P->at(i).at(j).at(k), Q->at(i).at(j).at(k) );
 
+                    //Save actual best Score
+                    if (scoreM->BestOfTwo(maxScore, D->at(i).at(j).at(k)) != maxScore)
+                      {
+                        maxScore = D->at(i).at(j).at(k);
+                        maxScoreJ = j;
+                      }
+
                   }
 
             }
+        cout << "Actual best Score: " << maxScore << "@ j=" << maxScoreJ
+            << std::endl;
 
       }
     Alignment* PseudoCircularAlignmentFactory::BacktrackingGotohLocal(
-        const PseudoRotatedSequence* A, const bpp::Sequence* B,
+        const bpp::Sequence* A, const PseudoRotatedSequence* B,
         const ScoringModel* scoreM, const int &delta, const ScoreMatrix3D* D,
-        const ScoreMatrix3D* P, const ScoreMatrix3D* Q, int &i, int &j)
+        const ScoreMatrix3D* P, const ScoreMatrix3D* Q, uint &i, uint &j)
       {
+
+        //Debug purpose
+        stringstream cout;
 
         Alignment* out = new Alignment(A->getAlphabet());
 
@@ -152,8 +179,9 @@ namespace Circal
 
         double minScore = 0;
 
-        //A is doubled=pseudorotated so correct size is A/2
-        int slaps = A->size();
+        //B is doubled=pseudorotated so correct size is B/2
+        int slaps = B->size()/2;
+
         if (delta != 0)
           slaps /= delta;
 
@@ -161,7 +189,7 @@ namespace Circal
           {
 
             int gk = 0;
-            int bestScore;
+            double bestScore = 0;
 
             //Search maximum score within k
             for (int k=0; k<slaps; k++)
@@ -197,25 +225,25 @@ namespace Circal
                     + scoreM->ScoreOfGapExtend(A->getChar(i-1)))
                   {
                     minScore +=scoreM->ScoreOfGapOpen(A->getChar(i-1));
-                    //                                        std::cout << "Left"<< endl;
-                    //                    std::cout << "Score + " << scoreM->ScoreOfGapOpen(A->getChar(i-1))
-                    //                    << std::endl;
+                    cout << "Left"<< endl;
+                    cout << "Score + "
+                        << scoreM->ScoreOfGapOpen(A->getChar(i-1)) << std::endl;
                   }
                 //Continued Gap in A
                 else if (Q->at(i).at(j).at(gk) == Q->at(i).at(j-1).at(gk) + scoreM->ScoreOfGapExtend(A->getChar(i-1)))
                   {
-                    //                                        std::cout << "Left cont "<< endl;
+                    cout << "Left cont "<< endl;
                   }
                 else
                   {
-                    //                    std::cout << "Changed to Q but not possible?" << std::endl;
+                    cout << "Changed to Q but not possible?" << std::endl;
                   }
                 itA = outA.insert(itA, -1);
                 itB = outB.insert(itB, B->getValue(j-1));
                 j--;
                 minScore +=scoreM->ScoreOfGapExtend(A->getChar(i-1));
-                //                std::cout << "Score + " << scoreM->ScoreOfGapExtend(A->getChar(i-1))
-                //                << std::endl;
+                cout << "Score + " << scoreM->ScoreOfGapExtend(A->getChar(i-1))
+                    << std::endl;
                 continue;
               }
 
@@ -226,23 +254,23 @@ namespace Circal
                 if (P->at(i).at(j).at(gk) == D->at(i-1).at(j).at(gk) + scoreM->ScoreOfGapOpen(B->getChar(j-1))
                     + scoreM->ScoreOfGapExtend(B->getChar(j-1)))
                   {
-                    //                                        std::cout << "Up"<< endl;
+                    cout << "Up"<< endl;
                     minScore +=scoreM->ScoreOfGapOpen(B->getChar(j-1));
-                    //                    std::cout << "Score + " << scoreM->ScoreOfGapOpen(B->getChar(j-1))
-                    //                    << std::endl;
+                    cout << "Score + "
+                        << scoreM->ScoreOfGapOpen(B->getChar(j-1)) << std::endl;
                   }
                 //Continued Gap in B
                 else if (P->at(i).at(j).at(gk) == P->at(i-1).at(j).at(gk) + scoreM->ScoreOfGapExtend(B->getChar(j -1)))
                   {
-                    //                                        std::cout << "Up cont"<< endl;
+                    cout << "Up cont"<< endl;
                   }
                 else
                   {
-                    //                    std::cout << "Changed to P but not possible?" << std::endl;
+                    //                    cout << "Changed to P but not possible?" << std::endl;
                   }
                 minScore +=scoreM->ScoreOfGapExtend(B->getChar(j-1));
-                //                std::cout << "Score + " << scoreM->ScoreOfGapExtend(B->getChar(j-1))
-                //                << std::endl;
+                cout << "Score + " << scoreM->ScoreOfGapExtend(B->getChar(j-1))
+                    << std::endl;
                 itA = outA.insert(itA, A->getValue(i-1));
                 itB = outB.insert(itB, -1);
                 i--;
@@ -254,9 +282,9 @@ namespace Circal
             else if (D->at(i).at(j).at(gk) == D->at(i-1).at(j-1).at(gk) + scoreM->ScoreOf(A->getChar(i-1), B->getChar(j-1)))
               {
                 minScore += scoreM->ScoreOf(A->getChar(i-1), B->getChar(j-1));
-                //                                                std::cout << "Diag"<< endl;
-                //                std::cout << "Score + " << scoreM->ScoreOf(A->getChar(i-1), B->getChar(j-1))
-                //                << std::endl;
+                cout << "Diag"<< endl;
+                cout << "Score + " << scoreM->ScoreOf(A->getChar(i-1),
+                    B->getChar(j-1)) << std::endl;
                 itA = outA.insert(itA, A->getValue(i-1));
                 itB = outB.insert(itB, B->getValue(j-1));
                 i--;
@@ -267,7 +295,7 @@ namespace Circal
             else
               {
 
-                std::cout << "42!!!"<< std::endl;
+                cout << "42!!!"<< std::endl;
                 break;
               }
 
@@ -287,15 +315,16 @@ namespace Circal
 
       }
     void PseudoCircularAlignmentFactory::ForwardRecursionNMW(
-        const PseudoRotatedSequence* A, const bpp::Sequence* B,
+        const bpp::Sequence* A, const PseudoRotatedSequence* B,
         const ScoringModel* scoreM, const int &delta, ScoreMatrix3D* D)
       {
         double gapOpenP;
         double gapOpenQ;
         double diagScore;
 
-        //A is doubled=pseudorotated so correct size is A/2
-        int slaps = A->size();
+        //B is doubled=pseudorotated so correct size is B/2
+        int slaps = B->size()/2;
+
         if (delta != 0)
           slaps /= delta;
 
@@ -369,9 +398,9 @@ namespace Circal
             }
       }
     Alignment* PseudoCircularAlignmentFactory::BacktrackingNMW(
-        const PseudoRotatedSequence* A, const bpp::Sequence* B,
+        const bpp::Sequence* A, const PseudoRotatedSequence* B,
         const ScoringModel* scoreM, const int &delta, const ScoreMatrix3D* D,
-        int &i, int &j)
+        uint &i, uint &j)
       {
 
         vector<int> outA;
@@ -383,8 +412,8 @@ namespace Circal
 
         double minScore = double(0);
 
-        //A is doubled=pseudorotated so correct size is A/2
-        int slaps = A->size();
+        //B is doubled=pseudorotated so correct size is B/2
+        int slaps = B->size()/2;
         if (delta != 0)
           slaps /= delta;
 
@@ -412,7 +441,7 @@ namespace Circal
             //Lonely Gap in A
             if (ScoreD == ScoreLeftD + scoreM->ScoreOfGapOpen(A->getChar(i -1)))
               {
-                //std::cout << "Left"<< endl;
+                //cout << "Left"<< endl;
                 minScore += scoreM->ScoreOfGapOpen(A->getChar(i-1));
                 itA = outA.insert(itA, -1);
                 itB = outB.insert(itB, B->getValue(j-1));
@@ -423,7 +452,7 @@ namespace Circal
             else if (ScoreD == ScoreUpD
                 + scoreM->ScoreOfGapOpen(B->getChar(j-1)))
               {
-                //std::cout << "Up"<< endl;
+                //cout << "Up"<< endl;
                 minScore += scoreM->ScoreOfGapOpen(B->getChar(j-1));
                 itA = outA.insert(itA, A->getValue(i-1));
                 itB = outB.insert(itB, -1);
@@ -434,7 +463,7 @@ namespace Circal
                 B->getChar(j-1)))
               {
                 minScore += scoreM->ScoreOf(A->getChar(i-1), B->getChar(j-1));
-                //std::cout << "Diag"<< endl;
+                //cout << "Diag"<< endl;
                 itA = outA.insert(itA, A->getValue(i-1));
                 itB = outB.insert(itB, B->getValue(j-1));
                 i--;
@@ -443,14 +472,14 @@ namespace Circal
 
             else
               {
-                std::cout << "42!!! Lost in D"<< endl;
+                cout << "42!!! Lost in D"<< endl;
               }
 
           }
 
         while (i > 0)
           {
-            //std::cout << "Overlapp A"<< endl;
+            //cout << "Overlapp A"<< endl;
             minScore += scoreM->ScoreOfGapOpen(A->getChar(i-1));
             itA = outA.insert(itA, A->getValue(i-1));
             itB = outB.insert(itB, -1);
@@ -459,7 +488,7 @@ namespace Circal
 
         while (j > 0)
           {
-            //std::cout << "Overlapp B"<< endl;
+            //cout << "Overlapp B"<< endl;
             minScore += scoreM->ScoreOfGapOpen(B->getChar(j-1));
             itB = outB.insert(itB, B->getValue(j-1));
             itA = outA.insert(itA, -1);
@@ -484,25 +513,25 @@ namespace Circal
         const bpp::Sequence* inA, const bpp::Sequence* inB,
         const ScoringModel* scoreM, const int &delta)
       {
-        PseudoRotatedSequence* A = new PseudoRotatedSequence(inA);
+        PseudoRotatedSequence* B = new PseudoRotatedSequence(inB);
 
-        ScoreMatrix D = matrix->InitializeScoreMatrixDistances(A, inB, scoreM);
+        ScoreMatrix D = matrix->InitializeScoreMatrixDistances(inA, B, scoreM);
 
         //Forward Iteration
-        AlignmentFactory::ForwardRecursionNMW(A, inB, scoreM, &D);
+        AlignmentFactory::ForwardRecursionNMW(inA, B, scoreM, &D);
 
         //Search Starting Node
-        int i = D.size()-1;
-        int j = D.at(0).size()-1;
+        uint i = D.size()-1;
+        uint j = D.at(0).size()-1;
         i = matrix->SearchBestInColumn(&D, scoreM, i, j);
 
-        int horizontalStart = i;
-        Alignment* temp = AlignmentFactory::BacktrackingNMW(A, inB, scoreM, &D,
+        uint horizontalStart = i;
+        Alignment* temp = AlignmentFactory::BacktrackingNMW(inA, B, scoreM, &D,
             i, j);
-        int horizontalEnd = i;
+        uint horizontalEnd = i;
 
         //Check for length of actual Alignment
-        if ((horizontalStart-horizontalEnd) < inA->size())
+        if ((horizontalStart-horizontalEnd) < inB->size())
           {
             //Seems to be ok
             return temp;
@@ -510,11 +539,11 @@ namespace Circal
         else
           delete temp;
 
-        ScoreMatrix3D kD = matrix->InitScoreMatrix3DWith(A, inB, delta, 0);
+        ScoreMatrix3D kD = matrix->InitScoreMatrix3DWith(inA, B, delta, 0);
 
-        ForwardRecursionNMW(A, inB, scoreM, delta, &kD);
+        ForwardRecursionNMW(inA, B, scoreM, delta, &kD);
 
-        return BacktrackingNMW(A, inB, scoreM, delta, &kD, i, j);
+        return BacktrackingNMW(inA, B, scoreM, delta, &kD, i, j);
 
       }
 
@@ -522,42 +551,51 @@ namespace Circal
         const bpp::Sequence* inA, const bpp::Sequence* inB,
         const ScoringModel* scoreM, const int &delta)
       {
-        PseudoRotatedSequence* A = new PseudoRotatedSequence(inA);
+        PseudoRotatedSequence* B = new PseudoRotatedSequence(inB);
 
-        ScoreMatrix D = matrix->InitScoreMatrixWith(A, inB, 0);
-        ScoreMatrix P = matrix->InitScoreMatrixWith(A, inB, 0);
-        ScoreMatrix Q = matrix->InitScoreMatrixWith(A, inB, 0);
+        ScoreMatrix D = matrix->InitScoreMatrixWith(inA, B, 0);
+        ScoreMatrix P = matrix->InitScoreMatrixWith(inA, B, 0);
+        ScoreMatrix Q = matrix->InitScoreMatrixWith(inA, B, 0);
 
         //Forward Iteration
-        AlignmentFactory::ForwardRecursionGotoh(A, inB, scoreM, &D, &P, &Q);
-        //Search Starting Node
-        int i = D.size()-1;
-        int j = D.at(0).size()-1;
-        i = matrix->SearchBestInColumn(&D, scoreM, i, j);
+        AlignmentFactory::ForwardRecursionGotoh(inA, B, scoreM, &D, &P, &Q);
 
-        int horizontalStart = i;
-        Alignment* temp = AlignmentFactory::BacktrackingGotohLocal(A, inB,
+        //Search Starting Node
+        uint i = D.size()-1;
+        uint j = D.at(0).size()-1;
+
+        //j = matrix->SearchBestInColumn(&D, scoreM, i, j);
+        uint horizontalStart = j;
+        Alignment* temp = AlignmentFactory::BacktrackingGotohGlocal(inA, B,
             scoreM, &D, &P, &Q, i, j);
-        int horizontalEnd = i;
+        uint horizontalEnd = j;
 
         //Check for length of actual Alignment
-        if ((horizontalStart-horizontalEnd) < inA->size())
+        if ((horizontalStart-horizontalEnd) <= inB->size())
           {
             //Seems to be ok
+            std::cout << "Optimum sofort gefunden!" << std::endl;
             return temp;
           }
         else
           delete temp;
 
         //The hard way
-        ScoreMatrix3D kD = matrix->InitScoreMatrix3DWith(A, inB, delta, 0);
-        ScoreMatrix3D kP = matrix->InitScoreMatrix3DWith(A, inB, delta, 0);
-        ScoreMatrix3D kQ = matrix->InitScoreMatrix3DWith(A, inB, delta, 0);
+        ScoreMatrix3D kD = matrix->InitScoreMatrix3DWith(inA, B, delta, 0);
+        ScoreMatrix3D kP = matrix->InitScoreMatrix3DWith(inA, B, delta, 0);
+        ScoreMatrix3D kQ = matrix->InitScoreMatrix3DWith(inA, B, delta, 0);
 
         //Forward Iteration
-        ForwardRecursionGotoh(A, inB, scoreM, delta, &kD, &kP, &kQ);
+        ForwardRecursionGotoh(inA, B, scoreM, delta, &kD, &kP, &kQ);
 
-        return BacktrackingGotohLocal(A, inB, scoreM, delta, &kD, &kP, &kQ, i,
+        i = kD.size()-1;
+        j = kD.at(0).size()-1;
+        uint k= kD.at(0).at(0).size()-1;
+
+        j = matrix->SearchBestInColumn3D(&kD, scoreM, i, j, k);
+        std::cout << "Best Score: " << kD.at(i).at(j).at(k) << " gefunden in j=" << j << std::endl;
+
+        return BacktrackingGotohLocal(inA, B, scoreM, delta, &kD, &kP, &kQ, i,
             j);
 
       }

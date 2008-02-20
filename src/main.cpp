@@ -74,57 +74,54 @@ int main(int args, char* argv[])
     bpp::Fasta seqWriter;
 
     //Init Scoring Model
-    Circal::ScoringModel* scoreM = new Circal::ScoringModel(scoreFilename);
+    Circal::ScoringModel scoreM(scoreFilename);
 
     //Use Self defined Alphabet
     //    Circal::VertebrateMitochondrialGenomeAlphabet * alpha =
     //        new Circal::VertebrateMitochondrialGenomeAlphabet(scoreM);
 
-    bpp::DNA* alpha = new bpp::DNA();
+    bpp::DNA alpha;
 
     //Container for read sequences
-    bpp::VectorSequenceContainer* sequences;
+    bpp::VectorSequenceContainer sequences(&alpha);
 
     //Try parsing the file for FASTA
     try
       {
-        sequences = dynamic_cast<bpp::VectorSequenceContainer*>
-        (seqReader.read(seqFilename,alpha));
+        seqReader.read(seqFilename,sequences);
       }
     catch(bpp::Exception &e)
       {
         std::cerr << "Invalid File Format!" << std::endl;
         std::cerr << e.what() << std::endl;
-        //Clean up
-        delete alpha;
         exit(-1);
       }
 
-    Circal::Output* out = new Circal::Output();
+    Circal::Output out;
 
     std::string gotoh = "GOTOH";
     double Alignments = 0;
     double AlignmentsGood = 0;
-    double AlignmentsRev = 0;
 
-    Circal::CircularAlignmentFactory* cicAln =
-        new Circal::CircularAlignmentFactory();
-    Circal::PseudoCircularAlignmentFactory* pseudoCircAln =
-        new Circal::PseudoCircularAlignmentFactory();
+    Circal::CircularAlignmentFactory cicAln;
+    Circal::PseudoCircularAlignmentFactory pseudoCircAln;
 
-    //#ifdef _OPENMP            
-    //#pragma omp parallel for
-    //#endif      
-    for (uint u=0; u<sequences->getNumberOfSequences(); u++)
+    Circal::Alignment* regCircular = new Circal::Alignment(&alpha);
+    Circal::Alignment* pseudoCircular = new Circal::Alignment(&alpha);
+
+#ifdef _OPENMP            
+#pragma omp parallel for
+#endif      
+    for (uint u=0; u<sequences.getNumberOfSequences(); u++)
       {
 
-        for (uint k=u+1; k<sequences->getNumberOfSequences(); k++)
+        for (uint k=u+1; k<sequences.getNumberOfSequences(); k++)
           {
 
-            Circal::Alignment* regCircular = cicAln->GotohAlignment(
-                sequences->getSequence(u), sequences->getSequence(k), scoreM);
-            Circal::Alignment* pseudoCircular= pseudoCircAln->GotohAlignment(
-                sequences->getSequence(u), sequences->getSequence(k), scoreM,
+            regCircular = cicAln.GotohAlignment(sequences.getSequence(u),
+                sequences.getSequence(k), &scoreM);
+            pseudoCircular= pseudoCircAln.GotohAlignment(
+                sequences.getSequence(u), sequences.getSequence(k), &scoreM,
                 delta);
             if (regCircular->get_Score() != pseudoCircular->get_Score())
               {
@@ -134,12 +131,16 @@ int main(int args, char* argv[])
               AlignmentsGood++;
             Alignments++;
             std::cout << "Optimum: " << std::endl;
-            std::cout << out->AlignmentPrettyPrint(regCircular) << std::endl;
+            std::cout << out.AlignmentPrettyPrint(regCircular) << std::endl;
             std::cout << "Heuristik: " << std::endl;
-            std::cout << out->AlignmentPrettyPrint(pseudoCircular) << std::endl;
+            std::cout << out.AlignmentPrettyPrint(pseudoCircular) << std::endl;
+            std::cout
+                << "################################################################################################"
+                << std::endl;
             std::cout << "Insgesamt: " << Alignments << " davon schlecht: "
                 << (Alignments-AlignmentsGood) << " Rate: " << (AlignmentsGood
                 /Alignments) << std::endl;
+
           }
       }
 
@@ -155,15 +156,8 @@ int main(int args, char* argv[])
 
      std::cout << foo->TCoffeeLibFormat(circal);
      */
-
-    //Clean up
-    delete alpha;
-    delete sequences;
-    delete out;
-    delete scoreM;
-    delete cicAln;
-    delete pseudoCircAln;
-
+    delete regCircular;
+    delete pseudoCircular;
     return 0;
 
     /*
