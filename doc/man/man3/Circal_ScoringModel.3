@@ -1,4 +1,4 @@
-.TH "Circal::ScoringModel" 3 "8 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
+.TH "Circal::ScoringModel" 3 "20 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -98,21 +98,21 @@ References Circal::AlignmentSymbol::gapExtend, Circal::AlignmentSymbol::gapOpen,
 .PP
 Definition at line 97 of file ScoringModel.cpp.
 .PP
-Referenced by Circal::Alignment::BacktrackingGotoh(), Circal::Alignment::BacktrackingNMW(), Circal::Alignment::ForwardRecursionGotoh(), and Circal::Alignment::ForwardRecursionNMW().
+Referenced by Circal::AlignmentFactory::BacktrackingGotohGlobal(), Circal::PseudoCircularAlignmentFactory::BacktrackingGotohLocal(), Circal::AlignmentFactory::BacktrackingGotohLocal(), Circal::PseudoCircularAlignmentFactory::BacktrackingNMW(), Circal::AlignmentFactory::BacktrackingNMW(), Circal::PseudoCircularAlignmentFactory::ForwardRecursionGotoh(), Circal::AlignmentFactory::ForwardRecursionGotoh(), Circal::PseudoCircularAlignmentFactory::ForwardRecursionNMW(), and Circal::AlignmentFactory::ForwardRecursionNMW().
 .SS "double Circal::ScoringModel::ScoreOfGapOpen (const std::string A) const"
 .PP
 Definition at line 106 of file ScoringModel.cpp.
 .PP
 References model.
 .PP
-Referenced by Circal::Alignment::BacktrackingGotoh(), Circal::Alignment::BacktrackingNMW(), Circal::Alignment::ForwardRecursionGotoh(), Circal::Alignment::ForwardRecursionNMW(), and Circal::MatrixHelper::InitializeScoreMatrixDistances().
+Referenced by Circal::AlignmentFactory::BacktrackingGotohGlobal(), Circal::PseudoCircularAlignmentFactory::BacktrackingGotohLocal(), Circal::AlignmentFactory::BacktrackingGotohLocal(), Circal::PseudoCircularAlignmentFactory::BacktrackingNMW(), Circal::AlignmentFactory::BacktrackingNMW(), Circal::PseudoCircularAlignmentFactory::ForwardRecursionGotoh(), Circal::AlignmentFactory::ForwardRecursionGotoh(), Circal::PseudoCircularAlignmentFactory::ForwardRecursionNMW(), Circal::AlignmentFactory::ForwardRecursionNMW(), and Circal::MatrixHelper::InitializeScoreMatrixDistances().
 .SS "double Circal::ScoringModel::ScoreOfGapExtend (const std::string A) const"
 .PP
 Definition at line 111 of file ScoringModel.cpp.
 .PP
 References model.
 .PP
-Referenced by Circal::Alignment::BacktrackingGotoh(), Circal::Alignment::BacktrackingNMW(), Circal::Alignment::ForwardRecursionGotoh(), Circal::Alignment::ForwardRecursionNMW(), and Circal::MatrixHelper::InitializeScoreMatrixDistances().
+Referenced by Circal::AlignmentFactory::BacktrackingGotohGlobal(), Circal::PseudoCircularAlignmentFactory::BacktrackingGotohLocal(), Circal::AlignmentFactory::BacktrackingGotohLocal(), Circal::AlignmentFactory::BacktrackingNMW(), Circal::PseudoCircularAlignmentFactory::ForwardRecursionGotoh(), Circal::AlignmentFactory::ForwardRecursionGotoh(), Circal::PseudoCircularAlignmentFactory::ForwardRecursionNMW(), Circal::AlignmentFactory::ForwardRecursionNMW(), and Circal::MatrixHelper::InitializeScoreMatrixDistances().
 .SS "int Circal::ScoringModel::GetModelSize (void) const"
 .PP
 Definition at line 116 of file ScoringModel.cpp.
@@ -124,14 +124,14 @@ Referenced by Circal::VertebrateMitochondrialGenomeAlphabet::convertModeltoAlpha
 .PP
 Definition at line 121 of file ScoringModel.cpp.
 .PP
-Referenced by Circal::Alignment::BacktrackingGotoh(), BestOfThree(), Circal::Alignment::ForwardRecursionGotoh(), Circal::CircularAlignment::GotohAlignment(), Circal::MatrixHelper::SearchMinimuminlastColumn(), Circal::MatrixHelper::SearchMinimuminlastRow(), and Circal::MatrixHelper::SearchMinimumPosition().
+Referenced by Circal::AlignmentFactory::BacktrackingGotohGlobal(), Circal::PseudoCircularAlignmentFactory::BacktrackingGotohLocal(), Circal::AlignmentFactory::BacktrackingGotohLocal(), Circal::PseudoCircularAlignmentFactory::BacktrackingNMW(), BestOfThree(), Circal::PseudoCircularAlignmentFactory::ForwardRecursionGotoh(), Circal::AlignmentFactory::ForwardRecursionGotoh(), Circal::CircularAlignmentFactory::GotohAlignment(), Circal::CircularAlignmentFactory::NeedlemanWunschAlignment(), Circal::MatrixHelper::SearchBestInColumn(), Circal::MatrixHelper::SearchBestInRow(), and Circal::MatrixHelper::SearchBestPositionFrom().
 .SS "const double & Circal::ScoringModel::BestOfThree (double & A, double & B, double & C) const"
 .PP
 Definition at line 129 of file ScoringModel.cpp.
 .PP
 References BestOfTwo().
 .PP
-Referenced by Circal::Alignment::ForwardRecursionGotoh(), and Circal::Alignment::ForwardRecursionNMW().
+Referenced by Circal::PseudoCircularAlignmentFactory::ForwardRecursionGotoh(), Circal::AlignmentFactory::ForwardRecursionGotoh(), Circal::PseudoCircularAlignmentFactory::ForwardRecursionNMW(), and Circal::AlignmentFactory::ForwardRecursionNMW().
 .SS "ModelValues::const_iterator Circal::ScoringModel::itBegin (void) const"
 .PP
 Definition at line 135 of file ScoringModel.cpp.

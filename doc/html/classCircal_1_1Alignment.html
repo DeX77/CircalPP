@@ -25,20 +25,6 @@
 <a class="el" href="namespaceCircal.html">Circal</a>::<a class="el" href="classCircal_1_1Alignment.html">Alignment</a></div>
 <h1>Circal::Alignment Class Reference</h1><!-- doxytag: class="Circal::Alignment" --><code>#include &lt;<a class="el" href="Alignment_8h-source.html">Alignment.h</a>&gt;</code>
 <p>
-<div class="dynheader">
-Inheritance diagram for Circal::Alignment:</div>
-<div class="dynsection">
-<p><center><img src="classCircal_1_1Alignment__inherit__graph.png" border="0" usemap="#Circal_1_1Alignment__inherit__map" alt="Inheritance graph"></center>
-<map name="Circal_1_1Alignment__inherit__map">
-<area shape="rect" href="classCircal_1_1CircularAlignment.html" title="Circal::CircularAlignment" alt="" coords="185,31,364,57"><area shape="rect" href="classCircal_1_1MultipleAlignment.html" title="Circal::MultipleAlignment" alt="" coords="185,81,364,108"><area shape="rect" href="classCircal_1_1MetaCircularAlignment.html" title="Circal::MetaCircularAlignment" alt="" coords="421,5,635,32"><area shape="rect" href="classCircal_1_1MultipleCircularAlignment.html" title="Circal::MultipleCircularAlignment" alt="" coords="413,56,643,83"><area shape="rect" href="classCircal_1_1MultipleMetaCircularAlignment.html" title="Circal::MultipleMetaCircularAlignment" alt="" coords="692,56,953,83"></map>
-<center><font size="2">[<a href="graph_legend.html">legend</a>]</font></center></div>
-<div class="dynheader">
-Collaboration diagram for Circal::Alignment:</div>
-<div class="dynsection">
-<p><center><img src="classCircal_1_1Alignment__coll__graph.png" border="0" usemap="#Circal_1_1Alignment__coll__map" alt="Collaboration graph"></center>
-<map name="Circal_1_1Alignment__coll__map">
-<area shape="rect" href="classCircal_1_1MatrixHelper.html" title="Circal::MatrixHelper" alt="" coords="5,7,155,33"><area shape="rect" href="classCircal_1_1Output.html" title="Circal::Output" alt="" coords="179,7,288,33"></map>
-<center><font size="2">[<a href="graph_legend.html">legend</a>]</font></center></div>
 
 <p>
 <a href="classCircal_1_1Alignment-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
@@ -46,13 +32,15 @@ Collaboration diagram for Circal::Alignment:</div>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#6c1d8170276265997eb8729e83a65fa8">Alignment</a> (const bpp::Alphabet *alpha)</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#4487be03e5c0685d42b2f414fda5e50b">Alignment</a> ()</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#4a0146b22bceb4dff7a0583378f6145c">~Alignment</a> ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">uint&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#4cc257ab74dbee96a70ea7f82e017c7a">get_origSize</a> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#88f7d06a0c289e53519aa84d17c734be">get_Score</a> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#894c857b61c9fed3a6332ffe2362b9f1">get_Score</a> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#86ad132871584d6e026d9e1f254ee98c">set_score</a> (const int &amp;s)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#94d66a0aa8ca3a3ecd47801acbbbc16a">set_Score</a> (const double &amp;s)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#89a2f964067b1f766a3327e8008a0f45">set_origSize</a> (const uint &amp;orig)</td></tr>
 
@@ -60,31 +48,15 @@ Collaboration diagram for Circal::Alignment:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#c3ba2bde0257c150f84a9f025b4f6564">addSequence</a> (const bpp::Sequence &amp;sequence)  throw (bpp::Exception)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classCircal_1_1Alignment.html">Alignment</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#e4913ab4c499665491c22c5f407f11b0">NeedlemanWunschAlignment</a> (const bpp::Sequence *inA, const bpp::Sequence *inB, const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *scoreM)</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#5aa0581729cd7f29c49e0668316a31ed">ForwardRecursionNMW</a> (const bpp::Sequence *A, const bpp::Sequence *B, const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *scoreM, <a class="el" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> *D)</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classCircal_1_1Alignment.html">Alignment</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#c39f82c98e3d3e2804af08b8abcd1999">BacktrackingNMW</a> (const bpp::Sequence *outA, const bpp::Sequence *outB, const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *scoreM, const <a class="el" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> *D)</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classCircal_1_1Alignment.html">Alignment</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#3bc27d7c12fe1d50bef9c5159c268926">GotohAlignment</a> (const bpp::Sequence *inA, const bpp::Sequence *inB, const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *scoreM)</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#5b09da5a0a41540ca21371bc44f93223">ForwardRecursionGotoh</a> (const bpp::Sequence *A, const bpp::Sequence *B, const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *scoreM, <a class="el" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> *D, <a class="el" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> *P, <a class="el" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> *Q)</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classCircal_1_1Alignment.html">Alignment</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#ada6ed0b0e089d9ad7c3648e8ceaa58f">BacktrackingGotoh</a> (const bpp::Sequence *outA, const bpp::Sequence *outB, const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *scoreM, const <a class="el" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> *D, const <a class="el" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> *P, const <a class="el" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> *Q)</td></tr>
-
-<tr><td colspan="2"><br><h2>Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#890d9fe0df4d6a2f512a71b198589dbe">Score</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classCircal_1_1Output.html">Output</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#44ba98e37149b0b999ea66b28cd1ad12">prettyPrint</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classCircal_1_1MatrixHelper.html">MatrixHelper</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#d0a86db038b5d44eb542108c864533d9">matrix</a></td></tr>
-
+<tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">uint&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#4899d9988a47852fc888a900e3ffdaf7">origSize</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#894c310f50b7ec0b44c53d38b03a4c4c">Score</a></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 
-<p>Definition at line <a class="el" href="Alignment_8h-source.html#l00041">41</a> of file <a class="el" href="Alignment_8h-source.html">Alignment.h</a>.</p>
+<p>Definition at line <a class="el" href="Alignment_8h-source.html#l00036">36</a> of file <a class="el" href="Alignment_8h-source.html">Alignment.h</a>.</p>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="6c1d8170276265997eb8729e83a65fa8"></a><!-- doxytag: member="Circal::Alignment::Alignment" ref="6c1d8170276265997eb8729e83a65fa8" args="(const bpp::Alphabet *alpha)" -->
 <div class="memitem">
@@ -96,7 +68,7 @@ Collaboration diagram for Circal::Alignment:</div>
           <td class="paramtype">const bpp::Alphabet *&nbsp;</td>
           <td class="paramname"> <em>alpha</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td width="100%"><code> [explicit]</code></td>
+          <td width="100%"></td>
         </tr>
       </table>
 </div>
@@ -106,9 +78,7 @@ Collaboration diagram for Circal::Alignment:</div>
 
 <p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00027">27</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
 
-<p>References <a class="el" href="Alignment_8cpp-source.html#l00053">set_score()</a>.</p>
-
-<p>Referenced by <a class="el" href="Alignment_8cpp-source.html#l00110">BacktrackingGotoh()</a>, and <a class="el" href="Alignment_8cpp-source.html#l00284">BacktrackingNMW()</a>.</p>
+<p>References <a class="el" href="Alignment_8cpp-source.html#l00053">set_Score()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -116,8 +86,27 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classCircal_1_1Alignment_6c1d8170276265997eb8729e83a65fa8_cgraph.png" border="0" usemap="#classCircal_1_1Alignment_6c1d8170276265997eb8729e83a65fa8_cgraph_map" alt=""></center>
 <map name="classCircal_1_1Alignment_6c1d8170276265997eb8729e83a65fa8_cgraph_map">
-<area shape="rect" href="classCircal_1_1Alignment.html#86ad132871584d6e026d9e1f254ee98c" title="Circal::Alignment::set_score" alt="" coords="259,5,459,32"></map>
+<area shape="rect" href="classCircal_1_1Alignment.html#94d66a0aa8ca3a3ecd47801acbbbc16a" title="Circal::Alignment::set_Score" alt="" coords="259,5,461,32"></map>
 </div>
+
+</div>
+</div><p>
+<a class="anchor" name="4487be03e5c0685d42b2f414fda5e50b"></a><!-- doxytag: member="Circal::Alignment::Alignment" ref="4487be03e5c0685d42b2f414fda5e50b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Circal::Alignment::Alignment           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
 
 </div>
 </div><p>
@@ -138,9 +127,7 @@ Here is the call graph for this function:</div>
 
 <p>
 
-<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00034">34</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
-
-<p>References <a class="el" href="Alignment_8h-source.html#l00046">matrix</a>, and <a class="el" href="Alignment_8h-source.html#l00045">prettyPrint</a>.</p>
+<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00035">35</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
 
 </div>
 </div><p>
@@ -164,18 +151,18 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00039">39</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
 
-<p>References <a class="el" href="Alignment_8h-source.html#l00047">origSize</a>.</p>
+<p>References <a class="el" href="Alignment_8h-source.html#l00038">origSize</a>.</p>
 
-<p>Referenced by <a class="el" href="Output_8cpp-source.html#l00104">Circal::Output::TCoffeeLibFormat()</a>.</p>
+<p>Referenced by <a class="el" href="Output_8cpp-source.html#l00103">Circal::Output::TCoffeeLibFormat()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="88f7d06a0c289e53519aa84d17c734be"></a><!-- doxytag: member="Circal::Alignment::get_Score" ref="88f7d06a0c289e53519aa84d17c734be" args="() const " -->
+<a class="anchor" name="894c857b61c9fed3a6332ffe2362b9f1"></a><!-- doxytag: member="Circal::Alignment::get_Score" ref="894c857b61c9fed3a6332ffe2362b9f1" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Circal::Alignment::get_Score           </td>
+          <td class="memname">double Circal::Alignment::get_Score           </td>
           <td>(</td>
           <td class="paramtype">void&nbsp;</td>
           <td class="paramname">          </td>
@@ -190,20 +177,20 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00048">48</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
 
-<p>References <a class="el" href="Alignment_8h-source.html#l00044">Score</a>.</p>
+<p>References <a class="el" href="Alignment_8h-source.html#l00039">Score</a>.</p>
 
-<p>Referenced by <a class="el" href="Output_8cpp-source.html#l00064">Circal::Output::AlignmentPrettyPrint()</a>, <a class="el" href="CircularAlignment_8cpp-source.html#l00037">Circal::CircularAlignment::GotohAlignment()</a>, and <a class="el" href="CircularAlignment_8cpp-source.html#l00056">Circal::CircularAlignment::NeedlemanWunschAlignment()</a>.</p>
+<p>Referenced by <a class="el" href="Output_8cpp-source.html#l00063">Circal::Output::AlignmentPrettyPrint()</a>, <a class="el" href="CircularAlignmentFactory_8cpp-source.html#l00035">Circal::CircularAlignmentFactory::GotohAlignment()</a>, <a class="el" href="main_8cpp-source.html#l00036">main()</a>, and <a class="el" href="CircularAlignmentFactory_8cpp-source.html#l00066">Circal::CircularAlignmentFactory::NeedlemanWunschAlignment()</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="86ad132871584d6e026d9e1f254ee98c"></a><!-- doxytag: member="Circal::Alignment::set_score" ref="86ad132871584d6e026d9e1f254ee98c" args="(const int &amp;s)" -->
+<a class="anchor" name="94d66a0aa8ca3a3ecd47801acbbbc16a"></a><!-- doxytag: member="Circal::Alignment::set_Score" ref="94d66a0aa8ca3a3ecd47801acbbbc16a" args="(const double &amp;s)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Circal::Alignment::set_score           </td>
+          <td class="memname">void Circal::Alignment::set_Score           </td>
           <td>(</td>
-          <td class="paramtype">const int &amp;&nbsp;</td>
+          <td class="paramtype">const double &amp;&nbsp;</td>
           <td class="paramname"> <em>s</em>          </td>
           <td>&nbsp;)&nbsp;</td>
           <td width="100%"></td>
@@ -216,9 +203,9 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00053">53</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
 
-<p>References <a class="el" href="Alignment_8h-source.html#l00044">Score</a>.</p>
+<p>References <a class="el" href="Alignment_8h-source.html#l00039">Score</a>.</p>
 
-<p>Referenced by <a class="el" href="Alignment_8cpp-source.html#l00027">Alignment()</a>, <a class="el" href="Alignment_8cpp-source.html#l00110">BacktrackingGotoh()</a>, and <a class="el" href="Alignment_8cpp-source.html#l00284">BacktrackingNMW()</a>.</p>
+<p>Referenced by <a class="el" href="Alignment_8cpp-source.html#l00027">Alignment()</a>, <a class="el" href="AlignmentFactory_8cpp-source.html#l00198">Circal::AlignmentFactory::BacktrackingGotohGlobal()</a>, <a class="el" href="PseudoCircularAlignmentFactory_8cpp-source.html#l00140">Circal::PseudoCircularAlignmentFactory::BacktrackingGotohLocal()</a>, <a class="el" href="AlignmentFactory_8cpp-source.html#l00079">Circal::AlignmentFactory::BacktrackingGotohLocal()</a>, <a class="el" href="PseudoCircularAlignmentFactory_8cpp-source.html#l00371">Circal::PseudoCircularAlignmentFactory::BacktrackingNMW()</a>, and <a class="el" href="AlignmentFactory_8cpp-source.html#l00368">Circal::AlignmentFactory::BacktrackingNMW()</a>.</p>
 
 </div>
 </div><p>
@@ -242,9 +229,7 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00043">43</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
 
-<p>References <a class="el" href="Alignment_8h-source.html#l00047">origSize</a>.</p>
-
-<p>Referenced by <a class="el" href="MultipleAlignment_8cpp-source.html#l00042">Circal::MultipleAlignment::GotohalignMultiple()</a>.</p>
+<p>References <a class="el" href="Alignment_8h-source.html#l00038">origSize</a>.</p>
 
 </div>
 </div><p>
@@ -277,7 +262,7 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00058">58</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="Alignment_8cpp-source.html#l00064">addSequence()</a>, <a class="el" href="Alignment_8cpp-source.html#l00110">BacktrackingGotoh()</a>, and <a class="el" href="Alignment_8cpp-source.html#l00284">BacktrackingNMW()</a>.</p>
+<p>Referenced by <a class="el" href="Alignment_8cpp-source.html#l00064">addSequence()</a>, <a class="el" href="AlignmentFactory_8cpp-source.html#l00198">Circal::AlignmentFactory::BacktrackingGotohGlobal()</a>, <a class="el" href="PseudoCircularAlignmentFactory_8cpp-source.html#l00140">Circal::PseudoCircularAlignmentFactory::BacktrackingGotohLocal()</a>, <a class="el" href="AlignmentFactory_8cpp-source.html#l00079">Circal::AlignmentFactory::BacktrackingGotohLocal()</a>, <a class="el" href="PseudoCircularAlignmentFactory_8cpp-source.html#l00371">Circal::PseudoCircularAlignmentFactory::BacktrackingNMW()</a>, and <a class="el" href="AlignmentFactory_8cpp-source.html#l00368">Circal::AlignmentFactory::BacktrackingNMW()</a>.</p>
 
 </div>
 </div><p>
@@ -314,422 +299,13 @@ Here is the call graph for this function:</div>
 
 </div>
 </div><p>
-<a class="anchor" name="e4913ab4c499665491c22c5f407f11b0"></a><!-- doxytag: member="Circal::Alignment::NeedlemanWunschAlignment" ref="e4913ab4c499665491c22c5f407f11b0" args="(const bpp::Sequence *inA, const bpp::Sequence *inB, const ScoringModel *scoreM)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classCircal_1_1Alignment.html">Alignment</a> * Circal::Alignment::NeedlemanWunschAlignment           </td>
-          <td>(</td>
-          <td class="paramtype">const bpp::Sequence *&nbsp;</td>
-          <td class="paramname"> <em>inA</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bpp::Sequence *&nbsp;</td>
-          <td class="paramname"> <em>inB</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *&nbsp;</td>
-          <td class="paramname"> <em>scoreM</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td width="100%"><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Reimplemented in <a class="el" href="classCircal_1_1CircularAlignment.html#70aed56d9b44329f7d171a42a50217b7">Circal::CircularAlignment</a>.</p>
-
-<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00416">416</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
-
-<p>References <a class="el" href="Alignment_8cpp-source.html#l00284">BacktrackingNMW()</a>, <a class="el" href="Alignment_8cpp-source.html#l00256">ForwardRecursionNMW()</a>, <a class="el" href="MatrixHelper_8cpp-source.html#l00072">Circal::MatrixHelper::InitializeScoreMatrixDistances()</a>, and <a class="el" href="Alignment_8h-source.html#l00046">matrix</a>.</p>
-
-<p>Referenced by <a class="el" href="CircularAlignment_8cpp-source.html#l00056">Circal::CircularAlignment::NeedlemanWunschAlignment()</a>, and <a class="el" href="MultipleAlignment_8cpp-source.html#l00063">Circal::MultipleAlignment::NMWalignMultiple()</a>.</p>
-
-<p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dynsection">
-<p><center><img src="classCircal_1_1Alignment_e4913ab4c499665491c22c5f407f11b0_cgraph.png" border="0" usemap="#classCircal_1_1Alignment_e4913ab4c499665491c22c5f407f11b0_cgraph_map" alt=""></center>
-<map name="classCircal_1_1Alignment_e4913ab4c499665491c22c5f407f11b0_cgraph_map">
-<area shape="rect" href="classCircal_1_1Alignment.html#c39f82c98e3d3e2804af08b8abcd1999" title="Circal::Alignment::BacktrackingNMW" alt="" coords="429,157,683,184"><area shape="rect" href="classCircal_1_1Alignment.html#5aa0581729cd7f29c49e0668316a31ed" title="Circal::Alignment::ForwardRecursionNMW" alt="" coords="412,208,700,235"><area shape="rect" href="classCircal_1_1MatrixHelper.html#69554a977a56437127203bf586e5d594" title="Circal::MatrixHelper::InitializeScoreMatrixDistances" alt="" coords="381,259,731,285"><area shape="rect" href="classCircal_1_1Alignment.html#0a0ef49213d04275c7c932a6f55f8d52" title="Circal::Alignment::addSequence" alt="" coords="809,5,1036,32"><area shape="rect" href="classCircal_1_1Alignment.html#6c1d8170276265997eb8729e83a65fa8" title="Circal::Alignment::Alignment" alt="" coords="821,107,1024,133"><area shape="rect" href="classCircal_1_1Alignment.html#86ad132871584d6e026d9e1f254ee98c" title="Circal::Alignment::set_score" alt="" coords="1129,81,1329,108"><area shape="rect" href="classCircal_1_1ScoringModel.html#c9093a36aae9269b516c34438d2df279" title="Circal::ScoringModel::ScoreOf" alt="" coords="816,157,1029,184"><area shape="rect" href="classCircal_1_1ScoringModel.html#dc158e70948f9cce9c80ef7df6cdde6f" title="Circal::ScoringModel::ScoreOfGapExtend" alt="" coords="780,208,1065,235"><area shape="rect" href="classCircal_1_1ScoringModel.html#3f934683024d21df07165eee183ee918" title="Circal::ScoringModel::ScoreOfGapOpen" alt="" coords="785,259,1060,285"><area shape="rect" href="classCircal_1_1ScoringModel.html#ea8047bcaff23574faf333c25759d30c" title="Circal::ScoringModel::BestOfThree" alt="" coords="803,309,1043,336"><area shape="rect" href="classCircal_1_1ScoringModel.html#2af91279a78623322072a65a071f572b" title="Circal::ScoringModel::BestOfTwo" alt="" coords="1116,309,1343,336"><area shape="rect" href="classCircal_1_1MatrixHelper.html#8c12cd1078ffbb6c4c93ebbb8cb384d5" title="Circal::MatrixHelper::InitScoreMatrixWith" alt="" coords="781,360,1064,387"></map>
-</div>
-
-</div>
-</div><p>
-<a class="anchor" name="5aa0581729cd7f29c49e0668316a31ed"></a><!-- doxytag: member="Circal::Alignment::ForwardRecursionNMW" ref="5aa0581729cd7f29c49e0668316a31ed" args="(const bpp::Sequence *A, const bpp::Sequence *B, const ScoringModel *scoreM, ScoreMatrix *D)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Circal::Alignment::ForwardRecursionNMW           </td>
-          <td>(</td>
-          <td class="paramtype">const bpp::Sequence *&nbsp;</td>
-          <td class="paramname"> <em>A</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bpp::Sequence *&nbsp;</td>
-          <td class="paramname"> <em>B</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *&nbsp;</td>
-          <td class="paramname"> <em>scoreM</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> *&nbsp;</td>
-          <td class="paramname"> <em>D</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td width="100%"><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00256">256</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
-
-<p>References <a class="el" href="ScoringModel_8cpp-source.html#l00129">Circal::ScoringModel::BestOfThree()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00097">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00111">Circal::ScoringModel::ScoreOfGapExtend()</a>, and <a class="el" href="ScoringModel_8cpp-source.html#l00106">Circal::ScoringModel::ScoreOfGapOpen()</a>.</p>
-
-<p>Referenced by <a class="el" href="Alignment_8cpp-source.html#l00416">NeedlemanWunschAlignment()</a>.</p>
-
-<p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dynsection">
-<p><center><img src="classCircal_1_1Alignment_5aa0581729cd7f29c49e0668316a31ed_cgraph.png" border="0" usemap="#classCircal_1_1Alignment_5aa0581729cd7f29c49e0668316a31ed_cgraph_map" alt=""></center>
-<map name="classCircal_1_1Alignment_5aa0581729cd7f29c49e0668316a31ed_cgraph_map">
-<area shape="rect" href="classCircal_1_1ScoringModel.html#ea8047bcaff23574faf333c25759d30c" title="Circal::ScoringModel::BestOfThree" alt="" coords="368,5,608,32"><area shape="rect" href="classCircal_1_1ScoringModel.html#c9093a36aae9269b516c34438d2df279" title="Circal::ScoringModel::ScoreOf" alt="" coords="381,56,595,83"><area shape="rect" href="classCircal_1_1ScoringModel.html#dc158e70948f9cce9c80ef7df6cdde6f" title="Circal::ScoringModel::ScoreOfGapExtend" alt="" coords="345,107,631,133"><area shape="rect" href="classCircal_1_1ScoringModel.html#3f934683024d21df07165eee183ee918" title="Circal::ScoringModel::ScoreOfGapOpen" alt="" coords="351,157,625,184"><area shape="rect" href="classCircal_1_1ScoringModel.html#2af91279a78623322072a65a071f572b" title="Circal::ScoringModel::BestOfTwo" alt="" coords="681,5,908,32"></map>
-</div>
-
-</div>
-</div><p>
-<a class="anchor" name="c39f82c98e3d3e2804af08b8abcd1999"></a><!-- doxytag: member="Circal::Alignment::BacktrackingNMW" ref="c39f82c98e3d3e2804af08b8abcd1999" args="(const bpp::Sequence *outA, const bpp::Sequence *outB, const ScoringModel *scoreM, const ScoreMatrix *D)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classCircal_1_1Alignment.html">Alignment</a> * Circal::Alignment::BacktrackingNMW           </td>
-          <td>(</td>
-          <td class="paramtype">const bpp::Sequence *&nbsp;</td>
-          <td class="paramname"> <em>outA</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bpp::Sequence *&nbsp;</td>
-          <td class="paramname"> <em>outB</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *&nbsp;</td>
-          <td class="paramname"> <em>scoreM</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> *&nbsp;</td>
-          <td class="paramname"> <em>D</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td width="100%"><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00284">284</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
-
-<p>References <a class="el" href="Alignment_8cpp-source.html#l00058">addSequence()</a>, <a class="el" href="Alignment_8cpp-source.html#l00027">Alignment()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00097">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00111">Circal::ScoringModel::ScoreOfGapExtend()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00106">Circal::ScoringModel::ScoreOfGapOpen()</a>, and <a class="el" href="Alignment_8cpp-source.html#l00053">set_score()</a>.</p>
-
-<p>Referenced by <a class="el" href="Alignment_8cpp-source.html#l00416">NeedlemanWunschAlignment()</a>.</p>
-
-<p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dynsection">
-<p><center><img src="classCircal_1_1Alignment_c39f82c98e3d3e2804af08b8abcd1999_cgraph.png" border="0" usemap="#classCircal_1_1Alignment_c39f82c98e3d3e2804af08b8abcd1999_cgraph_map" alt=""></center>
-<map name="classCircal_1_1Alignment_c39f82c98e3d3e2804af08b8abcd1999_cgraph_map">
-<area shape="rect" href="classCircal_1_1Alignment.html#0a0ef49213d04275c7c932a6f55f8d52" title="Circal::Alignment::addSequence" alt="" coords="340,5,567,32"><area shape="rect" href="classCircal_1_1Alignment.html#6c1d8170276265997eb8729e83a65fa8" title="Circal::Alignment::Alignment" alt="" coords="352,56,555,83"><area shape="rect" href="classCircal_1_1Alignment.html#86ad132871584d6e026d9e1f254ee98c" title="Circal::Alignment::set_score" alt="" coords="645,81,845,108"><area shape="rect" href="classCircal_1_1ScoringModel.html#c9093a36aae9269b516c34438d2df279" title="Circal::ScoringModel::ScoreOf" alt="" coords="347,157,560,184"><area shape="rect" href="classCircal_1_1ScoringModel.html#dc158e70948f9cce9c80ef7df6cdde6f" title="Circal::ScoringModel::ScoreOfGapExtend" alt="" coords="311,208,596,235"><area shape="rect" href="classCircal_1_1ScoringModel.html#3f934683024d21df07165eee183ee918" title="Circal::ScoringModel::ScoreOfGapOpen" alt="" coords="316,259,591,285"></map>
-</div>
-
-</div>
-</div><p>
-<a class="anchor" name="3bc27d7c12fe1d50bef9c5159c268926"></a><!-- doxytag: member="Circal::Alignment::GotohAlignment" ref="3bc27d7c12fe1d50bef9c5159c268926" args="(const bpp::Sequence *inA, const bpp::Sequence *inB, const ScoringModel *scoreM)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classCircal_1_1Alignment.html">Alignment</a> * Circal::Alignment::GotohAlignment           </td>
-          <td>(</td>
-          <td class="paramtype">const bpp::Sequence *&nbsp;</td>
-          <td class="paramname"> <em>inA</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bpp::Sequence *&nbsp;</td>
-          <td class="paramname"> <em>inB</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *&nbsp;</td>
-          <td class="paramname"> <em>scoreM</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td width="100%"><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Reimplemented in <a class="el" href="classCircal_1_1CircularAlignment.html#51e646152d211d81f8227ee402e4a87e">Circal::CircularAlignment</a>, and <a class="el" href="classCircal_1_1MetaCircularAlignment.html#5a3e0a4bf203f46ecfe0328574f89f20">Circal::MetaCircularAlignment</a>.</p>
-
-<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00429">429</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
-
-<p>References <a class="el" href="Alignment_8cpp-source.html#l00110">BacktrackingGotoh()</a>, <a class="el" href="Alignment_8cpp-source.html#l00070">ForwardRecursionGotoh()</a>, <a class="el" href="MatrixHelper_8cpp-source.html#l00095">Circal::MatrixHelper::InitScoreMatrixWith()</a>, and <a class="el" href="Alignment_8h-source.html#l00046">matrix</a>.</p>
-
-<p>Referenced by <a class="el" href="CircularAlignment_8cpp-source.html#l00037">Circal::CircularAlignment::GotohAlignment()</a>, and <a class="el" href="MultipleAlignment_8cpp-source.html#l00042">Circal::MultipleAlignment::GotohalignMultiple()</a>.</p>
-
-<p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dynsection">
-<p><center><img src="classCircal_1_1Alignment_3bc27d7c12fe1d50bef9c5159c268926_cgraph.png" border="0" usemap="#classCircal_1_1Alignment_3bc27d7c12fe1d50bef9c5159c268926_cgraph_map" alt=""></center>
-<map name="classCircal_1_1Alignment_3bc27d7c12fe1d50bef9c5159c268926_cgraph_map">
-<area shape="rect" href="classCircal_1_1Alignment.html#ada6ed0b0e089d9ad7c3648e8ceaa58f" title="Circal::Alignment::BacktrackingGotoh" alt="" coords="317,208,576,235"><area shape="rect" href="classCircal_1_1Alignment.html#5b09da5a0a41540ca21371bc44f93223" title="Circal::Alignment::ForwardRecursionGotoh" alt="" coords="300,335,593,361"><area shape="rect" href="classCircal_1_1MatrixHelper.html#8c12cd1078ffbb6c4c93ebbb8cb384d5" title="Circal::MatrixHelper::InitScoreMatrixWith" alt="" coords="305,385,588,412"><area shape="rect" href="classCircal_1_1Alignment.html#0a0ef49213d04275c7c932a6f55f8d52" title="Circal::Alignment::addSequence" alt="" coords="687,5,913,32"><area shape="rect" href="classCircal_1_1Alignment.html#6c1d8170276265997eb8729e83a65fa8" title="Circal::Alignment::Alignment" alt="" coords="699,107,901,133"><area shape="rect" href="classCircal_1_1Alignment.html#86ad132871584d6e026d9e1f254ee98c" title="Circal::Alignment::set_score" alt="" coords="1079,81,1279,108"><area shape="rect" href="classCircal_1_1ScoringModel.html#2af91279a78623322072a65a071f572b" title="Circal::ScoringModel::BestOfTwo" alt="" coords="1401,284,1628,311"><area shape="rect" href="classCircal_1_1ScoringModel.html#c9093a36aae9269b516c34438d2df279" title="Circal::ScoringModel::ScoreOf" alt="" coords="693,259,907,285"><area shape="rect" href="classCircal_1_1ScoringModel.html#dc158e70948f9cce9c80ef7df6cdde6f" title="Circal::ScoringModel::ScoreOfGapExtend" alt="" coords="657,309,943,336"><area shape="rect" href="classCircal_1_1ScoringModel.html#3f934683024d21df07165eee183ee918" title="Circal::ScoringModel::ScoreOfGapOpen" alt="" coords="663,360,937,387"><area shape="rect" href="classCircal_1_1MatrixHelper.html#94c62eb44eb6c53134045df321df5d4f" title="Circal::MatrixHelper::SearchMinimumPosition" alt="" coords="644,208,956,235"><area shape="rect" href="classCircal_1_1MatrixHelper.html#87b754dba320d59725336089d3519afb" title="Circal::MatrixHelper::SearchMinimuminlastColumn" alt="" coords="1005,259,1352,285"><area shape="rect" href="classCircal_1_1MatrixHelper.html#af7b6abc5c29c4a5836d02bdef1c8f31" title="Circal::MatrixHelper::SearchMinimuminlastRow" alt="" coords="1017,309,1340,336"><area shape="rect" href="classCircal_1_1ScoringModel.html#ea8047bcaff23574faf333c25759d30c" title="Circal::ScoringModel::BestOfThree" alt="" coords="1059,385,1299,412"></map>
-</div>
-
-</div>
-</div><p>
-<a class="anchor" name="5b09da5a0a41540ca21371bc44f93223"></a><!-- doxytag: member="Circal::Alignment::ForwardRecursionGotoh" ref="5b09da5a0a41540ca21371bc44f93223" args="(const bpp::Sequence *A, const bpp::Sequence *B, const ScoringModel *scoreM, ScoreMatrix *D, ScoreMatrix *P, ScoreMatrix *Q)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Circal::Alignment::ForwardRecursionGotoh           </td>
-          <td>(</td>
-          <td class="paramtype">const bpp::Sequence *&nbsp;</td>
-          <td class="paramname"> <em>A</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bpp::Sequence *&nbsp;</td>
-          <td class="paramname"> <em>B</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *&nbsp;</td>
-          <td class="paramname"> <em>scoreM</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> *&nbsp;</td>
-          <td class="paramname"> <em>D</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> *&nbsp;</td>
-          <td class="paramname"> <em>P</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> *&nbsp;</td>
-          <td class="paramname"> <em>Q</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td width="100%"><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00070">70</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
-
-<p>References <a class="el" href="ScoringModel_8cpp-source.html#l00129">Circal::ScoringModel::BestOfThree()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00121">Circal::ScoringModel::BestOfTwo()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00097">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00111">Circal::ScoringModel::ScoreOfGapExtend()</a>, and <a class="el" href="ScoringModel_8cpp-source.html#l00106">Circal::ScoringModel::ScoreOfGapOpen()</a>.</p>
-
-<p>Referenced by <a class="el" href="MetaCircularAlignment_8cpp-source.html#l00038">Circal::MetaCircularAlignment::GotohAlignment()</a>, and <a class="el" href="Alignment_8cpp-source.html#l00429">GotohAlignment()</a>.</p>
-
-<p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dynsection">
-<p><center><img src="classCircal_1_1Alignment_5b09da5a0a41540ca21371bc44f93223_cgraph.png" border="0" usemap="#classCircal_1_1Alignment_5b09da5a0a41540ca21371bc44f93223_cgraph_map" alt=""></center>
-<map name="classCircal_1_1Alignment_5b09da5a0a41540ca21371bc44f93223_cgraph_map">
-<area shape="rect" href="classCircal_1_1ScoringModel.html#ea8047bcaff23574faf333c25759d30c" title="Circal::ScoringModel::BestOfThree" alt="" coords="373,5,613,32"><area shape="rect" href="classCircal_1_1ScoringModel.html#2af91279a78623322072a65a071f572b" title="Circal::ScoringModel::BestOfTwo" alt="" coords="687,31,913,57"><area shape="rect" href="classCircal_1_1ScoringModel.html#c9093a36aae9269b516c34438d2df279" title="Circal::ScoringModel::ScoreOf" alt="" coords="387,107,600,133"><area shape="rect" href="classCircal_1_1ScoringModel.html#dc158e70948f9cce9c80ef7df6cdde6f" title="Circal::ScoringModel::ScoreOfGapExtend" alt="" coords="351,157,636,184"><area shape="rect" href="classCircal_1_1ScoringModel.html#3f934683024d21df07165eee183ee918" title="Circal::ScoringModel::ScoreOfGapOpen" alt="" coords="356,208,631,235"></map>
-</div>
-
-</div>
-</div><p>
-<a class="anchor" name="ada6ed0b0e089d9ad7c3648e8ceaa58f"></a><!-- doxytag: member="Circal::Alignment::BacktrackingGotoh" ref="ada6ed0b0e089d9ad7c3648e8ceaa58f" args="(const bpp::Sequence *outA, const bpp::Sequence *outB, const ScoringModel *scoreM, const ScoreMatrix *D, const ScoreMatrix *P, const ScoreMatrix *Q)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classCircal_1_1Alignment.html">Alignment</a> * Circal::Alignment::BacktrackingGotoh           </td>
-          <td>(</td>
-          <td class="paramtype">const bpp::Sequence *&nbsp;</td>
-          <td class="paramname"> <em>outA</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bpp::Sequence *&nbsp;</td>
-          <td class="paramname"> <em>outB</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *&nbsp;</td>
-          <td class="paramname"> <em>scoreM</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> *&nbsp;</td>
-          <td class="paramname"> <em>D</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> *&nbsp;</td>
-          <td class="paramname"> <em>P</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> *&nbsp;</td>
-          <td class="paramname"> <em>Q</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td width="100%"><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00110">110</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
-
-<p>References <a class="el" href="Alignment_8cpp-source.html#l00058">addSequence()</a>, <a class="el" href="Alignment_8cpp-source.html#l00027">Alignment()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00121">Circal::ScoringModel::BestOfTwo()</a>, <a class="el" href="Alignment_8h-source.html#l00046">matrix</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00097">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00111">Circal::ScoringModel::ScoreOfGapExtend()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00106">Circal::ScoringModel::ScoreOfGapOpen()</a>, <a class="el" href="MatrixHelper_8cpp-source.html#l00167">Circal::MatrixHelper::SearchMinimumPosition()</a>, and <a class="el" href="Alignment_8cpp-source.html#l00053">set_score()</a>.</p>
-
-<p>Referenced by <a class="el" href="MetaCircularAlignment_8cpp-source.html#l00038">Circal::MetaCircularAlignment::GotohAlignment()</a>, and <a class="el" href="Alignment_8cpp-source.html#l00429">GotohAlignment()</a>.</p>
-
-<p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dynsection">
-<p><center><img src="classCircal_1_1Alignment_ada6ed0b0e089d9ad7c3648e8ceaa58f_cgraph.png" border="0" usemap="#classCircal_1_1Alignment_ada6ed0b0e089d9ad7c3648e8ceaa58f_cgraph_map" alt=""></center>
-<map name="classCircal_1_1Alignment_ada6ed0b0e089d9ad7c3648e8ceaa58f_cgraph_map">
-<area shape="rect" href="classCircal_1_1Alignment.html#0a0ef49213d04275c7c932a6f55f8d52" title="Circal::Alignment::addSequence" alt="" coords="359,5,585,32"><area shape="rect" href="classCircal_1_1Alignment.html#6c1d8170276265997eb8729e83a65fa8" title="Circal::Alignment::Alignment" alt="" coords="371,56,573,83"><area shape="rect" href="classCircal_1_1Alignment.html#86ad132871584d6e026d9e1f254ee98c" title="Circal::Alignment::set_score" alt="" coords="751,81,951,108"><area shape="rect" href="classCircal_1_1ScoringModel.html#2af91279a78623322072a65a071f572b" title="Circal::ScoringModel::BestOfTwo" alt="" coords="1073,309,1300,336"><area shape="rect" href="classCircal_1_1ScoringModel.html#c9093a36aae9269b516c34438d2df279" title="Circal::ScoringModel::ScoreOf" alt="" coords="365,208,579,235"><area shape="rect" href="classCircal_1_1ScoringModel.html#dc158e70948f9cce9c80ef7df6cdde6f" title="Circal::ScoringModel::ScoreOfGapExtend" alt="" coords="329,259,615,285"><area shape="rect" href="classCircal_1_1ScoringModel.html#3f934683024d21df07165eee183ee918" title="Circal::ScoringModel::ScoreOfGapOpen" alt="" coords="335,309,609,336"><area shape="rect" href="classCircal_1_1MatrixHelper.html#94c62eb44eb6c53134045df321df5d4f" title="Circal::MatrixHelper::SearchMinimumPosition" alt="" coords="316,360,628,387"><area shape="rect" href="classCircal_1_1MatrixHelper.html#87b754dba320d59725336089d3519afb" title="Circal::MatrixHelper::SearchMinimuminlastColumn" alt="" coords="677,335,1024,361"><area shape="rect" href="classCircal_1_1MatrixHelper.html#af7b6abc5c29c4a5836d02bdef1c8f31" title="Circal::MatrixHelper::SearchMinimuminlastRow" alt="" coords="689,385,1012,412"></map>
-</div>
-
-</div>
-</div><p>
 <hr><h2>Member Data Documentation</h2>
-<a class="anchor" name="890d9fe0df4d6a2f512a71b198589dbe"></a><!-- doxytag: member="Circal::Alignment::Score" ref="890d9fe0df4d6a2f512a71b198589dbe" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int <a class="el" href="classCircal_1_1Alignment.html#890d9fe0df4d6a2f512a71b198589dbe">Circal::Alignment::Score</a><code> [protected]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="Alignment_8h-source.html#l00044">44</a> of file <a class="el" href="Alignment_8h-source.html">Alignment.h</a>.</p>
-
-<p>Referenced by <a class="el" href="Alignment_8cpp-source.html#l00048">get_Score()</a>, and <a class="el" href="Alignment_8cpp-source.html#l00053">set_score()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="44ba98e37149b0b999ea66b28cd1ad12"></a><!-- doxytag: member="Circal::Alignment::prettyPrint" ref="44ba98e37149b0b999ea66b28cd1ad12" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classCircal_1_1Output.html">Output</a>* <a class="el" href="classCircal_1_1Alignment.html#44ba98e37149b0b999ea66b28cd1ad12">Circal::Alignment::prettyPrint</a><code> [protected]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="Alignment_8h-source.html#l00045">45</a> of file <a class="el" href="Alignment_8h-source.html">Alignment.h</a>.</p>
-
-<p>Referenced by <a class="el" href="MultipleAlignment_8cpp-source.html#l00042">Circal::MultipleAlignment::GotohalignMultiple()</a>, <a class="el" href="MultipleAlignment_8cpp-source.html#l00063">Circal::MultipleAlignment::NMWalignMultiple()</a>, and <a class="el" href="Alignment_8cpp-source.html#l00034">~Alignment()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="d0a86db038b5d44eb542108c864533d9"></a><!-- doxytag: member="Circal::Alignment::matrix" ref="d0a86db038b5d44eb542108c864533d9" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classCircal_1_1MatrixHelper.html">MatrixHelper</a>* <a class="el" href="classCircal_1_1Alignment.html#d0a86db038b5d44eb542108c864533d9">Circal::Alignment::matrix</a><code> [protected]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="Alignment_8h-source.html#l00046">46</a> of file <a class="el" href="Alignment_8h-source.html">Alignment.h</a>.</p>
-
-<p>Referenced by <a class="el" href="Alignment_8cpp-source.html#l00110">BacktrackingGotoh()</a>, <a class="el" href="MetaCircularAlignment_8cpp-source.html#l00038">Circal::MetaCircularAlignment::GotohAlignment()</a>, <a class="el" href="Alignment_8cpp-source.html#l00429">GotohAlignment()</a>, <a class="el" href="Alignment_8cpp-source.html#l00416">NeedlemanWunschAlignment()</a>, and <a class="el" href="Alignment_8cpp-source.html#l00034">~Alignment()</a>.</p>
-
-</div>
-</div><p>
 <a class="anchor" name="4899d9988a47852fc888a900e3ffdaf7"></a><!-- doxytag: member="Circal::Alignment::origSize" ref="4899d9988a47852fc888a900e3ffdaf7" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint <a class="el" href="classCircal_1_1Alignment.html#4899d9988a47852fc888a900e3ffdaf7">Circal::Alignment::origSize</a><code> [protected]</code>          </td>
+          <td class="memname">uint <a class="el" href="classCircal_1_1Alignment.html#4899d9988a47852fc888a900e3ffdaf7">Circal::Alignment::origSize</a><code> [private]</code>          </td>
         </tr>
       </table>
 </div>
@@ -737,15 +313,34 @@ Here is the call graph for this function:</div>
 
 <p>
 
-<p>Definition at line <a class="el" href="Alignment_8h-source.html#l00047">47</a> of file <a class="el" href="Alignment_8h-source.html">Alignment.h</a>.</p>
+<p>Definition at line <a class="el" href="Alignment_8h-source.html#l00038">38</a> of file <a class="el" href="Alignment_8h-source.html">Alignment.h</a>.</p>
 
 <p>Referenced by <a class="el" href="Alignment_8cpp-source.html#l00039">get_origSize()</a>, and <a class="el" href="Alignment_8cpp-source.html#l00043">set_origSize()</a>.</p>
 
 </div>
 </div><p>
+<a class="anchor" name="894c310f50b7ec0b44c53d38b03a4c4c"></a><!-- doxytag: member="Circal::Alignment::Score" ref="894c310f50b7ec0b44c53d38b03a4c4c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double <a class="el" href="classCircal_1_1Alignment.html#894c310f50b7ec0b44c53d38b03a4c4c">Circal::Alignment::Score</a><code> [private]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="Alignment_8h-source.html#l00039">39</a> of file <a class="el" href="Alignment_8h-source.html">Alignment.h</a>.</p>
+
+<p>Referenced by <a class="el" href="Alignment_8cpp-source.html#l00048">get_Score()</a>, and <a class="el" href="Alignment_8cpp-source.html#l00053">set_Score()</a>.</p>
+
+</div>
+</div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>Uni/workspace/CircalPP/src/<a class="el" href="Alignment_8h-source.html">Alignment.h</a><li>Uni/workspace/CircalPP/src/<a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a></ul>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Feb 8 00:30:06 2008 for CircalPP by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Feb 20 11:30:46 2008 for CircalPP by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>

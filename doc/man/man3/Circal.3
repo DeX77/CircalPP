@@ -1,4 +1,4 @@
-.TH "Circal" 3 "8 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
+.TH "Circal" 3 "20 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -13,10 +13,13 @@ Circal \-
 .RI "class \fBAlignment\fP"
 .br
 .ti -1c
+.RI "class \fBAlignmentFactory\fP"
+.br
+.ti -1c
 .RI "class \fBAlignmentSymbol\fP"
 .br
 .ti -1c
-.RI "class \fBCircularAlignment\fP"
+.RI "class \fBCircularAlignmentFactory\fP"
 .br
 .ti -1c
 .RI "class \fBMatrixOutofBoundsError\fP"
@@ -31,22 +34,25 @@ Circal \-
 .RI "class \fBMatrixHelper\fP"
 .br
 .ti -1c
-.RI "class \fBMetaCircularAlignment\fP"
+.RI "class \fBMultipleAlignmentFactory\fP"
 .br
 .ti -1c
-.RI "class \fBMetaRotatedSequence\fP"
+.RI "class \fBMultipleCircularAlignmentFactory\fP"
 .br
 .ti -1c
-.RI "class \fBMultipleAlignment\fP"
-.br
-.ti -1c
-.RI "class \fBMultipleCircularAlignment\fP"
-.br
-.ti -1c
-.RI "class \fBMultipleMetaCircularAlignment\fP"
+.RI "class \fBMultiplePseudoCircularAlignmentFactory\fP"
 .br
 .ti -1c
 .RI "class \fBOutput\fP"
+.br
+.ti -1c
+.RI "class \fBPseudoCircularAlignmentFactory\fP"
+.br
+.ti -1c
+.RI "class \fBPseudoRotatedSequence\fP"
+.br
+.ti -1c
+.RI "class \fBRandomSequence\fP"
 .br
 .ti -1c
 .RI "class \fBRotatedSequence\fP"
@@ -68,6 +74,9 @@ Circal \-
 .RI "typedef std::valarray< std::valarray< bool > > \fBBoolMatrix\fP"
 .br
 .ti -1c
+.RI "typedef std::vector< std::vector< std::vector< double > > > \fBScoreMatrix3D\fP"
+.br
+.ti -1c
 .RI "typedef std::map< const std::string, \fBAlignmentSymbol\fP > \fBModelValues\fP"
 .br
 .in -1c
@@ -75,13 +84,16 @@ Circal \-
 .PP 
 .SS "typedef std::valarray< std::valarray< bool > > \fBCircal::BoolMatrix\fP"
 .PP
-Definition at line 33 of file MatrixHelper.h.
+Definition at line 34 of file MatrixHelper.h.
 .SS "typedef std::map<const std::string, \fBAlignmentSymbol\fP> \fBCircal::ModelValues\fP"
 .PP
 Definition at line 28 of file ScoringModel.h.
 .SS "typedef std::vector< std::vector< double > > \fBCircal::ScoreMatrix\fP"
 .PP
-Definition at line 38 of file Alignment.h.
+Definition at line 30 of file AlignmentFactory.h.
+.SS "typedef std::vector< std::vector< std::vector< double > > > \fBCircal::ScoreMatrix3D\fP"
+.PP
+Definition at line 38 of file MatrixHelper.h.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for CircalPP from the source code.

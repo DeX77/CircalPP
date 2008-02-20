@@ -1,4 +1,6 @@
-<area shape="rect" href="$MatrixHelper_8h.html" title="MatrixHelper.h" alt="" coords="165,84,280,111">
-<area shape="rect" href="$ScoringModel_8h.html" title="ScoringModel.h" alt="" coords="21,84,141,111">
-<area shape="rect" href="$Alignment_8h.html" title="Alignment.h" alt="" coords="584,84,683,111">
-<area shape="rect" href="$ErrorClasses_8h.html" title="ErrorClasses.h" alt="" coords="304,84,419,111">
+<area shape="rect" href="$MatrixHelper_8h.html" title="MatrixHelper.h" alt="" coords="5,84,120,111">
+<area shape="rect" href="$ScoringModel_8h.html" title="ScoringModel.h" alt="" coords="283,84,403,111">
+<area shape="rect" href="$Alignment_8h.html" title="Alignment.h" alt="" coords="431,84,529,111">
+<area shape="rect" href="$PseudoRotatedSequence_8h.html" title="PseudoRotatedSequence.h" alt="" coords="553,84,751,111">
+<area shape="rect" href="$ErrorClasses_8h.html" title="ErrorClasses.h" alt="" coords="144,84,259,111">
+<area shape="rect" href="$RotatedSequence_8h.html" title="RotatedSequence.h" alt="" coords="871,161,1020,188">

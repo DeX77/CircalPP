@@ -1,7 +1,8 @@
 <area shape="rect" href="$Alignment_8cpp.html" title="Uni/workspace/CircalPP/src/Alignment.cpp" alt="" coords="5,84,296,111">
-<area shape="rect" href="$CircularAlignment_8cpp.html" title="Uni/workspace/CircalPP/src/CircularAlignment.cpp" alt="" coords="320,84,661,111">
-<area shape="rect" href="$main_8cpp.html" title="Uni/workspace/CircalPP/src/main.cpp" alt="" coords="685,84,944,111">
-<area shape="rect" href="$MatrixHelper_8cpp.html" title="Uni/workspace/CircalPP/src/MatrixHelper.cpp" alt="" coords="968,84,1277,111">
-<area shape="rect" href="$MetaCircularAlignment_8cpp.html" title="Uni/workspace/CircalPP/src/MetaCircularAlignment.cpp" alt="" coords="1301,84,1675,111">
-<area shape="rect" href="$ScoringModel_8cpp.html" title="Uni/workspace/CircalPP/src/ScoringModel.cpp" alt="" coords="1699,84,2011,111">
-<area shape="rect" href="$VertebrateMitochondrialGenomeAlphabet_8cpp.html" title="Uni/workspace/CircalPP/src/VertebrateMitochondrialGenomeAlphabet.cpp" alt="" coords="2035,84,2528,111">
+<area shape="rect" href="$AlignmentFactory_8cpp.html" title="Uni/workspace/CircalPP/src/AlignmentFactory.cpp" alt="" coords="320,84,659,111">
+<area shape="rect" href="$CircularAlignmentFactory_8cpp.html" title="Uni/workspace/CircalPP/src/CircularAlignmentFactory.cpp" alt="" coords="683,84,1069,111">
+<area shape="rect" href="$main_8cpp.html" title="Uni/workspace/CircalPP/src/main.cpp" alt="" coords="1093,84,1352,111">
+<area shape="rect" href="$MatrixHelper_8cpp.html" title="Uni/workspace/CircalPP/src/MatrixHelper.cpp" alt="" coords="1376,84,1685,111">
+<area shape="rect" href="$PseudoCircularAlignmentFactory_8cpp.html" title="Uni/workspace/CircalPP/src/PseudoCircularAlignmentFactory.cpp" alt="" coords="1709,84,2144,111">
+<area shape="rect" href="$ScoringModel_8cpp.html" title="Uni/workspace/CircalPP/src/ScoringModel.cpp" alt="" coords="2168,84,2480,111">
+<area shape="rect" href="$VertebrateMitochondrialGenomeAlphabet_8cpp.html" title="Uni/workspace/CircalPP/src/VertebrateMitochondrialGenomeAlphabet.cpp" alt="" coords="2504,84,2997,111">

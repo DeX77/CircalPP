@@ -1,2 +1,24 @@
-<area shape="rect" href="$classCircal_1_1Output.html#0147043da0fc76b3e1ca8cf4f9bec727" title="Circal::Output::TCoffeeLibFormat" alt="" coords="107,5,341,32">
-<area shape="rect" href="$classCircal_1_1Alignment.html#4cc257ab74dbee96a70ea7f82e017c7a" title="Circal::Alignment::get_origSize" alt="" coords="391,5,607,32">
+<area shape="rect" href="$classCircal_1_1Output.html#a4c99407de17b3f8244aca4aa60b4a53" title="Circal::Output::AlignmentPrettyPrint" alt="" coords="149,392,405,419">
+<area shape="rect" href="$classCircal_1_1Alignment.html#894c857b61c9fed3a6332ffe2362b9f1" title="Circal::Alignment::get_Score" alt="" coords="589,443,792,469">
+<area shape="rect" href="$classCircal_1_1PseudoCircularAlignmentFactory.html#5f7014c491306d20353cec101bff4e5b" title="Circal::PseudoCircularAlignmentFactory::GotohAlignment" alt="" coords="497,493,884,520">
+<area shape="rect" href="$classCircal_1_1CircularAlignmentFactory.html#6092e65d745a632692e73b58ee4d5511" title="Circal::CircularAlignmentFactory::GotohAlignment" alt="" coords="108,544,447,571">
+<area shape="rect" href="$classCircal_1_1Output.html#1942bfb1f480d2d4cf49f8e0f9c8cc92" title="Circal::Output::SequencePrettyPrint" alt="" coords="564,392,817,419">
+<area shape="rect" href="$classCircal_1_1PseudoCircularAlignmentFactory.html#209f2a738115afba7957ebf8e29b1018" title="Circal::PseudoCircularAlignmentFactory::BacktrackingGotohLocal" alt="" coords="935,392,1372,419">
+<area shape="rect" href="$classCircal_1_1AlignmentFactory.html#a8157edb8c16d97e68d8e28cbe6bbf29" title="Circal::AlignmentFactory::BacktrackingGotohLocal" alt="" coords="984,493,1323,520">
+<area shape="rect" href="$classCircal_1_1PseudoCircularAlignmentFactory.html#2b0c3da16b0740a13d943d2e0845a39d" title="Circal::PseudoCircularAlignmentFactory::ForwardRecursionGotoh" alt="" coords="935,341,1372,368">
+<area shape="rect" href="$classCircal_1_1AlignmentFactory.html#824141099efd7e6eb36390937a1abec3" title="Circal::AlignmentFactory::ForwardRecursionGotoh" alt="" coords="983,443,1324,469">
+<area shape="rect" href="$classCircal_1_1MatrixHelper.html#56e71c3f8041515ac8d64f8cd56e1b39" title="Circal::MatrixHelper::InitScoreMatrix3DWith" alt="" coords="1003,139,1304,165">
+<area shape="rect" href="$classCircal_1_1MatrixHelper.html#8c12cd1078ffbb6c4c93ebbb8cb384d5" title="Circal::MatrixHelper::InitScoreMatrixWith" alt="" coords="1012,544,1295,571">
+<area shape="rect" href="$classCircal_1_1MatrixHelper.html#1f0e082360b59504a8f0a69d2fb7694d" title="Circal::MatrixHelper::SearchBestInColumn" alt="" coords="1007,721,1300,748">
+<area shape="rect" href="$classCircal_1_1Alignment.html#0a0ef49213d04275c7c932a6f55f8d52" title="Circal::Alignment::addSequence" alt="" coords="1455,696,1681,723">
+<area shape="rect" href="$classCircal_1_1ScoringModel.html#2af91279a78623322072a65a071f572b" title="Circal::ScoringModel::BestOfTwo" alt="" coords="1780,595,2007,621">
+<area shape="rect" href="$classCircal_1_1PseudoRotatedSequence.html#fbfa83464c33febec8196f23cd296a31" title="Get the element at position &#39;pos&#39; as a character." alt="" coords="1423,88,1713,115">
+<area shape="rect" href="$classCircal_1_1PseudoRotatedSequence.html#f6a9b351636ffee4468adbf1e58fdb4a" title="Get the number of elements in the list." alt="" coords="1763,88,2024,115">
+<area shape="rect" href="$classCircal_1_1PseudoRotatedSequence.html#48c964ebdf631807be5e58140e5378c6" title="Get the element at position &#39;pos&#39; as an int." alt="" coords="1421,189,1715,216">
+<area shape="rect" href="$classCircal_1_1ScoringModel.html#c9093a36aae9269b516c34438d2df279" title="Circal::ScoringModel::ScoreOf" alt="" coords="1461,493,1675,520">
+<area shape="rect" href="$classCircal_1_1ScoringModel.html#dc158e70948f9cce9c80ef7df6cdde6f" title="Circal::ScoringModel::ScoreOfGapExtend" alt="" coords="1425,392,1711,419">
+<area shape="rect" href="$classCircal_1_1ScoringModel.html#3f934683024d21df07165eee183ee918" title="Circal::ScoringModel::ScoreOfGapOpen" alt="" coords="1431,443,1705,469">
+<area shape="rect" href="$classCircal_1_1Alignment.html#94d66a0aa8ca3a3ecd47801acbbbc16a" title="Circal::Alignment::set_Score" alt="" coords="1467,595,1669,621">
+<area shape="rect" href="$classCircal_1_1ScoringModel.html#ea8047bcaff23574faf333c25759d30c" title="Circal::ScoringModel::BestOfThree" alt="" coords="1448,341,1688,368">
+<area shape="rect" href="$classCircal_1_1AlignmentFactory.html#f2b43bb3ebb5d2d2bb3fb72e07f7a784" title="Circal::AlignmentFactory::GotohAlignment" alt="" coords="545,544,836,571">
+<area shape="rect" href="$classCircal_1_1AlignmentFactory.html#304f8c4e023b584b698d053515cf409e" title="Circal::AlignmentFactory::BacktrackingGotohGlobal" alt="" coords="980,595,1327,621">

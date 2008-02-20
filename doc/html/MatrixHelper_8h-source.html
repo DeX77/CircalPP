@@ -48,37 +48,42 @@
 <a name="l00030"></a>00030 <span class="keyword">namespace </span>Circal
 <a name="l00031"></a>00031   {
 <a name="l00032"></a>00032     <span class="keyword">class </span>Alignment;
-<a name="l00033"></a><a class="code" href="namespaceCircal.html#b5cbf04ae410080c3875d2691c10d64c">00033</a>     <span class="keyword">class </span><a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>;
-<a name="l00034"></a>00034     <span class="keyword">typedef</span> std::valarray&lt; std::valarray &lt;bool&gt; &gt; <a class="code" href="namespaceCircal.html#b5cbf04ae410080c3875d2691c10d64c">BoolMatrix</a>;
-<a name="l00035"></a>00035     <span class="keyword">typedef</span> std::vector&lt; std::vector&lt;double&gt; &gt; <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a>;
-<a name="l00036"></a>00036 
-<a name="l00037"></a><a class="code" href="classCircal_1_1MatrixHelper.html">00037</a>     <span class="keyword">class </span><a class="code" href="classCircal_1_1MatrixHelper.html">MatrixHelper</a>
-<a name="l00038"></a>00038       {
-<a name="l00039"></a>00039   <span class="keyword">public</span>:
-<a name="l00040"></a>00040       <a class="code" href="classCircal_1_1MatrixHelper.html#632fdc53bb0f37a622eba3a4a9cb2632">MatrixHelper</a>();
-<a name="l00041"></a>00041       <span class="keyword">virtual</span> <a class="code" href="classCircal_1_1MatrixHelper.html#fb98525415a508eafcf8bc4207b77c13">~MatrixHelper</a>();
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043       <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> <a class="code" href="classCircal_1_1MatrixHelper.html#69554a977a56437127203bf586e5d594">InitializeScoreMatrixDistances</a>(<span class="keyword">const</span> bpp::Sequence* A,
-<a name="l00044"></a>00044           <span class="keyword">const</span> bpp::Sequence* B, <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM);
+<a name="l00033"></a>00033     <span class="keyword">class </span>ScoringModel;
+<a name="l00034"></a><a class="code" href="namespaceCircal.html#b5cbf04ae410080c3875d2691c10d64c">00034</a>     <span class="keyword">class </span><a class="code" href="classCircal_1_1PseudoRotatedSequence.html">PseudoRotatedSequence</a>;
+<a name="l00035"></a>00035 
+<a name="l00036"></a>00036     <span class="keyword">typedef</span> std::valarray&lt; std::valarray &lt;bool&gt; &gt; <a class="code" href="namespaceCircal.html#b5cbf04ae410080c3875d2691c10d64c">BoolMatrix</a>;
+<a name="l00037"></a>00037     <span class="keyword">typedef</span> std::vector&lt; std::vector&lt;double&gt; &gt; <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a>;
+<a name="l00038"></a><a class="code" href="namespaceCircal.html#8cbdc0f70cb5adc1e0c93eea91ff2883">00038</a>     <span class="keyword">typedef</span> std::vector&lt; std::vector&lt; std::vector&lt;double&gt; &gt; &gt; <a class="code" href="namespaceCircal.html#8cbdc0f70cb5adc1e0c93eea91ff2883">ScoreMatrix3D</a>;
+<a name="l00039"></a>00039 
+<a name="l00040"></a><a class="code" href="classCircal_1_1MatrixHelper.html">00040</a>     <span class="keyword">class </span><a class="code" href="classCircal_1_1MatrixHelper.html">MatrixHelper</a>
+<a name="l00041"></a>00041       {
+<a name="l00042"></a>00042   <span class="keyword">public</span>:
+<a name="l00043"></a>00043       <a class="code" href="classCircal_1_1MatrixHelper.html#632fdc53bb0f37a622eba3a4a9cb2632">MatrixHelper</a>();
+<a name="l00044"></a>00044       <span class="keyword">virtual</span> <a class="code" href="classCircal_1_1MatrixHelper.html#fb98525415a508eafcf8bc4207b77c13">~MatrixHelper</a>();
 <a name="l00045"></a>00045 
-<a name="l00046"></a>00046       <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> <a class="code" href="classCircal_1_1MatrixHelper.html#8c12cd1078ffbb6c4c93ebbb8cb384d5">InitScoreMatrixWith</a>(<span class="keyword">const</span> bpp::Sequence* A,
-<a name="l00047"></a>00047           <span class="keyword">const</span> bpp::Sequence* B, <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;init);
+<a name="l00046"></a>00046       <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> <a class="code" href="classCircal_1_1MatrixHelper.html#69554a977a56437127203bf586e5d594">InitializeScoreMatrixDistances</a>(<span class="keyword">const</span> bpp::Sequence* A,
+<a name="l00047"></a>00047           <span class="keyword">const</span> bpp::Sequence* B, <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM);
 <a name="l00048"></a>00048 
-<a name="l00049"></a>00049       <a class="code" href="namespaceCircal.html#b5cbf04ae410080c3875d2691c10d64c">BoolMatrix</a> <a class="code" href="classCircal_1_1MatrixHelper.html#66be79ac02fe438c9fd785a6f0eadf01">CreateAdjacenceGraph</a>(<a class="code" href="classCircal_1_1Alignment.html">Alignment</a>* pairWiseAlignments,
-<a name="l00050"></a>00050           uint biggestSequenceSize);
-<a name="l00051"></a>00051       <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1MatrixHelper.html#baf89eb7d195cd23dbd1b12ddd89ff3d">CutRowFromTo</a>(<a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a>* D, <span class="keyword">const</span> uint &amp;start, <span class="keyword">const</span> uint &amp;end);
-<a name="l00052"></a>00052       <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1MatrixHelper.html#341c7274b762c4d1c32950816d3c8594">CutColumnFromTo</a>(<a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a>* D, <span class="keyword">const</span> uint &amp;start, <span class="keyword">const</span> uint &amp;end);
+<a name="l00049"></a>00049       <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> <a class="code" href="classCircal_1_1MatrixHelper.html#8c12cd1078ffbb6c4c93ebbb8cb384d5">InitScoreMatrixWith</a>(<span class="keyword">const</span> bpp::Sequence* A,
+<a name="l00050"></a>00050           <span class="keyword">const</span> bpp::Sequence* B, <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;init);
+<a name="l00051"></a>00051       <a class="code" href="namespaceCircal.html#8cbdc0f70cb5adc1e0c93eea91ff2883">ScoreMatrix3D</a> <a class="code" href="classCircal_1_1MatrixHelper.html#56e71c3f8041515ac8d64f8cd56e1b39">InitScoreMatrix3DWith</a>(<span class="keyword">const</span> <a class="code" href="classCircal_1_1PseudoRotatedSequence.html">PseudoRotatedSequence</a>* A,
+<a name="l00052"></a>00052           <span class="keyword">const</span> bpp::Sequence* B, <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;delta, <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;init);
 <a name="l00053"></a>00053 
-<a name="l00054"></a>00054       <span class="keywordtype">double</span> &amp;<a class="code" href="classCircal_1_1MatrixHelper.html#94c62eb44eb6c53134045df321df5d4f">SearchMinimumPosition</a>(<span class="keyword">const</span> <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a>* M, <span class="keywordtype">int</span> &amp;i, <span class="keywordtype">int</span> &amp;j,
-<a name="l00055"></a>00055           <span class="keywordtype">double</span> &amp;minScore, <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM);
-<a name="l00056"></a>00056       <span class="keywordtype">int</span> <a class="code" href="classCircal_1_1MatrixHelper.html#af7b6abc5c29c4a5836d02bdef1c8f31">SearchMinimuminlastRow</a>(<span class="keyword">const</span> <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a>* M,
-<a name="l00057"></a>00057           <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM);
-<a name="l00058"></a>00058       <span class="keywordtype">int</span> <a class="code" href="classCircal_1_1MatrixHelper.html#87b754dba320d59725336089d3519afb">SearchMinimuminlastColumn</a>(<span class="keyword">const</span> <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a>* M,
-<a name="l00059"></a>00059           <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM);
-<a name="l00060"></a>00060       };
-<a name="l00061"></a>00061   }
-<a name="l00062"></a>00062 <span class="preprocessor">#endif </span><span class="comment">/*MATRIXHELPER_H_*/</span>
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Fri Feb 8 00:30:06 2008 for CircalPP by&nbsp;
+<a name="l00054"></a>00054       <a class="code" href="namespaceCircal.html#b5cbf04ae410080c3875d2691c10d64c">BoolMatrix</a> <a class="code" href="classCircal_1_1MatrixHelper.html#86ccdcd3fc84854e446918af43d9b9d2">CreateAdjacenceGraph</a>(<a class="code" href="classCircal_1_1Alignment.html">Alignment</a>* pairWiseAlignments,
+<a name="l00055"></a>00055           <span class="keywordtype">int</span> biggestSequenceSize);
+<a name="l00056"></a>00056       <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1MatrixHelper.html#94f8f8c73bdf4750fd89bba5a6617bf3">CutRowFromTo</a>(<a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a>* D, <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;start, <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;end);
+<a name="l00057"></a>00057       <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1MatrixHelper.html#a3e515432ce4a7801dfd37c6187d5a3a">CutColumnFromTo</a>(<a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a>* D, <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;start, <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;end);
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059       <span class="keywordtype">double</span> <a class="code" href="classCircal_1_1MatrixHelper.html#762a8754aebcf3ed096bf4ba30c07268">SearchBestPositionFrom</a>(<span class="keyword">const</span> <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a>* M, <span class="keywordtype">int</span> &amp;i, <span class="keywordtype">int</span> &amp;j,
+<a name="l00060"></a>00060           <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM);
+<a name="l00061"></a>00061       <span class="keywordtype">int</span> <a class="code" href="classCircal_1_1MatrixHelper.html#bd74679b30ef70a3dc53015ff3eb94b5">SearchBestInRow</a>(<span class="keyword">const</span> <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a>* M, <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM,
+<a name="l00062"></a>00062           <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;start, <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;row);
+<a name="l00063"></a>00063       <span class="keywordtype">int</span> <a class="code" href="classCircal_1_1MatrixHelper.html#1f0e082360b59504a8f0a69d2fb7694d">SearchBestInColumn</a>(<span class="keyword">const</span> <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a>* M, <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM,
+<a name="l00064"></a>00064           <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;start, <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;column);
+<a name="l00065"></a>00065       };
+<a name="l00066"></a>00066   }
+<a name="l00067"></a>00067 <span class="preprocessor">#endif </span><span class="comment">/*MATRIXHELPER_H_*/</span>
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Wed Feb 20 11:30:20 2008 for CircalPP by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>

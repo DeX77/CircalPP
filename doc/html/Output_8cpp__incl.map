@@ -1,8 +1,7 @@
-<area shape="rect" href="$Output_8h.html" title="Output.h" alt="" coords="144,84,221,111">
-<area shape="rect" href="$MatrixHelper_8h.html" title="MatrixHelper.h" alt="" coords="5,84,120,111">
-<area shape="rect" href="$Alignment_8h.html" title="Alignment.h" alt="" coords="303,161,401,188">
-<area shape="rect" href="$VertebrateMitochondrialGenomeAlphabet_8h.html" title="VertebrateMitochondrialGenomeAlphabet.h" alt="" coords="467,84,768,111">
-<area shape="rect" href="$CircularAlignment_8h.html" title="CircularAlignment.h" alt="" coords="296,84,443,111">
-<area shape="rect" href="$MetaRotatedSequence_8h.html" title="MetaRotatedSequence.h" alt="" coords="792,84,973,111">
-<area shape="rect" href="$GenomeAlphabet_8h.html" title="GenomeAlphabet.h" alt="" coords="544,161,691,188">
-<area shape="rect" href="$RotatedSequence_8h.html" title="RotatedSequence.h" alt="" coords="808,161,957,188">
+<area shape="rect" href="$Output_8h.html" title="Output.h" alt="" coords="179,84,256,111">
+<area shape="rect" href="$MatrixHelper_8h.html" title="MatrixHelper.h" alt="" coords="40,84,155,111">
+<area shape="rect" href="$Alignment_8h.html" title="Alignment.h" alt="" coords="504,84,603,111">
+<area shape="rect" href="$VertebrateMitochondrialGenomeAlphabet_8h.html" title="VertebrateMitochondrialGenomeAlphabet.h" alt="" coords="627,84,928,111">
+<area shape="rect" href="$PseudoRotatedSequence_8h.html" title="PseudoRotatedSequence.h" alt="" coords="952,84,1149,111">
+<area shape="rect" href="$GenomeAlphabet_8h.html" title="GenomeAlphabet.h" alt="" coords="781,161,928,188">
+<area shape="rect" href="$RotatedSequence_8h.html" title="RotatedSequence.h" alt="" coords="976,161,1125,188">

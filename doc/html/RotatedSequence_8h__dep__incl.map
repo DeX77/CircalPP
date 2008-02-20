@@ -1,6 +1,7 @@
-<area shape="rect" href="$CircularAlignment_8cpp.html" title="Uni/workspace/CircalPP/src/CircularAlignment.cpp" alt="" coords="45,84,387,111">
-<area shape="rect" href="$MetaRotatedSequence_8h.html" title="Uni/workspace/CircalPP/src/MetaRotatedSequence.h" alt="" coords="411,84,771,111">
-<area shape="rect" href="$RotatedSequence_8cpp.html" title="Uni/workspace/CircalPP/src/RotatedSequence.cpp" alt="" coords="795,84,1136,111">
-<area shape="rect" href="$MetaCircularAlignment_8cpp.html" title="Uni/workspace/CircalPP/src/MetaCircularAlignment.cpp" alt="" coords="5,161,379,188">
-<area shape="rect" href="$MetaRotatedSequence_8cpp.html" title="Uni/workspace/CircalPP/src/MetaRotatedSequence.cpp" alt="" coords="403,161,779,188">
-<area shape="rect" href="$Output_8cpp.html" title="Uni/workspace/CircalPP/src/Output.cpp" alt="" coords="803,161,1075,188">
+<area shape="rect" href="$CircularAlignmentFactory_8cpp.html" title="Uni/workspace/CircalPP/src/CircularAlignmentFactory.cpp" alt="" coords="64,84,451,111">
+<area shape="rect" href="$PseudoRotatedSequence_8h.html" title="Uni/workspace/CircalPP/src/PseudoRotatedSequence.h" alt="" coords="475,84,851,111">
+<area shape="rect" href="$RotatedSequence_8cpp.html" title="Uni/workspace/CircalPP/src/RotatedSequence.cpp" alt="" coords="875,84,1216,111">
+<area shape="rect" href="$MatrixHelper_8cpp.html" title="Uni/workspace/CircalPP/src/MatrixHelper.cpp" alt="" coords="5,161,315,188">
+<area shape="rect" href="$Output_8cpp.html" title="Uni/workspace/CircalPP/src/Output.cpp" alt="" coords="339,161,611,188">
+<area shape="rect" href="$PseudoCircularAlignmentFactory_8cpp.html" title="Uni/workspace/CircalPP/src/PseudoCircularAlignmentFactory.cpp" alt="" coords="635,161,1069,188">
+<area shape="rect" href="$PseudoRotatedSequence_8cpp.html" title="Uni/workspace/CircalPP/src/PseudoRotatedSequence.cpp" alt="" coords="1093,161,1483,188">

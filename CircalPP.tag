@@ -17,6 +17,24 @@
     <namespace>bpp</namespace>
     <namespace>Circal</namespace>
     <class kind="class">Circal::Alignment</class>
+  </compound>
+  <compound kind="file">
+    <name>AlignmentFactory.cpp</name>
+    <path>/home/dex/Uni/workspace/CircalPP/src/</path>
+    <filename>AlignmentFactory_8cpp</filename>
+    <includes id="AlignmentFactory_8h" name="AlignmentFactory.h" local="yes" imported="no">AlignmentFactory.h</includes>
+    <includes id="ScoringModel_8h" name="ScoringModel.h" local="yes" imported="no">ScoringModel.h</includes>
+    <includes id="MatrixHelper_8h" name="MatrixHelper.h" local="yes" imported="no">MatrixHelper.h</includes>
+    <includes id="Output_8h" name="Output.h" local="yes" imported="no">Output.h</includes>
+    <namespace>Circal</namespace>
+  </compound>
+  <compound kind="file">
+    <name>AlignmentFactory.h</name>
+    <path>/home/dex/Uni/workspace/CircalPP/src/</path>
+    <filename>AlignmentFactory_8h</filename>
+    <includes id="Alignment_8h" name="Alignment.h" local="yes" imported="no">Alignment.h</includes>
+    <namespace>Circal</namespace>
+    <class kind="class">Circal::AlignmentFactory</class>
     <member kind="typedef">
       <type>std::vector&lt; std::vector&lt; double &gt; &gt;</type>
       <name>ScoreMatrix</name>
@@ -40,23 +58,22 @@
     <class kind="class">Circal::AlignmentSymbol</class>
   </compound>
   <compound kind="file">
-    <name>CircularAlignment.cpp</name>
+    <name>CircularAlignmentFactory.cpp</name>
     <path>/home/dex/Uni/workspace/CircalPP/src/</path>
-    <filename>CircularAlignment_8cpp</filename>
-    <includes id="CircularAlignment_8h" name="CircularAlignment.h" local="yes" imported="no">CircularAlignment.h</includes>
+    <filename>CircularAlignmentFactory_8cpp</filename>
+    <includes id="CircularAlignmentFactory_8h" name="CircularAlignmentFactory.h" local="yes" imported="no">CircularAlignmentFactory.h</includes>
     <includes id="ScoringModel_8h" name="ScoringModel.h" local="yes" imported="no">ScoringModel.h</includes>
     <includes id="MatrixHelper_8h" name="MatrixHelper.h" local="yes" imported="no">MatrixHelper.h</includes>
     <includes id="RotatedSequence_8h" name="RotatedSequence.h" local="yes" imported="no">RotatedSequence.h</includes>
-    <includes id="Output_8h" name="Output.h" local="yes" imported="no">Output.h</includes>
     <namespace>Circal</namespace>
   </compound>
   <compound kind="file">
-    <name>CircularAlignment.h</name>
+    <name>CircularAlignmentFactory.h</name>
     <path>/home/dex/Uni/workspace/CircalPP/src/</path>
-    <filename>CircularAlignment_8h</filename>
-    <includes id="Alignment_8h" name="Alignment.h" local="yes" imported="no">Alignment.h</includes>
+    <filename>CircularAlignmentFactory_8h</filename>
+    <includes id="AlignmentFactory_8h" name="AlignmentFactory.h" local="yes" imported="no">AlignmentFactory.h</includes>
     <namespace>Circal</namespace>
-    <class kind="class">Circal::CircularAlignment</class>
+    <class kind="class">Circal::CircularAlignmentFactory</class>
   </compound>
   <compound kind="file">
     <name>ErrorClasses.cpp</name>
@@ -104,11 +121,12 @@
     <name>main.cpp</name>
     <path>/home/dex/Uni/workspace/CircalPP/src/</path>
     <filename>main_8cpp</filename>
-    <includes id="MultipleCircularAlignment_8h" name="MultipleCircularAlignment.h" local="yes" imported="no">MultipleCircularAlignment.h</includes>
-    <includes id="MultipleMetaCircularAlignment_8h" name="MultipleMetaCircularAlignment.h" local="yes" imported="no">MultipleMetaCircularAlignment.h</includes>
+    <includes id="MultipleCircularAlignmentFactory_8h" name="MultipleCircularAlignmentFactory.h" local="yes" imported="no">MultipleCircularAlignmentFactory.h</includes>
+    <includes id="MultiplePseudoCircularAlignmentFactory_8h" name="MultiplePseudoCircularAlignmentFactory.h" local="yes" imported="no">MultiplePseudoCircularAlignmentFactory.h</includes>
     <includes id="ScoringModel_8h" name="ScoringModel.h" local="yes" imported="no">ScoringModel.h</includes>
     <includes id="ExtendedFasta_8h" name="ExtendedFasta.h" local="yes" imported="no">ExtendedFasta.h</includes>
     <includes id="Output_8h" name="Output.h" local="yes" imported="no">Output.h</includes>
+    <includes id="RandomSequence_8h" name="RandomSequence.h" local="yes" imported="no">RandomSequence.h</includes>
     <includes id="VertebrateMitochondrialGenomeAlphabet_8h" name="VertebrateMitochondrialGenomeAlphabet.h" local="yes" imported="no">VertebrateMitochondrialGenomeAlphabet.h</includes>
     <member kind="function">
       <type>int</type>
@@ -125,6 +143,7 @@
     <includes id="MatrixHelper_8h" name="MatrixHelper.h" local="yes" imported="no">MatrixHelper.h</includes>
     <includes id="ScoringModel_8h" name="ScoringModel.h" local="yes" imported="no">ScoringModel.h</includes>
     <includes id="Alignment_8h" name="Alignment.h" local="yes" imported="no">Alignment.h</includes>
+    <includes id="PseudoRotatedSequence_8h" name="PseudoRotatedSequence.h" local="yes" imported="no">PseudoRotatedSequence.h</includes>
     <includes id="ErrorClasses_8h" name="ErrorClasses.h" local="yes" imported="no">ErrorClasses.h</includes>
     <namespace>Circal</namespace>
   </compound>
@@ -142,91 +161,65 @@
       <anchor>b5cbf04ae410080c3875d2691c10d64c</anchor>
       <arglist></arglist>
     </member>
+    <member kind="typedef">
+      <type>std::vector&lt; std::vector&lt; std::vector&lt; double &gt; &gt; &gt;</type>
+      <name>ScoreMatrix3D</name>
+      <anchorfile>namespaceCircal.html</anchorfile>
+      <anchor>8cbdc0f70cb5adc1e0c93eea91ff2883</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
-    <name>MetaCircularAlignment.cpp</name>
+    <name>MultipleAlignmentFactory.cpp</name>
     <path>/home/dex/Uni/workspace/CircalPP/src/</path>
-    <filename>MetaCircularAlignment_8cpp</filename>
-    <includes id="MetaCircularAlignment_8h" name="MetaCircularAlignment.h" local="yes" imported="no">MetaCircularAlignment.h</includes>
-    <includes id="ScoringModel_8h" name="ScoringModel.h" local="yes" imported="no">ScoringModel.h</includes>
-    <includes id="MatrixHelper_8h" name="MatrixHelper.h" local="yes" imported="no">MatrixHelper.h</includes>
-    <includes id="MetaRotatedSequence_8h" name="MetaRotatedSequence.h" local="yes" imported="no">MetaRotatedSequence.h</includes>
-    <includes id="Output_8h" name="Output.h" local="yes" imported="no">Output.h</includes>
-    <namespace>Circal</namespace>
-  </compound>
-  <compound kind="file">
-    <name>MetaCircularAlignment.h</name>
-    <path>/home/dex/Uni/workspace/CircalPP/src/</path>
-    <filename>MetaCircularAlignment_8h</filename>
-    <includes id="CircularAlignment_8h" name="CircularAlignment.h" local="yes" imported="no">CircularAlignment.h</includes>
-    <namespace>Circal</namespace>
-    <class kind="class">Circal::MetaCircularAlignment</class>
-  </compound>
-  <compound kind="file">
-    <name>MetaRotatedSequence.cpp</name>
-    <path>/home/dex/Uni/workspace/CircalPP/src/</path>
-    <filename>MetaRotatedSequence_8cpp</filename>
-    <includes id="MetaRotatedSequence_8h" name="MetaRotatedSequence.h" local="yes" imported="no">MetaRotatedSequence.h</includes>
-    <namespace>Circal</namespace>
-  </compound>
-  <compound kind="file">
-    <name>MetaRotatedSequence.h</name>
-    <path>/home/dex/Uni/workspace/CircalPP/src/</path>
-    <filename>MetaRotatedSequence_8h</filename>
-    <includes id="RotatedSequence_8h" name="RotatedSequence.h" local="yes" imported="no">RotatedSequence.h</includes>
-    <namespace>Circal</namespace>
-    <class kind="class">Circal::MetaRotatedSequence</class>
-  </compound>
-  <compound kind="file">
-    <name>MultipleAlignment.cpp</name>
-    <path>/home/dex/Uni/workspace/CircalPP/src/</path>
-    <filename>MultipleAlignment_8cpp</filename>
-    <includes id="MultipleAlignment_8h" name="MultipleAlignment.h" local="yes" imported="no">MultipleAlignment.h</includes>
+    <filename>MultipleAlignmentFactory_8cpp</filename>
+    <includes id="MultipleAlignmentFactory_8h" name="MultipleAlignmentFactory.h" local="yes" imported="no">MultipleAlignmentFactory.h</includes>
     <includes id="Output_8h" name="Output.h" local="yes" imported="no">Output.h</includes>
     <includes id="MatrixHelper_8h" name="MatrixHelper.h" local="yes" imported="no">MatrixHelper.h</includes>
     <namespace>Circal</namespace>
   </compound>
   <compound kind="file">
-    <name>MultipleAlignment.h</name>
+    <name>MultipleAlignmentFactory.h</name>
     <path>/home/dex/Uni/workspace/CircalPP/src/</path>
-    <filename>MultipleAlignment_8h</filename>
+    <filename>MultipleAlignmentFactory_8h</filename>
+    <includes id="AlignmentFactory_8h" name="AlignmentFactory.h" local="yes" imported="no">AlignmentFactory.h</includes>
     <includes id="Alignment_8h" name="Alignment.h" local="yes" imported="no">Alignment.h</includes>
     <namespace>Circal</namespace>
-    <class kind="class">Circal::MultipleAlignment</class>
+    <class kind="class">Circal::MultipleAlignmentFactory</class>
   </compound>
   <compound kind="file">
-    <name>MultipleCircularAlignment.cpp</name>
+    <name>MultipleCircularAlignmentFactory.cpp</name>
     <path>/home/dex/Uni/workspace/CircalPP/src/</path>
-    <filename>MultipleCircularAlignment_8cpp</filename>
-    <includes id="MultipleCircularAlignment_8h" name="MultipleCircularAlignment.h" local="yes" imported="no">MultipleCircularAlignment.h</includes>
+    <filename>MultipleCircularAlignmentFactory_8cpp</filename>
+    <includes id="MultipleCircularAlignmentFactory_8h" name="MultipleCircularAlignmentFactory.h" local="yes" imported="no">MultipleCircularAlignmentFactory.h</includes>
     <includes id="Output_8h" name="Output.h" local="yes" imported="no">Output.h</includes>
     <includes id="MatrixHelper_8h" name="MatrixHelper.h" local="yes" imported="no">MatrixHelper.h</includes>
     <namespace>Circal</namespace>
   </compound>
   <compound kind="file">
-    <name>MultipleCircularAlignment.h</name>
+    <name>MultipleCircularAlignmentFactory.h</name>
     <path>/home/dex/Uni/workspace/CircalPP/src/</path>
-    <filename>MultipleCircularAlignment_8h</filename>
-    <includes id="CircularAlignment_8h" name="CircularAlignment.h" local="yes" imported="no">CircularAlignment.h</includes>
-    <includes id="MultipleAlignment_8h" name="MultipleAlignment.h" local="yes" imported="no">MultipleAlignment.h</includes>
+    <filename>MultipleCircularAlignmentFactory_8h</filename>
+    <includes id="CircularAlignmentFactory_8h" name="CircularAlignmentFactory.h" local="yes" imported="no">CircularAlignmentFactory.h</includes>
+    <includes id="MultipleAlignmentFactory_8h" name="MultipleAlignmentFactory.h" local="yes" imported="no">MultipleAlignmentFactory.h</includes>
     <namespace>Circal</namespace>
-    <class kind="class">Circal::MultipleCircularAlignment</class>
+    <class kind="class">Circal::MultipleCircularAlignmentFactory</class>
   </compound>
   <compound kind="file">
-    <name>MultipleMetaCircularAlignment.cpp</name>
+    <name>MultiplePseudoCircularAlignmentFactory.cpp</name>
     <path>/home/dex/Uni/workspace/CircalPP/src/</path>
-    <filename>MultipleMetaCircularAlignment_8cpp</filename>
-    <includes id="MultipleMetaCircularAlignment_8h" name="MultipleMetaCircularAlignment.h" local="yes" imported="no">MultipleMetaCircularAlignment.h</includes>
+    <filename>MultiplePseudoCircularAlignmentFactory_8cpp</filename>
+    <includes id="MultiplePseudoCircularAlignmentFactory_8h" name="MultiplePseudoCircularAlignmentFactory.h" local="yes" imported="no">MultiplePseudoCircularAlignmentFactory.h</includes>
     <namespace>Circal</namespace>
   </compound>
   <compound kind="file">
-    <name>MultipleMetaCircularAlignment.h</name>
+    <name>MultiplePseudoCircularAlignmentFactory.h</name>
     <path>/home/dex/Uni/workspace/CircalPP/src/</path>
-    <filename>MultipleMetaCircularAlignment_8h</filename>
-    <includes id="MetaCircularAlignment_8h" name="MetaCircularAlignment.h" local="yes" imported="no">MetaCircularAlignment.h</includes>
-    <includes id="MultipleAlignment_8h" name="MultipleAlignment.h" local="yes" imported="no">MultipleAlignment.h</includes>
+    <filename>MultiplePseudoCircularAlignmentFactory_8h</filename>
+    <includes id="PseudoCircularAlignmentFactory_8h" name="PseudoCircularAlignmentFactory.h" local="yes" imported="no">PseudoCircularAlignmentFactory.h</includes>
+    <includes id="MultipleAlignmentFactory_8h" name="MultipleAlignmentFactory.h" local="yes" imported="no">MultipleAlignmentFactory.h</includes>
     <namespace>Circal</namespace>
-    <class kind="class">Circal::MultipleMetaCircularAlignment</class>
+    <class kind="class">Circal::MultiplePseudoCircularAlignmentFactory</class>
   </compound>
   <compound kind="file">
     <name>Output.cpp</name>
@@ -236,8 +229,7 @@
     <includes id="MatrixHelper_8h" name="MatrixHelper.h" local="yes" imported="no">MatrixHelper.h</includes>
     <includes id="Alignment_8h" name="Alignment.h" local="yes" imported="no">Alignment.h</includes>
     <includes id="VertebrateMitochondrialGenomeAlphabet_8h" name="VertebrateMitochondrialGenomeAlphabet.h" local="yes" imported="no">VertebrateMitochondrialGenomeAlphabet.h</includes>
-    <includes id="CircularAlignment_8h" name="CircularAlignment.h" local="yes" imported="no">CircularAlignment.h</includes>
-    <includes id="MetaRotatedSequence_8h" name="MetaRotatedSequence.h" local="yes" imported="no">MetaRotatedSequence.h</includes>
+    <includes id="PseudoRotatedSequence_8h" name="PseudoRotatedSequence.h" local="yes" imported="no">PseudoRotatedSequence.h</includes>
     <namespace>Circal</namespace>
   </compound>
   <compound kind="file">
@@ -247,6 +239,54 @@
     <namespace>bpp</namespace>
     <namespace>Circal</namespace>
     <class kind="class">Circal::Output</class>
+  </compound>
+  <compound kind="file">
+    <name>PseudoCircularAlignmentFactory.cpp</name>
+    <path>/home/dex/Uni/workspace/CircalPP/src/</path>
+    <filename>PseudoCircularAlignmentFactory_8cpp</filename>
+    <includes id="PseudoCircularAlignmentFactory_8h" name="PseudoCircularAlignmentFactory.h" local="yes" imported="no">PseudoCircularAlignmentFactory.h</includes>
+    <includes id="ScoringModel_8h" name="ScoringModel.h" local="yes" imported="no">ScoringModel.h</includes>
+    <includes id="MatrixHelper_8h" name="MatrixHelper.h" local="yes" imported="no">MatrixHelper.h</includes>
+    <includes id="PseudoRotatedSequence_8h" name="PseudoRotatedSequence.h" local="yes" imported="no">PseudoRotatedSequence.h</includes>
+    <includes id="Output_8h" name="Output.h" local="yes" imported="no">Output.h</includes>
+    <namespace>Circal</namespace>
+  </compound>
+  <compound kind="file">
+    <name>PseudoCircularAlignmentFactory.h</name>
+    <path>/home/dex/Uni/workspace/CircalPP/src/</path>
+    <filename>PseudoCircularAlignmentFactory_8h</filename>
+    <includes id="AlignmentFactory_8h" name="AlignmentFactory.h" local="yes" imported="no">AlignmentFactory.h</includes>
+    <namespace>Circal</namespace>
+    <class kind="class">Circal::PseudoCircularAlignmentFactory</class>
+  </compound>
+  <compound kind="file">
+    <name>PseudoRotatedSequence.cpp</name>
+    <path>/home/dex/Uni/workspace/CircalPP/src/</path>
+    <filename>PseudoRotatedSequence_8cpp</filename>
+    <includes id="PseudoRotatedSequence_8h" name="PseudoRotatedSequence.h" local="yes" imported="no">PseudoRotatedSequence.h</includes>
+    <namespace>Circal</namespace>
+  </compound>
+  <compound kind="file">
+    <name>PseudoRotatedSequence.h</name>
+    <path>/home/dex/Uni/workspace/CircalPP/src/</path>
+    <filename>PseudoRotatedSequence_8h</filename>
+    <includes id="RotatedSequence_8h" name="RotatedSequence.h" local="yes" imported="no">RotatedSequence.h</includes>
+    <namespace>Circal</namespace>
+    <class kind="class">Circal::PseudoRotatedSequence</class>
+  </compound>
+  <compound kind="file">
+    <name>RandomSequence.cpp</name>
+    <path>/home/dex/Uni/workspace/CircalPP/src/</path>
+    <filename>RandomSequence_8cpp</filename>
+    <includes id="RandomSequence_8h" name="RandomSequence.h" local="yes" imported="no">RandomSequence.h</includes>
+    <namespace>Circal</namespace>
+  </compound>
+  <compound kind="file">
+    <name>RandomSequence.h</name>
+    <path>/home/dex/Uni/workspace/CircalPP/src/</path>
+    <filename>RandomSequence_8h</filename>
+    <namespace>Circal</namespace>
+    <class kind="class">Circal::RandomSequence</class>
   </compound>
   <compound kind="file">
     <name>RotatedSequence.cpp</name>
@@ -310,18 +350,20 @@
     <name>Circal</name>
     <filename>namespaceCircal.html</filename>
     <class kind="class">Circal::Alignment</class>
+    <class kind="class">Circal::AlignmentFactory</class>
     <class kind="class">Circal::AlignmentSymbol</class>
-    <class kind="class">Circal::CircularAlignment</class>
+    <class kind="class">Circal::CircularAlignmentFactory</class>
     <class kind="class">Circal::MatrixOutofBoundsError</class>
     <class kind="class">Circal::ExtendedFasta</class>
     <class kind="class">Circal::GenomeAlphabet</class>
     <class kind="class">Circal::MatrixHelper</class>
-    <class kind="class">Circal::MetaCircularAlignment</class>
-    <class kind="class">Circal::MetaRotatedSequence</class>
-    <class kind="class">Circal::MultipleAlignment</class>
-    <class kind="class">Circal::MultipleCircularAlignment</class>
-    <class kind="class">Circal::MultipleMetaCircularAlignment</class>
+    <class kind="class">Circal::MultipleAlignmentFactory</class>
+    <class kind="class">Circal::MultipleCircularAlignmentFactory</class>
+    <class kind="class">Circal::MultiplePseudoCircularAlignmentFactory</class>
     <class kind="class">Circal::Output</class>
+    <class kind="class">Circal::PseudoCircularAlignmentFactory</class>
+    <class kind="class">Circal::PseudoRotatedSequence</class>
+    <class kind="class">Circal::RandomSequence</class>
     <class kind="class">Circal::RotatedSequence</class>
     <class kind="class">Circal::ScoringModel</class>
     <class kind="class">Circal::VertebrateMitochondrialGenomeAlphabet</class>
@@ -337,6 +379,13 @@
       <name>BoolMatrix</name>
       <anchorfile>namespaceCircal.html</anchorfile>
       <anchor>b5cbf04ae410080c3875d2691c10d64c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>std::vector&lt; std::vector&lt; std::vector&lt; double &gt; &gt; &gt;</type>
+      <name>ScoreMatrix3D</name>
+      <anchorfile>namespaceCircal.html</anchorfile>
+      <anchor>8cbdc0f70cb5adc1e0c93eea91ff2883</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -357,6 +406,13 @@
       <anchor>6c1d8170276265997eb8729e83a65fa8</anchor>
       <arglist>(const bpp::Alphabet *alpha)</arglist>
     </member>
+    <member kind="function">
+      <type></type>
+      <name>Alignment</name>
+      <anchorfile>classCircal_1_1Alignment.html</anchorfile>
+      <anchor>4487be03e5c0685d42b2f414fda5e50b</anchor>
+      <arglist>()</arglist>
+    </member>
     <member kind="function" virtualness="virtual">
       <type>virtual</type>
       <name>~Alignment</name>
@@ -372,18 +428,18 @@
       <arglist>() const </arglist>
     </member>
     <member kind="function">
-      <type>int</type>
+      <type>double</type>
       <name>get_Score</name>
       <anchorfile>classCircal_1_1Alignment.html</anchorfile>
-      <anchor>88f7d06a0c289e53519aa84d17c734be</anchor>
+      <anchor>894c857b61c9fed3a6332ffe2362b9f1</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>set_score</name>
+      <name>set_Score</name>
       <anchorfile>classCircal_1_1Alignment.html</anchorfile>
-      <anchor>86ad132871584d6e026d9e1f254ee98c</anchor>
-      <arglist>(const int &amp;s)</arglist>
+      <anchor>94d66a0aa8ca3a3ecd47801acbbbc16a</anchor>
+      <arglist>(const double &amp;s)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -406,74 +462,99 @@
       <anchor>c3ba2bde0257c150f84a9f025b4f6564</anchor>
       <arglist>(const bpp::Sequence &amp;sequence)</arglist>
     </member>
+    <member kind="variable" protection="private">
+      <type>uint</type>
+      <name>origSize</name>
+      <anchorfile>classCircal_1_1Alignment.html</anchorfile>
+      <anchor>4899d9988a47852fc888a900e3ffdaf7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>double</type>
+      <name>Score</name>
+      <anchorfile>classCircal_1_1Alignment.html</anchorfile>
+      <anchor>894c310f50b7ec0b44c53d38b03a4c4c</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Circal::AlignmentFactory</name>
+    <filename>classCircal_1_1AlignmentFactory.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>AlignmentFactory</name>
+      <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
+      <anchor>caefc112c9430071c8bcb3761d832d6b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~AlignmentFactory</name>
+      <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
+      <anchor>76d219a7899be2c7e3ad545eaec92544</anchor>
+      <arglist>()</arglist>
+    </member>
     <member kind="function" virtualness="virtual">
       <type>virtual Alignment *</type>
       <name>NeedlemanWunschAlignment</name>
-      <anchorfile>classCircal_1_1Alignment.html</anchorfile>
-      <anchor>e4913ab4c499665491c22c5f407f11b0</anchor>
+      <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
+      <anchor>905122b633a55596bbe1c6d5cd6b61c5</anchor>
       <arglist>(const bpp::Sequence *inA, const bpp::Sequence *inB, const ScoringModel *scoreM)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>ForwardRecursionNMW</name>
-      <anchorfile>classCircal_1_1Alignment.html</anchorfile>
-      <anchor>5aa0581729cd7f29c49e0668316a31ed</anchor>
-      <arglist>(const bpp::Sequence *A, const bpp::Sequence *B, const ScoringModel *scoreM, ScoreMatrix *D)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual Alignment *</type>
-      <name>BacktrackingNMW</name>
-      <anchorfile>classCircal_1_1Alignment.html</anchorfile>
-      <anchor>c39f82c98e3d3e2804af08b8abcd1999</anchor>
-      <arglist>(const bpp::Sequence *outA, const bpp::Sequence *outB, const ScoringModel *scoreM, const ScoreMatrix *D)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual Alignment *</type>
       <name>GotohAlignment</name>
-      <anchorfile>classCircal_1_1Alignment.html</anchorfile>
-      <anchor>3bc27d7c12fe1d50bef9c5159c268926</anchor>
+      <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
+      <anchor>f2b43bb3ebb5d2d2bb3fb72e07f7a784</anchor>
       <arglist>(const bpp::Sequence *inA, const bpp::Sequence *inB, const ScoringModel *scoreM)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>ForwardRecursionNMW</name>
+      <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
+      <anchor>23a0c386ae5a5fe2233b21a25bc92bc3</anchor>
+      <arglist>(const bpp::Sequence *A, const bpp::Sequence *B, const ScoringModel *scoreM, ScoreMatrix *D)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual Alignment *</type>
+      <name>BacktrackingNMW</name>
+      <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
+      <anchor>0039e86898c5a54a7d1e6e1185235931</anchor>
+      <arglist>(const bpp::Sequence *outA, const bpp::Sequence *outB, const ScoringModel *scoreM, const ScoreMatrix *D, int &amp;i, int &amp;j)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>ForwardRecursionGotoh</name>
-      <anchorfile>classCircal_1_1Alignment.html</anchorfile>
-      <anchor>5b09da5a0a41540ca21371bc44f93223</anchor>
+      <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
+      <anchor>824141099efd7e6eb36390937a1abec3</anchor>
       <arglist>(const bpp::Sequence *A, const bpp::Sequence *B, const ScoringModel *scoreM, ScoreMatrix *D, ScoreMatrix *P, ScoreMatrix *Q)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
+    <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual Alignment *</type>
-      <name>BacktrackingGotoh</name>
-      <anchorfile>classCircal_1_1Alignment.html</anchorfile>
-      <anchor>ada6ed0b0e089d9ad7c3648e8ceaa58f</anchor>
-      <arglist>(const bpp::Sequence *outA, const bpp::Sequence *outB, const ScoringModel *scoreM, const ScoreMatrix *D, const ScoreMatrix *P, const ScoreMatrix *Q)</arglist>
+      <name>BacktrackingGotohLocal</name>
+      <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
+      <anchor>a8157edb8c16d97e68d8e28cbe6bbf29</anchor>
+      <arglist>(const bpp::Sequence *outA, const bpp::Sequence *outB, const ScoringModel *scoreM, const ScoreMatrix *D, const ScoreMatrix *P, const ScoreMatrix *Q, int &amp;i, int &amp;j)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual Alignment *</type>
+      <name>BacktrackingGotohGlobal</name>
+      <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
+      <anchor>304f8c4e023b584b698d053515cf409e</anchor>
+      <arglist>(const bpp::Sequence *outA, const bpp::Sequence *outB, const ScoringModel *scoreM, const ScoreMatrix *D, const ScoreMatrix *P, const ScoreMatrix *Q, int &amp;i, int &amp;j)</arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>int</type>
-      <name>Score</name>
-      <anchorfile>classCircal_1_1Alignment.html</anchorfile>
-      <anchor>890d9fe0df4d6a2f512a71b198589dbe</anchor>
+      <type>MatrixHelper *</type>
+      <name>matrix</name>
+      <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
+      <anchor>3686548dbeea38c49ee1cf12c13de560</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>Output *</type>
       <name>prettyPrint</name>
-      <anchorfile>classCircal_1_1Alignment.html</anchorfile>
-      <anchor>44ba98e37149b0b999ea66b28cd1ad12</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>MatrixHelper *</type>
-      <name>matrix</name>
-      <anchorfile>classCircal_1_1Alignment.html</anchorfile>
-      <anchor>d0a86db038b5d44eb542108c864533d9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>uint</type>
-      <name>origSize</name>
-      <anchorfile>classCircal_1_1Alignment.html</anchorfile>
-      <anchor>4899d9988a47852fc888a900e3ffdaf7</anchor>
+      <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
+      <anchor>b71d8661bb7da1609fa9cb430204e21c</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -524,35 +605,35 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>Circal::CircularAlignment</name>
-    <filename>classCircal_1_1CircularAlignment.html</filename>
-    <base virtualness="virtual">Circal::Alignment</base>
+    <name>Circal::CircularAlignmentFactory</name>
+    <filename>classCircal_1_1CircularAlignmentFactory.html</filename>
+    <base virtualness="virtual">Circal::AlignmentFactory</base>
     <member kind="function">
       <type></type>
-      <name>CircularAlignment</name>
-      <anchorfile>classCircal_1_1CircularAlignment.html</anchorfile>
-      <anchor>e11eae7acf94b768f95b06070d788883</anchor>
-      <arglist>(const bpp::Alphabet *alpha)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual</type>
-      <name>~CircularAlignment</name>
-      <anchorfile>classCircal_1_1CircularAlignment.html</anchorfile>
-      <anchor>5822e786d3818939dc70bbdebee43f41</anchor>
+      <name>CircularAlignmentFactory</name>
+      <anchorfile>classCircal_1_1CircularAlignmentFactory.html</anchorfile>
+      <anchor>ca3d9c621ae46232edae478521d06f6a</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual Alignment *</type>
+      <type>virtual</type>
+      <name>~CircularAlignmentFactory</name>
+      <anchorfile>classCircal_1_1CircularAlignmentFactory.html</anchorfile>
+      <anchor>bfcebb9e1c8e590d23943ffed3d9298b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Alignment *</type>
       <name>NeedlemanWunschAlignment</name>
-      <anchorfile>classCircal_1_1CircularAlignment.html</anchorfile>
-      <anchor>70aed56d9b44329f7d171a42a50217b7</anchor>
+      <anchorfile>classCircal_1_1CircularAlignmentFactory.html</anchorfile>
+      <anchor>f8b68bc0c9072963af8ec2589e8c531b</anchor>
       <arglist>(const bpp::Sequence *A, const bpp::Sequence *B, const ScoringModel *scoreM)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual Alignment *</type>
+    <member kind="function">
+      <type>Alignment *</type>
       <name>GotohAlignment</name>
-      <anchorfile>classCircal_1_1CircularAlignment.html</anchorfile>
-      <anchor>51e646152d211d81f8227ee402e4a87e</anchor>
+      <anchorfile>classCircal_1_1CircularAlignmentFactory.html</anchorfile>
+      <anchor>6092e65d745a632692e73b58ee4d5511</anchor>
       <arglist>(const bpp::Sequence *A, const bpp::Sequence *B, const ScoringModel *scoreM)</arglist>
     </member>
   </compound>
@@ -649,226 +730,125 @@
       <arglist>(const bpp::Sequence *A, const bpp::Sequence *B, const double &amp;init)</arglist>
     </member>
     <member kind="function">
+      <type>ScoreMatrix3D</type>
+      <name>InitScoreMatrix3DWith</name>
+      <anchorfile>classCircal_1_1MatrixHelper.html</anchorfile>
+      <anchor>56e71c3f8041515ac8d64f8cd56e1b39</anchor>
+      <arglist>(const PseudoRotatedSequence *A, const bpp::Sequence *B, const int &amp;delta, const double &amp;init)</arglist>
+    </member>
+    <member kind="function">
       <type>BoolMatrix</type>
       <name>CreateAdjacenceGraph</name>
       <anchorfile>classCircal_1_1MatrixHelper.html</anchorfile>
-      <anchor>66be79ac02fe438c9fd785a6f0eadf01</anchor>
-      <arglist>(Alignment *pairWiseAlignments, uint biggestSequenceSize)</arglist>
+      <anchor>86ccdcd3fc84854e446918af43d9b9d2</anchor>
+      <arglist>(Alignment *pairWiseAlignments, int biggestSequenceSize)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>CutRowFromTo</name>
       <anchorfile>classCircal_1_1MatrixHelper.html</anchorfile>
-      <anchor>baf89eb7d195cd23dbd1b12ddd89ff3d</anchor>
-      <arglist>(ScoreMatrix *D, const uint &amp;start, const uint &amp;end)</arglist>
+      <anchor>94f8f8c73bdf4750fd89bba5a6617bf3</anchor>
+      <arglist>(ScoreMatrix *D, const int &amp;start, const int &amp;end)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>CutColumnFromTo</name>
       <anchorfile>classCircal_1_1MatrixHelper.html</anchorfile>
-      <anchor>341c7274b762c4d1c32950816d3c8594</anchor>
-      <arglist>(ScoreMatrix *D, const uint &amp;start, const uint &amp;end)</arglist>
+      <anchor>a3e515432ce4a7801dfd37c6187d5a3a</anchor>
+      <arglist>(ScoreMatrix *D, const int &amp;start, const int &amp;end)</arglist>
     </member>
     <member kind="function">
-      <type>double &amp;</type>
-      <name>SearchMinimumPosition</name>
+      <type>double</type>
+      <name>SearchBestPositionFrom</name>
       <anchorfile>classCircal_1_1MatrixHelper.html</anchorfile>
-      <anchor>94c62eb44eb6c53134045df321df5d4f</anchor>
-      <arglist>(const ScoreMatrix *M, int &amp;i, int &amp;j, double &amp;minScore, const ScoringModel *scoreM)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>SearchMinimuminlastRow</name>
-      <anchorfile>classCircal_1_1MatrixHelper.html</anchorfile>
-      <anchor>af7b6abc5c29c4a5836d02bdef1c8f31</anchor>
-      <arglist>(const ScoreMatrix *M, const ScoringModel *scoreM)</arglist>
+      <anchor>762a8754aebcf3ed096bf4ba30c07268</anchor>
+      <arglist>(const ScoreMatrix *M, int &amp;i, int &amp;j, const ScoringModel *scoreM)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
-      <name>SearchMinimuminlastColumn</name>
+      <name>SearchBestInRow</name>
       <anchorfile>classCircal_1_1MatrixHelper.html</anchorfile>
-      <anchor>87b754dba320d59725336089d3519afb</anchor>
-      <arglist>(const ScoreMatrix *M, const ScoringModel *scoreM)</arglist>
+      <anchor>bd74679b30ef70a3dc53015ff3eb94b5</anchor>
+      <arglist>(const ScoreMatrix *M, const ScoringModel *scoreM, const int &amp;start, const int &amp;row)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>SearchBestInColumn</name>
+      <anchorfile>classCircal_1_1MatrixHelper.html</anchorfile>
+      <anchor>1f0e082360b59504a8f0a69d2fb7694d</anchor>
+      <arglist>(const ScoreMatrix *M, const ScoringModel *scoreM, const int &amp;start, const int &amp;column)</arglist>
     </member>
   </compound>
   <compound kind="class">
-    <name>Circal::MetaCircularAlignment</name>
-    <filename>classCircal_1_1MetaCircularAlignment.html</filename>
-    <base>Circal::CircularAlignment</base>
+    <name>Circal::MultipleAlignmentFactory</name>
+    <filename>classCircal_1_1MultipleAlignmentFactory.html</filename>
+    <base virtualness="virtual">Circal::AlignmentFactory</base>
     <member kind="function">
       <type></type>
-      <name>MetaCircularAlignment</name>
-      <anchorfile>classCircal_1_1MetaCircularAlignment.html</anchorfile>
-      <anchor>2882b335bc14abf86828257c5db6a25b</anchor>
-      <arglist>(const bpp::Alphabet *alpha)</arglist>
+      <name>MultipleAlignmentFactory</name>
+      <anchorfile>classCircal_1_1MultipleAlignmentFactory.html</anchorfile>
+      <anchor>377f18b5178ee35a038d734ae9b4f0f8</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual</type>
-      <name>~MetaCircularAlignment</name>
-      <anchorfile>classCircal_1_1MetaCircularAlignment.html</anchorfile>
-      <anchor>50af7b43b22b92073c802d0ca65b92bd</anchor>
+      <name>~MultipleAlignmentFactory</name>
+      <anchorfile>classCircal_1_1MultipleAlignmentFactory.html</anchorfile>
+      <anchor>bfeee62c22ee9a141d09fd45af70ee3c</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>Alignment *</type>
-      <name>GotohAlignment</name>
-      <anchorfile>classCircal_1_1MetaCircularAlignment.html</anchorfile>
-      <anchor>5a3e0a4bf203f46ecfe0328574f89f20</anchor>
-      <arglist>(const bpp::Sequence *A, const bpp::Sequence *B, const ScoringModel *scoreM)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>Circal::MetaRotatedSequence</name>
-    <filename>classCircal_1_1MetaRotatedSequence.html</filename>
-    <base>Circal::RotatedSequence</base>
-    <member kind="function">
-      <type></type>
-      <name>MetaRotatedSequence</name>
-      <anchorfile>classCircal_1_1MetaRotatedSequence.html</anchorfile>
-      <anchor>a916245497c345db98cc9653ae9dc282</anchor>
-      <arglist>(const bpp::Sequence *a)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual</type>
-      <name>~MetaRotatedSequence</name>
-      <anchorfile>classCircal_1_1MetaRotatedSequence.html</anchorfile>
-      <anchor>7ebb5acecc8349fab6304f317b273a67</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual unsigned int</type>
-      <name>size</name>
-      <anchorfile>classCircal_1_1MetaRotatedSequence.html</anchorfile>
-      <anchor>aaf8c98a9102c7a0afe93748f1e19e69</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int</type>
-      <name>getValue</name>
-      <anchorfile>classCircal_1_1MetaRotatedSequence.html</anchorfile>
-      <anchor>f50c39d5578b7cd55398a93224cf1db2</anchor>
-      <arglist>(unsigned int pos) const </arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual string</type>
-      <name>getChar</name>
-      <anchorfile>classCircal_1_1MetaRotatedSequence.html</anchorfile>
-      <anchor>a6ea8bc2ea160808a0a3a0fe9cc18745</anchor>
-      <arglist>(unsigned int pos) const </arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual const int &amp;</type>
-      <name>operator[]</name>
-      <anchorfile>classCircal_1_1MetaRotatedSequence.html</anchorfile>
-      <anchor>7cf35109420ef17cdc0eb64385cbe640</anchor>
-      <arglist>(unsigned int i) const </arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int &amp;</type>
-      <name>operator[]</name>
-      <anchorfile>classCircal_1_1MetaRotatedSequence.html</anchorfile>
-      <anchor>6b51b50950c284807e7f6f5d5adf94e4</anchor>
-      <arglist>(unsigned int i)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>Circal::MultipleAlignment</name>
-    <filename>classCircal_1_1MultipleAlignment.html</filename>
-    <base virtualness="virtual">Circal::Alignment</base>
-    <member kind="function">
-      <type></type>
-      <name>MultipleAlignment</name>
-      <anchorfile>classCircal_1_1MultipleAlignment.html</anchorfile>
-      <anchor>8e4be984ba4345b9179d71e6e25af38c</anchor>
-      <arglist>(const bpp::Alphabet *alpha)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>MultipleAlignment</name>
-      <anchorfile>classCircal_1_1MultipleAlignment.html</anchorfile>
-      <anchor>31b111ebfbb7f182a35e177ec6c6dc49</anchor>
-      <arglist>(const VectorSequenceContainer *input, const ScoringModel *scoreM)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual</type>
-      <name>~MultipleAlignment</name>
-      <anchorfile>classCircal_1_1MultipleAlignment.html</anchorfile>
-      <anchor>3dac351fb15c76d799212bfe9851b35d</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
       <name>GotohalignMultiple</name>
-      <anchorfile>classCircal_1_1MultipleAlignment.html</anchorfile>
-      <anchor>78fcfe9b6eef1f9ca9c61256e258d1c7</anchor>
-      <arglist>(const VectorSequenceContainer *input, const ScoringModel *scoreM)</arglist>
+      <anchorfile>classCircal_1_1MultipleAlignmentFactory.html</anchorfile>
+      <anchor>6bbe95bdf27644b8530879dfa04aa5ad</anchor>
+      <arglist>(const bpp::VectorSequenceContainer *input, const ScoringModel *scoreM)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>Alignment *</type>
       <name>NMWalignMultiple</name>
-      <anchorfile>classCircal_1_1MultipleAlignment.html</anchorfile>
-      <anchor>320af7ccd361c56899150fdc31f8ac0f</anchor>
-      <arglist>(const VectorSequenceContainer *input, const ScoringModel *scoreM)</arglist>
-    </member>
-    <member kind="function">
-      <type>MultipleAlignment *</type>
-      <name>TopologicSortedAlignment</name>
-      <anchorfile>classCircal_1_1MultipleAlignment.html</anchorfile>
-      <anchor>abad6b53d6e1fd889bd165e2edc4375b</anchor>
-      <arglist>(BoolMatrix G, const Alignment *pairWiseAlignments)</arglist>
+      <anchorfile>classCircal_1_1MultipleAlignmentFactory.html</anchorfile>
+      <anchor>238d9b883b561a26964d1158113ea44b</anchor>
+      <arglist>(const bpp::VectorSequenceContainer *input, const ScoringModel *scoreM)</arglist>
     </member>
   </compound>
   <compound kind="class">
-    <name>Circal::MultipleCircularAlignment</name>
-    <filename>classCircal_1_1MultipleCircularAlignment.html</filename>
-    <base>Circal::CircularAlignment</base>
-    <base>Circal::MultipleAlignment</base>
+    <name>Circal::MultipleCircularAlignmentFactory</name>
+    <filename>classCircal_1_1MultipleCircularAlignmentFactory.html</filename>
+    <base>Circal::CircularAlignmentFactory</base>
+    <base>Circal::MultipleAlignmentFactory</base>
     <member kind="function">
       <type></type>
-      <name>MultipleCircularAlignment</name>
-      <anchorfile>classCircal_1_1MultipleCircularAlignment.html</anchorfile>
-      <anchor>5e3654073937976adbd4feb8dd8cbdf1</anchor>
-      <arglist>(const bpp::Alphabet *alpha)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>MultipleCircularAlignment</name>
-      <anchorfile>classCircal_1_1MultipleCircularAlignment.html</anchorfile>
-      <anchor>de12a6dacb3140f0cfecd7cddbb51f63</anchor>
-      <arglist>(const VectorSequenceContainer *input, const ScoringModel *scoreM)</arglist>
+      <name>MultipleCircularAlignmentFactory</name>
+      <anchorfile>classCircal_1_1MultipleCircularAlignmentFactory.html</anchorfile>
+      <anchor>c2b06487ba86aea2a84ad75d02701590</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual</type>
-      <name>~MultipleCircularAlignment</name>
-      <anchorfile>classCircal_1_1MultipleCircularAlignment.html</anchorfile>
-      <anchor>63f89767a72fba54805dba4158196ba4</anchor>
+      <name>~MultipleCircularAlignmentFactory</name>
+      <anchorfile>classCircal_1_1MultipleCircularAlignmentFactory.html</anchorfile>
+      <anchor>8a67f9c4df17e66d443875693ef320b8</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
-    <name>Circal::MultipleMetaCircularAlignment</name>
-    <filename>classCircal_1_1MultipleMetaCircularAlignment.html</filename>
-    <base>Circal::MetaCircularAlignment</base>
-    <base>Circal::MultipleAlignment</base>
+    <name>Circal::MultiplePseudoCircularAlignmentFactory</name>
+    <filename>classCircal_1_1MultiplePseudoCircularAlignmentFactory.html</filename>
+    <base>Circal::PseudoCircularAlignmentFactory</base>
+    <base>Circal::MultipleAlignmentFactory</base>
     <member kind="function">
       <type></type>
-      <name>MultipleMetaCircularAlignment</name>
-      <anchorfile>classCircal_1_1MultipleMetaCircularAlignment.html</anchorfile>
-      <anchor>b898a82e0dfd1f22417e3deb9b7c38cf</anchor>
-      <arglist>(const bpp::Alphabet *alpha)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>MultipleMetaCircularAlignment</name>
-      <anchorfile>classCircal_1_1MultipleMetaCircularAlignment.html</anchorfile>
-      <anchor>8de71bb448b4b26fc09f095cd41f70b2</anchor>
-      <arglist>(const VectorSequenceContainer *input, const ScoringModel *scoreM)</arglist>
+      <name>MultiplePseudoCircularAlignmentFactory</name>
+      <anchorfile>classCircal_1_1MultiplePseudoCircularAlignmentFactory.html</anchorfile>
+      <anchor>35501504926816a4031c14b03b26903b</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual</type>
-      <name>~MultipleMetaCircularAlignment</name>
-      <anchorfile>classCircal_1_1MultipleMetaCircularAlignment.html</anchorfile>
-      <anchor>0f910531217b8df8c72796b559fbd356</anchor>
+      <name>~MultiplePseudoCircularAlignmentFactory</name>
+      <anchorfile>classCircal_1_1MultiplePseudoCircularAlignmentFactory.html</anchorfile>
+      <anchor>e4b045519eab95324a91eb9cd2b02d77</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -923,6 +903,139 @@
       <anchorfile>classCircal_1_1Output.html</anchorfile>
       <anchor>0147043da0fc76b3e1ca8cf4f9bec727</anchor>
       <arglist>(const Alignment *aln)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Circal::PseudoCircularAlignmentFactory</name>
+    <filename>classCircal_1_1PseudoCircularAlignmentFactory.html</filename>
+    <base virtualness="virtual">Circal::AlignmentFactory</base>
+    <member kind="function">
+      <type></type>
+      <name>PseudoCircularAlignmentFactory</name>
+      <anchorfile>classCircal_1_1PseudoCircularAlignmentFactory.html</anchorfile>
+      <anchor>268a3c8290bfe004aa52a8bb37bcf4d9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~PseudoCircularAlignmentFactory</name>
+      <anchorfile>classCircal_1_1PseudoCircularAlignmentFactory.html</anchorfile>
+      <anchor>000683a8fc886c342b357bd0cc285854</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Alignment *</type>
+      <name>NeedlemanWunschAlignment</name>
+      <anchorfile>classCircal_1_1PseudoCircularAlignmentFactory.html</anchorfile>
+      <anchor>d601a61140ce3b2744011796d5a0b8ff</anchor>
+      <arglist>(const bpp::Sequence *A, const bpp::Sequence *B, const ScoringModel *scoreM, const int &amp;delta)</arglist>
+    </member>
+    <member kind="function">
+      <type>Alignment *</type>
+      <name>GotohAlignment</name>
+      <anchorfile>classCircal_1_1PseudoCircularAlignmentFactory.html</anchorfile>
+      <anchor>5f7014c491306d20353cec101bff4e5b</anchor>
+      <arglist>(const bpp::Sequence *A, const bpp::Sequence *B, const ScoringModel *scoreM, const int &amp;delta)</arglist>
+    </member>
+    <member kind="function" protection="private" virtualness="virtual">
+      <type>virtual void</type>
+      <name>ForwardRecursionNMW</name>
+      <anchorfile>classCircal_1_1PseudoCircularAlignmentFactory.html</anchorfile>
+      <anchor>ad3698770412a8094f20cc924be54151</anchor>
+      <arglist>(const PseudoRotatedSequence *A, const bpp::Sequence *B, const ScoringModel *scoreM, const int &amp;delta, ScoreMatrix3D *D)</arglist>
+    </member>
+    <member kind="function" protection="private" virtualness="virtual">
+      <type>virtual Alignment *</type>
+      <name>BacktrackingNMW</name>
+      <anchorfile>classCircal_1_1PseudoCircularAlignmentFactory.html</anchorfile>
+      <anchor>a4a3ad6ea415ea699f59a52eff424ecc</anchor>
+      <arglist>(const PseudoRotatedSequence *outA, const bpp::Sequence *outB, const ScoringModel *scoreM, const int &amp;delta, const ScoreMatrix3D *D, int &amp;i, int &amp;j)</arglist>
+    </member>
+    <member kind="function" protection="private" virtualness="virtual">
+      <type>virtual void</type>
+      <name>ForwardRecursionGotoh</name>
+      <anchorfile>classCircal_1_1PseudoCircularAlignmentFactory.html</anchorfile>
+      <anchor>2b0c3da16b0740a13d943d2e0845a39d</anchor>
+      <arglist>(const PseudoRotatedSequence *A, const bpp::Sequence *B, const ScoringModel *scoreM, const int &amp;delta, ScoreMatrix3D *D, ScoreMatrix3D *P, ScoreMatrix3D *Q)</arglist>
+    </member>
+    <member kind="function" protection="private" virtualness="virtual">
+      <type>virtual Alignment *</type>
+      <name>BacktrackingGotohLocal</name>
+      <anchorfile>classCircal_1_1PseudoCircularAlignmentFactory.html</anchorfile>
+      <anchor>209f2a738115afba7957ebf8e29b1018</anchor>
+      <arglist>(const PseudoRotatedSequence *outA, const bpp::Sequence *outB, const ScoringModel *scoreM, const int &amp;delta, const ScoreMatrix3D *D, const ScoreMatrix3D *P, const ScoreMatrix3D *Q, int &amp;i, int &amp;j)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Circal::PseudoRotatedSequence</name>
+    <filename>classCircal_1_1PseudoRotatedSequence.html</filename>
+    <base>Circal::RotatedSequence</base>
+    <member kind="function">
+      <type></type>
+      <name>PseudoRotatedSequence</name>
+      <anchorfile>classCircal_1_1PseudoRotatedSequence.html</anchorfile>
+      <anchor>bac16ca7b9725950d138748ae91a98b8</anchor>
+      <arglist>(const bpp::Sequence *a)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~PseudoRotatedSequence</name>
+      <anchorfile>classCircal_1_1PseudoRotatedSequence.html</anchorfile>
+      <anchor>e585ce628e0855bbee4e9ebf5446263f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual unsigned int</type>
+      <name>size</name>
+      <anchorfile>classCircal_1_1PseudoRotatedSequence.html</anchorfile>
+      <anchor>f6a9b351636ffee4468adbf1e58fdb4a</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual int</type>
+      <name>getValue</name>
+      <anchorfile>classCircal_1_1PseudoRotatedSequence.html</anchorfile>
+      <anchor>48c964ebdf631807be5e58140e5378c6</anchor>
+      <arglist>(unsigned int pos) const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual string</type>
+      <name>getChar</name>
+      <anchorfile>classCircal_1_1PseudoRotatedSequence.html</anchorfile>
+      <anchor>fbfa83464c33febec8196f23cd296a31</anchor>
+      <arglist>(unsigned int pos) const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual const int &amp;</type>
+      <name>operator[]</name>
+      <anchorfile>classCircal_1_1PseudoRotatedSequence.html</anchorfile>
+      <anchor>56da5d9337b808f82a9e90dcd38f3c31</anchor>
+      <arglist>(unsigned int i) const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual int &amp;</type>
+      <name>operator[]</name>
+      <anchorfile>classCircal_1_1PseudoRotatedSequence.html</anchorfile>
+      <anchor>ae61f22e5caff53b3d0d3b0c2ad2218f</anchor>
+      <arglist>(unsigned int i)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Circal::RandomSequence</name>
+    <filename>classCircal_1_1RandomSequence.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>RandomSequence</name>
+      <anchorfile>classCircal_1_1RandomSequence.html</anchorfile>
+      <anchor>41eb65032b007562f49f8cc7acafa8a9</anchor>
+      <arglist>(const uint &amp;size, const bpp::Alphabet *alpha)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~RandomSequence</name>
+      <anchorfile>classCircal_1_1RandomSequence.html</anchorfile>
+      <anchor>cd612e70ea793e398a751d1527244fdb</anchor>
+      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -1181,10 +1294,12 @@
     <filename>dir_bce082e1b219ca11578ca2e11a91790f.html</filename>
     <file>Alignment.cpp</file>
     <file>Alignment.h</file>
+    <file>AlignmentFactory.cpp</file>
+    <file>AlignmentFactory.h</file>
     <file>AlignmentSymbol.cpp</file>
     <file>AlignmentSymbol.h</file>
-    <file>CircularAlignment.cpp</file>
-    <file>CircularAlignment.h</file>
+    <file>CircularAlignmentFactory.cpp</file>
+    <file>CircularAlignmentFactory.h</file>
     <file>ErrorClasses.cpp</file>
     <file>ErrorClasses.h</file>
     <file>ExtendedFasta.cpp</file>
@@ -1194,18 +1309,20 @@
     <file>main.cpp</file>
     <file>MatrixHelper.cpp</file>
     <file>MatrixHelper.h</file>
-    <file>MetaCircularAlignment.cpp</file>
-    <file>MetaCircularAlignment.h</file>
-    <file>MetaRotatedSequence.cpp</file>
-    <file>MetaRotatedSequence.h</file>
-    <file>MultipleAlignment.cpp</file>
-    <file>MultipleAlignment.h</file>
-    <file>MultipleCircularAlignment.cpp</file>
-    <file>MultipleCircularAlignment.h</file>
-    <file>MultipleMetaCircularAlignment.cpp</file>
-    <file>MultipleMetaCircularAlignment.h</file>
+    <file>MultipleAlignmentFactory.cpp</file>
+    <file>MultipleAlignmentFactory.h</file>
+    <file>MultipleCircularAlignmentFactory.cpp</file>
+    <file>MultipleCircularAlignmentFactory.h</file>
+    <file>MultiplePseudoCircularAlignmentFactory.cpp</file>
+    <file>MultiplePseudoCircularAlignmentFactory.h</file>
     <file>Output.cpp</file>
     <file>Output.h</file>
+    <file>PseudoCircularAlignmentFactory.cpp</file>
+    <file>PseudoCircularAlignmentFactory.h</file>
+    <file>PseudoRotatedSequence.cpp</file>
+    <file>PseudoRotatedSequence.h</file>
+    <file>RandomSequence.cpp</file>
+    <file>RandomSequence.h</file>
     <file>RotatedSequence.cpp</file>
     <file>RotatedSequence.h</file>
     <file>ScoringModel.cpp</file>

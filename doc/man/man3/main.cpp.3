@@ -1,4 +1,4 @@
-.TH "Uni/workspace/CircalPP/src/main.cpp" 3 "8 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
+.TH "Uni/workspace/CircalPP/src/main.cpp" 3 "20 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -6,15 +6,17 @@ Uni/workspace/CircalPP/src/main.cpp \-
 .SH SYNOPSIS
 .br
 .PP
-\fC#include 'MultipleCircularAlignment.h'\fP
+\fC#include 'MultipleCircularAlignmentFactory.h'\fP
 .br
-\fC#include 'MultipleMetaCircularAlignment.h'\fP
+\fC#include 'MultiplePseudoCircularAlignmentFactory.h'\fP
 .br
 \fC#include 'ScoringModel.h'\fP
 .br
 \fC#include 'ExtendedFasta.h'\fP
 .br
 \fC#include 'Output.h'\fP
+.br
+\fC#include 'RandomSequence.h'\fP
 .br
 \fC#include 'VertebrateMitochondrialGenomeAlphabet.h'\fP
 .br
@@ -23,6 +25,8 @@ Uni/workspace/CircalPP/src/main.cpp \-
 \fC#include <iostream>\fP
 .br
 \fC#include <fstream>\fP
+.br
+\fC#include <sstream>\fP
 .br
 
 .SS "Functions"
@@ -36,9 +40,9 @@ Uni/workspace/CircalPP/src/main.cpp \-
 .PP 
 .SS "int main (int args, char * argv[])"
 .PP
-Definition at line 34 of file main.cpp.
+Definition at line 36 of file main.cpp.
 .PP
-References Circal::Output::TCoffeeLibFormat().
+References Circal::Output::AlignmentPrettyPrint(), Circal::Alignment::get_Score(), Circal::PseudoCircularAlignmentFactory::GotohAlignment(), and Circal::CircularAlignmentFactory::GotohAlignment().
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for CircalPP from the source code.
