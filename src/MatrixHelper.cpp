@@ -20,8 +20,9 @@
 #include "MatrixHelper.h"
 #include "ScoringModel.h"
 #include "Alignment.h"
-#include <Seq/sequences>
+#include "PseudoRotatedSequence.h"
 #include "ErrorClasses.h"
+#include <Seq/sequences>
 
 namespace Circal
   {
@@ -78,7 +79,7 @@ namespace Circal
         D.at(0).at(0) = 0;
 
         D.at(0).at(1) = scoreM->ScoreOfGapOpen(B->getChar(0));
-            + scoreM->ScoreOfGapExtend(B->getChar(0));
+        +scoreM->ScoreOfGapExtend(B->getChar(0));
         //#ifdef _OPENMP            
         //#pragma omp parallel for
         //#endif 
@@ -99,10 +100,22 @@ namespace Circal
     ScoreMatrix MatrixHelper::InitScoreMatrixWith(const bpp::Sequence* A,
         const bpp::Sequence* B, const double &init)
       {
-        //Initialize Score Matrix with inf
+        //Initialize Score Matrix
         ScoreMatrix P(A->size()+1, vector<double>(B->size() +1, init));
 
         return P;
+      }
+    ScoreMatrix3D MatrixHelper::InitScoreMatrix3DWith(
+        const PseudoRotatedSequence* A, const bpp::Sequence* B,
+        const int &delta, const double &init)
+      {
+        //A is doubled=pseudorotated so correct size is A/2
+        int slaps = A->size();
+        if (delta != 0)
+          slaps /= delta;
+
+        ScoreMatrix3D P(A->size()+1, vector< vector<double> >(B->size() +1,
+            vector<double>(slaps, init)));
       }
 
     BoolMatrix MatrixHelper::CreateAdjacenceGraph(

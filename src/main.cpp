@@ -37,15 +37,21 @@ int main(int args, char* argv[])
   {
 
     //Check for correct call
-    if (args < 4)
+    if (args < 5)
       {
-        std::cerr<< "Usage: Circal++ Input.fasta  XX.score Output.fasta"
+        std::cerr
+            << "Usage: Circal++ DeltaValue Input.fasta  XX.score Output.fasta"
             << std::endl;;
         exit(-1);
       }
-    std::string seqFilename = argv[1];
-    std::string scoreFilename = argv[2];
-    std::string outFilename = argv[3];
+
+    std::stringstream parser(argv[1]);
+    int delta;
+    parser >> delta;
+
+    std::string seqFilename = argv[2];
+    std::string scoreFilename = argv[3];
+    std::string outFilename = argv[4];
 
     //Check for Sequence File Existence
     if (!bpp::FileTools::fileExists(seqFilename))
@@ -118,7 +124,8 @@ int main(int args, char* argv[])
             Circal::Alignment* regCircular = cicAln->GotohAlignment(
                 sequences->getSequence(u), sequences->getSequence(k), scoreM);
             Circal::Alignment* pseudoCircular= pseudoCircAln->GotohAlignment(
-                sequences->getSequence(u), sequences->getSequence(k), scoreM);
+                sequences->getSequence(u), sequences->getSequence(k), scoreM,
+                delta);
             if (regCircular->get_Score() != pseudoCircular->get_Score())
               {
 

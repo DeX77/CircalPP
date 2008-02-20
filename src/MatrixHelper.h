@@ -31,8 +31,11 @@ namespace Circal
   {
     class Alignment;
     class ScoringModel;
+    class PseudoRotatedSequence;
+
     typedef std::valarray< std::valarray <bool> > BoolMatrix;
     typedef std::vector< std::vector<double> > ScoreMatrix;
+    typedef std::vector< std::vector< std::vector<double> > > ScoreMatrix3D;
 
     class MatrixHelper
       {
@@ -45,6 +48,8 @@ namespace Circal
 
       ScoreMatrix InitScoreMatrixWith(const bpp::Sequence* A,
           const bpp::Sequence* B, const double &init);
+      ScoreMatrix3D InitScoreMatrix3DWith(const PseudoRotatedSequence* A,
+          const bpp::Sequence* B, const int &delta, const double &init);
 
       BoolMatrix CreateAdjacenceGraph(Alignment* pairWiseAlignments,
           int biggestSequenceSize);

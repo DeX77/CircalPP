@@ -38,8 +38,6 @@ namespace Circal
       Output* prettyPrint;
 
       //Needleman Wunsch Alignment
-
-
       virtual void ForwardRecursionNMW(const bpp::Sequence* A,
           const bpp::Sequence* B, const ScoringModel* scoreM, ScoreMatrix* D);
       virtual Alignment* BacktrackingNMW(const bpp::Sequence* outA,
@@ -50,7 +48,7 @@ namespace Circal
 
       virtual void ForwardRecursionGotoh(const bpp::Sequence* A,
           const bpp::Sequence* B, const ScoringModel* scoreM, ScoreMatrix* D,
-          ScoreMatrix* P, ScoreMatrix* Q, ScoreMatrix* L);
+          ScoreMatrix* P, ScoreMatrix* Q);
       virtual Alignment* BacktrackingGotohLocal(const bpp::Sequence* outA,
           const bpp::Sequence* outB, const ScoringModel* scoreM,
           const ScoreMatrix* D, const ScoreMatrix* P, const ScoreMatrix* Q,

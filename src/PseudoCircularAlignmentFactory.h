@@ -24,18 +24,38 @@
 
 namespace Circal
   {
+    class PseudoRotatedSequence;
+    typedef std::vector< std::vector< std::vector<double> > > ScoreMatrix3D;
+
     class PseudoCircularAlignmentFactory : public virtual AlignmentFactory
       {
+      //Needleman Wunsch Alignment
+      virtual void ForwardRecursionNMW(const PseudoRotatedSequence* A,
+          const bpp::Sequence* B, const ScoringModel* scoreM, const int &delta,
+          ScoreMatrix3D* D);
+      virtual Alignment* BacktrackingNMW(const PseudoRotatedSequence* outA,
+          const bpp::Sequence* outB, const ScoringModel* scoreM,
+          const int &delta, const ScoreMatrix3D* D, int &i, int &j);
+
+      //Gotoh Alignment
+      virtual void ForwardRecursionGotoh(const PseudoRotatedSequence* A,
+          const bpp::Sequence* B, const ScoringModel* scoreM, const int &delta,
+          ScoreMatrix3D* D, ScoreMatrix3D* P, ScoreMatrix3D* Q);
+
+      virtual Alignment* BacktrackingGotohLocal(
+          const PseudoRotatedSequence* outA, const bpp::Sequence* outB,
+          const ScoringModel* scoreM, const int &delta, const ScoreMatrix3D* D,
+          const ScoreMatrix3D* P, const ScoreMatrix3D* Q, int &i, int &j);
 
   public:
       PseudoCircularAlignmentFactory();
       virtual ~PseudoCircularAlignmentFactory();
 
       Alignment* NeedlemanWunschAlignment(const bpp::Sequence* A,
-          const bpp::Sequence* B, const ScoringModel* scoreM);
+          const bpp::Sequence* B, const ScoringModel* scoreM, const int &delta);
 
       Alignment* GotohAlignment(const bpp::Sequence* A, const bpp::Sequence* B,
-          const ScoringModel* scoreM);
+          const ScoringModel* scoreM, const int &delta);
 
       };
   }

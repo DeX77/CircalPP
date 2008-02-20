@@ -36,7 +36,7 @@ namespace Circal
       }
     void AlignmentFactory::ForwardRecursionGotoh(const bpp::Sequence* A,
         const bpp::Sequence* B, const ScoringModel* scoreM, ScoreMatrix* D,
-        ScoreMatrix* P, ScoreMatrix* Q, ScoreMatrix* L)
+        ScoreMatrix* P, ScoreMatrix* Q)
       {
         double gapOpenP;
         double gapExtendP;
@@ -181,29 +181,6 @@ namespace Circal
 
           }
 
-        //        while (i > 0)
-        //          {
-        //
-        //            //            std::cout << "Overlapp A"<< endl;
-        //
-        //            if (i == 1)
-        //              minScore += scoreM->ScoreOfGapOpen(A->getChar(i-1));
-        //            minScore += scoreM->ScoreOfGapExtend(A->getChar(i-1));
-        //            itA = outA.insert(itA, A->getValue(i-1));
-        //            itB = outB.insert(itB, -1);
-        //            i--;
-        //          }
-        //
-        //        while (j> 0)
-        //          {
-        //            //            std::cout << "Overlapp B"<< endl;
-        //            if (j == 1)
-        //              minScore += scoreM->ScoreOfGapOpen(B->getChar(j-1));
-        //            minScore += scoreM->ScoreOfGapExtend(B->getChar(j-1));
-        //            itB = outB.insert(itB, B->getValue(j-1));
-        //            itA = outA.insert(itA, -1);
-        //            j--;
-        //          }
 
         bpp::Sequence seqA(A->getName(), outA, A->getAlphabet());
         bpp::Sequence seqB(B->getName(), outB, B->getAlphabet());
@@ -502,7 +479,6 @@ namespace Circal
         int i = D.size()-1;
         int j = D.at(0).size()-1;
 
-
         return BacktrackingNMW(inA, inB, scoreM, &D, i, j);
 
       }
@@ -514,10 +490,9 @@ namespace Circal
         ScoreMatrix D = matrix->InitScoreMatrixWith(inA, inB, 0);
         ScoreMatrix P = matrix->InitScoreMatrixWith(inA, inB, 0);
         ScoreMatrix Q = matrix->InitScoreMatrixWith(inA, inB, 0);
-        ScoreMatrix L = matrix->InitScoreMatrixWith(inA, inB, 0);
 
         //Forward Iteration
-        ForwardRecursionGotoh(inA, inB, scoreM, &D, &P, &Q, &L);
+        ForwardRecursionGotoh(inA, inB, scoreM, &D, &P, &Q);
 
         int i = D.size()-1;
         int j = D.at(0).size()-1;
