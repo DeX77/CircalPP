@@ -29,6 +29,7 @@
 #include "RandomSequence.h"
 #include "VertebrateMitochondrialGenomeAlphabet.h"
 #include <Seq/alphabets>
+#include <NumCalc/RandomTools.h>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -69,12 +70,12 @@ int main(int args, char* argv[])
 
     //Initialize FASTA Reader
     //Circal::ExtendedFasta seqReader;
-    bpp::Fasta seqReader;
+    Circal::ExtendedFasta seqReader;
 
-    bpp::Fasta seqWriter;
+    Circal::ExtendedFasta seqWriter;
 
     //Init Scoring Model
-    Circal::ScoringModel scoreM(scoreFilename);
+    Circal::ScoringModel* scoreM = new Circal::ScoringModel(scoreFilename);
 
     //Use Self defined Alphabet
     //    Circal::VertebrateMitochondrialGenomeAlphabet * alpha =
@@ -117,9 +118,9 @@ int main(int args, char* argv[])
           {
 
             Circal::Alignment regCircular = cicAln.GotohAlignment(sequences.getSequence(u),
-                sequences.getSequence(k), &scoreM);
+                sequences.getSequence(k), scoreM);
             Circal::Alignment pseudoCircular= pseudoCircAln.GotohAlignment(
-                sequences.getSequence(u), sequences.getSequence(k), &scoreM,
+                sequences.getSequence(u), sequences.getSequence(k), scoreM,
                 delta);
             if (regCircular.get_Score() != pseudoCircular.get_Score())
               {
@@ -154,7 +155,10 @@ int main(int args, char* argv[])
 
      std::cout << foo->TCoffeeLibFormat(circal);
      */
+    delete scoreM;
     
+    //WTF!=?? Why do I have to delete this!?
+    delete bpp::RandomTools::DEFAULT_GENERATOR;
     return 0;
 
     /*

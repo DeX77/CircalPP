@@ -32,10 +32,11 @@ namespace Circal
     PseudoCircularAlignmentFactory::~PseudoCircularAlignmentFactory()
       {
       }
-    void PseudoCircularAlignmentFactory::ForwardRecursionGotoh(
+
+    double PseudoCircularAlignmentFactory::ForwardRecursionSmithWatermanAffin(
         const bpp::Sequence* A, const PseudoRotatedSequence* B,
         const ScoringModel* scoreM, const int &delta, ScoreMatrix3D* D,
-        ScoreMatrix3D* P, ScoreMatrix3D* Q)
+        ScoreMatrix3D* P, ScoreMatrix3D* Q, uint &bi, uint &bj)
       {
 
         double gapOpenP;
@@ -43,8 +44,8 @@ namespace Circal
         double gapOpenQ;
         double gapExtendQ;
         double diagScore;
-        double maxScore = 0;
-        double maxScoreJ = 0;
+
+        double lrla = 0;
 
         //B is doubled=pseudorotated so correct size is B/2
         int slaps = B->size()/2;
@@ -57,38 +58,91 @@ namespace Circal
         //#pragma omp parallel for
         //#endif           
         for (uint i=1; i<A->size()+1; i++)
-          for (uint j=1; j<B->size()+1; j++)
-            {
-              if (j % delta == 1)
-                {
+          {
+            // haeeh?
+            for (int k=1; k<slaps; k++)
+              {
+                D->at(i).at(0).at(k) = 0;
+                P->at(i).at(0).at(k) = 0;
+                Q->at(i).at(0).at(k) = 0;
+              }
 
-                  //Score of Match eg. Mismatch
-                  diagScore = D->at(i-1).at(j-1).at(0) + scoreM->ScoreOf(A->getChar(i-1),
-                      B->getChar(j -1));
+            for (uint j=1; j<B->size()+1; j++)
+              {
+                if (j % delta == 1)
+                  {
 
-                  //Score of Open Gap in A
-                  gapOpenP = D->at(i-1).at(j).at(0) + scoreM->ScoreOfGapOpen(B->getChar(j-1))
-                      + scoreM->ScoreOfGapExtend(B->getChar(j-1));
-                  //Score of continue Gap in A
-                  gapExtendP = P->at(i-1).at(j).at(0)+ scoreM->ScoreOfGapExtend(B->getChar(j-1));
+                    //Score of Match eg. Mismatch
+                    diagScore = scoreM->ScoreOf(A->getChar(i-1), B->getChar(j
+                        -1));
 
-                  //Score of Open Gap in B
-                  gapOpenQ = D->at(i).at(j-1).at(0) + scoreM->ScoreOfGapOpen(A->getChar(i-1))
-                      + scoreM->ScoreOfGapExtend(A->getChar(i-1));
-                  //Score of continue Gap in B
-                  gapExtendQ = Q->at(i).at(j-1).at(0) + scoreM->ScoreOfGapExtend(A->getChar(i-1));
+                    //Score of Open Gap in A
+                    gapOpenP = D->at(i-1).at(j).at(0) + scoreM->ScoreOfGapOpen(B->getChar(j-1))
+                        + scoreM->ScoreOfGapExtend(B->getChar(j-1));
+                    //Score of continue Gap in A
+                    gapExtendP = P->at(i-1).at(j).at(0)+ scoreM->ScoreOfGapExtend(B->getChar(j-1));
 
-                  //Set Helper Matrices Values
-                  P->at(i).at(j).at(0) = scoreM->BestOfTwo(gapOpenP, gapExtendP);
-                  Q->at(i).at(j).at(0) = scoreM->BestOfTwo(gapOpenQ, gapExtendQ);
+                    //Set Helper Matrices Values
+                    P->at(i).at(j).at(0) = scoreM->BestOfTwo(gapOpenP, gapExtendP);
+                    Q->at(i).at(j).at(0) = 0;
 
-                  //Set Distance Matrix Value
-                  D->at(i).at(j).at(0) = scoreM->BestOfThree(diagScore, P->at(i).at(j).at(0), Q->at(i).at(j).at(0) );
+                    //Set Distance Matrix Value
+                    D->at(i).at(j).at(0) = scoreM->BestOfThree(diagScore, P->at(i).at(j).at(0), 0);
 
-                  for (int k=1; k<slaps; k++)
+                    //Save Best LRLA
+                    if (scoreM->BestOfTwo(lrla, D->at(i).at(j).at(0) != lrla))
+                      {
+                        lrla = D->at(i).at(j).at(0);
+                        bi = i;
+                        bj = j;
+                      }
+
+                    for (int k=1; k<slaps; k++)
+                      {
+                        //Score of Match eg. Mismatch
+                        diagScore = D->at(i-1).at(j-1).at(k-1) + scoreM->ScoreOf(A->getChar(i-1),
+                            B->getChar(j -1));
+
+                        //Score of Open Gap in A
+                        gapOpenP = D->at(i-1).at(j).at(k) + scoreM->ScoreOfGapOpen(B->getChar(j-1))
+                            + scoreM->ScoreOfGapExtend(B->getChar(j-1));
+                        //Score of continue Gap in A
+                        gapExtendP = P->at(i-1).at(j).at(k)+ scoreM->ScoreOfGapExtend(B->getChar(j-1));
+
+                        //Score of Open Gap in B
+                        gapOpenQ = D->at(i).at(j-1).at(k-1) + scoreM->ScoreOfGapOpen(A->getChar(i
+                            -1)) + scoreM->ScoreOfGapExtend(A->getChar(i-1));
+                        //Score of continue Gap in B
+                        gapExtendQ = Q->at(i).at(j-1).at(k-1)
+                            + scoreM->ScoreOfGapExtend(A->getChar(i -1));
+
+                        //Set Helper Matrices Values
+                        P->at(i).at(j).at(k) = scoreM->BestOfTwo(gapOpenP, gapExtendP);
+                        Q->at(i).at(j).at(k) = scoreM->BestOfTwo(gapOpenQ, gapExtendQ);
+
+                        //Set Distance Matrix Value
+                        D->at(i).at(j).at(k) = scoreM->BestOfThree(diagScore, P->at(i).at(j).at(k), Q->at(i).at(j).at(k) );
+
+                        //Check for 0
+                        if (D->at(i).at(j).at(k) < 0)
+                          D->at(i).at(j).at(k) = 0;
+
+                        //Save Best LRLA
+                        if (scoreM->BestOfTwo(lrla, D->at(i).at(j).at(k) != lrla))
+                          {
+                            lrla = D->at(i).at(j).at(k);
+                            bi = i;
+                            bj = j;
+
+                          }
+                      }
+                  }
+                else
+                  for (int k=0; k<slaps; k++)
                     {
+
                       //Score of Match eg. Mismatch
-                      diagScore = D->at(i-1).at(j-1).at(k-1) + scoreM->ScoreOf(A->getChar(i-1),
+                      diagScore = D->at(i-1).at(j-1).at(k) + scoreM->ScoreOf(A->getChar(i-1),
                           B->getChar(j -1));
 
                       //Score of Open Gap in A
@@ -98,12 +152,11 @@ namespace Circal
                       gapExtendP = P->at(i-1).at(j).at(k)+ scoreM->ScoreOfGapExtend(B->getChar(j-1));
 
                       //Score of Open Gap in B
-                      gapOpenQ = D->at(i).at(j-1).at(k-1)
-                          + scoreM->ScoreOfGapOpen(A->getChar(i-1))
+                      gapOpenQ = D->at(i).at(j-1).at(k) + scoreM->ScoreOfGapOpen(A->getChar(i-1))
                           + scoreM->ScoreOfGapExtend(A->getChar(i-1));
                       //Score of continue Gap in B
-                      gapExtendQ = Q->at(i).at(j-1).at(k-1) + scoreM->ScoreOfGapExtend(A->getChar(i
-                          -1));
+                      gapExtendQ = Q->at(i).at(j-1).at(k)
+                          + scoreM->ScoreOfGapExtend(A->getChar(i-1));
 
                       //Set Helper Matrices Values
                       P->at(i).at(j).at(k) = scoreM->BestOfTwo(gapOpenP, gapExtendP);
@@ -112,56 +165,28 @@ namespace Circal
                       //Set Distance Matrix Value
                       D->at(i).at(j).at(k) = scoreM->BestOfThree(diagScore, P->at(i).at(j).at(k), Q->at(i).at(j).at(k) );
 
-                      //Save actual best Score
-                      if (scoreM->BestOfTwo(maxScore, D->at(i).at(j).at(k)) != maxScore)
+                      //Check for 0
+                      if (D->at(i).at(j).at(k) < 0)
+                        D->at(i).at(j).at(k) = 0;
+
+                      //Save Best LRLA
+                      if (scoreM->BestOfTwo(lrla, D->at(i).at(j).at(k) != lrla))
                         {
-                          maxScore = D->at(i).at(j).at(k);
-                          maxScoreJ = j;
+                          lrla = D->at(i).at(j).at(k);
+                          bi = i;
+                          bj = j;
+
                         }
+
                     }
-                }
-              else
-                for (int k=0; k<slaps; k++)
-                  {
 
-                    //Score of Match eg. Mismatch
-                    diagScore = D->at(i-1).at(j-1).at(k) + scoreM->ScoreOf(A->getChar(i-1),
-                        B->getChar(j -1));
+              }
+          }
 
-                    //Score of Open Gap in A
-                    gapOpenP = D->at(i-1).at(j).at(k) + scoreM->ScoreOfGapOpen(B->getChar(j-1))
-                        + scoreM->ScoreOfGapExtend(B->getChar(j-1));
-                    //Score of continue Gap in A
-                    gapExtendP = P->at(i-1).at(j).at(k)+ scoreM->ScoreOfGapExtend(B->getChar(j-1));
-
-                    //Score of Open Gap in B
-                    gapOpenQ = D->at(i).at(j-1).at(k) + scoreM->ScoreOfGapOpen(A->getChar(i-1))
-                        + scoreM->ScoreOfGapExtend(A->getChar(i-1));
-                    //Score of continue Gap in B
-                    gapExtendQ = Q->at(i).at(j-1).at(k) + scoreM->ScoreOfGapExtend(A->getChar(i-1));
-
-                    //Set Helper Matrices Values
-                    P->at(i).at(j).at(k) = scoreM->BestOfTwo(gapOpenP, gapExtendP);
-                    Q->at(i).at(j).at(k) = scoreM->BestOfTwo(gapOpenQ, gapExtendQ);
-
-                    //Set Distance Matrix Value
-                    D->at(i).at(j).at(k) = scoreM->BestOfThree(diagScore, P->at(i).at(j).at(k), Q->at(i).at(j).at(k) );
-
-                    //Save actual best Score
-                    if (scoreM->BestOfTwo(maxScore, D->at(i).at(j).at(k)) != maxScore)
-                      {
-                        maxScore = D->at(i).at(j).at(k);
-                        maxScoreJ = j;
-                      }
-
-                  }
-
-            }
-        cout << "Actual best Score: " << maxScore << "@ j=" << maxScoreJ
-            << std::endl;
+        return lrla;
 
       }
-    Alignment PseudoCircularAlignmentFactory::BacktrackingGotohLocal(
+    Alignment PseudoCircularAlignmentFactory::BacktrackingSmithWatermanAffin(
         const bpp::Sequence* A, const PseudoRotatedSequence* B,
         const ScoringModel* scoreM, const int &delta, const ScoreMatrix3D* D,
         const ScoreMatrix3D* P, const ScoreMatrix3D* Q, uint &i, uint &j)
@@ -215,6 +240,9 @@ namespace Circal
                   }
 
               }
+
+            if (D->at(i).at(j).at(gk) == 0)
+              break;
 
             //Change to Q
             if (scoreM->BestOfTwo(D->at(i).at(j).at(gk), Q->at(i).at(j).at(gk) ) == Q->at(i).at(j).at(gk))
@@ -317,13 +345,16 @@ namespace Circal
         return out;
 
       }
-    void PseudoCircularAlignmentFactory::ForwardRecursionNMW(
+    double PseudoCircularAlignmentFactory::ForwardRecursionSmithWaterman(
         const bpp::Sequence* A, const PseudoRotatedSequence* B,
-        const ScoringModel* scoreM, const int &delta, ScoreMatrix3D* D)
+        const ScoringModel* scoreM, const int &delta, ScoreMatrix3D* D,
+        uint &bi, uint &bj)
       {
         double gapOpenP;
         double gapOpenQ;
         double diagScore;
+
+        double lrla = 0;
 
         //B is doubled=pseudorotated so correct size is B/2
         int slaps = B->size()/2;
@@ -333,31 +364,79 @@ namespace Circal
 
         //Forward
         for (uint i=1; i<A->size()+1; i++)
-          for (uint j=1; j<B->size()+1; j++)
-            {
-              if (j % delta ==1)
-                {
-                  //Score of Match eg. Mismatch
-                  diagScore = D->at(i-1).at(j-1).at(0) + scoreM->ScoreOf(A->getChar(i-1),
-                      B->getChar(j -1));
+          {
+            // haeeh?
+            for (int k=1; k<slaps; k++)
+              {
+                D->at(i).at(0).at(k) = 0;
+              }
+            for (uint j=1; j<B->size()+1; j++)
+              {
+                if (j % delta ==1)
+                  {
+                    //Score of Match eg. Mismatch
+                    diagScore = scoreM->ScoreOf(A->getChar(i-1), B->getChar(j
+                        -1));
 
-                  //Score of Open Gap in A
-                  gapOpenP = D->at(i-1).at(j).at(0) + scoreM->ScoreOfGapOpen(B->getChar(j-1))
-                      + scoreM->ScoreOfGapExtend(B->getChar(j-1));
+                    //Score of Open Gap in A
+                    gapOpenP = D->at(i-1).at(j).at(0) + scoreM->ScoreOfGapOpen(B->getChar(j-1))
+                        + scoreM->ScoreOfGapExtend(B->getChar(j-1));
 
-                  //Score of Open Gap in B
-                  gapOpenQ = D->at(i).at(j-1).at(0) + scoreM->ScoreOfGapOpen(A->getChar(i-1))
-                      + scoreM->ScoreOfGapExtend(A->getChar(i-1));
+                    //Set Distance Matrix Value
+                    D->at(i).at(j).at(0) = scoreM->BestOfThree(diagScore, gapOpenP, 0);
 
-                  //Set Distance Matrix Value
-                  D->at(i).at(j).at(0) = scoreM->BestOfThree(diagScore, gapOpenP,
-                      gapOpenQ);
+                    //Check for 0
+                    if (D->at(i).at(j).at(0) < 0)
+                      D->at(i).at(j).at(0) = 0;
 
-                  for (int k=1; k<slaps; k++)
+                    //Save Best LRLA
+                    if (scoreM->BestOfTwo(lrla, D->at(i).at(j).at(0) != lrla))
+                      {
+                        lrla = D->at(i).at(j).at(0);
+                        bi = i;
+                        bj = j;
+                      }
+
+                    for (int k=1; k<slaps; k++)
+                      {
+                        //Score of Match eg. Mismatch
+                        //!! Changed from Original
+                        diagScore = D->at(i-1).at(j-1).at(k-1) + scoreM->ScoreOf(A->getChar(i-1),
+                            B->getChar(j -1));
+
+                        //Score of Open Gap in A
+                        gapOpenP = D->at(i-1).at(j).at(k) + scoreM->ScoreOfGapOpen(B->getChar(j-1))
+                            + scoreM->ScoreOfGapExtend(B->getChar(j-1));
+
+                        //Score of Open Gap in B
+                        //!! Changed from Original
+                        gapOpenQ = D->at(i).at(j-1).at(k-1) + scoreM->ScoreOfGapOpen(A->getChar(i
+                            -1)) + scoreM->ScoreOfGapExtend(A->getChar(i-1));
+
+                        //Set Distance Matrix Value
+                        D->at(i).at(j).at(k) = scoreM->BestOfThree(diagScore, gapOpenP,
+                            gapOpenQ);
+
+                        //Check for 0
+                        if (D->at(i).at(j).at(k) < 0)
+                          D->at(i).at(j).at(k) = 0;
+
+                        //Save Best LRLA
+                        if (scoreM->BestOfTwo(lrla, D->at(i).at(j).at(k) != lrla))
+                          {
+                            lrla = D->at(i).at(j).at(k);
+                            bi = i;
+                            bj = j;
+                          }
+
+                      }
+
+                  }
+                else
+                  for (int k=0; k<slaps; k++)
                     {
                       //Score of Match eg. Mismatch
-                      //!! Changed from Original
-                      diagScore = D->at(i-1).at(j-1).at(k-1) + scoreM->ScoreOf(A->getChar(i-1),
+                      diagScore = D->at(i-1).at(j-1).at(k) + scoreM->ScoreOf(A->getChar(i-1),
                           B->getChar(j -1));
 
                       //Score of Open Gap in A
@@ -365,42 +444,33 @@ namespace Circal
                           + scoreM->ScoreOfGapExtend(B->getChar(j-1));
 
                       //Score of Open Gap in B
-                      //!! Changed from Original
-                      gapOpenQ = D->at(i).at(j-1).at(k-1)
-                          + scoreM->ScoreOfGapOpen(A->getChar(i-1))
+                      gapOpenQ = D->at(i).at(j-1).at(k) + scoreM->ScoreOfGapOpen(A->getChar(i-1))
                           + scoreM->ScoreOfGapExtend(A->getChar(i-1));
 
                       //Set Distance Matrix Value
                       D->at(i).at(j).at(k) = scoreM->BestOfThree(diagScore, gapOpenP,
                           gapOpenQ);
 
+                      //Check for 0
+                      if (D->at(i).at(j).at(k) < 0)
+                        D->at(i).at(j).at(k) = 0;
+
+                      //Save Best LRLA
+                      if (scoreM->BestOfTwo(lrla, D->at(i).at(j).at(k) != lrla))
+                        {
+                          lrla = D->at(i).at(j).at(k);
+                          bi = i;
+                          bj = j;
+                        }
+
                     }
 
-                }
-              else
-                for (int k=0; k<slaps; k++)
-                  {
-                    //Score of Match eg. Mismatch
-                    diagScore = D->at(i-1).at(j-1).at(k) + scoreM->ScoreOf(A->getChar(i-1),
-                        B->getChar(j -1));
-
-                    //Score of Open Gap in A
-                    gapOpenP = D->at(i-1).at(j).at(k) + scoreM->ScoreOfGapOpen(B->getChar(j-1))
-                        + scoreM->ScoreOfGapExtend(B->getChar(j-1));
-
-                    //Score of Open Gap in B
-                    gapOpenQ = D->at(i).at(j-1).at(k) + scoreM->ScoreOfGapOpen(A->getChar(i-1))
-                        + scoreM->ScoreOfGapExtend(A->getChar(i-1));
-
-                    //Set Distance Matrix Value
-                    D->at(i).at(j).at(k) = scoreM->BestOfThree(diagScore, gapOpenP,
-                        gapOpenQ);
-
-                  }
-
-            }
+              }
+          }
+        return lrla;
       }
-    Alignment PseudoCircularAlignmentFactory::BacktrackingNMW(
+
+    Alignment PseudoCircularAlignmentFactory::BacktrackingSmithWaterman(
         const bpp::Sequence* A, const PseudoRotatedSequence* B,
         const ScoringModel* scoreM, const int &delta, const ScoreMatrix3D* D,
         uint &i, uint &j)
@@ -428,14 +498,23 @@ namespace Circal
         while ( (i>0) && (j>0))
           {
             int k = 0;
+            bool shouldBreak = false;
+
             ScoreD = D->at(i).at(j).at(k);
 
             //Search maximum score within k
-            for (k=1; k<slaps; k++)
+            for (k=0; k<slaps; k++)
               {
+                if (D->at(i).at(j).at(k) == 0)
+                  {
+                    shouldBreak = true;
+                    break;
+                  }
                 if (scoreM->BestOfTwo(D->at(i).at(j).at(k), ScoreD) != ScoreD)
                   ScoreD = D->at(i).at(j).at(k);
               }
+            if (shouldBreak)
+              break;
 
             ScoreDiag = D->at(i-1).at(j-1).at(k);
             ScoreLeftD = D->at(i).at(j-1).at(k);
@@ -452,6 +531,7 @@ namespace Circal
               }
 
             //Lonely Gap in B
+
             else if (ScoreD == ScoreUpD
                 + scoreM->ScoreOfGapOpen(B->getChar(j-1)))
               {
@@ -462,6 +542,7 @@ namespace Circal
                 i--;
               }
             //Diagonal
+
             else if (ScoreD == ScoreDiag + scoreM->ScoreOf(A->getChar(i-1),
                 B->getChar(j-1)))
               {
@@ -480,7 +561,7 @@ namespace Circal
 
           }
 
-        while (i > 0)
+        while (i> 0)
           {
             //cout << "Overlapp A"<< endl;
             minScore += scoreM->ScoreOfGapOpen(A->getChar(i-1));
@@ -489,7 +570,7 @@ namespace Circal
             i--;
           }
 
-        while (j > 0)
+        while (j> 0)
           {
             //cout << "Overlapp B"<< endl;
             minScore += scoreM->ScoreOfGapOpen(B->getChar(j-1));
@@ -523,17 +604,16 @@ namespace Circal
 
         ScoreMatrix D = matrix->InitializeScoreMatrixDistances(inA, B, scoreM);
 
-        //Forward Iteration
-        AlignmentFactory::ForwardRecursionNMW(inA, B, scoreM, &D);
-
-        //Search Starting Node
         uint i = D.size()-1;
         uint j = D.at(0).size()-1;
-        i = matrix->SearchBestInColumn(&D, scoreM, i, j);
+
+        //Forward Iteration
+        AlignmentFactory::ForwardRecursionSmithWaterman(inA, B, scoreM, &D, i,
+            j);
 
         uint horizontalStart = i;
-        Alignment temp = AlignmentFactory::BacktrackingNMW(inA, B, scoreM, &D,
-            i, j);
+        Alignment temp = AlignmentFactory::BacktrackingSmithWaterman(inA, B,
+            scoreM, &D, i, j);
         uint horizontalEnd = i;
 
         //Check for length of actual Alignment
@@ -544,9 +624,12 @@ namespace Circal
           }
         ScoreMatrix3D kD = matrix->InitScoreMatrix3DWith(inA, B, delta, 0);
 
-        ForwardRecursionNMW(inA, B, scoreM, delta, &kD);
+        i = D.size()-1;
+        j = D.at(0).size()-1;
 
-        return BacktrackingNMW(inA, B, scoreM, delta, &kD, i, j);
+        ForwardRecursionSmithWaterman(inA, B, scoreM, delta, &kD, i, j);
+
+        return BacktrackingSmithWaterman(inA, B, scoreM, delta, &kD, i, j);
 
       }
 
@@ -560,17 +643,18 @@ namespace Circal
         ScoreMatrix P = matrix->InitScoreMatrixWith(inA, &B, 0);
         ScoreMatrix Q = matrix->InitScoreMatrixWith(inA, &B, 0);
 
-        //Forward Iteration
-        AlignmentFactory::ForwardRecursionGotoh(inA, &B, scoreM, &D, &P, &Q);
-
-        //Search Starting Node
         uint i = D.size()-1;
         uint j = D.at(0).size()-1;
 
-        //j = matrix->SearchBestInColumn(&D, scoreM, i, j);
+        //Forward Iteration
+        //        AlignmentFactory::ForwardRecursionGotoh(inA, &B, scoreM, &D, &P, &Q);
+
+        AlignmentFactory::ForwardRecursionSmithWatermanAffin(inA, &B, scoreM,
+            &D, &P, &Q, i, j);
+
         uint horizontalStart = j;
-        Alignment temp = AlignmentFactory::BacktrackingGotohGlocal(inA, &B,
-            scoreM, &D, &P, &Q, i, j);
+        Alignment temp = AlignmentFactory::BacktrackingSmithWatermanAffin(inA,
+            &B, scoreM, &D, &P, &Q, i, j);
         uint horizontalEnd = j;
 
         //Check for length of actual Alignment
@@ -586,18 +670,16 @@ namespace Circal
         ScoreMatrix3D kP = matrix->InitScoreMatrix3DWith(inA, &B, delta, 0);
         ScoreMatrix3D kQ = matrix->InitScoreMatrix3DWith(inA, &B, delta, 0);
 
+        i = D.size()-1;
+        j = D.at(0).size()-1;
+
         //Forward Iteration
-        ForwardRecursionGotoh(inA, &B, scoreM, delta, &kD, &kP, &kQ);
+        ForwardRecursionSmithWatermanAffin(inA, &B, scoreM, delta, &kD, &kP,
+            &kQ, i, j);
 
-        i = kD.size()-1;
-        j = kD.at(0).size()-1;
-        uint k= kD.at(0).at(0).size()-1;
-
-        j = matrix->SearchBestInColumn3D(&kD, scoreM, i, j, k);
-        std::cout << "Best Score: " << kD.at(i).at(j).at(k) << " gefunden in j=" << j << std::endl;
-
-        return BacktrackingGotohLocal(inA, &B, scoreM, delta, &kD, &kP, &kQ, i,
-            j);
+        std::cout << "Start bei " << i << ":" << j << std::endl;
+        return BacktrackingSmithWatermanAffin(inA, &B, scoreM, delta, &kD, &kP,
+            &kQ, i, j);
 
       }
   }

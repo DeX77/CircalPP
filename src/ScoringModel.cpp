@@ -20,6 +20,8 @@
 #include "ScoringModel.h"
 #include "AlignmentSymbol.h"
 
+#include <algorithm>
+
 namespace Circal
   {
     ScoringModel::ScoringModel()
@@ -48,11 +50,13 @@ namespace Circal
         string temp;
         string type;
 
-        double gapStart;
-        double gapExtend;
-        double match;
-        double missmatch;
-        double negativeMatch;
+        double gapStart = 0;
+        double gapExtend = 0;
+        double match = 0;
+        double missmatch = 0;
+        double negativeMatch = 0;
+
+        double maxValue = 1;
 
         uint Size = 1;
 
@@ -71,14 +75,11 @@ namespace Circal
                     >> negativeMatch >> missmatch;
                 istring >> temp; //Cut out the ":" char
 
-                //                //We normalize all scores by the highest one: the Match Score
-                //                //..and check for stupid users 
-                //                if (match > 0)
-                //                  {
-                //                    gapStart /= match;
-                //                    gapExtend /= match;
-                //                    missmatch /= match;
-                //                  }
+                if (match > maxValue)
+                  maxValue = match;
+
+                if (negativeMatch > maxValue)
+                  maxValue = negativeMatch;
 
                 while (istring)
                   {
@@ -110,6 +111,9 @@ namespace Circal
 
               }
           }
+        std::cout << "MaxValue=" << maxValue << std::endl;
+        NormalizeScores(maxValue);
+
       }
 
     void ScoringModel::read(const std::string &path)
@@ -121,6 +125,10 @@ namespace Circal
 
     double ScoringModel::ScoreOf(const std::string &A, const std::string &B) const
       {
+
+        double outA = 0;
+        double outB = 0;
+
         //Check if two symbols are completly identical
         if (A.compare(B) == 0)
           {
@@ -137,12 +145,14 @@ namespace Circal
         else
           {
             ModelValues::const_iterator foo = model.find(A);
-            double out= foo->second.missmatch;
+            outA = foo->second.missmatch;
             foo = model.find(B);
-            if (BestOfTwo(foo->second.missmatch, out) != out)
-              return out;
+            outB = foo->second.missmatch;
+            //Check wich one is worse
+            if (BestOfTwo(outA, outB) != outA)
+              return outA;
             else
-              return foo->second.missmatch;
+              return outB;
           }
       }
 
@@ -161,26 +171,46 @@ namespace Circal
         return model.size();
       }
 
-    const double &ScoringModel::BestOfTwo(const double &A, const double &B) const
+    double ScoringModel::BestOfTwo(const double A, const double B) const
       {
-        //If we minimize
-        //return std::min(A, B);
-        //If we maximize
+
         return std::max(A, B);
       }
 
-    const double &ScoringModel::BestOfThree(double &A, double &B, double &C) const
+    double ScoringModel::BestOfThree(const double A, const double B,
+        const double C) const
       {
 
         return BestOfTwo(A, BestOfTwo(B, C) );
 
       }
-    ModelValues::const_iterator ScoringModel::itBegin(void) const
+    
+    ModelValues::const_iterator ScoringModel::constitStart(void) const
       {
         return model.begin();
       }
-    ModelValues::const_iterator ScoringModel::itEnd(void) const
+    
+    ModelValues::const_iterator ScoringModel::constitEnd(void) const
       {
         return model.end();
+      }
+
+    ModelValues::iterator ScoringModel::itStart(void)
+      {
+        return model.begin();
+      }
+    ModelValues::iterator ScoringModel::itEnd(void)
+      {
+        return model.end();
+      }
+
+    void ScoringModel::NormalizeScores(const double &maxValue)
+      {
+        for (ModelValues::iterator foo = itStart(); foo != itEnd(); foo++)
+          {
+            foo->second.match /= maxValue;            
+            foo->second.negativeMatch /= maxValue;
+                        
+          }
       }
   }

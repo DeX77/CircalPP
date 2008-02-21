@@ -30,24 +30,23 @@ namespace Circal
     class PseudoCircularAlignmentFactory : public virtual AlignmentFactory
       {
       //Needleman Wunsch Alignment
-      virtual void ForwardRecursionNMW(const bpp::Sequence* A,
+      virtual double ForwardRecursionSmithWaterman(const bpp::Sequence* A,
           const PseudoRotatedSequence* B, const ScoringModel* scoreM,
-          const int &delta, ScoreMatrix3D* D);
-      virtual Alignment BacktrackingNMW(const bpp::Sequence* outA,
-          const PseudoRotatedSequence* outB, const ScoringModel* scoreM,
+          const int &delta, ScoreMatrix3D* D, uint &bi, uint &bj);
+      virtual Alignment BacktrackingSmithWaterman(const bpp::Sequence* A,
+          const PseudoRotatedSequence* B, const ScoringModel* scoreM,
           const int &delta, const ScoreMatrix3D* D, uint &i, uint &j);
 
       //Gotoh Alignment
-      virtual void
-          ForwardRecursionGotoh(const bpp::Sequence* A,
-              const PseudoRotatedSequence* B, const ScoringModel* scoreM,
-              const int &delta, ScoreMatrix3D* D, ScoreMatrix3D* P,
-              ScoreMatrix3D* Q);
+      virtual double ForwardRecursionSmithWatermanAffin(const bpp::Sequence* A,
+          const PseudoRotatedSequence* B, const ScoringModel* scoreM,
+          const int &delta, ScoreMatrix3D* D, ScoreMatrix3D* P,
+          ScoreMatrix3D* Q, uint &bi, uint &bj);
 
-      virtual Alignment BacktrackingGotohLocal(const bpp::Sequence* outA,
-          const PseudoRotatedSequence* outB, const ScoringModel* scoreM,
-          const int &delta, const ScoreMatrix3D* D, const ScoreMatrix3D* P,
-          const ScoreMatrix3D* Q, uint &i, uint &j);
+      virtual Alignment BacktrackingSmithWatermanAffin(
+          const bpp::Sequence* A, const PseudoRotatedSequence* B,
+          const ScoringModel* scoreM, const int &delta, const ScoreMatrix3D* D,
+          const ScoreMatrix3D* P, const ScoreMatrix3D* Q, uint &i, uint &j);
 
   public:
       PseudoCircularAlignmentFactory();

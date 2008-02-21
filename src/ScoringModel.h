@@ -46,10 +46,16 @@ namespace Circal
       double ScoreOfGapExtend(const std::string A) const;
       int GetModelSize(void) const;
 
-      const double &BestOfTwo(const double &A, const double &B) const;
-      const double &BestOfThree(double &A, double &B, double &C) const;
-      ModelValues::const_iterator itBegin(void) const;
-      ModelValues::const_iterator itEnd(void) const;
+      double BestOfTwo(const double A, const double B) const;
+      double BestOfThree(const double A,const  double B,const  double C)const;
+      
+      void NormalizeScores(const double &maxValue);
+      
+      ModelValues::const_iterator constitStart(void) const;
+      ModelValues::const_iterator constitEnd(void) const;
+      
+      ModelValues::iterator itStart(void);
+      ModelValues::iterator itEnd(void);
 
       };
   }
