@@ -40,30 +40,46 @@ namespace Circal
       //Needleman Wunsch Alignment
       virtual void ForwardRecursionNMW(const bpp::Sequence* A,
           const bpp::Sequence* B, const ScoringModel* scoreM, ScoreMatrix* D);
-      virtual Alignment* BacktrackingNMW(const bpp::Sequence* outA,
+      virtual Alignment BacktrackingNMW(const bpp::Sequence* outA,
           const bpp::Sequence* outB, const ScoringModel* scoreM,
           const ScoreMatrix* D, uint &i, uint &j);
 
       //Gotoh Alignment
-
       virtual void ForwardRecursionGotoh(const bpp::Sequence* A,
           const bpp::Sequence* B, const ScoringModel* scoreM, ScoreMatrix* D,
           ScoreMatrix* P, ScoreMatrix* Q);
-      virtual Alignment* BacktrackingGotohGlocal(const bpp::Sequence* outA,
+      virtual Alignment BacktrackingGotohGlocal(const bpp::Sequence* outA,
           const bpp::Sequence* outB, const ScoringModel* scoreM,
           const ScoreMatrix* D, const ScoreMatrix* P, const ScoreMatrix* Q,
           uint &i, uint &j);
-      virtual Alignment* BacktrackingGotohGlobal(const bpp::Sequence* outA,
+      virtual Alignment BacktrackingGotohGlobal(const bpp::Sequence* outA,
           const bpp::Sequence* outB, const ScoringModel* scoreM,
           const ScoreMatrix* D, const ScoreMatrix* P, const ScoreMatrix* Q,
           uint &i, uint &j);
+
+      //Smith-Waterman Alignment
+      virtual double ForwardRecursionSmithWaterman(const bpp::Sequence* A,
+          const bpp::Sequence* B, const ScoringModel* scoreM, ScoreMatrix* D,
+          uint &i, uint &j);
+      virtual Alignment BacktrackingSmithWaterman(const bpp::Sequence* A,
+          const bpp::Sequence* B, const ScoringModel* scoreM,
+          const ScoreMatrix* D, uint &i, uint &j);
+
+      //Smith-Waterman Alignment-Affin
+      virtual double ForwardRecursionSmithWatermanAffin(const bpp::Sequence* A,
+          const bpp::Sequence* B, const ScoringModel* scoreM, ScoreMatrix* D,
+          uint &i, uint &j);
+      virtual Alignment BacktrackingSmithWatermanAffin(
+          const bpp::Sequence* outA, const bpp::Sequence* outB,
+          const ScoringModel* scoreM, const ScoreMatrix* D, uint &i, uint &j);
+
   public:
       AlignmentFactory();
       virtual ~AlignmentFactory();
 
-      virtual Alignment* NeedlemanWunschAlignment(const bpp::Sequence* inA,
+      virtual Alignment NeedlemanWunschAlignment(const bpp::Sequence* inA,
           const bpp::Sequence* inB, const ScoringModel* scoreM);
-      virtual Alignment* GotohAlignment(const bpp::Sequence* inA,
+      virtual Alignment GotohAlignment(const bpp::Sequence* inA,
           const bpp::Sequence* inB, const ScoringModel* scoreM);
 
       };

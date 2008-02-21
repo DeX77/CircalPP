@@ -28,7 +28,7 @@ namespace Circal
 
     AlignmentFactory::AlignmentFactory()
       {
-        //this->matrix = new Circal::MatrixHelper();
+        this->matrix = new Circal::MatrixHelper();
       }
 
     AlignmentFactory::~AlignmentFactory()
@@ -77,13 +77,13 @@ namespace Circal
 
       }
 
-    Alignment* AlignmentFactory::BacktrackingGotohGlocal(
-        const bpp::Sequence* A, const bpp::Sequence* B,
-        const ScoringModel* scoreM, const ScoreMatrix* D, const ScoreMatrix* P,
-        const ScoreMatrix* Q, uint &i, uint &j)
+    Alignment AlignmentFactory::BacktrackingGotohGlocal(const bpp::Sequence* A,
+        const bpp::Sequence* B, const ScoringModel* scoreM,
+        const ScoreMatrix* D, const ScoreMatrix* P, const ScoreMatrix* Q,
+        uint &i, uint &j)
       {
 
-        Alignment* out = new Alignment(A->getAlphabet());
+        Alignment out(A->getAlphabet());
 
         vector<int> outA;
         vector<int>::iterator itA = outA.begin();
@@ -182,37 +182,40 @@ namespace Circal
 
           }
 
-//        while (j> 0)
-//          {
-//            //            std::cout << "Overlapp B"<< endl;
-//            if (j == 1)
-//              minScore += scoreM->ScoreOfGapOpen(B->getChar(j-1));
-//            minScore += scoreM->ScoreOfGapExtend(B->getChar(j-1));
-//            itB = outB.insert(itB, B->getValue(j-1));
-//            itA = outA.insert(itA, -1);
-//            j--;
-//          }
+        //        while (j> 0)
+        //          {
+        //            //            std::cout << "Overlapp B"<< endl;
+        //            if (j == 1)
+        //              minScore += scoreM->ScoreOfGapOpen(B->getChar(j-1));
+        //            minScore += scoreM->ScoreOfGapExtend(B->getChar(j-1));
+        //            itB = outB.insert(itB, B->getValue(j-1));
+        //            itA = outA.insert(itA, -1);
+        //            j--;
+        //          }
 
-        bpp::Sequence seqA(A->getName(), outA, A->getAlphabet());
-        bpp::Sequence seqB(B->getName(), outB, B->getAlphabet());
+        bpp::Sequence* seqA = new bpp::Sequence(A->getName(), outA, A->getAlphabet());
+        bpp::Sequence* seqB = new bpp::Sequence(B->getName(), outB, B->getAlphabet());
 
         //Save Score to Container
-        out->set_Score(minScore);
+        out.set_Score(minScore);
 
         //Add Alinged Sequences to Container
-        out->addSequence(seqA);
-        out->addSequence(seqB);
+        out.addSequence(seqA);
+        out.addSequence(seqB);
+
+        delete seqA;
+        delete seqB;
 
         return out;
 
       }
-    Alignment* AlignmentFactory::BacktrackingGotohGlobal(
-        const bpp::Sequence* A, const bpp::Sequence* B,
-        const ScoringModel* scoreM, const ScoreMatrix* D, const ScoreMatrix* P,
-        const ScoreMatrix* Q, uint &i, uint &j)
+    Alignment AlignmentFactory::BacktrackingGotohGlobal(const bpp::Sequence* A,
+        const bpp::Sequence* B, const ScoringModel* scoreM,
+        const ScoreMatrix* D, const ScoreMatrix* P, const ScoreMatrix* Q,
+        uint &i, uint &j)
       {
 
-        Alignment* out = new Alignment(A->getAlphabet());
+        Alignment out(A->getAlphabet());
 
         vector<int> outA;
         vector<int>::iterator itA = outA.begin();
@@ -335,15 +338,18 @@ namespace Circal
             j--;
           }
 
-        bpp::Sequence seqA(A->getName(), outA, A->getAlphabet());
-        bpp::Sequence seqB(B->getName(), outB, B->getAlphabet());
+        bpp::Sequence* seqA = new bpp::Sequence(A->getName(), outA, A->getAlphabet());
+        bpp::Sequence* seqB = new bpp::Sequence(B->getName(), outB, B->getAlphabet());
 
         //Save Score to Container
-        out->set_Score(minScore);
+        out.set_Score(minScore);
 
         //Add Alinged Sequences to Container
-        out->addSequence(seqA);
-        out->addSequence(seqB);
+        out.addSequence(seqA);
+        out.addSequence(seqB);
+
+        delete seqA;
+        delete seqB;
 
         return out;
 
@@ -376,7 +382,7 @@ namespace Circal
 
             }
       }
-    Alignment* AlignmentFactory::BacktrackingNMW(const bpp::Sequence* A,
+    Alignment AlignmentFactory::BacktrackingNMW(const bpp::Sequence* A,
         const bpp::Sequence* B, const ScoringModel* scoreM,
         const ScoreMatrix* D, uint &i, uint &j)
       {
@@ -386,7 +392,7 @@ namespace Circal
         vector<int> outB;
         vector<int>::iterator itB = outB.begin();
 
-        Alignment* out = new Alignment(A->getAlphabet());
+        Alignment out(A->getAlphabet());
 
         double minScore = double(0);
 
@@ -463,21 +469,169 @@ namespace Circal
             j--;
           }
 
-        bpp::Sequence seqA(A->getName(), outA, A->getAlphabet());
-        bpp::Sequence seqB(B->getName(), outB, B->getAlphabet());
+        bpp::Sequence* seqA = new bpp::Sequence(A->getName(), outA, A->getAlphabet());
+        bpp::Sequence* seqB = new bpp::Sequence(B->getName(), outB, B->getAlphabet());
 
         //Save Score to Container
-        out->set_Score(minScore);
+        out.set_Score(minScore);
 
         //Add Alinged Sequences to Container
-        out->addSequence(seqA);
-        out->addSequence(seqB);
+        out.addSequence(seqA);
+        out.addSequence(seqB);
+
+        delete seqA;
+        delete seqB;
 
         return out;
 
       }
+    double AlignmentFactory::ForwardRecursionSmithWaterman(
+        const bpp::Sequence* A, const bpp::Sequence* B,
+        const ScoringModel* scoreM, ScoreMatrix* D, uint &bi, uint &bj)
+      {
+        double gapOpenP;
+        double gapOpenQ;
+        double diagScore;
 
-    Alignment* AlignmentFactory::NeedlemanWunschAlignment(
+        double bestScore = 0;
+
+        //Forward
+        for (uint i=1; i<A->size()+1; i++)
+          for (uint j=1; j<B->size()+1; j++)
+            {
+              //Score of Match eg. Mismatch
+              diagScore = D->at(i-1).at(j-1) + scoreM->ScoreOf(A->getChar(i-1), B->getChar(j
+                  -1));
+
+              //Score of Open Gap in A
+              gapOpenP = D->at(i-1).at(j) + scoreM->ScoreOfGapOpen(B->getChar(j-1))
+                  + scoreM->ScoreOfGapExtend(B->getChar(j-1));
+
+              //Score of Open Gap in B
+              gapOpenQ = D->at(i).at(j-1) + scoreM->ScoreOfGapOpen(A->getChar(i-1))
+                  + scoreM->ScoreOfGapExtend(A->getChar(i-1));
+
+              //Set Distance Matrix Value
+              if (scoreM->BestOfThree(diagScore, gapOpenP, gapOpenQ) > 0)
+                D->at(i).at(j) = scoreM->BestOfThree(diagScore, gapOpenP,
+                    gapOpenQ);
+              else
+                D->at(i).at(j) = 0;
+
+              //Save best Score
+              if (scoreM->BestOfTwo(bestScore, D->at(i).at(j)) != bestScore)
+                {
+                  bestScore = D->at(i).at(j);
+                  bi = i;
+                  bj = j;
+                }
+            }
+        return bestScore;
+
+      }
+
+    Alignment AlignmentFactory::BacktrackingSmithWaterman(
+        const bpp::Sequence* A, const bpp::Sequence* B,
+        const ScoringModel* scoreM, const ScoreMatrix* D, uint &i, uint &j)
+      {
+        vector<int> outA;
+        vector<int>::iterator itA = outA.begin();
+        vector<int> outB;
+        vector<int>::iterator itB = outB.begin();
+
+        Alignment out(A->getAlphabet());
+
+        double minScore = double(0);
+
+        double ScoreD;
+        double ScoreDiag;
+        double ScoreUpD;
+        double ScoreLeftD;
+
+        while ( (i>0) && (j>0))
+          {
+            ScoreD = D->at(i).at(j);
+
+            if (ScoreD == 0)
+              break;
+
+            ScoreDiag = D->at(i-1).at(j-1);
+            ScoreLeftD = D->at(i).at(j-1);
+            ScoreUpD = D->at(i-1).at(j);
+
+            //Lonely Gap in A
+            if (ScoreD == ScoreLeftD + scoreM->ScoreOfGapOpen(A->getChar(i -1))
+                + scoreM->ScoreOfGapExtend(A->getChar(i-1)))
+              {
+                //std::cout << "Left"<< endl;
+                minScore += scoreM->ScoreOfGapOpen(A->getChar(i-1));
+                minScore += scoreM->ScoreOfGapExtend(A->getChar(i-1));
+                itA = outA.insert(itA, -1);
+                itB = outB.insert(itB, B->getValue(j-1));
+                j--;
+              }
+
+            //Lonely Gap in B
+            else if (ScoreD == ScoreUpD
+                + scoreM->ScoreOfGapOpen(B->getChar(j-1))
+                + scoreM->ScoreOfGapExtend(B->getChar(j-1)))
+              {
+                //std::cout << "Up"<< endl;
+                minScore += scoreM->ScoreOfGapOpen(B->getChar(j-1));
+                minScore += scoreM->ScoreOfGapExtend(B->getChar(j-1));
+                itA = outA.insert(itA, A->getValue(i-1));
+                itB = outB.insert(itB, -1);
+                i--;
+              }
+            //Diagonal
+            else if (ScoreD == ScoreDiag + scoreM->ScoreOf(A->getChar(i-1),
+                B->getChar(j-1)))
+              {
+                minScore += scoreM->ScoreOf(A->getChar(i-1), B->getChar(j-1));
+                //std::cout << "Diag"<< endl;
+                itA = outA.insert(itA, A->getValue(i-1));
+                itB = outB.insert(itB, B->getValue(j-1));
+                i--;
+                j--;
+              }
+
+            else
+              {
+                std::cout << "42!!! Lost in D"<< endl;
+              }
+
+          }
+
+        bpp::Sequence* seqA = new bpp::Sequence(A->getName(), outA, A->getAlphabet());
+        bpp::Sequence* seqB = new bpp::Sequence(B->getName(), outB, B->getAlphabet());
+
+        //Save Score to Container
+        out.set_Score(minScore);
+
+        //Add Alinged Sequences to Container
+        out.addSequence(seqA);
+        out.addSequence(seqB);
+
+        delete seqA;
+        delete seqB;
+
+        return out;
+      }
+
+    double AlignmentFactory::ForwardRecursionSmithWatermanAffin(
+        const bpp::Sequence* A, const bpp::Sequence* B,
+        const ScoringModel* scoreM, ScoreMatrix* D, uint &bi, uint &bj)
+      {
+
+      }
+    Alignment AlignmentFactory::BacktrackingSmithWatermanAffin(
+        const bpp::Sequence* A, const bpp::Sequence* B,
+        const ScoringModel* scoreM, const ScoreMatrix* D, uint &i, uint &j)
+      {
+
+      }
+
+    Alignment AlignmentFactory::NeedlemanWunschAlignment(
         const bpp::Sequence* inA, const bpp::Sequence* inB,
         const ScoringModel* scoreM)
       {
@@ -494,7 +648,7 @@ namespace Circal
 
       }
 
-    Alignment* AlignmentFactory::GotohAlignment(const bpp::Sequence* inA,
+    Alignment AlignmentFactory::GotohAlignment(const bpp::Sequence* inA,
         const bpp::Sequence* inB, const ScoringModel* scoreM)
       {
 

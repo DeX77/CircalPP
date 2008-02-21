@@ -46,9 +46,8 @@ namespace Circal
       double get_Score();
       void set_Score(const double &s);
       void set_origSize(const uint &orig);
-      void addSequence(const bpp::Sequence & sequence, bool checkNames)
-          throw(bpp::Exception);
-      void addSequence(const bpp::Sequence & sequence) throw(bpp::Exception);
+      void addSequence(const bpp::Sequence*  sequence);
+      //void addSequence(const bpp::Sequence & sequence) throw(bpp::Exception);
       };
   }
 #endif /*ALIGNMENT_H_*/

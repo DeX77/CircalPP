@@ -55,16 +55,13 @@ namespace Circal
         this->Score = s;
       }
 
-    void Alignment::addSequence(const bpp::Sequence & sequence, bool checkNames)
-        throw (bpp::Exception)
+    void Alignment::addSequence(const bpp::Sequence* sequence)
       {
-        bpp::VectorSequenceContainer::addSequence(sequence, checkNames);
-      }
+        //Override stupid Memory leaks
+        //bpp::VectorSequenceContainer::addSequence(sequence, checkNames);
 
-    void Alignment::addSequence(const bpp::Sequence & sequence)
-        throw (bpp::Exception)
-      {
-        this->addSequence(sequence, false);
+        _sequences.push_back(sequence->clone());
+
       }
 
   }

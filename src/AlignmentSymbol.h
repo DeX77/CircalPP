@@ -41,6 +41,7 @@ namespace Circal
       double gapOpen;
       double gapExtend;
       double match;
+      double negativeMatch;
       double missmatch;
       };
   }

@@ -52,6 +52,7 @@ namespace Circal
         double gapExtend;
         double match;
         double missmatch;
+        double negativeMatch;
 
         uint Size = 1;
 
@@ -66,7 +67,8 @@ namespace Circal
             if (temp[0] != '#')
               {
                 istringstream istring(temp);
-                istring >> type >> gapStart >> gapExtend >> match >> missmatch;
+                istring >> type >> gapStart >> gapExtend >> match
+                    >> negativeMatch >> missmatch;
                 istring >> temp; //Cut out the ":" char
 
                 //                //We normalize all scores by the highest one: the Match Score
@@ -92,6 +94,7 @@ namespace Circal
                         sc.gapOpen = -gapStart;
                         sc.gapExtend = -gapExtend;
                         sc.match = match;
+                        sc.negativeMatch = negativeMatch;
                         sc.missmatch = -missmatch;
 
                         model.insert(it, pair<const std::string,
@@ -123,6 +126,13 @@ namespace Circal
           {
             ModelValues::const_iterator foo = model.find(A);
             return foo->second.match;
+          }
+        else
+        //Check for negative values
+        if ((A.compare("-"+B) == 0) || (B.compare("-"+A) == 0))
+          {
+            ModelValues::const_iterator foo = model.find(A);
+            return foo->second.negativeMatch;
           }
         else
           {

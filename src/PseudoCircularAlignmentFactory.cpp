@@ -161,7 +161,7 @@ namespace Circal
             << std::endl;
 
       }
-    Alignment* PseudoCircularAlignmentFactory::BacktrackingGotohLocal(
+    Alignment PseudoCircularAlignmentFactory::BacktrackingGotohLocal(
         const bpp::Sequence* A, const PseudoRotatedSequence* B,
         const ScoringModel* scoreM, const int &delta, const ScoreMatrix3D* D,
         const ScoreMatrix3D* P, const ScoreMatrix3D* Q, uint &i, uint &j)
@@ -170,7 +170,7 @@ namespace Circal
         //Debug purpose
         stringstream cout;
 
-        Alignment* out = new Alignment(A->getAlphabet());
+        Alignment out(A->getAlphabet());
 
         vector<int> outA;
         vector<int>::iterator itA = outA.begin();
@@ -301,15 +301,18 @@ namespace Circal
 
           }
 
-        bpp::Sequence seqA(A->getName(), outA, A->getAlphabet());
-        bpp::Sequence seqB(B->getName(), outB, B->getAlphabet());
+        bpp::Sequence* seqA = new bpp::Sequence(A->getName(), outA, A->getAlphabet());
+        bpp::Sequence* seqB = new bpp::Sequence(B->getName(), outB, B->getAlphabet());
 
         //Save Score to Container
-        out->set_Score(minScore);
+        out.set_Score(minScore);
 
         //Add Alinged Sequences to Container
-        out->addSequence(seqA);
-        out->addSequence(seqB);
+        out.addSequence(seqA);
+        out.addSequence(seqB);
+
+        delete seqA;
+        delete seqB;
 
         return out;
 
@@ -397,7 +400,7 @@ namespace Circal
 
             }
       }
-    Alignment* PseudoCircularAlignmentFactory::BacktrackingNMW(
+    Alignment PseudoCircularAlignmentFactory::BacktrackingNMW(
         const bpp::Sequence* A, const PseudoRotatedSequence* B,
         const ScoringModel* scoreM, const int &delta, const ScoreMatrix3D* D,
         uint &i, uint &j)
@@ -408,7 +411,7 @@ namespace Circal
         vector<int> outB;
         vector<int>::iterator itB = outB.begin();
 
-        Alignment* out = new Alignment(A->getAlphabet());
+        Alignment out(A->getAlphabet());
 
         double minScore = double(0);
 
@@ -495,21 +498,24 @@ namespace Circal
             j--;
           }
 
-        bpp::Sequence seqA(A->getName(), outA, A->getAlphabet());
-        bpp::Sequence seqB(B->getName(), outB, B->getAlphabet());
+        bpp::Sequence* seqA = new bpp::Sequence(A->getName(), outA, A->getAlphabet());
+        bpp::Sequence* seqB = new bpp::Sequence(B->getName(), outB, B->getAlphabet());
 
         //Save Score to Container
-        out->set_Score(minScore);
+        out.set_Score(minScore);
 
         //Add Alinged Sequences to Container
-        out->addSequence(seqA);
-        out->addSequence(seqB);
+        out.addSequence(seqA);
+        out.addSequence(seqB);
+
+        delete seqA;
+        delete seqB;
 
         return out;
 
       }
 
-    Alignment* PseudoCircularAlignmentFactory::NeedlemanWunschAlignment(
+    Alignment PseudoCircularAlignmentFactory::NeedlemanWunschAlignment(
         const bpp::Sequence* inA, const bpp::Sequence* inB,
         const ScoringModel* scoreM, const int &delta)
       {
@@ -526,7 +532,7 @@ namespace Circal
         i = matrix->SearchBestInColumn(&D, scoreM, i, j);
 
         uint horizontalStart = i;
-        Alignment* temp = AlignmentFactory::BacktrackingNMW(inA, B, scoreM, &D,
+        Alignment temp = AlignmentFactory::BacktrackingNMW(inA, B, scoreM, &D,
             i, j);
         uint horizontalEnd = i;
 
@@ -536,9 +542,6 @@ namespace Circal
             //Seems to be ok
             return temp;
           }
-        else
-          delete temp;
-
         ScoreMatrix3D kD = matrix->InitScoreMatrix3DWith(inA, B, delta, 0);
 
         ForwardRecursionNMW(inA, B, scoreM, delta, &kD);
@@ -547,18 +550,18 @@ namespace Circal
 
       }
 
-    Alignment* PseudoCircularAlignmentFactory::GotohAlignment(
+    Alignment PseudoCircularAlignmentFactory::GotohAlignment(
         const bpp::Sequence* inA, const bpp::Sequence* inB,
         const ScoringModel* scoreM, const int &delta)
       {
-        PseudoRotatedSequence* B = new PseudoRotatedSequence(inB);
+        PseudoRotatedSequence B(inB);
 
-        ScoreMatrix D = matrix->InitScoreMatrixWith(inA, B, 0);
-        ScoreMatrix P = matrix->InitScoreMatrixWith(inA, B, 0);
-        ScoreMatrix Q = matrix->InitScoreMatrixWith(inA, B, 0);
+        ScoreMatrix D = matrix->InitScoreMatrixWith(inA, &B, 0);
+        ScoreMatrix P = matrix->InitScoreMatrixWith(inA, &B, 0);
+        ScoreMatrix Q = matrix->InitScoreMatrixWith(inA, &B, 0);
 
         //Forward Iteration
-        AlignmentFactory::ForwardRecursionGotoh(inA, B, scoreM, &D, &P, &Q);
+        AlignmentFactory::ForwardRecursionGotoh(inA, &B, scoreM, &D, &P, &Q);
 
         //Search Starting Node
         uint i = D.size()-1;
@@ -566,7 +569,7 @@ namespace Circal
 
         //j = matrix->SearchBestInColumn(&D, scoreM, i, j);
         uint horizontalStart = j;
-        Alignment* temp = AlignmentFactory::BacktrackingGotohGlocal(inA, B,
+        Alignment temp = AlignmentFactory::BacktrackingGotohGlocal(inA, &B,
             scoreM, &D, &P, &Q, i, j);
         uint horizontalEnd = j;
 
@@ -577,16 +580,14 @@ namespace Circal
             std::cout << "Optimum sofort gefunden!" << std::endl;
             return temp;
           }
-        else
-          delete temp;
 
         //The hard way
-        ScoreMatrix3D kD = matrix->InitScoreMatrix3DWith(inA, B, delta, 0);
-        ScoreMatrix3D kP = matrix->InitScoreMatrix3DWith(inA, B, delta, 0);
-        ScoreMatrix3D kQ = matrix->InitScoreMatrix3DWith(inA, B, delta, 0);
+        ScoreMatrix3D kD = matrix->InitScoreMatrix3DWith(inA, &B, delta, 0);
+        ScoreMatrix3D kP = matrix->InitScoreMatrix3DWith(inA, &B, delta, 0);
+        ScoreMatrix3D kQ = matrix->InitScoreMatrix3DWith(inA, &B, delta, 0);
 
         //Forward Iteration
-        ForwardRecursionGotoh(inA, B, scoreM, delta, &kD, &kP, &kQ);
+        ForwardRecursionGotoh(inA, &B, scoreM, delta, &kD, &kP, &kQ);
 
         i = kD.size()-1;
         j = kD.at(0).size()-1;
@@ -595,7 +596,7 @@ namespace Circal
         j = matrix->SearchBestInColumn3D(&kD, scoreM, i, j, k);
         std::cout << "Best Score: " << kD.at(i).at(j).at(k) << " gefunden in j=" << j << std::endl;
 
-        return BacktrackingGotohLocal(inA, B, scoreM, delta, &kD, &kP, &kQ, i,
+        return BacktrackingGotohLocal(inA, &B, scoreM, delta, &kD, &kP, &kQ, i,
             j);
 
       }

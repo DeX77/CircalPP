@@ -30,69 +30,96 @@ namespace Circal
 
     CircularAlignmentFactory::~CircularAlignmentFactory()
       {
-        delete matrix;
       }
 
-    Alignment* CircularAlignmentFactory::GotohAlignment(const bpp::Sequence* A,
+    Alignment CircularAlignmentFactory::GotohAlignment(const bpp::Sequence* A,
         const bpp::Sequence* B, const ScoringModel* scoreM)
       {
 
         double bestScore = 0;
+        double tempScore = 0;
+        uint offset = 0;
 
-        Alignment* temp;
-        Alignment* out;
+        ScoreMatrix D;
+        ScoreMatrix P;
+        ScoreMatrix Q;
 
         //#ifdef _OPENMP            
-        //#pragma omp parallel for
+        //#pragma omp parallel for shared(offset)
         //#endif      
-        for (uint i=2; i<=A->size(); i++)
+        for (uint i=1; i<=A->size(); i++)
           {
-            std::cout << "*" << std::flush;
-            RotatedSequence* rotB = new RotatedSequence(B, i);
-            temp = AlignmentFactory::GotohAlignment(A, rotB, scoreM);
-            if (scoreM->BestOfTwo(temp->get_Score(), bestScore) != bestScore)
-              {
-                bestScore = temp->get_Score();
-                out = temp;
+            D = matrix->InitScoreMatrixWith(A, B, 0);
+            P = matrix->InitScoreMatrixWith(A, B, 0);
+            Q = matrix->InitScoreMatrixWith(A, B, 0);
 
+            RotatedSequence rotB(B, i);
+
+            AlignmentFactory::ForwardRecursionGotoh(A, &rotB, scoreM, &D, &P, &Q);
+            tempScore = D.at(D.size()-1).at(D.at(0).size()-1);
+
+            if (scoreM->BestOfTwo(tempScore, bestScore) != bestScore)
+              {
+                bestScore = tempScore;
+                offset = i;
               }
 
           }
-        std::cout << std::endl;
+        //Stupid but seems the only way
+        D = matrix->InitScoreMatrixWith(A, B, 0);
+        P = matrix->InitScoreMatrixWith(A, B, 0);
+        Q = matrix->InitScoreMatrixWith(A, B, 0);
 
-        return out;
+        RotatedSequence rotB(B, offset);
+        AlignmentFactory::ForwardRecursionGotoh(A, &rotB, scoreM, &D, &P, &Q);
+
+        uint i = D.size()-1;
+        uint j = D.at(0).size()-1;
+
+        return BacktrackingGotohGlobal(A, &rotB, scoreM, &D, &P, &Q, i, j);
 
       }
 
-    Alignment* CircularAlignmentFactory::NeedlemanWunschAlignment(
+    Alignment CircularAlignmentFactory::NeedlemanWunschAlignment(
         const bpp::Sequence* A, const bpp::Sequence* B,
         const ScoringModel* scoreM)
       {
-        double bestScore = 0;
-        uint offset = 0;
-        Alignment* temp = new Alignment(A->getAlphabet());
-        Alignment* out = new Alignment(A->getAlphabet());
 
-#ifdef _OPENMP            
-#pragma omp parallel for
-#endif      
+        double bestScore = 0;
+        double tempScore = 0;
+        uint offset = 0;
+
+        ScoreMatrix D;
+
+        //#ifdef _OPENMP            
+        //#pragma omp parallel for shared(offset)
+        //#endif      
         for (uint i=1; i<=A->size(); i++)
           {
-            temp = AlignmentFactory::NeedlemanWunschAlignment(A,
-                dynamic_cast<bpp::Sequence*>(new RotatedSequence(B, i)), scoreM);
-            if (scoreM->BestOfTwo(temp->get_Score(), bestScore) != bestScore)
-              {
-                offset = i;
-                bestScore = temp->get_Score();
-                std::cout << "Neue Highscore " << bestScore << " bei Offset: "
-                    << i << std::endl;
-                delete out;
-                out = temp;
+            D = matrix->InitScoreMatrixWith(A, B, 0);
 
+            RotatedSequence rotB(B, i);
+
+            AlignmentFactory::ForwardRecursionNMW(A, &rotB, scoreM, &D);
+            tempScore = D.at(D.size()-1).at(D.at(0).size()-1);
+
+            if (scoreM->BestOfTwo(tempScore, bestScore) != bestScore)
+              {
+                bestScore = tempScore;
+                offset = i;
               }
 
           }
-        return out;
+        //Stupid but seems the only way
+        D = matrix->InitScoreMatrixWith(A, B, 0);
+
+        RotatedSequence rotB(B, offset);
+        AlignmentFactory::ForwardRecursionNMW(A, &rotB, scoreM, &D);
+
+        uint i = D.size()-1;
+        uint j = D.at(0).size()-1;
+
+        return BacktrackingNMW(A, &rotB, scoreM, &D, i, j);
 
       }
   }

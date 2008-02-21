@@ -33,7 +33,7 @@ namespace Circal
       virtual void ForwardRecursionNMW(const bpp::Sequence* A,
           const PseudoRotatedSequence* B, const ScoringModel* scoreM,
           const int &delta, ScoreMatrix3D* D);
-      virtual Alignment* BacktrackingNMW(const bpp::Sequence* outA,
+      virtual Alignment BacktrackingNMW(const bpp::Sequence* outA,
           const PseudoRotatedSequence* outB, const ScoringModel* scoreM,
           const int &delta, const ScoreMatrix3D* D, uint &i, uint &j);
 
@@ -44,7 +44,7 @@ namespace Circal
               const int &delta, ScoreMatrix3D* D, ScoreMatrix3D* P,
               ScoreMatrix3D* Q);
 
-      virtual Alignment* BacktrackingGotohLocal(const bpp::Sequence* outA,
+      virtual Alignment BacktrackingGotohLocal(const bpp::Sequence* outA,
           const PseudoRotatedSequence* outB, const ScoringModel* scoreM,
           const int &delta, const ScoreMatrix3D* D, const ScoreMatrix3D* P,
           const ScoreMatrix3D* Q, uint &i, uint &j);
@@ -53,10 +53,10 @@ namespace Circal
       PseudoCircularAlignmentFactory();
       virtual ~PseudoCircularAlignmentFactory();
 
-      Alignment* NeedlemanWunschAlignment(const bpp::Sequence* A,
+      Alignment NeedlemanWunschAlignment(const bpp::Sequence* A,
           const bpp::Sequence* B, const ScoringModel* scoreM, const int &delta);
 
-      Alignment* GotohAlignment(const bpp::Sequence* A, const bpp::Sequence* B,
+      Alignment GotohAlignment(const bpp::Sequence* A, const bpp::Sequence* B,
           const ScoringModel* scoreM, const int &delta);
 
       };

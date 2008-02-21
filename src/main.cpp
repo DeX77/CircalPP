@@ -106,8 +106,6 @@ int main(int args, char* argv[])
     Circal::CircularAlignmentFactory cicAln;
     Circal::PseudoCircularAlignmentFactory pseudoCircAln;
 
-    Circal::Alignment* regCircular = new Circal::Alignment(&alpha);
-    Circal::Alignment* pseudoCircular = new Circal::Alignment(&alpha);
 
 #ifdef _OPENMP            
 #pragma omp parallel for
@@ -118,12 +116,12 @@ int main(int args, char* argv[])
         for (uint k=u+1; k<sequences.getNumberOfSequences(); k++)
           {
 
-            regCircular = cicAln.GotohAlignment(sequences.getSequence(u),
+            Circal::Alignment regCircular = cicAln.GotohAlignment(sequences.getSequence(u),
                 sequences.getSequence(k), &scoreM);
-            pseudoCircular= pseudoCircAln.GotohAlignment(
+            Circal::Alignment pseudoCircular= pseudoCircAln.GotohAlignment(
                 sequences.getSequence(u), sequences.getSequence(k), &scoreM,
                 delta);
-            if (regCircular->get_Score() != pseudoCircular->get_Score())
+            if (regCircular.get_Score() != pseudoCircular.get_Score())
               {
 
               }
@@ -131,9 +129,9 @@ int main(int args, char* argv[])
               AlignmentsGood++;
             Alignments++;
             std::cout << "Optimum: " << std::endl;
-            std::cout << out.AlignmentPrettyPrint(regCircular) << std::endl;
+            std::cout << out.AlignmentPrettyPrint(&regCircular) << std::endl;
             std::cout << "Heuristik: " << std::endl;
-            std::cout << out.AlignmentPrettyPrint(pseudoCircular) << std::endl;
+            std::cout << out.AlignmentPrettyPrint(&pseudoCircular) << std::endl;
             std::cout
                 << "################################################################################################"
                 << std::endl;
@@ -156,8 +154,7 @@ int main(int args, char* argv[])
 
      std::cout << foo->TCoffeeLibFormat(circal);
      */
-    delete regCircular;
-    delete pseudoCircular;
+    
     return 0;
 
     /*
