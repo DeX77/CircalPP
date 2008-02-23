@@ -424,15 +424,15 @@
       <type>uint</type>
       <name>get_origSize</name>
       <anchorfile>classCircal_1_1Alignment.html</anchorfile>
-      <anchor>4cc257ab74dbee96a70ea7f82e017c7a</anchor>
-      <arglist>() const </arglist>
+      <anchor>77734f8eb8623b665e518afae2e49789</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>double</type>
       <name>get_Score</name>
       <anchorfile>classCircal_1_1Alignment.html</anchorfile>
-      <anchor>894c857b61c9fed3a6332ffe2362b9f1</anchor>
-      <arglist>() const </arglist>
+      <anchor>e4dc0a9b6c0b89f3e3c375b963c76ec1</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -452,15 +452,8 @@
       <type>void</type>
       <name>addSequence</name>
       <anchorfile>classCircal_1_1Alignment.html</anchorfile>
-      <anchor>0a0ef49213d04275c7c932a6f55f8d52</anchor>
-      <arglist>(const bpp::Sequence &amp;sequence, bool checkNames)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>addSequence</name>
-      <anchorfile>classCircal_1_1Alignment.html</anchorfile>
-      <anchor>c3ba2bde0257c150f84a9f025b4f6564</anchor>
-      <arglist>(const bpp::Sequence &amp;sequence)</arglist>
+      <anchor>9068711091bc065e281c076da5bd7dcb</anchor>
+      <arglist>(const bpp::Sequence *sequence)</arglist>
     </member>
     <member kind="variable" protection="private">
       <type>uint</type>
@@ -495,17 +488,31 @@
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual Alignment *</type>
+      <type>virtual Alignment</type>
       <name>NeedlemanWunschAlignment</name>
       <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
-      <anchor>905122b633a55596bbe1c6d5cd6b61c5</anchor>
+      <anchor>1de385e4c4c204601895bce0d12acead</anchor>
       <arglist>(const bpp::Sequence *inA, const bpp::Sequence *inB, const ScoringModel *scoreM)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual Alignment *</type>
+      <type>virtual Alignment</type>
       <name>GotohAlignment</name>
       <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
-      <anchor>f2b43bb3ebb5d2d2bb3fb72e07f7a784</anchor>
+      <anchor>e64b8253a8e582e31f5d4e0d7421142c</anchor>
+      <arglist>(const bpp::Sequence *inA, const bpp::Sequence *inB, const ScoringModel *scoreM)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual Alignment</type>
+      <name>SmithWaterman</name>
+      <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
+      <anchor>23e99c31f6461f57a178ad0a67ba952a</anchor>
+      <arglist>(const bpp::Sequence *inA, const bpp::Sequence *inB, const ScoringModel *scoreM)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual Alignment</type>
+      <name>SmithWatermanAffin</name>
+      <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
+      <anchor>f1c93cb44d62c205901f9ef067321c5e</anchor>
       <arglist>(const bpp::Sequence *inA, const bpp::Sequence *inB, const ScoringModel *scoreM)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
@@ -516,11 +523,11 @@
       <arglist>(const bpp::Sequence *A, const bpp::Sequence *B, const ScoringModel *scoreM, ScoreMatrix *D)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual Alignment *</type>
+      <type>virtual Alignment</type>
       <name>BacktrackingNMW</name>
       <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
-      <anchor>0039e86898c5a54a7d1e6e1185235931</anchor>
-      <arglist>(const bpp::Sequence *outA, const bpp::Sequence *outB, const ScoringModel *scoreM, const ScoreMatrix *D, int &amp;i, int &amp;j)</arglist>
+      <anchor>170edf47373ca95d9cd716d4ace79950</anchor>
+      <arglist>(const bpp::Sequence *outA, const bpp::Sequence *outB, const ScoringModel *scoreM, const ScoreMatrix *D, uint &amp;i, uint &amp;j)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
@@ -530,18 +537,46 @@
       <arglist>(const bpp::Sequence *A, const bpp::Sequence *B, const ScoringModel *scoreM, ScoreMatrix *D, ScoreMatrix *P, ScoreMatrix *Q)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual Alignment *</type>
-      <name>BacktrackingGotohLocal</name>
+      <type>virtual Alignment</type>
+      <name>BacktrackingGotohGlocal</name>
       <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
-      <anchor>a8157edb8c16d97e68d8e28cbe6bbf29</anchor>
-      <arglist>(const bpp::Sequence *outA, const bpp::Sequence *outB, const ScoringModel *scoreM, const ScoreMatrix *D, const ScoreMatrix *P, const ScoreMatrix *Q, int &amp;i, int &amp;j)</arglist>
+      <anchor>a1ac8a1f427263758b520ef65d2d6225</anchor>
+      <arglist>(const bpp::Sequence *outA, const bpp::Sequence *outB, const ScoringModel *scoreM, const ScoreMatrix *D, const ScoreMatrix *P, const ScoreMatrix *Q, uint &amp;i, uint &amp;j)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual Alignment *</type>
+      <type>virtual Alignment</type>
       <name>BacktrackingGotohGlobal</name>
       <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
-      <anchor>304f8c4e023b584b698d053515cf409e</anchor>
-      <arglist>(const bpp::Sequence *outA, const bpp::Sequence *outB, const ScoringModel *scoreM, const ScoreMatrix *D, const ScoreMatrix *P, const ScoreMatrix *Q, int &amp;i, int &amp;j)</arglist>
+      <anchor>e9a87f9cf77459708e957d887b2f358d</anchor>
+      <arglist>(const bpp::Sequence *outA, const bpp::Sequence *outB, const ScoringModel *scoreM, const ScoreMatrix *D, const ScoreMatrix *P, const ScoreMatrix *Q, uint &amp;i, uint &amp;j)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual double</type>
+      <name>ForwardRecursionSmithWaterman</name>
+      <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
+      <anchor>2554dd57c516fefab4b3c746a10d5a9e</anchor>
+      <arglist>(const bpp::Sequence *A, const bpp::Sequence *B, const ScoringModel *scoreM, ScoreMatrix *D, uint &amp;i, uint &amp;j)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual Alignment</type>
+      <name>BacktrackingSmithWaterman</name>
+      <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
+      <anchor>2c2d383ecd1f50ab572e1813188987e7</anchor>
+      <arglist>(const bpp::Sequence *A, const bpp::Sequence *B, const ScoringModel *scoreM, const ScoreMatrix *D, uint &amp;i, uint &amp;j)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual double</type>
+      <name>ForwardRecursionSmithWatermanAffin</name>
+      <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
+      <anchor>b4cb6cb6ecbffc8d2d6edf46d54b75aa</anchor>
+      <arglist>(const bpp::Sequence *A, const bpp::Sequence *B, const ScoringModel *scoreM, ScoreMatrix *D, ScoreMatrix *P, ScoreMatrix *Q, uint &amp;bi, uint &amp;bj)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual Alignment</type>
+      <name>BacktrackingSmithWatermanAffin</name>
+      <anchorfile>classCircal_1_1AlignmentFactory.html</anchorfile>
+      <anchor>38e1e5e94033be95ebe5438df2cdae96</anchor>
+      <arglist>(const bpp::Sequence *A, const bpp::Sequence *B, const ScoringModel *scoreM, const ScoreMatrix *D, const ScoreMatrix *P, const ScoreMatrix *Q, uint &amp;i, uint &amp;j)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>MatrixHelper *</type>
@@ -603,6 +638,27 @@
       <anchor>7022ea193b1e3f3fba196d9b5026df67</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>match</name>
+      <anchorfile>classCircal_1_1AlignmentSymbol.html</anchorfile>
+      <anchor>c5e275629a2f83f578f3bab25b1e3682</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>negativeMatch</name>
+      <anchorfile>classCircal_1_1AlignmentSymbol.html</anchorfile>
+      <anchor>63243049e31d18acafa977a22710e557</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>missmatch</name>
+      <anchorfile>classCircal_1_1AlignmentSymbol.html</anchorfile>
+      <anchor>b7957127bbfa37693391938563ca601d</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>Circal::CircularAlignmentFactory</name>
@@ -623,17 +679,17 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>Alignment *</type>
+      <type>Alignment</type>
       <name>NeedlemanWunschAlignment</name>
       <anchorfile>classCircal_1_1CircularAlignmentFactory.html</anchorfile>
-      <anchor>f8b68bc0c9072963af8ec2589e8c531b</anchor>
+      <anchor>875288196816426e679eb5bcaf2ec442</anchor>
       <arglist>(const bpp::Sequence *A, const bpp::Sequence *B, const ScoringModel *scoreM)</arglist>
     </member>
     <member kind="function">
-      <type>Alignment *</type>
+      <type>Alignment</type>
       <name>GotohAlignment</name>
       <anchorfile>classCircal_1_1CircularAlignmentFactory.html</anchorfile>
-      <anchor>6092e65d745a632692e73b58ee4d5511</anchor>
+      <anchor>2011395ecb3e47fc21987dcc9b9a4812</anchor>
       <arglist>(const bpp::Sequence *A, const bpp::Sequence *B, const ScoringModel *scoreM)</arglist>
     </member>
   </compound>
@@ -733,8 +789,8 @@
       <type>ScoreMatrix3D</type>
       <name>InitScoreMatrix3DWith</name>
       <anchorfile>classCircal_1_1MatrixHelper.html</anchorfile>
-      <anchor>56e71c3f8041515ac8d64f8cd56e1b39</anchor>
-      <arglist>(const PseudoRotatedSequence *A, const bpp::Sequence *B, const int &amp;delta, const double &amp;init)</arglist>
+      <anchor>d7f73b9f9ada591e7ed652909e240140</anchor>
+      <arglist>(const bpp::Sequence *A, const PseudoRotatedSequence *B, const int &amp;delta, const double &amp;init)</arglist>
     </member>
     <member kind="function">
       <type>BoolMatrix</type>
@@ -747,36 +803,50 @@
       <type>void</type>
       <name>CutRowFromTo</name>
       <anchorfile>classCircal_1_1MatrixHelper.html</anchorfile>
-      <anchor>94f8f8c73bdf4750fd89bba5a6617bf3</anchor>
-      <arglist>(ScoreMatrix *D, const int &amp;start, const int &amp;end)</arglist>
+      <anchor>baf89eb7d195cd23dbd1b12ddd89ff3d</anchor>
+      <arglist>(ScoreMatrix *D, const uint &amp;start, const uint &amp;end)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>CutColumnFromTo</name>
       <anchorfile>classCircal_1_1MatrixHelper.html</anchorfile>
-      <anchor>a3e515432ce4a7801dfd37c6187d5a3a</anchor>
-      <arglist>(ScoreMatrix *D, const int &amp;start, const int &amp;end)</arglist>
+      <anchor>341c7274b762c4d1c32950816d3c8594</anchor>
+      <arglist>(ScoreMatrix *D, const uint &amp;start, const uint &amp;end)</arglist>
     </member>
     <member kind="function">
       <type>double</type>
       <name>SearchBestPositionFrom</name>
       <anchorfile>classCircal_1_1MatrixHelper.html</anchorfile>
-      <anchor>762a8754aebcf3ed096bf4ba30c07268</anchor>
-      <arglist>(const ScoreMatrix *M, int &amp;i, int &amp;j, const ScoringModel *scoreM)</arglist>
+      <anchor>8a261ceaa3de47879c771252a3e38b53</anchor>
+      <arglist>(const ScoreMatrix *M, uint &amp;i, uint &amp;j, const ScoringModel *scoreM)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>SearchBestInRow</name>
       <anchorfile>classCircal_1_1MatrixHelper.html</anchorfile>
-      <anchor>bd74679b30ef70a3dc53015ff3eb94b5</anchor>
-      <arglist>(const ScoreMatrix *M, const ScoringModel *scoreM, const int &amp;start, const int &amp;row)</arglist>
+      <anchor>beed35923850dd22a830a22063a77a0a</anchor>
+      <arglist>(const ScoreMatrix *M, const ScoringModel *scoreM, const uint &amp;start, const uint &amp;row)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>SearchBestInRow3D</name>
+      <anchorfile>classCircal_1_1MatrixHelper.html</anchorfile>
+      <anchor>0ede39b0287474c056d137f6e812c27f</anchor>
+      <arglist>(const ScoreMatrix3D *M, const ScoringModel *scoreM, const uint &amp;start, const uint &amp;row, uint &amp;k)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>SearchBestInColumn</name>
       <anchorfile>classCircal_1_1MatrixHelper.html</anchorfile>
-      <anchor>1f0e082360b59504a8f0a69d2fb7694d</anchor>
-      <arglist>(const ScoreMatrix *M, const ScoringModel *scoreM, const int &amp;start, const int &amp;column)</arglist>
+      <anchor>e69e461388db01111d662b709d6ab4f2</anchor>
+      <arglist>(const ScoreMatrix *M, const ScoringModel *scoreM, const uint &amp;start, const uint &amp;column)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>SearchBestInColumn3D</name>
+      <anchorfile>classCircal_1_1MatrixHelper.html</anchorfile>
+      <anchor>b3b25325d1f7ee51562ccda3ac015ae6</anchor>
+      <arglist>(const ScoreMatrix3D *M, const ScoringModel *scoreM, const uint &amp;start, const uint &amp;column, uint &amp;k)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -798,17 +868,17 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>Alignment *</type>
+      <type>Alignment</type>
       <name>GotohalignMultiple</name>
       <anchorfile>classCircal_1_1MultipleAlignmentFactory.html</anchorfile>
-      <anchor>6bbe95bdf27644b8530879dfa04aa5ad</anchor>
+      <anchor>3da56cffbb33fe069f6664f422f95293</anchor>
       <arglist>(const bpp::VectorSequenceContainer *input, const ScoringModel *scoreM)</arglist>
     </member>
     <member kind="function">
-      <type>Alignment *</type>
+      <type>Alignment</type>
       <name>NMWalignMultiple</name>
       <anchorfile>classCircal_1_1MultipleAlignmentFactory.html</anchorfile>
-      <anchor>238d9b883b561a26964d1158113ea44b</anchor>
+      <anchor>fd5d4739a7a6b6ae695b61fe4c683144</anchor>
       <arglist>(const bpp::VectorSequenceContainer *input, const ScoringModel *scoreM)</arglist>
     </member>
   </compound>
@@ -873,22 +943,22 @@
       <type>std::string</type>
       <name>SequencePrettyPrint</name>
       <anchorfile>classCircal_1_1Output.html</anchorfile>
-      <anchor>1942bfb1f480d2d4cf49f8e0f9c8cc92</anchor>
-      <arglist>(const bpp::Sequence *A)</arglist>
+      <anchor>dea07429ad2ed3d082aa4d9ef85e8114</anchor>
+      <arglist>(bpp::Sequence *A)</arglist>
     </member>
     <member kind="function">
       <type>std::string</type>
       <name>ScoreMatrixPrettyPrint</name>
       <anchorfile>classCircal_1_1Output.html</anchorfile>
-      <anchor>2ed0aa94d088dcffe1c3d1fa633aed0a</anchor>
-      <arglist>(const bpp::Sequence *A, const bpp::Sequence *B, const ScoreMatrix &amp;D)</arglist>
+      <anchor>47c40c57355de8604a457c7b4f26448a</anchor>
+      <arglist>(bpp::Sequence *A, bpp::Sequence *B, const ScoreMatrix &amp;D)</arglist>
     </member>
     <member kind="function">
       <type>std::string</type>
       <name>AlignmentPrettyPrint</name>
       <anchorfile>classCircal_1_1Output.html</anchorfile>
-      <anchor>a4c99407de17b3f8244aca4aa60b4a53</anchor>
-      <arglist>(const Alignment *aln)</arglist>
+      <anchor>ab041c2ce86bb7ab5f682cdab596d06b</anchor>
+      <arglist>(Alignment *aln)</arglist>
     </member>
     <member kind="function">
       <type>std::string</type>
@@ -901,8 +971,8 @@
       <type>std::string</type>
       <name>TCoffeeLibFormat</name>
       <anchorfile>classCircal_1_1Output.html</anchorfile>
-      <anchor>0147043da0fc76b3e1ca8cf4f9bec727</anchor>
-      <arglist>(const Alignment *aln)</arglist>
+      <anchor>57d8fa1161c56174dfbd91af97a58c9e</anchor>
+      <arglist>(Alignment *aln)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -924,46 +994,46 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>Alignment *</type>
+      <type>Alignment</type>
       <name>NeedlemanWunschAlignment</name>
       <anchorfile>classCircal_1_1PseudoCircularAlignmentFactory.html</anchorfile>
-      <anchor>d601a61140ce3b2744011796d5a0b8ff</anchor>
+      <anchor>5fbac3b1fea116808a17d9046300ed65</anchor>
       <arglist>(const bpp::Sequence *A, const bpp::Sequence *B, const ScoringModel *scoreM, const int &amp;delta)</arglist>
     </member>
     <member kind="function">
-      <type>Alignment *</type>
+      <type>Alignment</type>
       <name>GotohAlignment</name>
       <anchorfile>classCircal_1_1PseudoCircularAlignmentFactory.html</anchorfile>
-      <anchor>5f7014c491306d20353cec101bff4e5b</anchor>
+      <anchor>8af80fa1638dd2b69b27a2cc528b6ed1</anchor>
       <arglist>(const bpp::Sequence *A, const bpp::Sequence *B, const ScoringModel *scoreM, const int &amp;delta)</arglist>
     </member>
     <member kind="function" protection="private" virtualness="virtual">
-      <type>virtual void</type>
-      <name>ForwardRecursionNMW</name>
+      <type>virtual double</type>
+      <name>ForwardRecursionSmithWaterman</name>
       <anchorfile>classCircal_1_1PseudoCircularAlignmentFactory.html</anchorfile>
-      <anchor>ad3698770412a8094f20cc924be54151</anchor>
-      <arglist>(const PseudoRotatedSequence *A, const bpp::Sequence *B, const ScoringModel *scoreM, const int &amp;delta, ScoreMatrix3D *D)</arglist>
+      <anchor>81b0b7b0acdb8ec01af0f9383826a42a</anchor>
+      <arglist>(const bpp::Sequence *A, const PseudoRotatedSequence *B, const ScoringModel *scoreM, const int &amp;delta, ScoreMatrix3D *D, uint &amp;bi, uint &amp;bj)</arglist>
     </member>
     <member kind="function" protection="private" virtualness="virtual">
-      <type>virtual Alignment *</type>
-      <name>BacktrackingNMW</name>
+      <type>virtual Alignment</type>
+      <name>BacktrackingSmithWaterman</name>
       <anchorfile>classCircal_1_1PseudoCircularAlignmentFactory.html</anchorfile>
-      <anchor>a4a3ad6ea415ea699f59a52eff424ecc</anchor>
-      <arglist>(const PseudoRotatedSequence *outA, const bpp::Sequence *outB, const ScoringModel *scoreM, const int &amp;delta, const ScoreMatrix3D *D, int &amp;i, int &amp;j)</arglist>
+      <anchor>bbebcc77eef75596c7eeb73a24c5d5ed</anchor>
+      <arglist>(const bpp::Sequence *A, const PseudoRotatedSequence *B, const ScoringModel *scoreM, const int &amp;delta, const ScoreMatrix3D *D, uint &amp;i, uint &amp;j)</arglist>
     </member>
     <member kind="function" protection="private" virtualness="virtual">
-      <type>virtual void</type>
-      <name>ForwardRecursionGotoh</name>
+      <type>virtual double</type>
+      <name>ForwardRecursionSmithWatermanAffin</name>
       <anchorfile>classCircal_1_1PseudoCircularAlignmentFactory.html</anchorfile>
-      <anchor>2b0c3da16b0740a13d943d2e0845a39d</anchor>
-      <arglist>(const PseudoRotatedSequence *A, const bpp::Sequence *B, const ScoringModel *scoreM, const int &amp;delta, ScoreMatrix3D *D, ScoreMatrix3D *P, ScoreMatrix3D *Q)</arglist>
+      <anchor>74b7860fd17df40cb002981bfa4ceae3</anchor>
+      <arglist>(const bpp::Sequence *A, const PseudoRotatedSequence *B, const ScoringModel *scoreM, const int &amp;delta, ScoreMatrix3D *D, ScoreMatrix3D *P, ScoreMatrix3D *Q, uint &amp;bi, uint &amp;bj)</arglist>
     </member>
     <member kind="function" protection="private" virtualness="virtual">
-      <type>virtual Alignment *</type>
-      <name>BacktrackingGotohLocal</name>
+      <type>virtual Alignment</type>
+      <name>BacktrackingSmithWatermanAffin</name>
       <anchorfile>classCircal_1_1PseudoCircularAlignmentFactory.html</anchorfile>
-      <anchor>209f2a738115afba7957ebf8e29b1018</anchor>
-      <arglist>(const PseudoRotatedSequence *outA, const bpp::Sequence *outB, const ScoringModel *scoreM, const int &amp;delta, const ScoreMatrix3D *D, const ScoreMatrix3D *P, const ScoreMatrix3D *Q, int &amp;i, int &amp;j)</arglist>
+      <anchor>af28f0bd23a9451562e6af23df1b39aa</anchor>
+      <arglist>(const bpp::Sequence *A, const PseudoRotatedSequence *B, const ScoringModel *scoreM, const int &amp;delta, const ScoreMatrix3D *D, const ScoreMatrix3D *P, const ScoreMatrix3D *Q, uint &amp;i, uint &amp;j)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -1172,32 +1242,53 @@
       <arglist>(void) const </arglist>
     </member>
     <member kind="function">
-      <type>const double &amp;</type>
+      <type>double</type>
       <name>BestOfTwo</name>
       <anchorfile>classCircal_1_1ScoringModel.html</anchorfile>
-      <anchor>2af91279a78623322072a65a071f572b</anchor>
-      <arglist>(const double &amp;A, const double &amp;B) const </arglist>
+      <anchor>7a0e45da2b4c5912f08258bd56dd1788</anchor>
+      <arglist>(const double A, const double B) const </arglist>
     </member>
     <member kind="function">
-      <type>const double &amp;</type>
+      <type>double</type>
       <name>BestOfThree</name>
       <anchorfile>classCircal_1_1ScoringModel.html</anchorfile>
-      <anchor>ea8047bcaff23574faf333c25759d30c</anchor>
-      <arglist>(double &amp;A, double &amp;B, double &amp;C) const </arglist>
+      <anchor>4a300e1b772adbbda981a5608710c027</anchor>
+      <arglist>(const double A, const double B, const double C) const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>NormalizeScores</name>
+      <anchorfile>classCircal_1_1ScoringModel.html</anchorfile>
+      <anchor>9c4029894b6d5d238f1ba870ea59a622</anchor>
+      <arglist>(const double &amp;maxValue)</arglist>
     </member>
     <member kind="function">
       <type>ModelValues::const_iterator</type>
-      <name>itBegin</name>
+      <name>constitStart</name>
       <anchorfile>classCircal_1_1ScoringModel.html</anchorfile>
-      <anchor>194f8ee93c3bcfabfa3cd643b9d316d0</anchor>
+      <anchor>73e7d5817e567d8731732657be3ae459</anchor>
       <arglist>(void) const </arglist>
     </member>
     <member kind="function">
       <type>ModelValues::const_iterator</type>
+      <name>constitEnd</name>
+      <anchorfile>classCircal_1_1ScoringModel.html</anchorfile>
+      <anchor>f9b1e4968c419cad45035197f800986f</anchor>
+      <arglist>(void) const </arglist>
+    </member>
+    <member kind="function">
+      <type>ModelValues::iterator</type>
+      <name>itStart</name>
+      <anchorfile>classCircal_1_1ScoringModel.html</anchorfile>
+      <anchor>5e65c909aadd2a8e559cd36c8169a972</anchor>
+      <arglist>(void)</arglist>
+    </member>
+    <member kind="function">
+      <type>ModelValues::iterator</type>
       <name>itEnd</name>
       <anchorfile>classCircal_1_1ScoringModel.html</anchorfile>
-      <anchor>0536cf32c7b197b9385f10ee06996a20</anchor>
-      <arglist>(void) const </arglist>
+      <anchor>544c6c9e67d81f89f554a2db3a8f270f</anchor>
+      <arglist>(void)</arglist>
     </member>
     <member kind="variable" protection="private">
       <type>ModelValues</type>

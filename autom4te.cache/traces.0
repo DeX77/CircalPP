@@ -1,7 +1,7 @@
 m4trace:aclocal.m4:869: -1- m4_include([m4/ax_ext_have_lib.m4])
 m4trace:aclocal.m4:870: -1- m4_include([m4/ax_openmp.m4])
 m4trace:configure.ac:4: -1- AC_PREREQ([2.61])
-m4trace:configure.ac:5: -1- AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])
+m4trace:configure.ac:5: -1- AC_INIT([Circal++], [1.0], [dex@dragonslave.de])
 m4trace:configure.ac:5: -1- m4_pattern_forbid([^_?A[CHUM]_])
 m4trace:configure.ac:5: -1- m4_pattern_forbid([_AC_])
 m4trace:configure.ac:5: -1- m4_pattern_forbid([^LIBOBJS$], [do not use LIBOBJS directly, use AC_LIBOBJ (see section `AC_LIBOBJ vs LIBOBJS'])

@@ -39,11 +39,13 @@ namespace Circal
 
       }
 
-    std::string Output::ScoreMatrixPrettyPrint(bpp::Sequence* A,
-        bpp::Sequence* B, const ScoreMatrix &D)
+    std::string Output::ScoreMatrixPrettyPrint(const bpp::Sequence* A,
+        const bpp::Sequence* B, const ScoreMatrix &D)
       {
         std::stringstream out;
 
+        out.width(40);
+        out << right;
         out << " ";
         for (uint k=0; k<B->size(); k++)
           out << " "<< B->getChar(k);

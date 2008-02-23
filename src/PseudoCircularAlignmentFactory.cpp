@@ -600,6 +600,10 @@ namespace Circal
         const bpp::Sequence* inA, const bpp::Sequence* inB,
         const ScoringModel* scoreM, const int &delta)
       {
+        //First of all check which of the sequences is longer
+        if (inA->size()>inB->size())
+          return NeedlemanWunschAlignment(inB, inA, scoreM, delta);
+
         PseudoRotatedSequence* B = new PseudoRotatedSequence(inB);
 
         ScoreMatrix D = matrix->InitializeScoreMatrixDistances(inA, B, scoreM);
@@ -637,6 +641,10 @@ namespace Circal
         const bpp::Sequence* inA, const bpp::Sequence* inB,
         const ScoringModel* scoreM, const int &delta)
       {
+        //First of all check which of the sequences is longer
+        if (inA->size()>inB->size())
+          return GotohAlignment(inB, inA, scoreM, delta);
+
         PseudoRotatedSequence B(inB);
 
         ScoreMatrix D = matrix->InitScoreMatrixWith(inA, &B, 0);
@@ -664,6 +672,8 @@ namespace Circal
             std::cout << "Optimum sofort gefunden!" << std::endl;
             return temp;
           }
+        else
+          std::cout << "Yipi ya yay Schweinebacke" << std::endl;
 
         //The hard way
         ScoreMatrix3D kD = matrix->InitScoreMatrix3DWith(inA, &B, delta, 0);
@@ -677,7 +687,6 @@ namespace Circal
         ForwardRecursionSmithWatermanAffin(inA, &B, scoreM, delta, &kD, &kP,
             &kQ, i, j);
 
-        std::cout << "Start bei " << i << ":" << j << std::endl;
         return BacktrackingSmithWatermanAffin(inA, &B, scoreM, delta, &kD, &kP,
             &kQ, i, j);
 

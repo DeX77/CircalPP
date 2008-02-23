@@ -1,4 +1,4 @@
-.TH "Circal::Output" 3 "20 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
+.TH "Circal::Output" 3 "21 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -18,19 +18,19 @@ Circal::Output \-
 .RI "virtual \fB~Output\fP ()"
 .br
 .ti -1c
-.RI "std::string \fBSequencePrettyPrint\fP (const bpp::Sequence *A)"
+.RI "std::string \fBSequencePrettyPrint\fP (bpp::Sequence *A)"
 .br
 .ti -1c
-.RI "std::string \fBScoreMatrixPrettyPrint\fP (const bpp::Sequence *A, const bpp::Sequence *B, const \fBScoreMatrix\fP &D)"
+.RI "std::string \fBScoreMatrixPrettyPrint\fP (bpp::Sequence *A, bpp::Sequence *B, const \fBScoreMatrix\fP &D)"
 .br
 .ti -1c
-.RI "std::string \fBAlignmentPrettyPrint\fP (const \fBAlignment\fP *aln)"
+.RI "std::string \fBAlignmentPrettyPrint\fP (\fBAlignment\fP *aln)"
 .br
 .ti -1c
 .RI "std::string \fBAdjacenceMatrixPrettyPrint\fP (const \fBBoolMatrix\fP &G)"
 .br
 .ti -1c
-.RI "std::string \fBTCoffeeLibFormat\fP (const \fBAlignment\fP *aln)"
+.RI "std::string \fBTCoffeeLibFormat\fP (\fBAlignment\fP *aln)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -46,15 +46,15 @@ Definition at line 33 of file Output.cpp.
 Definition at line 37 of file Output.cpp.
 .SH "Member Function Documentation"
 .PP 
-.SS "std::string Circal::Output::SequencePrettyPrint (const bpp::Sequence * A)"
+.SS "std::string Circal::Output::SequencePrettyPrint (bpp::Sequence * A)"
 .PP
 Definition at line 92 of file Output.cpp.
 .PP
 Referenced by AlignmentPrettyPrint().
-.SS "std::string Circal::Output::ScoreMatrixPrettyPrint (const bpp::Sequence * A, const bpp::Sequence * B, const \fBScoreMatrix\fP & D)"
+.SS "std::string Circal::Output::ScoreMatrixPrettyPrint (bpp::Sequence * A, bpp::Sequence * B, const \fBScoreMatrix\fP & D)"
 .PP
 Definition at line 42 of file Output.cpp.
-.SS "std::string Circal::Output::AlignmentPrettyPrint (const \fBAlignment\fP * aln)"
+.SS "std::string Circal::Output::AlignmentPrettyPrint (\fBAlignment\fP * aln)"
 .PP
 Definition at line 63 of file Output.cpp.
 .PP
@@ -64,9 +64,9 @@ Referenced by main().
 .SS "std::string Circal::Output::AdjacenceMatrixPrettyPrint (const \fBBoolMatrix\fP & G)"
 .PP
 Definition at line 79 of file Output.cpp.
-.SS "std::string Circal::Output::TCoffeeLibFormat (const \fBAlignment\fP * aln)"
+.SS "std::string Circal::Output::TCoffeeLibFormat (\fBAlignment\fP * aln)"
 .PP
-Definition at line 103 of file Output.cpp.
+Definition at line 104 of file Output.cpp.
 .PP
 References Circal::Alignment::get_origSize().
 

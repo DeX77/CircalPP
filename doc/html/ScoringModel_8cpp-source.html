@@ -38,128 +38,201 @@
 <a name="l00020"></a>00020 <span class="preprocessor">#include "<a class="code" href="ScoringModel_8h.html">ScoringModel.h</a>"</span>
 <a name="l00021"></a>00021 <span class="preprocessor">#include "<a class="code" href="AlignmentSymbol_8h.html">AlignmentSymbol.h</a>"</span>
 <a name="l00022"></a>00022 
-<a name="l00023"></a>00023 <span class="keyword">namespace </span>Circal
-<a name="l00024"></a>00024   {
-<a name="l00025"></a><a class="code" href="classCircal_1_1ScoringModel.html#6b0d64828fe988c3ac6af739d1382063">00025</a>     <a class="code" href="classCircal_1_1ScoringModel.html#6b0d64828fe988c3ac6af739d1382063">ScoringModel::ScoringModel</a>()
-<a name="l00026"></a>00026       {
-<a name="l00027"></a>00027       }
-<a name="l00028"></a><a class="code" href="classCircal_1_1ScoringModel.html#77ac8d2c5ca4db4cfb7beb951524dd3e">00028</a>     ScoringModel::ScoringModel(<span class="keyword">const</span> std::string &amp; path)
-<a name="l00029"></a>00029       {
-<a name="l00030"></a>00030         <a class="code" href="classCircal_1_1ScoringModel.html#7d9db7271ea52eeebfb23db5039b0333">read</a>(path);
-<a name="l00031"></a>00031       }
-<a name="l00032"></a>00032 
-<a name="l00033"></a><a class="code" href="classCircal_1_1ScoringModel.html#2dc745eb33b08937bc99c094b4a7230f">00033</a>     <a class="code" href="classCircal_1_1ScoringModel.html#6b0d64828fe988c3ac6af739d1382063">ScoringModel::ScoringModel</a>(std::istream &amp; input)
-<a name="l00034"></a>00034       {
-<a name="l00035"></a>00035         <a class="code" href="classCircal_1_1ScoringModel.html#7d9db7271ea52eeebfb23db5039b0333">read</a>(input);
-<a name="l00036"></a>00036       }
-<a name="l00037"></a>00037 
-<a name="l00038"></a><a class="code" href="classCircal_1_1ScoringModel.html#0f91c4aa719a37596655f30751b485c4">00038</a>     <a class="code" href="classCircal_1_1ScoringModel.html#0f91c4aa719a37596655f30751b485c4">ScoringModel::~ScoringModel</a>()
-<a name="l00039"></a>00039       {
-<a name="l00040"></a>00040       }
-<a name="l00041"></a><a class="code" href="classCircal_1_1ScoringModel.html#2144c248a25d0e571820eeb4ce727f63">00041</a>     <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1ScoringModel.html#7d9db7271ea52eeebfb23db5039b0333">ScoringModel::read</a>(std::istream &amp; input)
-<a name="l00042"></a>00042       {
-<a name="l00043"></a>00043         <span class="keywordflow">if</span> (!input)
-<a name="l00044"></a>00044           {
-<a name="l00045"></a>00045             <span class="keywordflow">throw</span> bpp::IOException (<span class="stringliteral">"ScoringModel::ScoringModel: fail to open file"</span>);
-<a name="l00046"></a>00046           }
-<a name="l00047"></a>00047 
-<a name="l00048"></a>00048         <span class="keywordtype">string</span> temp;
-<a name="l00049"></a>00049         <span class="keywordtype">string</span> type;
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051         <span class="keywordtype">double</span> gapStart;
-<a name="l00052"></a>00052         <span class="keywordtype">double</span> gapExtend;
-<a name="l00053"></a>00053         uint Size = 1;
-<a name="l00054"></a>00054 
-<a name="l00055"></a>00055         <span class="comment">// Main loop : for all file lines</span>
-<a name="l00056"></a>00056         <span class="keywordflow">while</span> (!input.eof())
-<a name="l00057"></a>00057           {
-<a name="l00058"></a>00058             getline(input, temp, <span class="charliteral">'\n'</span>); <span class="comment">// Copy current line in temporary string</span>
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060             <span class="keywordflow">if</span> (temp[0] != <span class="charliteral">'#'</span>)
-<a name="l00061"></a>00061               {
-<a name="l00062"></a>00062                 istringstream istring(temp);
-<a name="l00063"></a>00063                 istring &gt;&gt; type &gt;&gt; gapStart &gt;&gt; gapExtend;
-<a name="l00064"></a>00064                 istring &gt;&gt; temp; <span class="comment">//Cut out the ":" char</span>
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066                 <span class="keywordflow">while</span> (istring)
-<a name="l00067"></a>00067                   {
-<a name="l00068"></a>00068                     <a class="code" href="classCircal_1_1AlignmentSymbol.html">AlignmentSymbol</a> sc;
-<a name="l00069"></a>00069                     istring &gt;&gt; temp;
-<a name="l00070"></a>00070                     <span class="keywordflow">if</span> (!temp.empty())
-<a name="l00071"></a>00071                       {
-<a name="l00072"></a>00072                         sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#c3ca0649bbfcf50c7f50c6ea280a5745">symbol</a> = bpp::TextTools::toUpper(temp);
-<a name="l00073"></a>00073                         <span class="keywordflow">if</span> (sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#c3ca0649bbfcf50c7f50c6ea280a5745">symbol</a>.length() &gt; Size)
-<a name="l00074"></a>00074                           Size = sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#c3ca0649bbfcf50c7f50c6ea280a5745">symbol</a>.length();
-<a name="l00075"></a>00075                         sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#7ed0cee1ba897f9669eb480a453486ff">type</a> = type;
-<a name="l00076"></a>00076                         <span class="comment">//Changed gapOpen &amp; gapExtend to negative Values to correspond with Maximize</span>
-<a name="l00077"></a>00077                         sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#d27fdb207847b400876f66b4b0054211">gapOpen</a> = -gapStart;
-<a name="l00078"></a>00078                         sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#7022ea193b1e3f3fba196d9b5026df67">gapExtend</a> = -gapExtend;
-<a name="l00079"></a>00079                         <a class="code" href="classCircal_1_1ScoringModel.html#ede10aaf341f9809bb34108f08977ce0">model</a>[sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#c3ca0649bbfcf50c7f50c6ea280a5745">symbol</a>] = sc;
-<a name="l00080"></a>00080                         <span class="comment">//Also add negative Symbol Version</span>
-<a name="l00081"></a>00081                         sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#c3ca0649bbfcf50c7f50c6ea280a5745">symbol</a> = <span class="stringliteral">"-"</span> + sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#c3ca0649bbfcf50c7f50c6ea280a5745">symbol</a>;
-<a name="l00082"></a>00082                         <a class="code" href="classCircal_1_1ScoringModel.html#ede10aaf341f9809bb34108f08977ce0">model</a>[sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#c3ca0649bbfcf50c7f50c6ea280a5745">symbol</a>] = sc;
-<a name="l00083"></a>00083                       }
-<a name="l00084"></a>00084                   }
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086               }
-<a name="l00087"></a>00087           }
-<a name="l00088"></a>00088       }
-<a name="l00089"></a>00089 
-<a name="l00090"></a><a class="code" href="classCircal_1_1ScoringModel.html#7d9db7271ea52eeebfb23db5039b0333">00090</a>     <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1ScoringModel.html#7d9db7271ea52eeebfb23db5039b0333">ScoringModel::read</a>(<span class="keyword">const</span> std::string &amp;path)
-<a name="l00091"></a>00091       {
-<a name="l00092"></a>00092         ifstream input(path.c_str(), ios::in);
-<a name="l00093"></a>00093         <a class="code" href="classCircal_1_1ScoringModel.html#7d9db7271ea52eeebfb23db5039b0333">read</a>(input);
-<a name="l00094"></a>00094         input.close();
-<a name="l00095"></a>00095       }
-<a name="l00096"></a>00096 
-<a name="l00097"></a><a class="code" href="classCircal_1_1ScoringModel.html#c9093a36aae9269b516c34438d2df279">00097</a>     <span class="keywordtype">double</span> <a class="code" href="classCircal_1_1ScoringModel.html#c9093a36aae9269b516c34438d2df279">ScoringModel::ScoreOf</a>(<span class="keyword">const</span> std::string &amp;A, <span class="keyword">const</span> std::string &amp;B)<span class="keyword"> const</span>
-<a name="l00098"></a>00098 <span class="keyword">      </span>{
-<a name="l00099"></a>00099         <span class="comment">//Check if two symbols are completly identical</span>
-<a name="l00100"></a>00100         <span class="keywordflow">if</span> (A.compare(B) == 0)
-<a name="l00101"></a>00101           <span class="keywordflow">return</span> 20;
-<a name="l00102"></a>00102         <span class="keywordflow">else</span>
-<a name="l00103"></a>00103           <span class="keywordflow">return</span> -10;
-<a name="l00104"></a>00104       }
-<a name="l00105"></a>00105 
-<a name="l00106"></a><a class="code" href="classCircal_1_1ScoringModel.html#3f934683024d21df07165eee183ee918">00106</a>     <span class="keywordtype">double</span> <a class="code" href="classCircal_1_1ScoringModel.html#3f934683024d21df07165eee183ee918">ScoringModel::ScoreOfGapOpen</a>(<span class="keyword">const</span> std::string A)<span class="keyword"> const</span>
-<a name="l00107"></a>00107 <span class="keyword">      </span>{
-<a name="l00108"></a>00108         ModelValues::const_iterator foo = <a class="code" href="classCircal_1_1ScoringModel.html#ede10aaf341f9809bb34108f08977ce0">model</a>.find(A);
-<a name="l00109"></a>00109         <span class="keywordflow">return</span> foo-&gt;second.gapOpen;
-<a name="l00110"></a>00110       }
-<a name="l00111"></a><a class="code" href="classCircal_1_1ScoringModel.html#dc158e70948f9cce9c80ef7df6cdde6f">00111</a>     <span class="keywordtype">double</span> <a class="code" href="classCircal_1_1ScoringModel.html#dc158e70948f9cce9c80ef7df6cdde6f">ScoringModel::ScoreOfGapExtend</a>(<span class="keyword">const</span> std::string A)<span class="keyword"> const</span>
-<a name="l00112"></a>00112 <span class="keyword">      </span>{
-<a name="l00113"></a>00113         ModelValues::const_iterator foo = <a class="code" href="classCircal_1_1ScoringModel.html#ede10aaf341f9809bb34108f08977ce0">model</a>.find(A);
-<a name="l00114"></a>00114         <span class="keywordflow">return</span> foo-&gt;second.gapExtend;
-<a name="l00115"></a>00115       }
-<a name="l00116"></a><a class="code" href="classCircal_1_1ScoringModel.html#5a72855024938d033e28072bc5528a1b">00116</a>     <span class="keywordtype">int</span> <a class="code" href="classCircal_1_1ScoringModel.html#5a72855024938d033e28072bc5528a1b">ScoringModel::GetModelSize</a>(<span class="keywordtype">void</span>)<span class="keyword"> const</span>
-<a name="l00117"></a>00117 <span class="keyword">      </span>{
-<a name="l00118"></a>00118         <span class="keywordflow">return</span> <a class="code" href="classCircal_1_1ScoringModel.html#ede10aaf341f9809bb34108f08977ce0">model</a>.size();
-<a name="l00119"></a>00119       }
-<a name="l00120"></a>00120 
-<a name="l00121"></a><a class="code" href="classCircal_1_1ScoringModel.html#2af91279a78623322072a65a071f572b">00121</a>     <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;<a class="code" href="classCircal_1_1ScoringModel.html#2af91279a78623322072a65a071f572b">ScoringModel::BestOfTwo</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;A, <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;B)<span class="keyword"> const</span>
-<a name="l00122"></a>00122 <span class="keyword">      </span>{
-<a name="l00123"></a>00123         <span class="comment">//If we minimize</span>
-<a name="l00124"></a>00124         <span class="comment">//return std::min(A, B);</span>
-<a name="l00125"></a>00125         <span class="comment">//If we maximize</span>
-<a name="l00126"></a>00126         <span class="keywordflow">return</span> std::max(A, B);
-<a name="l00127"></a>00127       }
+<a name="l00023"></a>00023 <span class="preprocessor">#include &lt;algorithm&gt;</span>
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 <span class="keyword">namespace </span>Circal
+<a name="l00026"></a>00026   {
+<a name="l00027"></a><a class="code" href="classCircal_1_1ScoringModel.html#6b0d64828fe988c3ac6af739d1382063">00027</a>     <a class="code" href="classCircal_1_1ScoringModel.html#6b0d64828fe988c3ac6af739d1382063">ScoringModel::ScoringModel</a>()
+<a name="l00028"></a>00028       {
+<a name="l00029"></a>00029       }
+<a name="l00030"></a><a class="code" href="classCircal_1_1ScoringModel.html#77ac8d2c5ca4db4cfb7beb951524dd3e">00030</a>     ScoringModel::ScoringModel(<span class="keyword">const</span> std::string &amp; path)
+<a name="l00031"></a>00031       {
+<a name="l00032"></a>00032         <a class="code" href="classCircal_1_1ScoringModel.html#7d9db7271ea52eeebfb23db5039b0333">read</a>(path);
+<a name="l00033"></a>00033       }
+<a name="l00034"></a>00034 
+<a name="l00035"></a><a class="code" href="classCircal_1_1ScoringModel.html#2dc745eb33b08937bc99c094b4a7230f">00035</a>     <a class="code" href="classCircal_1_1ScoringModel.html#6b0d64828fe988c3ac6af739d1382063">ScoringModel::ScoringModel</a>(std::istream &amp; input)
+<a name="l00036"></a>00036       {
+<a name="l00037"></a>00037         <a class="code" href="classCircal_1_1ScoringModel.html#7d9db7271ea52eeebfb23db5039b0333">read</a>(input);
+<a name="l00038"></a>00038       }
+<a name="l00039"></a>00039 
+<a name="l00040"></a><a class="code" href="classCircal_1_1ScoringModel.html#0f91c4aa719a37596655f30751b485c4">00040</a>     <a class="code" href="classCircal_1_1ScoringModel.html#0f91c4aa719a37596655f30751b485c4">ScoringModel::~ScoringModel</a>()
+<a name="l00041"></a>00041       {
+<a name="l00042"></a>00042       }
+<a name="l00043"></a><a class="code" href="classCircal_1_1ScoringModel.html#2144c248a25d0e571820eeb4ce727f63">00043</a>     <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1ScoringModel.html#7d9db7271ea52eeebfb23db5039b0333">ScoringModel::read</a>(std::istream &amp; input)
+<a name="l00044"></a>00044       {
+<a name="l00045"></a>00045         <span class="keywordflow">if</span> (!input)
+<a name="l00046"></a>00046           {
+<a name="l00047"></a>00047             <span class="keywordflow">throw</span> bpp::IOException (<span class="stringliteral">"ScoringModel::ScoringModel: fail to open file"</span>);
+<a name="l00048"></a>00048           }
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050         <span class="keywordtype">string</span> temp;
+<a name="l00051"></a>00051         <span class="keywordtype">string</span> type;
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053         <span class="keywordtype">double</span> gapStart = 0;
+<a name="l00054"></a>00054         <span class="keywordtype">double</span> gapExtend = 0;
+<a name="l00055"></a>00055         <span class="keywordtype">double</span> match = 0;
+<a name="l00056"></a>00056         <span class="keywordtype">double</span> missmatch = 0;
+<a name="l00057"></a>00057         <span class="keywordtype">double</span> negativeMatch = 0;
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059         <span class="keywordtype">double</span> maxValue = 1;
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061         uint Size = 1;
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063         ModelValues::iterator it;
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065         <span class="comment">// Main loop : for all file lines</span>
+<a name="l00066"></a>00066         <span class="keywordflow">while</span> (!input.eof())
+<a name="l00067"></a>00067           {
+<a name="l00068"></a>00068             it = <a class="code" href="classCircal_1_1ScoringModel.html#ede10aaf341f9809bb34108f08977ce0">model</a>.begin();
+<a name="l00069"></a>00069             getline(input, temp, <span class="charliteral">'\n'</span>); <span class="comment">// Copy current line in temporary string</span>
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071             <span class="keywordflow">if</span> (temp[0] != <span class="charliteral">'#'</span>)
+<a name="l00072"></a>00072               {
+<a name="l00073"></a>00073                 istringstream istring(temp);
+<a name="l00074"></a>00074                 istring &gt;&gt; type &gt;&gt; gapStart &gt;&gt; gapExtend &gt;&gt; match
+<a name="l00075"></a>00075                     &gt;&gt; negativeMatch &gt;&gt; missmatch;
+<a name="l00076"></a>00076                 istring &gt;&gt; temp; <span class="comment">//Cut out the ":" char</span>
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078                 <span class="keywordflow">if</span> (match &gt; maxValue)
+<a name="l00079"></a>00079                   maxValue = match;
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081                 <span class="keywordflow">if</span> (negativeMatch &gt; maxValue)
+<a name="l00082"></a>00082                   maxValue = negativeMatch;
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084                 <span class="keywordflow">while</span> (istring)
+<a name="l00085"></a>00085                   {
+<a name="l00086"></a>00086                     <a class="code" href="classCircal_1_1AlignmentSymbol.html">AlignmentSymbol</a> sc;
+<a name="l00087"></a>00087                     istring &gt;&gt; temp;
+<a name="l00088"></a>00088                     <span class="keywordflow">if</span> (!temp.empty())
+<a name="l00089"></a>00089                       {
+<a name="l00090"></a>00090                         sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#c3ca0649bbfcf50c7f50c6ea280a5745">symbol</a> = bpp::TextTools::toUpper(temp);
+<a name="l00091"></a>00091                         <span class="keywordflow">if</span> (sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#c3ca0649bbfcf50c7f50c6ea280a5745">symbol</a>.length() &gt; Size)
+<a name="l00092"></a>00092                           Size = sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#c3ca0649bbfcf50c7f50c6ea280a5745">symbol</a>.length();
+<a name="l00093"></a>00093                         sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#7ed0cee1ba897f9669eb480a453486ff">type</a> = type;
+<a name="l00094"></a>00094                         <span class="comment">//Changed gapOpen &amp; gapExtend to negative Values to correspond with Maximize</span>
+<a name="l00095"></a>00095                         sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#d27fdb207847b400876f66b4b0054211">gapOpen</a> = -gapStart;
+<a name="l00096"></a>00096                         sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#7022ea193b1e3f3fba196d9b5026df67">gapExtend</a> = -gapExtend;
+<a name="l00097"></a>00097                         sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#c5e275629a2f83f578f3bab25b1e3682">match</a> = match;
+<a name="l00098"></a>00098                         sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#63243049e31d18acafa977a22710e557">negativeMatch</a> = negativeMatch;
+<a name="l00099"></a>00099                         sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#b7957127bbfa37693391938563ca601d">missmatch</a> = -missmatch;
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101                         <a class="code" href="classCircal_1_1ScoringModel.html#ede10aaf341f9809bb34108f08977ce0">model</a>.insert(it, pair&lt;<span class="keyword">const</span> std::string,
+<a name="l00102"></a>00102                             <a class="code" href="classCircal_1_1AlignmentSymbol.html">AlignmentSymbol</a>&gt;(sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#c3ca0649bbfcf50c7f50c6ea280a5745">symbol</a>, sc));
+<a name="l00103"></a>00103                         it++;
+<a name="l00104"></a>00104                         <span class="comment">//Also add negative Symbol Version</span>
+<a name="l00105"></a>00105                         sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#c3ca0649bbfcf50c7f50c6ea280a5745">symbol</a> = <span class="stringliteral">"-"</span> + sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#c3ca0649bbfcf50c7f50c6ea280a5745">symbol</a>;
+<a name="l00106"></a>00106                         <a class="code" href="classCircal_1_1ScoringModel.html#ede10aaf341f9809bb34108f08977ce0">model</a>.insert(it, pair&lt;<span class="keyword">const</span> std::string,
+<a name="l00107"></a>00107                             <a class="code" href="classCircal_1_1AlignmentSymbol.html">AlignmentSymbol</a>&gt;(sc.<a class="code" href="classCircal_1_1AlignmentSymbol.html#c3ca0649bbfcf50c7f50c6ea280a5745">symbol</a>, sc));
+<a name="l00108"></a>00108                         it++;
+<a name="l00109"></a>00109                       }
+<a name="l00110"></a>00110                   }
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112               }
+<a name="l00113"></a>00113           }
+<a name="l00114"></a>00114         std::cout &lt;&lt; <span class="stringliteral">"MaxValue="</span> &lt;&lt; maxValue &lt;&lt; std::endl;
+<a name="l00115"></a>00115         <a class="code" href="classCircal_1_1ScoringModel.html#9c4029894b6d5d238f1ba870ea59a622">NormalizeScores</a>(maxValue);
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117       }
+<a name="l00118"></a>00118 
+<a name="l00119"></a><a class="code" href="classCircal_1_1ScoringModel.html#7d9db7271ea52eeebfb23db5039b0333">00119</a>     <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1ScoringModel.html#7d9db7271ea52eeebfb23db5039b0333">ScoringModel::read</a>(<span class="keyword">const</span> std::string &amp;path)
+<a name="l00120"></a>00120       {
+<a name="l00121"></a>00121         ifstream input(path.c_str(), ios::in);
+<a name="l00122"></a>00122         <a class="code" href="classCircal_1_1ScoringModel.html#7d9db7271ea52eeebfb23db5039b0333">read</a>(input);
+<a name="l00123"></a>00123         input.close();
+<a name="l00124"></a>00124       }
+<a name="l00125"></a>00125 
+<a name="l00126"></a><a class="code" href="classCircal_1_1ScoringModel.html#c9093a36aae9269b516c34438d2df279">00126</a>     <span class="keywordtype">double</span> <a class="code" href="classCircal_1_1ScoringModel.html#c9093a36aae9269b516c34438d2df279">ScoringModel::ScoreOf</a>(<span class="keyword">const</span> std::string &amp;A, <span class="keyword">const</span> std::string &amp;B)<span class="keyword"> const</span>
+<a name="l00127"></a>00127 <span class="keyword">      </span>{
 <a name="l00128"></a>00128 
-<a name="l00129"></a><a class="code" href="classCircal_1_1ScoringModel.html#ea8047bcaff23574faf333c25759d30c">00129</a>     <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;<a class="code" href="classCircal_1_1ScoringModel.html#ea8047bcaff23574faf333c25759d30c">ScoringModel::BestOfThree</a>(<span class="keywordtype">double</span> &amp;A, <span class="keywordtype">double</span> &amp;B, <span class="keywordtype">double</span> &amp;C)<span class="keyword"> const</span>
-<a name="l00130"></a>00130 <span class="keyword">      </span>{
+<a name="l00129"></a>00129         <span class="keywordtype">double</span> outA = 0;
+<a name="l00130"></a>00130         <span class="keywordtype">double</span> outB = 0;
 <a name="l00131"></a>00131 
-<a name="l00132"></a>00132         <span class="keywordflow">return</span> <a class="code" href="classCircal_1_1ScoringModel.html#2af91279a78623322072a65a071f572b">BestOfTwo</a>(A, <a class="code" href="classCircal_1_1ScoringModel.html#2af91279a78623322072a65a071f572b">BestOfTwo</a>(B, C) );
-<a name="l00133"></a>00133 
-<a name="l00134"></a>00134       }
-<a name="l00135"></a><a class="code" href="classCircal_1_1ScoringModel.html#194f8ee93c3bcfabfa3cd643b9d316d0">00135</a>     ModelValues::const_iterator <a class="code" href="classCircal_1_1ScoringModel.html#194f8ee93c3bcfabfa3cd643b9d316d0">ScoringModel::itBegin</a>(<span class="keywordtype">void</span>)<span class="keyword"> const</span>
-<a name="l00136"></a>00136 <span class="keyword">      </span>{
-<a name="l00137"></a>00137         <span class="keywordflow">return</span> <a class="code" href="classCircal_1_1ScoringModel.html#ede10aaf341f9809bb34108f08977ce0">model</a>.begin();
-<a name="l00138"></a>00138       }
-<a name="l00139"></a><a class="code" href="classCircal_1_1ScoringModel.html#0536cf32c7b197b9385f10ee06996a20">00139</a>     ModelValues::const_iterator <a class="code" href="classCircal_1_1ScoringModel.html#0536cf32c7b197b9385f10ee06996a20">ScoringModel::itEnd</a>(<span class="keywordtype">void</span>)<span class="keyword"> const</span>
-<a name="l00140"></a>00140 <span class="keyword">      </span>{
-<a name="l00141"></a>00141         <span class="keywordflow">return</span> <a class="code" href="classCircal_1_1ScoringModel.html#ede10aaf341f9809bb34108f08977ce0">model</a>.end();
-<a name="l00142"></a>00142       }
-<a name="l00143"></a>00143   }
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Wed Feb 20 11:30:20 2008 for CircalPP by&nbsp;
+<a name="l00132"></a>00132         <span class="comment">//Check if two symbols are completly identical</span>
+<a name="l00133"></a>00133         <span class="keywordflow">if</span> (A.compare(B) == 0)
+<a name="l00134"></a>00134           {
+<a name="l00135"></a>00135             ModelValues::const_iterator foo = <a class="code" href="classCircal_1_1ScoringModel.html#ede10aaf341f9809bb34108f08977ce0">model</a>.find(A);
+<a name="l00136"></a>00136             <span class="keywordflow">return</span> foo-&gt;second.match;
+<a name="l00137"></a>00137           }
+<a name="l00138"></a>00138         <span class="keywordflow">else</span>
+<a name="l00139"></a>00139         <span class="comment">//Check for negative values</span>
+<a name="l00140"></a>00140         <span class="keywordflow">if</span> ((A.compare(<span class="stringliteral">"-"</span>+B) == 0) || (B.compare(<span class="stringliteral">"-"</span>+A) == 0))
+<a name="l00141"></a>00141           {
+<a name="l00142"></a>00142             ModelValues::const_iterator foo = <a class="code" href="classCircal_1_1ScoringModel.html#ede10aaf341f9809bb34108f08977ce0">model</a>.find(A);
+<a name="l00143"></a>00143             <span class="keywordflow">return</span> foo-&gt;second.negativeMatch;
+<a name="l00144"></a>00144           }
+<a name="l00145"></a>00145         <span class="keywordflow">else</span>
+<a name="l00146"></a>00146           {
+<a name="l00147"></a>00147             ModelValues::const_iterator foo = <a class="code" href="classCircal_1_1ScoringModel.html#ede10aaf341f9809bb34108f08977ce0">model</a>.find(A);
+<a name="l00148"></a>00148             outA = foo-&gt;second.missmatch;
+<a name="l00149"></a>00149             foo = <a class="code" href="classCircal_1_1ScoringModel.html#ede10aaf341f9809bb34108f08977ce0">model</a>.find(B);
+<a name="l00150"></a>00150             outB = foo-&gt;second.missmatch;
+<a name="l00151"></a>00151             <span class="comment">//Check wich one is worse</span>
+<a name="l00152"></a>00152             <span class="keywordflow">if</span> (<a class="code" href="classCircal_1_1ScoringModel.html#7a0e45da2b4c5912f08258bd56dd1788">BestOfTwo</a>(outA, outB) != outA)
+<a name="l00153"></a>00153               <span class="keywordflow">return</span> outA;
+<a name="l00154"></a>00154             <span class="keywordflow">else</span>
+<a name="l00155"></a>00155               <span class="keywordflow">return</span> outB;
+<a name="l00156"></a>00156           }
+<a name="l00157"></a>00157       }
+<a name="l00158"></a>00158 
+<a name="l00159"></a><a class="code" href="classCircal_1_1ScoringModel.html#3f934683024d21df07165eee183ee918">00159</a>     <span class="keywordtype">double</span> <a class="code" href="classCircal_1_1ScoringModel.html#3f934683024d21df07165eee183ee918">ScoringModel::ScoreOfGapOpen</a>(<span class="keyword">const</span> std::string A)<span class="keyword"> const</span>
+<a name="l00160"></a>00160 <span class="keyword">      </span>{
+<a name="l00161"></a>00161         ModelValues::const_iterator foo = <a class="code" href="classCircal_1_1ScoringModel.html#ede10aaf341f9809bb34108f08977ce0">model</a>.find(A);
+<a name="l00162"></a>00162         <span class="keywordflow">return</span> foo-&gt;second.gapOpen;
+<a name="l00163"></a>00163       }
+<a name="l00164"></a><a class="code" href="classCircal_1_1ScoringModel.html#dc158e70948f9cce9c80ef7df6cdde6f">00164</a>     <span class="keywordtype">double</span> <a class="code" href="classCircal_1_1ScoringModel.html#dc158e70948f9cce9c80ef7df6cdde6f">ScoringModel::ScoreOfGapExtend</a>(<span class="keyword">const</span> std::string A)<span class="keyword"> const</span>
+<a name="l00165"></a>00165 <span class="keyword">      </span>{
+<a name="l00166"></a>00166         ModelValues::const_iterator foo = <a class="code" href="classCircal_1_1ScoringModel.html#ede10aaf341f9809bb34108f08977ce0">model</a>.find(A);
+<a name="l00167"></a>00167         <span class="keywordflow">return</span> foo-&gt;second.gapExtend;
+<a name="l00168"></a>00168       }
+<a name="l00169"></a><a class="code" href="classCircal_1_1ScoringModel.html#5a72855024938d033e28072bc5528a1b">00169</a>     <span class="keywordtype">int</span> <a class="code" href="classCircal_1_1ScoringModel.html#5a72855024938d033e28072bc5528a1b">ScoringModel::GetModelSize</a>(<span class="keywordtype">void</span>)<span class="keyword"> const</span>
+<a name="l00170"></a>00170 <span class="keyword">      </span>{
+<a name="l00171"></a>00171         <span class="keywordflow">return</span> <a class="code" href="classCircal_1_1ScoringModel.html#ede10aaf341f9809bb34108f08977ce0">model</a>.size();
+<a name="l00172"></a>00172       }
+<a name="l00173"></a>00173 
+<a name="l00174"></a><a class="code" href="classCircal_1_1ScoringModel.html#7a0e45da2b4c5912f08258bd56dd1788">00174</a>     <span class="keywordtype">double</span> <a class="code" href="classCircal_1_1ScoringModel.html#7a0e45da2b4c5912f08258bd56dd1788">ScoringModel::BestOfTwo</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> A, <span class="keyword">const</span> <span class="keywordtype">double</span> B)<span class="keyword"> const</span>
+<a name="l00175"></a>00175 <span class="keyword">      </span>{
+<a name="l00176"></a>00176 
+<a name="l00177"></a>00177         <span class="keywordflow">return</span> std::max(A, B);
+<a name="l00178"></a>00178       }
+<a name="l00179"></a>00179 
+<a name="l00180"></a><a class="code" href="classCircal_1_1ScoringModel.html#4a300e1b772adbbda981a5608710c027">00180</a>     <span class="keywordtype">double</span> <a class="code" href="classCircal_1_1ScoringModel.html#4a300e1b772adbbda981a5608710c027">ScoringModel::BestOfThree</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> A, <span class="keyword">const</span> <span class="keywordtype">double</span> B,
+<a name="l00181"></a>00181         <span class="keyword">const</span> <span class="keywordtype">double</span> C)<span class="keyword"> const</span>
+<a name="l00182"></a>00182 <span class="keyword">      </span>{
+<a name="l00183"></a>00183 
+<a name="l00184"></a>00184         <span class="keywordflow">return</span> <a class="code" href="classCircal_1_1ScoringModel.html#7a0e45da2b4c5912f08258bd56dd1788">BestOfTwo</a>(A, <a class="code" href="classCircal_1_1ScoringModel.html#7a0e45da2b4c5912f08258bd56dd1788">BestOfTwo</a>(B, C) );
+<a name="l00185"></a>00185 
+<a name="l00186"></a>00186       }
+<a name="l00187"></a>00187     
+<a name="l00188"></a><a class="code" href="classCircal_1_1ScoringModel.html#73e7d5817e567d8731732657be3ae459">00188</a>     ModelValues::const_iterator <a class="code" href="classCircal_1_1ScoringModel.html#73e7d5817e567d8731732657be3ae459">ScoringModel::constitStart</a>(<span class="keywordtype">void</span>)<span class="keyword"> const</span>
+<a name="l00189"></a>00189 <span class="keyword">      </span>{
+<a name="l00190"></a>00190         <span class="keywordflow">return</span> <a class="code" href="classCircal_1_1ScoringModel.html#ede10aaf341f9809bb34108f08977ce0">model</a>.begin();
+<a name="l00191"></a>00191       }
+<a name="l00192"></a>00192     
+<a name="l00193"></a><a class="code" href="classCircal_1_1ScoringModel.html#f9b1e4968c419cad45035197f800986f">00193</a>     ModelValues::const_iterator <a class="code" href="classCircal_1_1ScoringModel.html#f9b1e4968c419cad45035197f800986f">ScoringModel::constitEnd</a>(<span class="keywordtype">void</span>)<span class="keyword"> const</span>
+<a name="l00194"></a>00194 <span class="keyword">      </span>{
+<a name="l00195"></a>00195         <span class="keywordflow">return</span> <a class="code" href="classCircal_1_1ScoringModel.html#ede10aaf341f9809bb34108f08977ce0">model</a>.end();
+<a name="l00196"></a>00196       }
+<a name="l00197"></a>00197 
+<a name="l00198"></a><a class="code" href="classCircal_1_1ScoringModel.html#5e65c909aadd2a8e559cd36c8169a972">00198</a>     ModelValues::iterator <a class="code" href="classCircal_1_1ScoringModel.html#5e65c909aadd2a8e559cd36c8169a972">ScoringModel::itStart</a>(<span class="keywordtype">void</span>)
+<a name="l00199"></a>00199       {
+<a name="l00200"></a>00200         <span class="keywordflow">return</span> <a class="code" href="classCircal_1_1ScoringModel.html#ede10aaf341f9809bb34108f08977ce0">model</a>.begin();
+<a name="l00201"></a>00201       }
+<a name="l00202"></a><a class="code" href="classCircal_1_1ScoringModel.html#544c6c9e67d81f89f554a2db3a8f270f">00202</a>     ModelValues::iterator <a class="code" href="classCircal_1_1ScoringModel.html#544c6c9e67d81f89f554a2db3a8f270f">ScoringModel::itEnd</a>(<span class="keywordtype">void</span>)
+<a name="l00203"></a>00203       {
+<a name="l00204"></a>00204         <span class="keywordflow">return</span> <a class="code" href="classCircal_1_1ScoringModel.html#ede10aaf341f9809bb34108f08977ce0">model</a>.end();
+<a name="l00205"></a>00205       }
+<a name="l00206"></a>00206 
+<a name="l00207"></a><a class="code" href="classCircal_1_1ScoringModel.html#9c4029894b6d5d238f1ba870ea59a622">00207</a>     <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1ScoringModel.html#9c4029894b6d5d238f1ba870ea59a622">ScoringModel::NormalizeScores</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;maxValue)
+<a name="l00208"></a>00208       {
+<a name="l00209"></a>00209         <span class="keywordflow">for</span> (ModelValues::iterator foo = <a class="code" href="classCircal_1_1ScoringModel.html#5e65c909aadd2a8e559cd36c8169a972">itStart</a>(); foo != <a class="code" href="classCircal_1_1ScoringModel.html#544c6c9e67d81f89f554a2db3a8f270f">itEnd</a>(); foo++)
+<a name="l00210"></a>00210           {
+<a name="l00211"></a>00211             foo-&gt;second.match /= maxValue;            
+<a name="l00212"></a>00212             foo-&gt;second.negativeMatch /= maxValue;
+<a name="l00213"></a>00213                         
+<a name="l00214"></a>00214           }
+<a name="l00215"></a>00215       }
+<a name="l00216"></a>00216   }
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 21 21:14:16 2008 for CircalPP by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>

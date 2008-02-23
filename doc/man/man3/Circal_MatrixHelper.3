@@ -1,4 +1,4 @@
-.TH "Circal::MatrixHelper" 3 "20 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
+.TH "Circal::MatrixHelper" 3 "21 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -24,25 +24,31 @@ Circal::MatrixHelper \-
 .RI "\fBScoreMatrix\fP \fBInitScoreMatrixWith\fP (const bpp::Sequence *A, const bpp::Sequence *B, const double &init)"
 .br
 .ti -1c
-.RI "\fBScoreMatrix3D\fP \fBInitScoreMatrix3DWith\fP (const \fBPseudoRotatedSequence\fP *A, const bpp::Sequence *B, const int &delta, const double &init)"
+.RI "\fBScoreMatrix3D\fP \fBInitScoreMatrix3DWith\fP (const bpp::Sequence *A, const \fBPseudoRotatedSequence\fP *B, const int &delta, const double &init)"
 .br
 .ti -1c
 .RI "\fBBoolMatrix\fP \fBCreateAdjacenceGraph\fP (\fBAlignment\fP *pairWiseAlignments, int biggestSequenceSize)"
 .br
 .ti -1c
-.RI "void \fBCutRowFromTo\fP (\fBScoreMatrix\fP *D, const int &start, const int &end)"
+.RI "void \fBCutRowFromTo\fP (\fBScoreMatrix\fP *D, const uint &start, const uint &end)"
 .br
 .ti -1c
-.RI "void \fBCutColumnFromTo\fP (\fBScoreMatrix\fP *D, const int &start, const int &end)"
+.RI "void \fBCutColumnFromTo\fP (\fBScoreMatrix\fP *D, const uint &start, const uint &end)"
 .br
 .ti -1c
-.RI "double \fBSearchBestPositionFrom\fP (const \fBScoreMatrix\fP *M, int &i, int &j, const \fBScoringModel\fP *scoreM)"
+.RI "double \fBSearchBestPositionFrom\fP (const \fBScoreMatrix\fP *M, uint &i, uint &j, const \fBScoringModel\fP *scoreM)"
 .br
 .ti -1c
-.RI "int \fBSearchBestInRow\fP (const \fBScoreMatrix\fP *M, const \fBScoringModel\fP *scoreM, const int &start, const int &row)"
+.RI "int \fBSearchBestInRow\fP (const \fBScoreMatrix\fP *M, const \fBScoringModel\fP *scoreM, const uint &start, const uint &row)"
 .br
 .ti -1c
-.RI "int \fBSearchBestInColumn\fP (const \fBScoreMatrix\fP *M, const \fBScoringModel\fP *scoreM, const int &start, const int &column)"
+.RI "int \fBSearchBestInRow3D\fP (const \fBScoreMatrix3D\fP *M, const \fBScoringModel\fP *scoreM, const uint &start, const uint &row, uint &k)"
+.br
+.ti -1c
+.RI "int \fBSearchBestInColumn\fP (const \fBScoreMatrix\fP *M, const \fBScoringModel\fP *scoreM, const uint &start, const uint &column)"
+.br
+.ti -1c
+.RI "int \fBSearchBestInColumn3D\fP (const \fBScoreMatrix3D\fP *M, const \fBScoringModel\fP *scoreM, const uint &start, const uint &column, uint &k)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -64,13 +70,13 @@ Definition at line 71 of file MatrixHelper.cpp.
 .PP
 References InitScoreMatrixWith(), Circal::ScoringModel::ScoreOfGapExtend(), and Circal::ScoringModel::ScoreOfGapOpen().
 .PP
-Referenced by Circal::PseudoCircularAlignmentFactory::NeedlemanWunschAlignment(), and Circal::AlignmentFactory::NeedlemanWunschAlignment().
+Referenced by Circal::PseudoCircularAlignmentFactory::NeedlemanWunschAlignment(), Circal::AlignmentFactory::NeedlemanWunschAlignment(), and Circal::AlignmentFactory::SmithWaterman().
 .SS "\fBScoreMatrix\fP Circal::MatrixHelper::InitScoreMatrixWith (const bpp::Sequence * A, const bpp::Sequence * B, const double & init)"
 .PP
 Definition at line 100 of file MatrixHelper.cpp.
 .PP
-Referenced by Circal::PseudoCircularAlignmentFactory::GotohAlignment(), Circal::AlignmentFactory::GotohAlignment(), and InitializeScoreMatrixDistances().
-.SS "\fBScoreMatrix3D\fP Circal::MatrixHelper::InitScoreMatrix3DWith (const \fBPseudoRotatedSequence\fP * A, const bpp::Sequence * B, const int & delta, const double & init)"
+Referenced by Circal::PseudoCircularAlignmentFactory::GotohAlignment(), Circal::CircularAlignmentFactory::GotohAlignment(), Circal::AlignmentFactory::GotohAlignment(), InitializeScoreMatrixDistances(), Circal::CircularAlignmentFactory::NeedlemanWunschAlignment(), and Circal::AlignmentFactory::SmithWatermanAffin().
+.SS "\fBScoreMatrix3D\fP Circal::MatrixHelper::InitScoreMatrix3DWith (const bpp::Sequence * A, const \fBPseudoRotatedSequence\fP * B, const int & delta, const double & init)"
 .PP
 Definition at line 108 of file MatrixHelper.cpp.
 .PP
@@ -79,32 +85,42 @@ References Circal::PseudoRotatedSequence::size().
 Referenced by Circal::PseudoCircularAlignmentFactory::GotohAlignment(), and Circal::PseudoCircularAlignmentFactory::NeedlemanWunschAlignment().
 .SS "\fBBoolMatrix\fP Circal::MatrixHelper::CreateAdjacenceGraph (\fBAlignment\fP * pairWiseAlignments, int biggestSequenceSize)"
 .PP
-Definition at line 121 of file MatrixHelper.cpp.
-.SS "void Circal::MatrixHelper::CutRowFromTo (\fBScoreMatrix\fP * D, const int & start, const int & end)"
+Definition at line 122 of file MatrixHelper.cpp.
+.SS "void Circal::MatrixHelper::CutRowFromTo (\fBScoreMatrix\fP * D, const uint & start, const uint & end)"
 .PP
 Definition at line 36 of file MatrixHelper.cpp.
-.SS "void Circal::MatrixHelper::CutColumnFromTo (\fBScoreMatrix\fP * D, const int & start, const int & end)"
+.SS "void Circal::MatrixHelper::CutColumnFromTo (\fBScoreMatrix\fP * D, const uint & start, const uint & end)"
 .PP
 Definition at line 52 of file MatrixHelper.cpp.
-.SS "double Circal::MatrixHelper::SearchBestPositionFrom (const \fBScoreMatrix\fP * M, int & i, int & j, const \fBScoringModel\fP * scoreM)"
+.SS "double Circal::MatrixHelper::SearchBestPositionFrom (const \fBScoreMatrix\fP * M, uint & i, uint & j, const \fBScoringModel\fP * scoreM)"
 .PP
-Definition at line 183 of file MatrixHelper.cpp.
+Definition at line 227 of file MatrixHelper.cpp.
 .PP
 References Circal::ScoringModel::BestOfTwo(), SearchBestInColumn(), and SearchBestInRow().
-.SS "int Circal::MatrixHelper::SearchBestInRow (const \fBScoreMatrix\fP * M, const \fBScoringModel\fP * scoreM, const int & start, const int & row)"
+.SS "int Circal::MatrixHelper::SearchBestInRow (const \fBScoreMatrix\fP * M, const \fBScoringModel\fP * scoreM, const uint & start, const uint & row)"
 .PP
-Definition at line 147 of file MatrixHelper.cpp.
+Definition at line 148 of file MatrixHelper.cpp.
 .PP
 References Circal::ScoringModel::BestOfTwo().
 .PP
 Referenced by SearchBestPositionFrom().
-.SS "int Circal::MatrixHelper::SearchBestInColumn (const \fBScoreMatrix\fP * M, const \fBScoringModel\fP * scoreM, const int & start, const int & column)"
+.SS "int Circal::MatrixHelper::SearchBestInRow3D (const \fBScoreMatrix3D\fP * M, const \fBScoringModel\fP * scoreM, const uint & start, const uint & row, uint & k)"
 .PP
-Definition at line 165 of file MatrixHelper.cpp.
+Definition at line 167 of file MatrixHelper.cpp.
+.PP
+References Circal::ScoringModel::BestOfTwo().
+.SS "int Circal::MatrixHelper::SearchBestInColumn (const \fBScoreMatrix\fP * M, const \fBScoringModel\fP * scoreM, const uint & start, const uint & column)"
+.PP
+Definition at line 188 of file MatrixHelper.cpp.
 .PP
 References Circal::ScoringModel::BestOfTwo().
 .PP
-Referenced by Circal::PseudoCircularAlignmentFactory::GotohAlignment(), Circal::PseudoCircularAlignmentFactory::NeedlemanWunschAlignment(), and SearchBestPositionFrom().
+Referenced by SearchBestPositionFrom().
+.SS "int Circal::MatrixHelper::SearchBestInColumn3D (const \fBScoreMatrix3D\fP * M, const \fBScoringModel\fP * scoreM, const uint & start, const uint & column, uint & k)"
+.PP
+Definition at line 206 of file MatrixHelper.cpp.
+.PP
+References Circal::ScoringModel::BestOfTwo().
 
 .SH "Author"
 .PP 

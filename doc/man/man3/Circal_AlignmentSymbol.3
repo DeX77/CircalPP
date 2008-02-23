@@ -1,4 +1,4 @@
-.TH "Circal::AlignmentSymbol" 3 "20 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
+.TH "Circal::AlignmentSymbol" 3 "21 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -33,10 +33,19 @@ Circal::AlignmentSymbol \-
 .ti -1c
 .RI "double \fBgapExtend\fP"
 .br
+.ti -1c
+.RI "double \fBmatch\fP"
+.br
+.ti -1c
+.RI "double \fBnegativeMatch\fP"
+.br
+.ti -1c
+.RI "double \fBmissmatch\fP"
+.br
 .in -1c
 .SH "Detailed Description"
 .PP 
-Definition at line 34 of file AlignmentSymbol.h.
+Definition at line 33 of file AlignmentSymbol.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "Circal::AlignmentSymbol::AlignmentSymbol ()"
@@ -49,22 +58,37 @@ Definition at line 27 of file AlignmentSymbol.cpp.
 .PP 
 .SS "std::string \fBCircal::AlignmentSymbol::symbol\fP"
 .PP
-Definition at line 40 of file AlignmentSymbol.h.
+Definition at line 39 of file AlignmentSymbol.h.
 .PP
 Referenced by Circal::ScoringModel::read().
 .SS "std::string \fBCircal::AlignmentSymbol::type\fP"
 .PP
-Definition at line 41 of file AlignmentSymbol.h.
+Definition at line 40 of file AlignmentSymbol.h.
 .PP
 Referenced by Circal::ScoringModel::read().
 .SS "double \fBCircal::AlignmentSymbol::gapOpen\fP"
 .PP
-Definition at line 42 of file AlignmentSymbol.h.
+Definition at line 41 of file AlignmentSymbol.h.
 .PP
 Referenced by Circal::ScoringModel::read().
 .SS "double \fBCircal::AlignmentSymbol::gapExtend\fP"
 .PP
+Definition at line 42 of file AlignmentSymbol.h.
+.PP
+Referenced by Circal::ScoringModel::read().
+.SS "double \fBCircal::AlignmentSymbol::match\fP"
+.PP
 Definition at line 43 of file AlignmentSymbol.h.
+.PP
+Referenced by Circal::ScoringModel::read().
+.SS "double \fBCircal::AlignmentSymbol::negativeMatch\fP"
+.PP
+Definition at line 44 of file AlignmentSymbol.h.
+.PP
+Referenced by Circal::ScoringModel::read().
+.SS "double \fBCircal::AlignmentSymbol::missmatch\fP"
+.PP
+Definition at line 45 of file AlignmentSymbol.h.
 .PP
 Referenced by Circal::ScoringModel::read().
 

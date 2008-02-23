@@ -43,12 +43,13 @@ namespace Circal
 
             for (uint k=u+1; k<input->getNumberOfSequences(); k++)
               {
-
+                std::cout << "*" << std::flush;
                 Alignment temp = GotohAlignment(input->getSequence(u),
                     input->getSequence(k), scoreM);
                 out.addSequence(temp.getSequence(0));
                 out.addSequence(temp.getSequence(1));
               }
+            std::cout << std::endl;
 
           }
         return out;

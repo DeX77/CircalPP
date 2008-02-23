@@ -111,7 +111,6 @@ namespace Circal
 
               }
           }
-        std::cout << "MaxValue=" << maxValue << std::endl;
         NormalizeScores(maxValue);
 
       }

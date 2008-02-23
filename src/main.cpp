@@ -34,223 +34,229 @@
 #include <fstream>
 #include <sstream>
 
-int main(int args, char* argv[])
+std::string usage()
+  {
+    std::stringstream out;
+
+    out<< std::endl;
+    out<<"usage: CircalPP [options]" << std::endl;
+    out<< std::endl;
+    out<<"options:" << std::endl;
+    out<<" -v  verbose mode" << std::endl;
+    out<<" -d  <integer>  delta value" << std::endl;
+    out<<" -D  input is dna" << std::endl;
+    out<<" -R  input is rna" << std::endl;
+    out<<" -G  alphabet is build from scoring sheme" << std::endl;
+    out<<" -S  <filename> file including the scoring sheme" << std::endl;
+    out<<" -I  <filename> read data from fasta file instead of stdin"
+        << std::endl;
+    out<<" -F  <filename> write all pairwise alignments as fasta to <filename>"
+        << std::endl;
+    out<<" -O <filename> write output to <filename> instead of stdout"
+        << std::endl;
+    return out.str();
+  }
+void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
+    const Circal::ScoringModel &scoreM, const std::string &outFilename,
+    const std::string &resultFilename, bool outF, bool resultF)
   {
 
-    //Check for correct call
-    if (args < 5)
-      {
-        std::cerr
-            << "Usage: Circal++ DeltaValue Input.fasta  XX.score Output.fasta"
-            << std::endl;;
-        exit(-1);
-      }
+    //Initialize FASTA Reader
+    Circal::ExtendedFasta seqReader;
+    Circal::ExtendedFasta seqWriter;
 
-    std::stringstream parser(argv[1]);
-    int delta;
-    parser >> delta;
-
-    std::string seqFilename = argv[2];
-    std::string scoreFilename = argv[3];
-    std::string outFilename = argv[4];
+    //Container for read sequences
+    bpp::VectorSequenceContainer sequences(alpha);
 
     //Check for Sequence File Existence
     if (!bpp::FileTools::fileExists(seqFilename))
       {
-        std::cerr << "Can't open Sequence File "<< seqFilename << std::endl;
+        std::cerr << "Can't open Sequence File "<< seqFilename
+            << " using stdin instead" << std::endl;
+      }
+    else
+      //Try parsing the file for FASTA
+      try
+        {
+          seqReader.read(seqFilename,sequences);
+        }
+      catch(bpp::Exception &e)
+        {
+          std::cerr << "Invalid File Format!" << std::endl;
+          std::cerr << e.what() << std::endl;
+          exit(-1);
+        }
+    seqReader.read(std::cin, sequences);
+
+    //Create Multiple Circular Alignment
+    Circal::MultiplePseudoCircularAlignmentFactory circal;
+    Circal::Alignment multi = circal.GotohalignMultiple(&sequences, &scoreM);
+
+    if (outF)
+      seqWriter.write(outFilename,
+          *dynamic_cast<bpp::SequenceContainer*>(&multi));
+
+    Circal::Output prettyPrint;
+
+    if (resultF)
+      {
+        ofstream foo(resultFilename.c_str());
+        foo << prettyPrint.TCoffeeLibFormat(&multi);
+      }
+
+    else
+      std::cout << prettyPrint.TCoffeeLibFormat(&multi);
+  }
+
+int main(int args, char* argv[])
+  {
+    bool verbose = false;
+    bool outF = false;
+    bool resultF = false;
+    bool alphaSet = false;
+    bool scoreSet = false;
+
+    std::string alphaTyp;
+    std::string seqFilename;
+    std::string scoreFilename;
+    std::string outFilename;
+    std::string resultFilename;
+    int delta = 1;
+
+    for (int i=1; i<args; i++)
+      {
+        std::cout << argv[i] << std::endl;
+
+        if (argv[i][0]=='-')
+          switch (argv[i][1])
+            {
+          case 'v':
+            verbose = true;
+            break;
+          case 'd':
+            {
+              std::stringstream parser(argv[i+1]);
+              parser >> delta;
+              if (verbose)
+                std::cout << "Delta: " << delta << std::endl;
+              break;
+            }
+          case 'D':
+            {
+              alphaTyp = "DNA";
+              alphaSet = true;
+              if (verbose)
+                std::cout << "Using DNA alphabet" << std::endl;
+              break;
+            }
+          case 'R':
+            {
+
+              alphaTyp = "RNA";
+
+              alphaSet = true;
+              if (verbose)
+                std::cout << "Using RNA alphabet" << std::endl;
+              break;
+            }
+          case 'G':
+            {
+              //Check for Scoring model
+              if (!scoreSet)
+                break;
+              //Use Self defined Alphabet
+              alphaTyp = "SELF";
+
+              if (verbose)
+                std::cout << "Using self defined alphabet" << std::endl;
+              alphaSet = true;
+              break;
+            }
+          case 'S':
+            {
+              scoreFilename = argv[i+1];
+              if (verbose)
+                std::cout << "ScoreFile: " << scoreFilename << std::endl;
+              //Check for Scoring File Existence
+              if (!bpp::FileTools::fileExists(scoreFilename))
+                {
+                  std::cerr << "Can't open Scoring File "<< scoreFilename
+                      << std::endl;
+                  exit(-1);
+                }
+              scoreSet = true;
+              break;
+            }
+          case 'F':
+            {
+              outFilename = argv[i+1];
+              outF = true;
+              break;
+            }
+          case 'O':
+            {
+              resultFilename = argv[i+1];
+              resultF = true;
+              break;
+            }
+          case 'I':
+            {
+              seqFilename = argv[i+1];
+              if (verbose)
+                std::cout << "InputFile: " << seqFilename << std::endl;
+              break;
+            }
+
+          default:
+            std: cerr << usage();
+            }
+      }
+
+    while (!alphaSet | !scoreSet)
+      {
+        std::cerr << usage();
         exit(-1);
       }
 
-    //Check for Scoring File Existence
-    if (!bpp::FileTools::fileExists(scoreFilename))
+    //Init Alphabet
+    if (alphaTyp == "DNA")
       {
-        std::cerr << "Can't open Scoring File "<< scoreFilename << std::endl;
-        exit(-1);
+        bpp::DNA* alpha = new bpp::DNA();
+
+        //Init Scoring Model
+        Circal::ScoringModel scoreM(scoreFilename);
+
+        doAllignment(alpha, seqFilename, scoreM, outFilename, resultFilename,
+            outF, resultF);
+        delete alpha;
+      }
+    else if (alphaTyp == "RNA")
+      {
+        bpp::RNA* alpha = new bpp::RNA();
+
+        //Init Scoring Model
+        Circal::ScoringModel scoreM(scoreFilename);
+
+        doAllignment(alpha, seqFilename, scoreM, outFilename, resultFilename,
+            outF, resultF);
+        delete alpha;
+      }
+    else
+      {
+        //Init Scoring Model
+        Circal::ScoringModel scoreM(scoreFilename);
+
+        Circal::VertebrateMitochondrialGenomeAlphabet* alpha =
+            new Circal::VertebrateMitochondrialGenomeAlphabet(&scoreM);
+
+        doAllignment(alpha, seqFilename, scoreM, outFilename, resultFilename,
+            outF, resultF);
+        delete alpha;
       }
 
-    //Initialize FASTA Reader
-    //Circal::ExtendedFasta seqReader;
-    Circal::ExtendedFasta seqReader;
-
-    Circal::ExtendedFasta seqWriter;
-
-    //Init Scoring Model
-    Circal::ScoringModel* scoreM = new Circal::ScoringModel(scoreFilename);
-
-    //Use Self defined Alphabet
-    //    Circal::VertebrateMitochondrialGenomeAlphabet * alpha =
-    //        new Circal::VertebrateMitochondrialGenomeAlphabet(scoreM);
-
-    bpp::DNA alpha;
-
-    //Container for read sequences
-    bpp::VectorSequenceContainer sequences(&alpha);
-
-    //Try parsing the file for FASTA
-    try
-      {
-        seqReader.read(seqFilename,sequences);
-      }
-    catch(bpp::Exception &e)
-      {
-        std::cerr << "Invalid File Format!" << std::endl;
-        std::cerr << e.what() << std::endl;
-        exit(-1);
-      }
-
-    Circal::Output out;
-
-    std::string gotoh = "GOTOH";
-    double Alignments = 0;
-    double AlignmentsGood = 0;
-
-    Circal::CircularAlignmentFactory cicAln;
-    Circal::PseudoCircularAlignmentFactory pseudoCircAln;
-
-
-#ifdef _OPENMP            
-#pragma omp parallel for
-#endif      
-    for (uint u=0; u<sequences.getNumberOfSequences(); u++)
-      {
-
-        for (uint k=u+1; k<sequences.getNumberOfSequences(); k++)
-          {
-
-            Circal::Alignment regCircular = cicAln.GotohAlignment(sequences.getSequence(u),
-                sequences.getSequence(k), scoreM);
-            Circal::Alignment pseudoCircular= pseudoCircAln.GotohAlignment(
-                sequences.getSequence(u), sequences.getSequence(k), scoreM,
-                delta);
-            if (regCircular.get_Score() != pseudoCircular.get_Score())
-              {
-
-              }
-            else
-              AlignmentsGood++;
-            Alignments++;
-            std::cout << "Optimum: " << std::endl;
-            std::cout << out.AlignmentPrettyPrint(&regCircular) << std::endl;
-            std::cout << "Heuristik: " << std::endl;
-            std::cout << out.AlignmentPrettyPrint(&pseudoCircular) << std::endl;
-            std::cout
-                << "################################################################################################"
-                << std::endl;
-            std::cout << "Insgesamt: " << Alignments << " davon schlecht: "
-                << (Alignments-AlignmentsGood) << " Rate: " << (AlignmentsGood
-                /Alignments) << std::endl;
-
-          }
-      }
-
-    /*
-     Circal::MultiplePseudoCircularAlignment* circal;
-     //Create Multiple Circular Alignment
-     std::cerr << "Pseudo circuläres Alignment" << std::endl;
-     circal = new Circal::MultiplePseudoCircularAlignment(sequences,scoreM);
-
-     
-     Circal::Output* foo = new Circal::Output();
-     seqWriter.write(outFilename, *dynamic_cast<bpp::SequenceContainer*>(circal));
-
-     std::cout << foo->TCoffeeLibFormat(circal);
-     */
-    delete scoreM;
-    
     //WTF!=?? Why do I have to delete this!?
     delete bpp::RandomTools::DEFAULT_GENERATOR;
     return 0;
 
-    /*
-     //Check for correct call
-     if (args < 4)
-     {
-     std::cerr<< "Usage: Circal++ XX.score Runs maxSize" << std::endl;;
-     exit(-1);
-     }
-     std::string scoreFilename = argv[1];
-     std::stringstream parser1(argv[2]);
-     std::stringstream parser2(argv[3]);
-     uint runs;
-     parser1 >> runs;
-
-     uint maxSize;
-     parser2 >> maxSize;
-
-     //Check for Scoring File Existence
-     if (!bpp::FileTools::fileExists(scoreFilename))
-     {
-     std::cerr << "Can't open Scoring File "<< scoreFilename << std::endl;
-     exit(-1);
-     }
-     //Init Scoring Model
-     Circal::ScoringModel* scoreM = new Circal::ScoringModel(scoreFilename);
-     bpp::DNA* alpha = new bpp::DNA();
-
-     Circal::Output* out = new Circal::Output();
-
-     double Alignments = 0;
-     double AlignmentsGood = 0;
-     double GlobalAlignments = 0;
-     double GlobalAlignmentsGood = 0;
-     std::string gotoh = "GOTOH";
-
-     #ifdef _OPENMP            
-     #pragma omp parallel for
-     #endif 
-     for (uint j=1; j < maxSize; j++)
-     {
-     for (uint k=j+1; k < maxSize; k++)
-     {
-     Alignments = 0;
-     AlignmentsGood = 0;
-     for (uint i=0; i < runs; i++)
-     {
-     Circal::RandomSequence* test1 = new Circal::RandomSequence(j,alpha);
-     Circal::RandomSequence* test2 = new Circal::RandomSequence(k,alpha);
-     Circal::CircularAlignment* cicAln =
-     new Circal::CircularAlignment(gotoh, test1, test2, scoreM);
-     Circal::PseudoCircularAlignment* pseudoCircAln =
-     new Circal::PseudoCircularAlignment(gotoh, test1, test2, scoreM);
-     Circal::PseudoCircularAlignment* pseudoCircAlnRev =
-     new Circal::PseudoCircularAlignment(gotoh, test2, test1, scoreM);
-     if (cicAln->get_Score()> pseudoCircAln->get_Score())
-     {
-     std::cout << "Optimum: " << std::endl;
-     std::cout << out->AlignmentPrettyPrint(cicAln) << std::endl;
-     std::cout << "Heuristik: " << std::endl;
-     std::cout << out->AlignmentPrettyPrint(pseudoCircAln)
-     << std::endl;
-     }
-     else if (cicAln->get_Score()> pseudoCircAlnRev->get_Score())
-     {
-     std::cout << "Optimum: " << std::endl;
-     std::cout << out->AlignmentPrettyPrint(cicAln) << std::endl;
-     std::cout << "Heuristik: " << std::endl;
-     std::cout << out->AlignmentPrettyPrint(pseudoCircAlnRev)
-     << std::endl;
-     }
-     else
-     AlignmentsGood++;
-     Alignments++;
-
-     }
-     std::cout << "Laenge 1= " << j << " Laenge 2= " << k
-     << " schlecht: " << (Alignments-AlignmentsGood) << " Rate: "
-     << (AlignmentsGood /Alignments) << std::endl;
-     GlobalAlignmentsGood += AlignmentsGood;
-     GlobalAlignments += Alignments;
-     }
-     std::cout << "Isgesamt: " << GlobalAlignments << " davon schlecht: "
-     << (GlobalAlignments-GlobalAlignmentsGood) << " Rate: "
-     << (GlobalAlignmentsGood/GlobalAlignments) << std::endl;
-
-     }
-
-
-     //Clean up
-     delete alpha;
-     delete scoreM;
-     */
   }
 

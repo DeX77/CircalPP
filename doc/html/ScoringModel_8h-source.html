@@ -64,16 +64,22 @@
 <a name="l00046"></a>00046       <span class="keywordtype">double</span> <a class="code" href="classCircal_1_1ScoringModel.html#dc158e70948f9cce9c80ef7df6cdde6f">ScoreOfGapExtend</a>(<span class="keyword">const</span> std::string A) <span class="keyword">const</span>;
 <a name="l00047"></a>00047       <span class="keywordtype">int</span> <a class="code" href="classCircal_1_1ScoringModel.html#5a72855024938d033e28072bc5528a1b">GetModelSize</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
 <a name="l00048"></a>00048 
-<a name="l00049"></a>00049       <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;<a class="code" href="classCircal_1_1ScoringModel.html#2af91279a78623322072a65a071f572b">BestOfTwo</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;A, <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;B) <span class="keyword">const</span>;
-<a name="l00050"></a>00050       <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;<a class="code" href="classCircal_1_1ScoringModel.html#ea8047bcaff23574faf333c25759d30c">BestOfThree</a>(<span class="keywordtype">double</span> &amp;A, <span class="keywordtype">double</span> &amp;B, <span class="keywordtype">double</span> &amp;C) <span class="keyword">const</span>;
-<a name="l00051"></a>00051       ModelValues::const_iterator <a class="code" href="classCircal_1_1ScoringModel.html#194f8ee93c3bcfabfa3cd643b9d316d0">itBegin</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
-<a name="l00052"></a>00052       ModelValues::const_iterator <a class="code" href="classCircal_1_1ScoringModel.html#0536cf32c7b197b9385f10ee06996a20">itEnd</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054       };
-<a name="l00055"></a>00055   }
-<a name="l00056"></a>00056 
-<a name="l00057"></a>00057 <span class="preprocessor">#endif </span><span class="comment">/*SCORINGMODEL_H_*/</span>
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Wed Feb 20 11:30:20 2008 for CircalPP by&nbsp;
+<a name="l00049"></a>00049       <span class="keywordtype">double</span> <a class="code" href="classCircal_1_1ScoringModel.html#7a0e45da2b4c5912f08258bd56dd1788">BestOfTwo</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> A, <span class="keyword">const</span> <span class="keywordtype">double</span> B) <span class="keyword">const</span>;
+<a name="l00050"></a>00050       <span class="keywordtype">double</span> <a class="code" href="classCircal_1_1ScoringModel.html#4a300e1b772adbbda981a5608710c027">BestOfThree</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> A,<span class="keyword">const</span>  <span class="keywordtype">double</span> B,<span class="keyword">const</span>  <span class="keywordtype">double</span> C)<span class="keyword">const</span>;
+<a name="l00051"></a>00051       
+<a name="l00052"></a>00052       <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1ScoringModel.html#9c4029894b6d5d238f1ba870ea59a622">NormalizeScores</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;maxValue);
+<a name="l00053"></a>00053       
+<a name="l00054"></a>00054       ModelValues::const_iterator <a class="code" href="classCircal_1_1ScoringModel.html#73e7d5817e567d8731732657be3ae459">constitStart</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
+<a name="l00055"></a>00055       ModelValues::const_iterator <a class="code" href="classCircal_1_1ScoringModel.html#f9b1e4968c419cad45035197f800986f">constitEnd</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
+<a name="l00056"></a>00056       
+<a name="l00057"></a>00057       ModelValues::iterator <a class="code" href="classCircal_1_1ScoringModel.html#5e65c909aadd2a8e559cd36c8169a972">itStart</a>(<span class="keywordtype">void</span>);
+<a name="l00058"></a>00058       ModelValues::iterator <a class="code" href="classCircal_1_1ScoringModel.html#544c6c9e67d81f89f554a2db3a8f270f">itEnd</a>(<span class="keywordtype">void</span>);
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060       };
+<a name="l00061"></a>00061   }
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063 <span class="preprocessor">#endif </span><span class="comment">/*SCORINGMODEL_H_*/</span>
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 21 21:14:16 2008 for CircalPP by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>

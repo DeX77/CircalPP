@@ -54,11 +54,11 @@
 <a name="l00036"></a>00036 
 <a name="l00037"></a><a class="code" href="classCircal_1_1Output.html#e3f937db11ee87443ea1e75049e0706e">00037</a>     Output::~Output()
 <a name="l00038"></a>00038       {
-<a name="l00039"></a>00039         
+<a name="l00039"></a>00039 
 <a name="l00040"></a>00040       }
 <a name="l00041"></a>00041 
-<a name="l00042"></a><a class="code" href="classCircal_1_1Output.html#2ed0aa94d088dcffe1c3d1fa633aed0a">00042</a>     std::string <a class="code" href="classCircal_1_1Output.html#2ed0aa94d088dcffe1c3d1fa633aed0a">Output::ScoreMatrixPrettyPrint</a>(<span class="keyword">const</span> bpp::Sequence* A,
-<a name="l00043"></a>00043         <span class="keyword">const</span> bpp::Sequence* B, <span class="keyword">const</span> <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> &amp;D)
+<a name="l00042"></a><a class="code" href="classCircal_1_1Output.html#47c40c57355de8604a457c7b4f26448a">00042</a>     std::string <a class="code" href="classCircal_1_1Output.html#47c40c57355de8604a457c7b4f26448a">Output::ScoreMatrixPrettyPrint</a>(bpp::Sequence* A,
+<a name="l00043"></a>00043         bpp::Sequence* B, <span class="keyword">const</span> <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> &amp;D)
 <a name="l00044"></a>00044       {
 <a name="l00045"></a>00045         std::stringstream out;
 <a name="l00046"></a>00046 
@@ -78,18 +78,18 @@
 <a name="l00060"></a>00060         <span class="keywordflow">return</span> out.str();
 <a name="l00061"></a>00061       }
 <a name="l00062"></a>00062 
-<a name="l00063"></a><a class="code" href="classCircal_1_1Output.html#a4c99407de17b3f8244aca4aa60b4a53">00063</a>     std::string <a class="code" href="classCircal_1_1Output.html#a4c99407de17b3f8244aca4aa60b4a53">Output::AlignmentPrettyPrint</a>(<span class="keyword">const</span> <a class="code" href="classCircal_1_1Alignment.html">Alignment</a>* aln)
+<a name="l00063"></a><a class="code" href="classCircal_1_1Output.html#ab041c2ce86bb7ab5f682cdab596d06b">00063</a>     std::string <a class="code" href="classCircal_1_1Output.html#ab041c2ce86bb7ab5f682cdab596d06b">Output::AlignmentPrettyPrint</a>(<a class="code" href="classCircal_1_1Alignment.html">Alignment</a>* aln)
 <a name="l00064"></a>00064       {
 <a name="l00065"></a>00065         std::stringstream out;
 <a name="l00066"></a>00066         <span class="keywordflow">for</span> (uint i=0; i&lt;aln-&gt;getNumberOfSequences(); i++)
 <a name="l00067"></a>00067           out
-<a name="l00068"></a>00068               &lt;&lt; <a class="code" href="classCircal_1_1Output.html#1942bfb1f480d2d4cf49f8e0f9c8cc92">SequencePrettyPrint</a>(const_cast&lt;bpp::Sequence*&gt;(aln-&gt;getSequence(i)))
+<a name="l00068"></a>00068               &lt;&lt; <a class="code" href="classCircal_1_1Output.html#dea07429ad2ed3d082aa4d9ef85e8114">SequencePrettyPrint</a>(const_cast&lt;bpp::Sequence*&gt;(aln-&gt;getSequence(i)))
 <a name="l00069"></a>00069               &lt;&lt; std::endl;
 <a name="l00070"></a>00070         <span class="keywordflow">if</span> (aln-&gt;getNumberOfSequences())
 <a name="l00071"></a>00071           {
 <a name="l00072"></a>00072             out &lt;&lt; <span class="stringliteral">"---------------------------------------------------"</span>
 <a name="l00073"></a>00073                 &lt;&lt; std::endl;
-<a name="l00074"></a>00074             out &lt;&lt; <span class="stringliteral">"Score: "</span> &lt;&lt; aln-&gt;<a class="code" href="classCircal_1_1Alignment.html#894c857b61c9fed3a6332ffe2362b9f1">get_Score</a>() &lt;&lt; std::endl;
+<a name="l00074"></a>00074             out &lt;&lt; <span class="stringliteral">"Score: "</span> &lt;&lt; aln-&gt;<a class="code" href="classCircal_1_1Alignment.html#e4dc0a9b6c0b89f3e3c375b963c76ec1">get_Score</a>() &lt;&lt; std::endl;
 <a name="l00075"></a>00075           }
 <a name="l00076"></a>00076         <span class="keywordflow">return</span> out.str();
 <a name="l00077"></a>00077       }
@@ -107,27 +107,27 @@
 <a name="l00089"></a>00089         <span class="keywordflow">return</span> out.str();
 <a name="l00090"></a>00090       }
 <a name="l00091"></a>00091 
-<a name="l00092"></a><a class="code" href="classCircal_1_1Output.html#1942bfb1f480d2d4cf49f8e0f9c8cc92">00092</a>     std::string <a class="code" href="classCircal_1_1Output.html#1942bfb1f480d2d4cf49f8e0f9c8cc92">Output::SequencePrettyPrint</a>(<span class="keyword">const</span> bpp::Sequence* A)
+<a name="l00092"></a><a class="code" href="classCircal_1_1Output.html#dea07429ad2ed3d082aa4d9ef85e8114">00092</a>     std::string <a class="code" href="classCircal_1_1Output.html#dea07429ad2ed3d082aa4d9ef85e8114">Output::SequencePrettyPrint</a>(bpp::Sequence* A)
 <a name="l00093"></a>00093       {
 <a name="l00094"></a>00094         std::stringstream out;
-<a name="l00095"></a>00095         out &lt;&lt; <span class="stringliteral">"Sequenz "</span> &lt;&lt; A-&gt;getName() &lt;&lt; <span class="stringliteral">" Laenge: "</span> &lt;&lt; A-&gt;size() &lt;&lt; <span class="stringliteral">" :"</span> &lt;&lt; std::endl;
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097         <span class="keywordflow">for</span> (uint i=0; i&lt; A-&gt;size(); i++)
-<a name="l00098"></a>00098           out &lt;&lt; <span class="stringliteral">" "</span>&lt;&lt; A-&gt;getChar(i);
-<a name="l00099"></a>00099         <span class="keywordflow">return</span> out.str();
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101       }
-<a name="l00102"></a>00102     <span class="comment">//Shamelessly stolen from MARNA </span>
-<a name="l00103"></a><a class="code" href="classCircal_1_1Output.html#0147043da0fc76b3e1ca8cf4f9bec727">00103</a>     std::string <a class="code" href="classCircal_1_1Output.html#0147043da0fc76b3e1ca8cf4f9bec727">Output::TCoffeeLibFormat</a>(<span class="keyword">const</span> <a class="code" href="classCircal_1_1Alignment.html">Alignment</a>* aln)
-<a name="l00104"></a>00104       {
-<a name="l00105"></a>00105         std::stringstream out;
-<a name="l00106"></a>00106         <span class="keywordtype">int</span> p1 = 1;
-<a name="l00107"></a>00107         <span class="keywordtype">int</span> p2 = 1;
-<a name="l00108"></a>00108 
-<a name="l00109"></a>00109         <span class="keywordtype">int</span> index1 = 1;
-<a name="l00110"></a>00110         <span class="keywordtype">int</span> index2 = 2;
-<a name="l00111"></a>00111         out &lt;&lt; aln-&gt;<a class="code" href="classCircal_1_1Alignment.html#4cc257ab74dbee96a70ea7f82e017c7a">get_origSize</a>() &lt;&lt; endl;
-<a name="l00112"></a>00112 
+<a name="l00095"></a>00095         out &lt;&lt; <span class="stringliteral">"Sequenz "</span> &lt;&lt; A-&gt;getName() &lt;&lt; <span class="stringliteral">" Laenge: "</span> &lt;&lt; A-&gt;size() &lt;&lt; <span class="stringliteral">" :"</span>
+<a name="l00096"></a>00096             &lt;&lt; std::endl;
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098         <span class="keywordflow">for</span> (uint i=0; i&lt; A-&gt;size(); i++)
+<a name="l00099"></a>00099           out &lt;&lt; <span class="stringliteral">" "</span>&lt;&lt; A-&gt;getChar(i);
+<a name="l00100"></a>00100         <span class="keywordflow">return</span> out.str();
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102       }
+<a name="l00103"></a>00103     <span class="comment">//Shamelessly stolen from MARNA </span>
+<a name="l00104"></a><a class="code" href="classCircal_1_1Output.html#57d8fa1161c56174dfbd91af97a58c9e">00104</a>     std::string <a class="code" href="classCircal_1_1Output.html#57d8fa1161c56174dfbd91af97a58c9e">Output::TCoffeeLibFormat</a>(<a class="code" href="classCircal_1_1Alignment.html">Alignment</a>* aln)
+<a name="l00105"></a>00105       {
+<a name="l00106"></a>00106         std::stringstream out;
+<a name="l00107"></a>00107         <span class="keywordtype">int</span> p1 = 1;
+<a name="l00108"></a>00108         <span class="keywordtype">int</span> p2 = 1;
+<a name="l00109"></a>00109 
+<a name="l00110"></a>00110         uint index1 = 1;
+<a name="l00111"></a>00111         uint index2 = 2;
+<a name="l00112"></a>00112         out &lt;&lt; aln-&gt;<a class="code" href="classCircal_1_1Alignment.html#77734f8eb8623b665e518afae2e49789">get_origSize</a>() &lt;&lt; endl;
 <a name="l00113"></a>00113 
 <a name="l00114"></a>00114         out &lt;&lt; aln-&gt;getSequence(0)-&gt;getName() &lt;&lt; <span class="stringliteral">" "</span>;
 <a name="l00115"></a>00115         out &lt;&lt; aln-&gt;getSequence(0)-&gt;size() &lt;&lt; <span class="stringliteral">" "</span>;
@@ -135,7 +135,7 @@
 <a name="l00117"></a>00117         out &lt;&lt; std::endl;
 <a name="l00118"></a>00118 
 <a name="l00119"></a>00119         <span class="comment">//Followed by a line with SeqName, Nr of Sited, Sequence for each Sequence        </span>
-<a name="l00120"></a>00120         <span class="keywordflow">for</span> (uint i=1; i &lt; ((aln-&gt;<a class="code" href="classCircal_1_1Alignment.html#4cc257ab74dbee96a70ea7f82e017c7a">get_origSize</a>()-1)*2); i+=2)
+<a name="l00120"></a>00120         <span class="keywordflow">for</span> (uint i=1; i &lt; ((aln-&gt;<a class="code" href="classCircal_1_1Alignment.html#77734f8eb8623b665e518afae2e49789">get_origSize</a>()-1)*2); i+=2)
 <a name="l00121"></a>00121           {
 <a name="l00122"></a>00122             out &lt;&lt; aln-&gt;getSequence(i)-&gt;getName() &lt;&lt; <span class="stringliteral">" "</span>;
 <a name="l00123"></a>00123             out &lt;&lt; aln-&gt;getSequence(i)-&gt;size() &lt;&lt; <span class="stringliteral">" "</span>;
@@ -149,7 +149,7 @@
 <a name="l00131"></a>00131             p1 = 1;
 <a name="l00132"></a>00132             p2 = 1;
 <a name="l00133"></a>00133 
-<a name="l00134"></a>00134             <span class="keywordflow">if</span> (index2 == aln-&gt;<a class="code" href="classCircal_1_1Alignment.html#4cc257ab74dbee96a70ea7f82e017c7a">get_origSize</a>())
+<a name="l00134"></a>00134             <span class="keywordflow">if</span> (index2 == aln-&gt;<a class="code" href="classCircal_1_1Alignment.html#77734f8eb8623b665e518afae2e49789">get_origSize</a>())
 <a name="l00135"></a>00135               {
 <a name="l00136"></a>00136                 index1++;
 <a name="l00137"></a>00137                 index2 = index1+1;
@@ -181,7 +181,7 @@
 <a name="l00163"></a>00163       }
 <a name="l00164"></a>00164 
 <a name="l00165"></a>00165   }
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Wed Feb 20 11:30:20 2008 for CircalPP by&nbsp;
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 21 21:14:16 2008 for CircalPP by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>

@@ -1,4 +1,4 @@
-.TH "Circal::Alignment" 3 "20 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
+.TH "Circal::Alignment" 3 "21 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -21,10 +21,10 @@ Circal::Alignment \-
 .RI "virtual \fB~Alignment\fP ()"
 .br
 .ti -1c
-.RI "uint \fBget_origSize\fP () const "
+.RI "uint \fBget_origSize\fP ()"
 .br
 .ti -1c
-.RI "double \fBget_Score\fP () const "
+.RI "double \fBget_Score\fP ()"
 .br
 .ti -1c
 .RI "void \fBset_Score\fP (const double &s)"
@@ -33,10 +33,7 @@ Circal::Alignment \-
 .RI "void \fBset_origSize\fP (const uint &orig)"
 .br
 .ti -1c
-.RI "void \fBaddSequence\fP (const bpp::Sequence &sequence, bool checkNames)  throw (bpp::Exception)"
-.br
-.ti -1c
-.RI "void \fBaddSequence\fP (const bpp::Sequence &sequence)  throw (bpp::Exception)"
+.RI "void \fBaddSequence\fP (const bpp::Sequence *sequence)"
 .br
 .in -1c
 .SS "Private Attributes"
@@ -66,42 +63,37 @@ References set_Score().
 Definition at line 35 of file Alignment.cpp.
 .SH "Member Function Documentation"
 .PP 
-.SS "uint Circal::Alignment::get_origSize () const"
+.SS "uint Circal::Alignment::get_origSize ()"
 .PP
 Definition at line 39 of file Alignment.cpp.
 .PP
 References origSize.
 .PP
 Referenced by Circal::Output::TCoffeeLibFormat().
-.SS "double Circal::Alignment::get_Score (void) const"
+.SS "double Circal::Alignment::get_Score (void)"
 .PP
 Definition at line 48 of file Alignment.cpp.
 .PP
 References Score.
 .PP
-Referenced by Circal::Output::AlignmentPrettyPrint(), Circal::CircularAlignmentFactory::GotohAlignment(), main(), and Circal::CircularAlignmentFactory::NeedlemanWunschAlignment().
+Referenced by Circal::Output::AlignmentPrettyPrint(), and main().
 .SS "void Circal::Alignment::set_Score (const double & s)"
 .PP
 Definition at line 53 of file Alignment.cpp.
 .PP
 References Score.
 .PP
-Referenced by Alignment(), Circal::AlignmentFactory::BacktrackingGotohGlobal(), Circal::PseudoCircularAlignmentFactory::BacktrackingGotohLocal(), Circal::AlignmentFactory::BacktrackingGotohLocal(), Circal::PseudoCircularAlignmentFactory::BacktrackingNMW(), and Circal::AlignmentFactory::BacktrackingNMW().
+Referenced by Alignment().
 .SS "void Circal::Alignment::set_origSize (const uint & orig)"
 .PP
 Definition at line 43 of file Alignment.cpp.
 .PP
 References origSize.
-.SS "void Circal::Alignment::addSequence (const bpp::Sequence & sequence, bool checkNames)  throw (bpp::Exception)"
+.SS "void Circal::Alignment::addSequence (const bpp::Sequence * sequence)"
 .PP
 Definition at line 58 of file Alignment.cpp.
 .PP
-Referenced by addSequence(), Circal::AlignmentFactory::BacktrackingGotohGlobal(), Circal::PseudoCircularAlignmentFactory::BacktrackingGotohLocal(), Circal::AlignmentFactory::BacktrackingGotohLocal(), Circal::PseudoCircularAlignmentFactory::BacktrackingNMW(), and Circal::AlignmentFactory::BacktrackingNMW().
-.SS "void Circal::Alignment::addSequence (const bpp::Sequence & sequence)  throw (bpp::Exception)"
-.PP
-Definition at line 64 of file Alignment.cpp.
-.PP
-References addSequence().
+Referenced by Circal::MultipleAlignmentFactory::GotohalignMultiple(), and Circal::MultipleAlignmentFactory::NMWalignMultiple().
 .SH "Member Data Documentation"
 .PP 
 .SS "uint \fBCircal::Alignment::origSize\fP\fC [private]\fP"

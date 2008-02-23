@@ -41,7 +41,7 @@ namespace Circal
       Output();
       virtual ~Output();
       std::string SequencePrettyPrint(bpp::Sequence* A);
-      std::string ScoreMatrixPrettyPrint(bpp::Sequence* A, bpp::Sequence* B,
+      std::string ScoreMatrixPrettyPrint(const bpp::Sequence* A,const bpp::Sequence* B,
           const ScoreMatrix &D);
       std::string AlignmentPrettyPrint(Alignment* aln);
       std::string AdjacenceMatrixPrettyPrint(const BoolMatrix &G);
