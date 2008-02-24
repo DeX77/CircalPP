@@ -1,0 +1,12 @@
+# Scores for mitochondrial arrangements
+#
+#
+4    # number of lines with gap open and gap extension scores
+# default is stuff we don't know
+X 0  1  :
+# Mitochondrial proteins
+P 6  4 10 10 5: CO1  CO2  ATP8 ATP6 CO3 ND3 ND4L ND4 ND5 ND6 CYTB ND1 ND2  
+# Mitochondrial rRNAs
+R 4  3 10 10 5: 12S  16S  
+# Mitochondrial tRNAs 
+t 4  3 10 10 5: A C D E F G H I K L1 L2 M N P Q R S S1 S2 T V W Y 
