@@ -1,0 +1,63 @@
+.TH "Circal::CircularAlignmentFactory" 3 "21 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Circal::CircularAlignmentFactory \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <CircularAlignmentFactory.h>\fP
+.PP
+Inherits \fBCircal::AlignmentFactory\fP.
+.PP
+Inherited by \fBCircal::MultipleCircularAlignmentFactory\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCircularAlignmentFactory\fP ()"
+.br
+.ti -1c
+.RI "virtual \fB~CircularAlignmentFactory\fP ()"
+.br
+.ti -1c
+.RI "\fBAlignment\fP \fBNeedlemanWunschAlignment\fP (const bpp::Sequence *A, const bpp::Sequence *B, const \fBScoringModel\fP *scoreM)"
+.br
+.ti -1c
+.RI "\fBAlignment\fP \fBGotohAlignment\fP (const bpp::Sequence *A, const bpp::Sequence *B, const \fBScoringModel\fP *scoreM)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 27 of file CircularAlignmentFactory.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Circal::CircularAlignmentFactory::CircularAlignmentFactory ()"
+.PP
+Definition at line 27 of file CircularAlignmentFactory.cpp.
+.SS "Circal::CircularAlignmentFactory::~CircularAlignmentFactory ()\fC [virtual]\fP"
+.PP
+Definition at line 31 of file CircularAlignmentFactory.cpp.
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBAlignment\fP Circal::CircularAlignmentFactory::NeedlemanWunschAlignment (const bpp::Sequence * A, const bpp::Sequence * B, const \fBScoringModel\fP * scoreM)\fC [virtual]\fP"
+.PP
+Reimplemented from \fBCircal::AlignmentFactory\fP.
+.PP
+Definition at line 83 of file CircularAlignmentFactory.cpp.
+.PP
+References Circal::AlignmentFactory::BacktrackingNMW(), Circal::ScoringModel::BestOfTwo(), Circal::AlignmentFactory::ForwardRecursionNMW(), Circal::MatrixHelper::InitScoreMatrixWith(), and Circal::AlignmentFactory::matrix.
+.SS "\fBAlignment\fP Circal::CircularAlignmentFactory::GotohAlignment (const bpp::Sequence * A, const bpp::Sequence * B, const \fBScoringModel\fP * scoreM)\fC [virtual]\fP"
+.PP
+Reimplemented from \fBCircal::AlignmentFactory\fP.
+.PP
+Definition at line 35 of file CircularAlignmentFactory.cpp.
+.PP
+References Circal::AlignmentFactory::BacktrackingGotohGlobal(), Circal::ScoringModel::BestOfTwo(), Circal::AlignmentFactory::ForwardRecursionGotoh(), Circal::MatrixHelper::InitScoreMatrixWith(), and Circal::AlignmentFactory::matrix.
+.PP
+Referenced by main().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CircalPP from the source code.

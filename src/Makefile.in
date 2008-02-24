@@ -48,7 +48,7 @@ am__objects_1 = Alignment.$(OBJEXT) AlignmentFactory.$(OBJEXT) \
 	AlignmentSymbol.$(OBJEXT) CircularAlignmentFactory.$(OBJEXT) \
 	ErrorClasses.$(OBJEXT) CorrectedFasta.$(OBJEXT) \
 	WhitespaceFasta.$(OBJEXT) GenomeAlphabet.$(OBJEXT) \
-	main.$(OBJEXT) MatrixHelper.$(OBJEXT) \
+	CircalPP.$(OBJEXT) MatrixHelper.$(OBJEXT) \
 	PseudoCircularAlignmentFactory.$(OBJEXT) \
 	MultipleAlignmentFactory.$(OBJEXT) \
 	MultipleCircularAlignmentFactory.$(OBJEXT) \
@@ -179,7 +179,7 @@ ErrorClasses.cpp\
 CorrectedFasta.cpp\
 WhitespaceFasta.cpp\
 GenomeAlphabet.cpp\
-main.cpp\
+CircalPP.cpp\
 MatrixHelper.cpp\
 PseudoCircularAlignmentFactory.cpp\
 MultipleAlignmentFactory.cpp\
@@ -283,6 +283,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Alignment.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/AlignmentFactory.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/AlignmentSymbol.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CircalPP.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CircularAlignmentFactory.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CorrectedFasta.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ErrorClasses.Po@am__quote@
@@ -299,7 +300,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ScoringModel.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/VertebrateMitochondrialGenomeAlphabet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/WhitespaceFasta.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

@@ -7,7 +7,7 @@ ErrorClasses.cpp\
 CorrectedFasta.cpp\
 WhitespaceFasta.cpp\
 GenomeAlphabet.cpp\
-main.cpp\
+CircalPP.cpp\
 MatrixHelper.cpp\
 PseudoCircularAlignmentFactory.cpp\
 MultipleAlignmentFactory.cpp\
