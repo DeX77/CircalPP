@@ -38,7 +38,7 @@ namespace Circal
       {
 
         Alignment out(input->getAlphabet());
-        
+
 #ifdef _OPENMP            
 #pragma omp parallel for
 #endif    
@@ -50,7 +50,7 @@ namespace Circal
                 if (verbose)
                   std::cout << "*" << std::flush;
                 Alignment temp = GotohAlignment(input->getSequence(u),
-                    input->getSequence(k), scoreM,verbose);
+                    input->getSequence(k), scoreM, verbose);
                 out.addSequence(temp.getSequence(0));
                 out.addSequence(temp.getSequence(1));
               }

@@ -88,5 +88,4 @@ namespace Circal
         return out;
 
       }
-
   }

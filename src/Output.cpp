@@ -103,58 +103,84 @@ namespace Circal
 
       }
     //Shamelessly stolen from MARNA 
+    std::string Output::TCoffeeAlignFormat(Alignment* aln,
+        const bpp::VectorSequenceContainer* input)
+      {
+        std::stringstream out;
+
+        out << "#" << input->getSequencePosition(aln->getSequence(0)->getName())+1 << " "
+            << input->getSequencePosition(aln->getSequence(1)->getName())+1 << std::endl;
+
+        uint p1 = aln->get_offsetA();
+        uint p2 = aln->get_offsetB();
+
+        for (uint i=0; i < aln->getSequence(0)->size(); i++)
+          {
+
+            if (aln->getSequence(0)->getValue(i) != -1)
+              ++p1;
+            if (aln->getSequence(1)->getValue(i) != -1)
+              ++p2;
+            if ( (aln->getSequence(0)->getValue(i) != -1) && (aln->getSequence(1)->getValue(i) != -1))
+              //TODO Weight is hardcoded here
+              out << p1-1 << " " << p2-1 << " " << 100 << std::endl;
+          }
+        return out.str();
+
+      }
+
+    //Shamelessly stolen from MARNA 
     std::string Output::TCoffeeLibFormat(Alignment* aln,
         const bpp::VectorSequenceContainer* input)
       {
         std::stringstream out;
-        
-        //First of all: How many Sequences are there?
-        out << input->getNumberOfSequences() << std::endl;
-        
-        //Next: what sequences?
-        for (uint i=0;i<input->getNumberOfSequences();i++)
-          {
-            Circal::PseudoRotatedSequence temp(input->getSequence(i));
-            
-            out << temp.getName()
-            << " "
-            << temp.size()
-            << " "
-            << temp.toString()
-            << std::endl;
-          }
-        
+
+        out << TCoffeeLibHeader(input);
+
         //Iterate by 2
         for (uint j=0; j < aln->getNumberOfSequences(); j+=2)
           {
-            out << "#"
-            << input->getSequencePosition(aln->getSequence(j)->getName())+1
-            << " "
-            << input->getSequencePosition(aln->getSequence(j+1)->getName())+1
-            << std::endl;            
+            Alignment temp(aln->getAlphabet());
+            temp.addSequence(aln->getSequence(j));
+            temp.addSequence(aln->getSequence(j+1));
+            out << TCoffeeAlignFormat(&temp, input);
+          }
 
-            uint p1 = aln->get_offsetA();
-            uint p2 = aln->get_offsetB();
-            
-            for (uint i=0; i < aln->getSequence(j)->size(); i++)
-              {
+        return out.str();
+      }
+    
+    std::string Output::TCoffeeLibHeader(const bpp::VectorSequenceContainer* input)
+      {
+        std::stringstream out;
 
-                if (aln->getSequence(j)->getValue(i) != -1)
-                  ++p1;
-                if (aln->getSequence(j+1)->getValue(i) != -1)
-                  ++p2;
-                if ( (aln->getSequence(j)->getValue(i) != -1) && (aln->getSequence(j+1)->getValue(i) != -1))
-                  //TODO Weight is hardcoded here
-                  out << p1-1 << " " << p2-1 << " " << 100 << std::endl;
-              }
+        //First of all: How many Sequences are there?
+        out << input->getNumberOfSequences() << std::endl;
+
+        //Next: what sequences?
+        for (uint i=0; i<input->getNumberOfSequences(); i++)
+          {
+            Circal::PseudoRotatedSequence temp(input->getSequence(i));
+
+            out << temp.getName() << " " << temp.size() << " "
+                << temp.toString() << std::endl;
           }
         
-        
+        out << TCoffeeLibFooter();
+
+        return out.str();
+
+      }
+
+    std::string Output::TCoffeeLibFooter(void)
+      {
+        std::stringstream out;
+
         //Tail of T_Coffee_Lib format
         out << "CPU 0" << std::endl;
         out << "! SEQ_1_TO_N" << std::endl;
 
         return out.str();
+
       }
 
   }

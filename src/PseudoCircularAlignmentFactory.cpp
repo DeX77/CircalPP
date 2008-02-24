@@ -682,11 +682,11 @@ namespace Circal
           {
             //Seems to be ok
             if (verbose)
-              std::cout << "Optimum sofort gefunden!" << std::endl;
+              std::clog << std::endl << "Optimum sofort gefunden!" << std::endl;
             return temp;
           }
         else if (verbose)
-          std::cout << "Yipi ya yay Schweinebacke" << std::endl;
+          std::clog << std::endl << "Yipi ya yay Schweinebacke" << std::endl;
 
         //The hard way
         ScoreMatrix3D kD = matrix->InitScoreMatrix3DWith(inA, &B, delta, 0);
@@ -701,7 +701,7 @@ namespace Circal
             &kQ, i, j);
 
         return BacktrackingSmithWatermanAffin(inA, &B, scoreM, delta, &kD, &kP,
-            &kQ, i, j,verbose);
+            &kQ, i, j, verbose);
 
       }
   }

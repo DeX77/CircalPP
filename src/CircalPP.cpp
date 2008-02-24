@@ -44,6 +44,7 @@ std::string usage()
     out<< std::endl;
     out<<"options:" << std::endl;
     out<<" -v  verbose mode" << std::endl;
+    out<<" -s  output results stepwise" << std::endl;
     out<<" -d  <integer>  delta value" << std::endl;
     out<<" -D  input is dna" << std::endl;
     out<<" -R  input is rna" << std::endl;
@@ -60,7 +61,7 @@ std::string usage()
 void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
     const Circal::ScoringModel &scoreM, const std::string &outFilename,
     const std::string &resultFilename, bool outF, bool resultF, int &delta,
-    bool verbose)
+    bool verbose, bool stepWise)
   {
 
     //Container for read sequences
@@ -70,7 +71,7 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
     if (alpha->getAlphabetType() == "Vertebrate Mitochondrial Genome")
       {
         if (verbose)
-          std::cout << "Using WhitespaceFasta Reader" << std::endl;
+          std::clog << "Using WhitespaceFasta Reader" << std::endl;
         Circal::WhitespaceFasta seqReader;
         //Check for Sequence File Existence
         if (!bpp::FileTools::fileExists(seqFilename))
@@ -95,7 +96,7 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
     else
       {
         if (verbose)
-          std::cout << "Using CorrectedFasta Reader" << std::endl;
+          std::clog << "Using CorrectedFasta Reader" << std::endl;
 
         Circal::CorrectedFasta seqReader;
         //Check for Sequence File Existence
@@ -120,25 +121,77 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
       }
 
     Circal::CorrectedFasta seqWriter;
+    Circal::Output prettyPrint;
 
     //Create Multiple Circular Alignment
     Circal::MultiplePseudoCircularAlignmentFactory circal;
-    Circal::Alignment multi = circal.GotohalignMultiple(&sequences, &scoreM,
-        delta, verbose);
-
-    if (outF)
-      seqWriter.write(outFilename,
-          *dynamic_cast<bpp::SequenceContainer*>(&multi));
-
-    Circal::Output prettyPrint;
-
-    if (resultF)
+    Circal::PseudoCircularAlignmentFactory pseuC;
+    if (stepWise)
       {
-        ofstream foo(resultFilename.c_str());
-        foo << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
+
+        if (resultF)
+          {
+            //Overwritting would be realy uncool
+            ofstream foo(resultFilename.c_str(), ios_base::app);
+            foo << prettyPrint.TCoffeeLibHeader(&sequences);
+          }
+        else
+          std::cout << prettyPrint.TCoffeeLibHeader(&sequences);
+
+#ifdef _OPENMP            
+#pragma omp parallel for
+#endif    
+        for (uint u=0; u<sequences.getNumberOfSequences(); u++)
+          {
+
+            for (uint k=u+1; k<sequences.getNumberOfSequences(); k++)
+              {
+                if (verbose)
+                  std::clog << "*" << std::flush;
+                Circal::Alignment temp = pseuC.GotohAlignment(
+                    sequences.getSequence(u), sequences.getSequence(k),
+                    &scoreM, delta, verbose);
+                if (outF)
+                  seqWriter.write(outFilename,
+                      *dynamic_cast<bpp::SequenceContainer*>(&temp), false);
+                if (resultF)
+                  {
+                    //Overwritting would be realy uncool
+                    ofstream foo(resultFilename.c_str(), ios_base::app);
+                    foo << prettyPrint.TCoffeeAlignFormat(&temp, &sequences);
+                  }
+                else
+                  std::cout << prettyPrint.TCoffeeAlignFormat(&temp, &sequences);
+              }
+            if (verbose)
+              std::clog << std::endl;
+
+          }
+        if (resultF)
+          {
+            //Overwritting would be realy uncool
+            ofstream foo(resultFilename.c_str(), ios_base::app);
+            foo << prettyPrint.TCoffeeLibFooter();
+          }
+        else
+          std::cout << prettyPrint.TCoffeeLibFooter();
+
       }
     else
-      std::cout << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
+      {
+        Circal::Alignment multi = circal.GotohalignMultiple(&sequences,
+            &scoreM, delta, verbose);
+        if (outF)
+          seqWriter.write(outFilename,
+              *dynamic_cast<bpp::SequenceContainer*>(&multi));
+        if (resultF)
+          {
+            ofstream foo(resultFilename.c_str());
+            foo << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
+          }
+        else
+          std::cout << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
+      }
   }
 
 int main(int args, char* argv[])
@@ -148,6 +201,7 @@ int main(int args, char* argv[])
     bool resultF = false;
     bool alphaSet = false;
     bool scoreSet = false;
+    bool stepWise = false;
 
     std::string alphaTyp;
     std::string seqFilename;
@@ -163,6 +217,9 @@ int main(int args, char* argv[])
         if (argv[i][0]=='-')
           switch (argv[i][1])
             {
+          case 's':
+            stepWise = true;
+            break;
           case 'v':
             verbose = true;
             break;
@@ -171,7 +228,7 @@ int main(int args, char* argv[])
               std::stringstream parser(argv[i+1]);
               parser >> delta;
               if (verbose)
-                std::cout << "Delta: " << delta << std::endl;
+                std::clog << "Delta: " << delta << std::endl;
               break;
             }
           case 'D':
@@ -179,7 +236,7 @@ int main(int args, char* argv[])
               alphaTyp = "DNA";
               alphaSet = true;
               if (verbose)
-                std::cout << "Using DNA alphabet" << std::endl;
+                std::clog << "Using DNA alphabet" << std::endl;
               break;
             }
           case 'R':
@@ -189,7 +246,7 @@ int main(int args, char* argv[])
 
               alphaSet = true;
               if (verbose)
-                std::cout << "Using RNA alphabet" << std::endl;
+                std::clog << "Using RNA alphabet" << std::endl;
               break;
             }
           case 'G':
@@ -198,7 +255,7 @@ int main(int args, char* argv[])
               alphaTyp = "SELF";
 
               if (verbose)
-                std::cout << "Using self defined alphabet" << std::endl;
+                std::clog << "Using self defined alphabet" << std::endl;
               alphaSet = true;
               break;
             }
@@ -206,7 +263,7 @@ int main(int args, char* argv[])
             {
               scoreFilename = argv[i+1];
               if (verbose)
-                std::cout << "ScoreFile: " << scoreFilename << std::endl;
+                std::clog << "ScoreFile: " << scoreFilename << std::endl;
               //Check for Scoring File Existence
               if (!bpp::FileTools::fileExists(scoreFilename))
                 {
@@ -221,7 +278,7 @@ int main(int args, char* argv[])
             {
               outFilename = argv[i+1];
               if (verbose)
-                std::cout << "Output Fasta-File: " << outFilename << std::endl;
+                std::clog << "Output Fasta-File: " << outFilename << std::endl;
               outF = true;
               break;
             }
@@ -229,7 +286,7 @@ int main(int args, char* argv[])
             {
               resultFilename = argv[i+1];
               if (verbose)
-                std::cout << "Output File: " << resultFilename << std::endl;
+                std::clog << "Output File: " << resultFilename << std::endl;
               resultF = true;
               break;
             }
@@ -237,12 +294,12 @@ int main(int args, char* argv[])
             {
               seqFilename = argv[i+1];
               if (verbose)
-                std::cout << "InputFile: " << seqFilename << std::endl;
+                std::clog << "InputFile: " << seqFilename << std::endl;
               break;
             }
 
           default:
-            std: cerr << usage();
+            std::cerr << usage();
             }
       }
 
@@ -268,7 +325,7 @@ int main(int args, char* argv[])
         Circal::ScoringModel scoreM(scoreFilename);
 
         doAllignment(alpha, seqFilename, scoreM, outFilename, resultFilename,
-            outF, resultF, delta, verbose);
+            outF, resultF, delta, verbose, stepWise);
         delete alpha;
       }
     else if (alphaTyp == "RNA")
@@ -279,7 +336,7 @@ int main(int args, char* argv[])
         Circal::ScoringModel scoreM(scoreFilename);
 
         doAllignment(alpha, seqFilename, scoreM, outFilename, resultFilename,
-            outF, resultF, delta, verbose);
+            outF, resultF, delta, verbose, stepWise);
         delete alpha;
       }
     else
@@ -291,7 +348,7 @@ int main(int args, char* argv[])
             new Circal::VertebrateMitochondrialGenomeAlphabet(&scoreM);
 
         doAllignment(alpha, seqFilename, scoreM, outFilename, resultFilename,
-            outF, resultF, delta, verbose);
+            outF, resultF, delta, verbose, stepWise);
         delete alpha;
       }
 
