@@ -1,4 +1,4 @@
-.TH "Circal::PseudoCircularAlignmentFactory" 3 "21 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
+.TH "Circal::PseudoCircularAlignmentFactory" 3 "24 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -22,10 +22,10 @@ Inherited by \fBCircal::MultiplePseudoCircularAlignmentFactory\fP.
 .RI "virtual \fB~PseudoCircularAlignmentFactory\fP ()"
 .br
 .ti -1c
-.RI "\fBAlignment\fP \fBNeedlemanWunschAlignment\fP (const bpp::Sequence *A, const bpp::Sequence *B, const \fBScoringModel\fP *scoreM, const int &delta)"
+.RI "\fBAlignment\fP \fBNeedlemanWunschAlignment\fP (const bpp::Sequence *A, const bpp::Sequence *B, const \fBScoringModel\fP *scoreM, const int &delta, bool verbose=false)"
 .br
 .ti -1c
-.RI "\fBAlignment\fP \fBGotohAlignment\fP (const bpp::Sequence *A, const bpp::Sequence *B, const \fBScoringModel\fP *scoreM, const int &delta)"
+.RI "\fBAlignment\fP \fBGotohAlignment\fP (const bpp::Sequence *A, const bpp::Sequence *B, const \fBScoringModel\fP *scoreM, const int &delta, bool verbose=false)"
 .br
 .in -1c
 .SS "Private Member Functions"
@@ -41,7 +41,7 @@ Inherited by \fBCircal::MultiplePseudoCircularAlignmentFactory\fP.
 .RI "virtual double \fBForwardRecursionSmithWatermanAffin\fP (const bpp::Sequence *A, const \fBPseudoRotatedSequence\fP *B, const \fBScoringModel\fP *scoreM, const int &delta, \fBScoreMatrix3D\fP *D, \fBScoreMatrix3D\fP *P, \fBScoreMatrix3D\fP *Q, uint &bi, uint &bj)"
 .br
 .ti -1c
-.RI "virtual \fBAlignment\fP \fBBacktrackingSmithWatermanAffin\fP (const bpp::Sequence *A, const \fBPseudoRotatedSequence\fP *B, const \fBScoringModel\fP *scoreM, const int &delta, const \fBScoreMatrix3D\fP *D, const \fBScoreMatrix3D\fP *P, const \fBScoreMatrix3D\fP *Q, uint &i, uint &j)"
+.RI "virtual \fBAlignment\fP \fBBacktrackingSmithWatermanAffin\fP (const bpp::Sequence *A, const \fBPseudoRotatedSequence\fP *B, const \fBScoringModel\fP *scoreM, const int &delta, const \fBScoreMatrix3D\fP *D, const \fBScoreMatrix3D\fP *P, const \fBScoreMatrix3D\fP *Q, uint &i, uint &j, bool verbose=false)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -65,14 +65,14 @@ Definition at line 32 of file PseudoCircularAlignmentFactory.cpp.
 .PP
 ! Changed from Original 
 .PP
-Definition at line 348 of file PseudoCircularAlignmentFactory.cpp.
+Definition at line 359 of file PseudoCircularAlignmentFactory.cpp.
 .PP
 References Circal::ScoringModel::BestOfThree(), Circal::ScoringModel::BestOfTwo(), Circal::PseudoRotatedSequence::getChar(), Circal::ScoringModel::ScoreOf(), Circal::ScoringModel::ScoreOfGapExtend(), Circal::ScoringModel::ScoreOfGapOpen(), and Circal::PseudoRotatedSequence::size().
 .PP
 Referenced by NeedlemanWunschAlignment().
 .SS "\fBAlignment\fP Circal::PseudoCircularAlignmentFactory::BacktrackingSmithWaterman (const bpp::Sequence * A, const \fBPseudoRotatedSequence\fP * B, const \fBScoringModel\fP * scoreM, const int & delta, const \fBScoreMatrix3D\fP * D, uint & i, uint & j)\fC [private, virtual]\fP"
 .PP
-Definition at line 473 of file PseudoCircularAlignmentFactory.cpp.
+Definition at line 484 of file PseudoCircularAlignmentFactory.cpp.
 .PP
 References Circal::ScoringModel::BestOfTwo(), Circal::PseudoRotatedSequence::getChar(), Circal::PseudoRotatedSequence::getValue(), Circal::ScoringModel::ScoreOf(), Circal::ScoringModel::ScoreOfGapOpen(), and Circal::PseudoRotatedSequence::size().
 .PP
@@ -84,25 +84,27 @@ Definition at line 36 of file PseudoCircularAlignmentFactory.cpp.
 References Circal::ScoringModel::BestOfThree(), Circal::ScoringModel::BestOfTwo(), Circal::PseudoRotatedSequence::getChar(), Circal::ScoringModel::ScoreOf(), Circal::ScoringModel::ScoreOfGapExtend(), Circal::ScoringModel::ScoreOfGapOpen(), and Circal::PseudoRotatedSequence::size().
 .PP
 Referenced by GotohAlignment().
-.SS "\fBAlignment\fP Circal::PseudoCircularAlignmentFactory::BacktrackingSmithWatermanAffin (const bpp::Sequence * A, const \fBPseudoRotatedSequence\fP * B, const \fBScoringModel\fP * scoreM, const int & delta, const \fBScoreMatrix3D\fP * D, const \fBScoreMatrix3D\fP * P, const \fBScoreMatrix3D\fP * Q, uint & i, uint & j)\fC [private, virtual]\fP"
+.SS "\fBAlignment\fP Circal::PseudoCircularAlignmentFactory::BacktrackingSmithWatermanAffin (const bpp::Sequence * A, const \fBPseudoRotatedSequence\fP * B, const \fBScoringModel\fP * scoreM, const int & delta, const \fBScoreMatrix3D\fP * D, const \fBScoreMatrix3D\fP * P, const \fBScoreMatrix3D\fP * Q, uint & i, uint & j, bool verbose = \fCfalse\fP)\fC [private, virtual]\fP"
 .PP
 Definition at line 189 of file PseudoCircularAlignmentFactory.cpp.
 .PP
 References Circal::ScoringModel::BestOfTwo(), Circal::PseudoRotatedSequence::getChar(), Circal::PseudoRotatedSequence::getValue(), Circal::ScoringModel::ScoreOf(), Circal::ScoringModel::ScoreOfGapExtend(), Circal::ScoringModel::ScoreOfGapOpen(), and Circal::PseudoRotatedSequence::size().
 .PP
 Referenced by GotohAlignment().
-.SS "\fBAlignment\fP Circal::PseudoCircularAlignmentFactory::NeedlemanWunschAlignment (const bpp::Sequence * A, const bpp::Sequence * B, const \fBScoringModel\fP * scoreM, const int & delta)"
+.SS "\fBAlignment\fP Circal::PseudoCircularAlignmentFactory::NeedlemanWunschAlignment (const bpp::Sequence * A, const bpp::Sequence * B, const \fBScoringModel\fP * scoreM, const int & delta, bool verbose = \fCfalse\fP)"
 .PP
-Definition at line 599 of file PseudoCircularAlignmentFactory.cpp.
+Definition at line 610 of file PseudoCircularAlignmentFactory.cpp.
 .PP
 References BacktrackingSmithWaterman(), Circal::AlignmentFactory::BacktrackingSmithWaterman(), ForwardRecursionSmithWaterman(), Circal::AlignmentFactory::ForwardRecursionSmithWaterman(), Circal::MatrixHelper::InitializeScoreMatrixDistances(), Circal::MatrixHelper::InitScoreMatrix3DWith(), and Circal::AlignmentFactory::matrix.
-.SS "\fBAlignment\fP Circal::PseudoCircularAlignmentFactory::GotohAlignment (const bpp::Sequence * A, const bpp::Sequence * B, const \fBScoringModel\fP * scoreM, const int & delta)"
 .PP
-Definition at line 636 of file PseudoCircularAlignmentFactory.cpp.
+Referenced by Circal::MultiplePseudoCircularAlignmentFactory::NMWalignMultiple().
+.SS "\fBAlignment\fP Circal::PseudoCircularAlignmentFactory::GotohAlignment (const bpp::Sequence * A, const bpp::Sequence * B, const \fBScoringModel\fP * scoreM, const int & delta, bool verbose = \fCfalse\fP)"
+.PP
+Definition at line 651 of file PseudoCircularAlignmentFactory.cpp.
 .PP
 References BacktrackingSmithWatermanAffin(), Circal::AlignmentFactory::BacktrackingSmithWatermanAffin(), ForwardRecursionSmithWatermanAffin(), Circal::AlignmentFactory::ForwardRecursionSmithWatermanAffin(), Circal::MatrixHelper::InitScoreMatrix3DWith(), Circal::MatrixHelper::InitScoreMatrixWith(), and Circal::AlignmentFactory::matrix.
 .PP
-Referenced by main().
+Referenced by doAllignment(), and Circal::MultiplePseudoCircularAlignmentFactory::GotohalignMultiple().
 
 .SH "Author"
 .PP 

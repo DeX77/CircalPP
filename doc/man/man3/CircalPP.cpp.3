@@ -1,0 +1,70 @@
+.TH "Uni/workspace/CircalPP/src/CircalPP.cpp" 3 "24 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Uni/workspace/CircalPP/src/CircalPP.cpp \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'MultipleCircularAlignmentFactory.h'\fP
+.br
+\fC#include 'MultiplePseudoCircularAlignmentFactory.h'\fP
+.br
+\fC#include 'ScoringModel.h'\fP
+.br
+\fC#include 'CorrectedFasta.h'\fP
+.br
+\fC#include 'WhitespaceFasta.h'\fP
+.br
+\fC#include 'Output.h'\fP
+.br
+\fC#include 'RandomSequence.h'\fP
+.br
+\fC#include 'VertebrateMitochondrialGenomeAlphabet.h'\fP
+.br
+\fC#include <Seq/alphabets>\fP
+.br
+\fC#include <NumCalc/RandomTools.h>\fP
+.br
+\fC#include <iostream>\fP
+.br
+\fC#include <fstream>\fP
+.br
+\fC#include <sstream>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "std::string \fBusage\fP ()"
+.br
+.ti -1c
+.RI "void \fBdoAllignment\fP (const bpp::Alphabet *alpha, const std::string &seqFilename, const \fBCircal::ScoringModel\fP &scoreM, const std::string &outFilename, const std::string &resultFilename, bool outF, bool resultF, int &delta, bool verbose, bool stepWise)"
+.br
+.ti -1c
+.RI "int \fBmain\fP (int args, char *argv[])"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void doAllignment (const bpp::Alphabet * alpha, const std::string & seqFilename, const \fBCircal::ScoringModel\fP & scoreM, const std::string & outFilename, const std::string & resultFilename, bool outF, bool resultF, int & delta, bool verbose, bool stepWise)"
+.PP
+Definition at line 61 of file CircalPP.cpp.
+.PP
+References Circal::PseudoCircularAlignmentFactory::GotohAlignment(), Circal::MultiplePseudoCircularAlignmentFactory::GotohalignMultiple(), Circal::Output::TCoffeeAlignFormat(), Circal::Output::TCoffeeLibFooter(), Circal::Output::TCoffeeLibFormat(), and Circal::Output::TCoffeeLibHeader().
+.PP
+Referenced by main().
+.SS "int main (int args, char * argv[])"
+.PP
+Definition at line 197 of file CircalPP.cpp.
+.PP
+References doAllignment(), and usage().
+.SS "std::string usage ()"
+.PP
+Definition at line 38 of file CircalPP.cpp.
+.PP
+Referenced by main().
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CircalPP from the source code.

@@ -1,4 +1,4 @@
-.TH "Circal::MultipleAlignmentFactory" 3 "21 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
+.TH "Circal::MultipleAlignmentFactory" 3 "24 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -22,10 +22,10 @@ Inherited by \fBCircal::MultipleCircularAlignmentFactory\fP, and \fBCircal::Mult
 .RI "virtual \fB~MultipleAlignmentFactory\fP ()"
 .br
 .ti -1c
-.RI "\fBAlignment\fP \fBGotohalignMultiple\fP (const bpp::VectorSequenceContainer *input, const \fBScoringModel\fP *scoreM)"
+.RI "\fBAlignment\fP \fBGotohalignMultiple\fP (const bpp::VectorSequenceContainer *input, const \fBScoringModel\fP *scoreM, bool verbose)"
 .br
 .ti -1c
-.RI "\fBAlignment\fP \fBNMWalignMultiple\fP (const bpp::VectorSequenceContainer *input, const \fBScoringModel\fP *scoreM)"
+.RI "\fBAlignment\fP \fBNMWalignMultiple\fP (const bpp::VectorSequenceContainer *input, const \fBScoringModel\fP *scoreM, bool verbose)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -41,14 +41,14 @@ Definition at line 27 of file MultipleAlignmentFactory.cpp.
 Definition at line 31 of file MultipleAlignmentFactory.cpp.
 .SH "Member Function Documentation"
 .PP 
-.SS "\fBAlignment\fP Circal::MultipleAlignmentFactory::GotohalignMultiple (const bpp::VectorSequenceContainer * input, const \fBScoringModel\fP * scoreM)"
+.SS "\fBAlignment\fP Circal::MultipleAlignmentFactory::GotohalignMultiple (const bpp::VectorSequenceContainer * input, const \fBScoringModel\fP * scoreM, bool verbose)"
 .PP
 Definition at line 35 of file MultipleAlignmentFactory.cpp.
 .PP
 References Circal::Alignment::addSequence(), and Circal::AlignmentFactory::GotohAlignment().
-.SS "\fBAlignment\fP Circal::MultipleAlignmentFactory::NMWalignMultiple (const bpp::VectorSequenceContainer * input, const \fBScoringModel\fP * scoreM)"
+.SS "\fBAlignment\fP Circal::MultipleAlignmentFactory::NMWalignMultiple (const bpp::VectorSequenceContainer * input, const \fBScoringModel\fP * scoreM, bool verbose)"
 .PP
-Definition at line 57 of file MultipleAlignmentFactory.cpp.
+Definition at line 64 of file MultipleAlignmentFactory.cpp.
 .PP
 References Circal::Alignment::addSequence(), and Circal::AlignmentFactory::NeedlemanWunschAlignment().
 

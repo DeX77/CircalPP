@@ -88,8 +88,8 @@
 <a name="l00070"></a><a class="code" href="classCircal_1_1VertebrateMitochondrialGenomeAlphabet.html#6b3fa1f62294d8c683be6e705f963bce">00070</a>     <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1VertebrateMitochondrialGenomeAlphabet.html#6b3fa1f62294d8c683be6e705f963bce">VertebrateMitochondrialGenomeAlphabet::convertModeltoAlphabet</a>(
 <a name="l00071"></a>00071         <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scm)
 <a name="l00072"></a>00072       {
-<a name="l00073"></a>00073         alphabet.resize(scm-&gt;<a class="code" href="classCircal_1_1ScoringModel.html#5a72855024938d033e28072bc5528a1b">GetModelSize</a>()+1);
-<a name="l00074"></a>00074 
+<a name="l00073"></a>00073         alphabet.resize(scm-&gt;<a class="code" href="classCircal_1_1ScoringModel.html#5a72855024938d033e28072bc5528a1b">GetModelSize</a>()+1);        
+<a name="l00074"></a>00074         
 <a name="l00075"></a>00075         <span class="keywordtype">int</span> i=1;
 <a name="l00076"></a>00076         uint size;
 <a name="l00077"></a>00077         <span class="keywordtype">string</span> temp = <span class="stringliteral">""</span>;
@@ -104,17 +104,18 @@
 <a name="l00086"></a>00086             alphabet[i].name = temp;
 <a name="l00087"></a>00087             size = itr-&gt;second.symbol.length();
 <a name="l00088"></a>00088             i++;
-<a name="l00089"></a>00089           }
-<a name="l00090"></a>00090         <span class="comment">//Add gap code</span>
-<a name="l00091"></a>00091         alphabet[0].num = -1;
-<a name="l00092"></a>00092         alphabet[0].letter = string(size, <span class="charliteral">'_'</span>);
-<a name="l00093"></a>00093         alphabet[0].abbr = string(size, <span class="charliteral">'_'</span>);
-<a name="l00094"></a>00094         alphabet[0].name = <span class="stringliteral">"Gap"</span>;
-<a name="l00095"></a>00095 
-<a name="l00096"></a>00096       }
-<a name="l00097"></a>00097   }
-<a name="l00098"></a>00098 
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 21 21:14:16 2008 for CircalPP by&nbsp;
+<a name="l00089"></a>00089 <span class="comment">//            std::cout &lt;&lt; "Chevron &lt;" &lt;&lt; temp &lt;&lt; "&gt; added" &lt;&lt; std::endl;</span>
+<a name="l00090"></a>00090           }
+<a name="l00091"></a>00091         <span class="comment">//Add gap code</span>
+<a name="l00092"></a>00092         alphabet[0].num = -1;
+<a name="l00093"></a>00093         alphabet[0].letter = string(size, <span class="charliteral">'_'</span>);
+<a name="l00094"></a>00094         alphabet[0].abbr = string(size, <span class="charliteral">'_'</span>);
+<a name="l00095"></a>00095         alphabet[0].name = <span class="stringliteral">"Gap"</span>;
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097       }
+<a name="l00098"></a>00098   }
+<a name="l00099"></a>00099 
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Sun Feb 24 19:08:16 2008 for CircalPP by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>

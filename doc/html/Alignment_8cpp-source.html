@@ -42,48 +42,60 @@
 <a name="l00024"></a>00024 
 <a name="l00025"></a><a class="code" href="namespaceCircal.html">00025</a> <span class="keyword">namespace </span>Circal
 <a name="l00026"></a>00026   {
-<a name="l00027"></a><a class="code" href="classCircal_1_1Alignment.html#6c1d8170276265997eb8729e83a65fa8">00027</a>     <a class="code" href="classCircal_1_1Alignment.html#4487be03e5c0685d42b2f414fda5e50b">Alignment::Alignment</a>(<span class="keyword">const</span> bpp::Alphabet* alpha) :
+<a name="l00027"></a><a class="code" href="classCircal_1_1Alignment.html#6c1d8170276265997eb8729e83a65fa8">00027</a>     <a class="code" href="classCircal_1_1Alignment.html#6c1d8170276265997eb8729e83a65fa8">Alignment::Alignment</a>(<span class="keyword">const</span> bpp::Alphabet* alpha) :
 <a name="l00028"></a>00028       VectorSequenceContainer(alpha), AlignedSequenceContainer(alpha)
 <a name="l00029"></a>00029 
 <a name="l00030"></a>00030       {
 <a name="l00031"></a>00031         this-&gt;<a class="code" href="classCircal_1_1Alignment.html#94d66a0aa8ca3a3ecd47801acbbbc16a">set_Score</a>(-numeric_limits&lt;int&gt;::infinity());
-<a name="l00032"></a>00032 
-<a name="l00033"></a>00033       }
+<a name="l00032"></a>00032         this-&gt;<a class="code" href="classCircal_1_1Alignment.html#222ba2a7ddae54bda89e809b59aa7f12">set_offsetA</a>(1);
+<a name="l00033"></a>00033         this-&gt;<a class="code" href="classCircal_1_1Alignment.html#cdf5f3f56151b4ea4829a826b6b88b63">set_offsetB</a>(1);
 <a name="l00034"></a>00034 
-<a name="l00035"></a><a class="code" href="classCircal_1_1Alignment.html#4a0146b22bceb4dff7a0583378f6145c">00035</a>     Alignment::~Alignment()
-<a name="l00036"></a>00036       {
-<a name="l00037"></a>00037 
-<a name="l00038"></a>00038       }
-<a name="l00039"></a><a class="code" href="classCircal_1_1Alignment.html#77734f8eb8623b665e518afae2e49789">00039</a>     uint <a class="code" href="classCircal_1_1Alignment.html#77734f8eb8623b665e518afae2e49789">Alignment::get_origSize</a>()
-<a name="l00040"></a>00040       {
-<a name="l00041"></a>00041         <span class="keywordflow">return</span> this-&gt;<a class="code" href="classCircal_1_1Alignment.html#4899d9988a47852fc888a900e3ffdaf7">origSize</a>;
-<a name="l00042"></a>00042       }
-<a name="l00043"></a><a class="code" href="classCircal_1_1Alignment.html#89a2f964067b1f766a3327e8008a0f45">00043</a>     <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1Alignment.html#89a2f964067b1f766a3327e8008a0f45">Alignment::set_origSize</a>(<span class="keyword">const</span> uint &amp;orig)
-<a name="l00044"></a>00044       {
-<a name="l00045"></a>00045         this-&gt;<a class="code" href="classCircal_1_1Alignment.html#4899d9988a47852fc888a900e3ffdaf7">origSize</a> = orig;
-<a name="l00046"></a>00046       }
-<a name="l00047"></a>00047 
-<a name="l00048"></a><a class="code" href="classCircal_1_1Alignment.html#e4dc0a9b6c0b89f3e3c375b963c76ec1">00048</a>     <span class="keywordtype">double</span> <a class="code" href="classCircal_1_1Alignment.html#e4dc0a9b6c0b89f3e3c375b963c76ec1">Alignment::get_Score</a>(<span class="keywordtype">void</span>)
-<a name="l00049"></a>00049       {
-<a name="l00050"></a>00050         <span class="keywordflow">return</span> this-&gt;<a class="code" href="classCircal_1_1Alignment.html#894c310f50b7ec0b44c53d38b03a4c4c">Score</a>;
-<a name="l00051"></a>00051       }
-<a name="l00052"></a>00052 
-<a name="l00053"></a><a class="code" href="classCircal_1_1Alignment.html#94d66a0aa8ca3a3ecd47801acbbbc16a">00053</a>     <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1Alignment.html#94d66a0aa8ca3a3ecd47801acbbbc16a">Alignment::set_Score</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;s)
-<a name="l00054"></a>00054       {
-<a name="l00055"></a>00055         this-&gt;<a class="code" href="classCircal_1_1Alignment.html#894c310f50b7ec0b44c53d38b03a4c4c">Score</a> = s;
-<a name="l00056"></a>00056       }
-<a name="l00057"></a>00057 
-<a name="l00058"></a><a class="code" href="classCircal_1_1Alignment.html#9068711091bc065e281c076da5bd7dcb">00058</a>     <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1Alignment.html#9068711091bc065e281c076da5bd7dcb">Alignment::addSequence</a>(<span class="keyword">const</span> bpp::Sequence* sequence)
-<a name="l00059"></a>00059       {
-<a name="l00060"></a>00060         <span class="comment">//Override stupid Memory leaks</span>
-<a name="l00061"></a>00061         <span class="comment">//bpp::VectorSequenceContainer::addSequence(sequence, checkNames);</span>
-<a name="l00062"></a>00062 
-<a name="l00063"></a>00063         _sequences.push_back(sequence-&gt;clone());
+<a name="l00035"></a>00035       }
+<a name="l00036"></a>00036 
+<a name="l00037"></a><a class="code" href="classCircal_1_1Alignment.html#4a0146b22bceb4dff7a0583378f6145c">00037</a>     Alignment::~Alignment()
+<a name="l00038"></a>00038       {
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040       }
+<a name="l00041"></a>00041     
+<a name="l00042"></a><a class="code" href="classCircal_1_1Alignment.html#1ba1a02f0da981faca500e0988bf1ac8">00042</a>     uint <a class="code" href="classCircal_1_1Alignment.html#1ba1a02f0da981faca500e0988bf1ac8">Alignment::get_offsetA</a>()
+<a name="l00043"></a>00043       {
+<a name="l00044"></a>00044         <span class="keywordflow">return</span> this-&gt;<a class="code" href="classCircal_1_1Alignment.html#8f289b66dbb1373f0d857f5b43f814dc">offsetA</a>;
+<a name="l00045"></a>00045       }
+<a name="l00046"></a><a class="code" href="classCircal_1_1Alignment.html#222ba2a7ddae54bda89e809b59aa7f12">00046</a>     <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1Alignment.html#222ba2a7ddae54bda89e809b59aa7f12">Alignment::set_offsetA</a>(<span class="keyword">const</span> uint &amp;<a class="code" href="classCircal_1_1Alignment.html#8f289b66dbb1373f0d857f5b43f814dc">offsetA</a>)
+<a name="l00047"></a>00047       {
+<a name="l00048"></a>00048         this-&gt;offsetA = offsetA;
+<a name="l00049"></a>00049       }
+<a name="l00050"></a>00050 
+<a name="l00051"></a><a class="code" href="classCircal_1_1Alignment.html#6822c7df4eab6cd256934baa7ae71ee8">00051</a>     uint <a class="code" href="classCircal_1_1Alignment.html#6822c7df4eab6cd256934baa7ae71ee8">Alignment::get_offsetB</a>()
+<a name="l00052"></a>00052       {
+<a name="l00053"></a>00053         <span class="keywordflow">return</span> this-&gt;<a class="code" href="classCircal_1_1Alignment.html#8afb2ec44c7cda3c08759eb544ea822a">offsetB</a>;
+<a name="l00054"></a>00054       }
+<a name="l00055"></a><a class="code" href="classCircal_1_1Alignment.html#cdf5f3f56151b4ea4829a826b6b88b63">00055</a>     <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1Alignment.html#cdf5f3f56151b4ea4829a826b6b88b63">Alignment::set_offsetB</a>(<span class="keyword">const</span> uint &amp;<a class="code" href="classCircal_1_1Alignment.html#8afb2ec44c7cda3c08759eb544ea822a">offsetB</a>)
+<a name="l00056"></a>00056       {
+<a name="l00057"></a>00057         this-&gt;offsetB = offsetB;
+<a name="l00058"></a>00058       }
+<a name="l00059"></a>00059     
+<a name="l00060"></a><a class="code" href="classCircal_1_1Alignment.html#e4dc0a9b6c0b89f3e3c375b963c76ec1">00060</a>     <span class="keywordtype">double</span> <a class="code" href="classCircal_1_1Alignment.html#e4dc0a9b6c0b89f3e3c375b963c76ec1">Alignment::get_Score</a>(<span class="keywordtype">void</span>)
+<a name="l00061"></a>00061       {
+<a name="l00062"></a>00062         <span class="keywordflow">return</span> this-&gt;<a class="code" href="classCircal_1_1Alignment.html#894c310f50b7ec0b44c53d38b03a4c4c">Score</a>;
+<a name="l00063"></a>00063       }
 <a name="l00064"></a>00064 
-<a name="l00065"></a>00065       }
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067   }
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 21 21:14:16 2008 for CircalPP by&nbsp;
+<a name="l00065"></a><a class="code" href="classCircal_1_1Alignment.html#94d66a0aa8ca3a3ecd47801acbbbc16a">00065</a>     <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1Alignment.html#94d66a0aa8ca3a3ecd47801acbbbc16a">Alignment::set_Score</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;s)
+<a name="l00066"></a>00066       {
+<a name="l00067"></a>00067         this-&gt;<a class="code" href="classCircal_1_1Alignment.html#894c310f50b7ec0b44c53d38b03a4c4c">Score</a> = s;
+<a name="l00068"></a>00068       }
+<a name="l00069"></a>00069 
+<a name="l00070"></a><a class="code" href="classCircal_1_1Alignment.html#9068711091bc065e281c076da5bd7dcb">00070</a>     <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1Alignment.html#9068711091bc065e281c076da5bd7dcb">Alignment::addSequence</a>(<span class="keyword">const</span> bpp::Sequence* sequence)
+<a name="l00071"></a>00071       {
+<a name="l00072"></a>00072         <span class="comment">//Override stupid Memory leaks</span>
+<a name="l00073"></a>00073         <span class="comment">//bpp::VectorSequenceContainer::addSequence(sequence, checkNames);</span>
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075         _sequences.push_back(sequence-&gt;clone());
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077       }
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079   }
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Sun Feb 24 19:08:15 2008 for CircalPP by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>

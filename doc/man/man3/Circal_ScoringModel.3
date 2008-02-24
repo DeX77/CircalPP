@@ -1,4 +1,4 @@
-.TH "Circal::ScoringModel" 3 "21 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
+.TH "Circal::ScoringModel" 3 "24 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -95,7 +95,7 @@ Definition at line 40 of file ScoringModel.cpp.
 .PP 
 .SS "void Circal::ScoringModel::read (const std::string & path)"
 .PP
-Definition at line 119 of file ScoringModel.cpp.
+Definition at line 118 of file ScoringModel.cpp.
 .PP
 Referenced by ScoringModel().
 .SS "void Circal::ScoringModel::read (std::istream & input)"
@@ -105,75 +105,75 @@ Definition at line 43 of file ScoringModel.cpp.
 References Circal::AlignmentSymbol::gapExtend, Circal::AlignmentSymbol::gapOpen, Circal::AlignmentSymbol::match, Circal::AlignmentSymbol::missmatch, model, Circal::AlignmentSymbol::negativeMatch, NormalizeScores(), Circal::AlignmentSymbol::symbol, and Circal::AlignmentSymbol::type.
 .SS "double Circal::ScoringModel::ScoreOf (const std::string & A, const std::string & B) const"
 .PP
-Definition at line 126 of file ScoringModel.cpp.
+Definition at line 125 of file ScoringModel.cpp.
 .PP
 References BestOfTwo(), and model.
 .PP
 Referenced by Circal::AlignmentFactory::BacktrackingGotohGlobal(), Circal::AlignmentFactory::BacktrackingGotohGlocal(), Circal::AlignmentFactory::BacktrackingNMW(), Circal::PseudoCircularAlignmentFactory::BacktrackingSmithWaterman(), Circal::AlignmentFactory::BacktrackingSmithWaterman(), Circal::PseudoCircularAlignmentFactory::BacktrackingSmithWatermanAffin(), Circal::AlignmentFactory::BacktrackingSmithWatermanAffin(), Circal::AlignmentFactory::ForwardRecursionGotoh(), Circal::AlignmentFactory::ForwardRecursionNMW(), Circal::PseudoCircularAlignmentFactory::ForwardRecursionSmithWaterman(), Circal::AlignmentFactory::ForwardRecursionSmithWaterman(), Circal::PseudoCircularAlignmentFactory::ForwardRecursionSmithWatermanAffin(), and Circal::AlignmentFactory::ForwardRecursionSmithWatermanAffin().
 .SS "double Circal::ScoringModel::ScoreOfGapOpen (const std::string A) const"
 .PP
-Definition at line 159 of file ScoringModel.cpp.
+Definition at line 158 of file ScoringModel.cpp.
 .PP
 References model.
 .PP
 Referenced by Circal::AlignmentFactory::BacktrackingGotohGlobal(), Circal::AlignmentFactory::BacktrackingGotohGlocal(), Circal::AlignmentFactory::BacktrackingNMW(), Circal::PseudoCircularAlignmentFactory::BacktrackingSmithWaterman(), Circal::AlignmentFactory::BacktrackingSmithWaterman(), Circal::PseudoCircularAlignmentFactory::BacktrackingSmithWatermanAffin(), Circal::AlignmentFactory::BacktrackingSmithWatermanAffin(), Circal::AlignmentFactory::ForwardRecursionGotoh(), Circal::AlignmentFactory::ForwardRecursionNMW(), Circal::PseudoCircularAlignmentFactory::ForwardRecursionSmithWaterman(), Circal::AlignmentFactory::ForwardRecursionSmithWaterman(), Circal::PseudoCircularAlignmentFactory::ForwardRecursionSmithWatermanAffin(), Circal::AlignmentFactory::ForwardRecursionSmithWatermanAffin(), and Circal::MatrixHelper::InitializeScoreMatrixDistances().
 .SS "double Circal::ScoringModel::ScoreOfGapExtend (const std::string A) const"
 .PP
-Definition at line 164 of file ScoringModel.cpp.
+Definition at line 163 of file ScoringModel.cpp.
 .PP
 References model.
 .PP
 Referenced by Circal::AlignmentFactory::BacktrackingGotohGlobal(), Circal::AlignmentFactory::BacktrackingGotohGlocal(), Circal::AlignmentFactory::BacktrackingNMW(), Circal::AlignmentFactory::BacktrackingSmithWaterman(), Circal::PseudoCircularAlignmentFactory::BacktrackingSmithWatermanAffin(), Circal::AlignmentFactory::BacktrackingSmithWatermanAffin(), Circal::AlignmentFactory::ForwardRecursionGotoh(), Circal::AlignmentFactory::ForwardRecursionNMW(), Circal::PseudoCircularAlignmentFactory::ForwardRecursionSmithWaterman(), Circal::AlignmentFactory::ForwardRecursionSmithWaterman(), Circal::PseudoCircularAlignmentFactory::ForwardRecursionSmithWatermanAffin(), Circal::AlignmentFactory::ForwardRecursionSmithWatermanAffin(), and Circal::MatrixHelper::InitializeScoreMatrixDistances().
 .SS "int Circal::ScoringModel::GetModelSize (void) const"
 .PP
-Definition at line 169 of file ScoringModel.cpp.
+Definition at line 168 of file ScoringModel.cpp.
 .PP
 References model.
 .PP
 Referenced by Circal::VertebrateMitochondrialGenomeAlphabet::convertModeltoAlphabet().
 .SS "double Circal::ScoringModel::BestOfTwo (const double A, const double B) const"
 .PP
-Definition at line 174 of file ScoringModel.cpp.
+Definition at line 173 of file ScoringModel.cpp.
 .PP
 Referenced by Circal::AlignmentFactory::BacktrackingGotohGlobal(), Circal::AlignmentFactory::BacktrackingGotohGlocal(), Circal::PseudoCircularAlignmentFactory::BacktrackingSmithWaterman(), Circal::PseudoCircularAlignmentFactory::BacktrackingSmithWatermanAffin(), Circal::AlignmentFactory::BacktrackingSmithWatermanAffin(), BestOfThree(), Circal::AlignmentFactory::ForwardRecursionGotoh(), Circal::PseudoCircularAlignmentFactory::ForwardRecursionSmithWaterman(), Circal::AlignmentFactory::ForwardRecursionSmithWaterman(), Circal::PseudoCircularAlignmentFactory::ForwardRecursionSmithWatermanAffin(), Circal::AlignmentFactory::ForwardRecursionSmithWatermanAffin(), Circal::CircularAlignmentFactory::GotohAlignment(), Circal::CircularAlignmentFactory::NeedlemanWunschAlignment(), ScoreOf(), Circal::MatrixHelper::SearchBestInColumn(), Circal::MatrixHelper::SearchBestInColumn3D(), Circal::MatrixHelper::SearchBestInRow(), Circal::MatrixHelper::SearchBestInRow3D(), and Circal::MatrixHelper::SearchBestPositionFrom().
 .SS "double Circal::ScoringModel::BestOfThree (const double A, const double B, const double C) const"
 .PP
-Definition at line 180 of file ScoringModel.cpp.
+Definition at line 179 of file ScoringModel.cpp.
 .PP
 References BestOfTwo().
 .PP
 Referenced by Circal::AlignmentFactory::ForwardRecursionGotoh(), Circal::AlignmentFactory::ForwardRecursionNMW(), Circal::PseudoCircularAlignmentFactory::ForwardRecursionSmithWaterman(), Circal::AlignmentFactory::ForwardRecursionSmithWaterman(), Circal::PseudoCircularAlignmentFactory::ForwardRecursionSmithWatermanAffin(), and Circal::AlignmentFactory::ForwardRecursionSmithWatermanAffin().
 .SS "void Circal::ScoringModel::NormalizeScores (const double & maxValue)"
 .PP
-Definition at line 207 of file ScoringModel.cpp.
+Definition at line 206 of file ScoringModel.cpp.
 .PP
 References itEnd(), and itStart().
 .PP
 Referenced by read().
 .SS "ModelValues::const_iterator Circal::ScoringModel::constitStart (void) const"
 .PP
-Definition at line 188 of file ScoringModel.cpp.
+Definition at line 187 of file ScoringModel.cpp.
 .PP
 References model.
 .PP
 Referenced by Circal::VertebrateMitochondrialGenomeAlphabet::convertModeltoAlphabet().
 .SS "ModelValues::const_iterator Circal::ScoringModel::constitEnd (void) const"
 .PP
-Definition at line 193 of file ScoringModel.cpp.
+Definition at line 192 of file ScoringModel.cpp.
 .PP
 References model.
 .PP
 Referenced by Circal::VertebrateMitochondrialGenomeAlphabet::convertModeltoAlphabet().
 .SS "ModelValues::iterator Circal::ScoringModel::itStart (void)"
 .PP
-Definition at line 198 of file ScoringModel.cpp.
+Definition at line 197 of file ScoringModel.cpp.
 .PP
 References model.
 .PP
 Referenced by NormalizeScores().
 .SS "ModelValues::iterator Circal::ScoringModel::itEnd (void)"
 .PP
-Definition at line 202 of file ScoringModel.cpp.
+Definition at line 201 of file ScoringModel.cpp.
 .PP
 References model.
 .PP

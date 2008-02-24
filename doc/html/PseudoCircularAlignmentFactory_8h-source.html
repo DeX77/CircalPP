@@ -61,26 +61,27 @@
 <a name="l00043"></a>00043           <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;delta, <a class="code" href="namespaceCircal.html#8cbdc0f70cb5adc1e0c93eea91ff2883">ScoreMatrix3D</a>* D, <a class="code" href="namespaceCircal.html#8cbdc0f70cb5adc1e0c93eea91ff2883">ScoreMatrix3D</a>* P,
 <a name="l00044"></a>00044           <a class="code" href="namespaceCircal.html#8cbdc0f70cb5adc1e0c93eea91ff2883">ScoreMatrix3D</a>* Q, uint &amp;bi, uint &amp;bj);
 <a name="l00045"></a>00045 
-<a name="l00046"></a>00046       <span class="keyword">virtual</span> <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1PseudoCircularAlignmentFactory.html#af28f0bd23a9451562e6af23df1b39aa">BacktrackingSmithWatermanAffin</a>(
-<a name="l00047"></a>00047           <span class="keyword">const</span> bpp::Sequence* A, <span class="keyword">const</span> <a class="code" href="classCircal_1_1PseudoRotatedSequence.html">PseudoRotatedSequence</a>* B,
-<a name="l00048"></a>00048           <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM, <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;delta, <span class="keyword">const</span> <a class="code" href="namespaceCircal.html#8cbdc0f70cb5adc1e0c93eea91ff2883">ScoreMatrix3D</a>* D,
-<a name="l00049"></a>00049           <span class="keyword">const</span> <a class="code" href="namespaceCircal.html#8cbdc0f70cb5adc1e0c93eea91ff2883">ScoreMatrix3D</a>* P, <span class="keyword">const</span> <a class="code" href="namespaceCircal.html#8cbdc0f70cb5adc1e0c93eea91ff2883">ScoreMatrix3D</a>* Q, uint &amp;i, uint &amp;j);
+<a name="l00046"></a>00046       <span class="keyword">virtual</span> <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1PseudoCircularAlignmentFactory.html#dce787a2350cfd3683dd0682ef064d5a">BacktrackingSmithWatermanAffin</a>(<span class="keyword">const</span> bpp::Sequence* A,
+<a name="l00047"></a>00047           <span class="keyword">const</span> <a class="code" href="classCircal_1_1PseudoRotatedSequence.html">PseudoRotatedSequence</a>* B, <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM,
+<a name="l00048"></a>00048           <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;delta, <span class="keyword">const</span> <a class="code" href="namespaceCircal.html#8cbdc0f70cb5adc1e0c93eea91ff2883">ScoreMatrix3D</a>* D, <span class="keyword">const</span> <a class="code" href="namespaceCircal.html#8cbdc0f70cb5adc1e0c93eea91ff2883">ScoreMatrix3D</a>* P,
+<a name="l00049"></a>00049           <span class="keyword">const</span> <a class="code" href="namespaceCircal.html#8cbdc0f70cb5adc1e0c93eea91ff2883">ScoreMatrix3D</a>* Q, uint &amp;i, uint &amp;j, <span class="keywordtype">bool</span> verbose=<span class="keyword">false</span>);
 <a name="l00050"></a>00050 
 <a name="l00051"></a>00051   <span class="keyword">public</span>:
 <a name="l00052"></a>00052       <a class="code" href="classCircal_1_1PseudoCircularAlignmentFactory.html#268a3c8290bfe004aa52a8bb37bcf4d9">PseudoCircularAlignmentFactory</a>();
 <a name="l00053"></a>00053       <span class="keyword">virtual</span> <a class="code" href="classCircal_1_1PseudoCircularAlignmentFactory.html#000683a8fc886c342b357bd0cc285854">~PseudoCircularAlignmentFactory</a>();
 <a name="l00054"></a>00054 
-<a name="l00055"></a>00055       <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1PseudoCircularAlignmentFactory.html#5fbac3b1fea116808a17d9046300ed65">NeedlemanWunschAlignment</a>(<span class="keyword">const</span> bpp::Sequence* A,
-<a name="l00056"></a>00056           <span class="keyword">const</span> bpp::Sequence* B, <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM, <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;delta);
-<a name="l00057"></a>00057 
-<a name="l00058"></a>00058       <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1PseudoCircularAlignmentFactory.html#8af80fa1638dd2b69b27a2cc528b6ed1">GotohAlignment</a>(<span class="keyword">const</span> bpp::Sequence* A, <span class="keyword">const</span> bpp::Sequence* B,
-<a name="l00059"></a>00059           <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM, <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;delta);
-<a name="l00060"></a>00060 
-<a name="l00061"></a>00061       };
-<a name="l00062"></a>00062   }
-<a name="l00063"></a>00063 
-<a name="l00064"></a>00064 <span class="preprocessor">#endif </span><span class="comment">/*PSEUDOCIRCULARALIGNMENT_H_*/</span>
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 21 21:14:16 2008 for CircalPP by&nbsp;
+<a name="l00055"></a>00055       <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1PseudoCircularAlignmentFactory.html#de2586f4840d130ca24636c2fa3d7c69">NeedlemanWunschAlignment</a>(<span class="keyword">const</span> bpp::Sequence* A,
+<a name="l00056"></a>00056           <span class="keyword">const</span> bpp::Sequence* B, <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM, <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;delta,
+<a name="l00057"></a>00057           <span class="keywordtype">bool</span> verbose=<span class="keyword">false</span>);
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059       <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1PseudoCircularAlignmentFactory.html#ebfd497019d9d510398f69824da5c37b">GotohAlignment</a>(<span class="keyword">const</span> bpp::Sequence* A, <span class="keyword">const</span> bpp::Sequence* B,
+<a name="l00060"></a>00060           <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM, <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;delta, <span class="keywordtype">bool</span> verbose=<span class="keyword">false</span>);
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062       };
+<a name="l00063"></a>00063   }
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065 <span class="preprocessor">#endif </span><span class="comment">/*PSEUDOCIRCULARALIGNMENT_H_*/</span>
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Sun Feb 24 19:08:16 2008 for CircalPP by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>

@@ -50,53 +50,67 @@
 <a name="l00032"></a>00032       {
 <a name="l00033"></a>00033       }
 <a name="l00034"></a>00034 
-<a name="l00035"></a><a class="code" href="classCircal_1_1MultipleAlignmentFactory.html#3da56cffbb33fe069f6664f422f95293">00035</a>     <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1MultipleAlignmentFactory.html#3da56cffbb33fe069f6664f422f95293">MultipleAlignmentFactory::GotohalignMultiple</a>(
-<a name="l00036"></a>00036         <span class="keyword">const</span> bpp::VectorSequenceContainer* input, <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM)
-<a name="l00037"></a>00037       {
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039         <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> out(input-&gt;getAlphabet());
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041         <span class="keywordflow">for</span> (uint u=0; u&lt;input-&gt;getNumberOfSequences(); u++)
-<a name="l00042"></a>00042           {
-<a name="l00043"></a>00043 
-<a name="l00044"></a>00044             <span class="keywordflow">for</span> (uint k=u+1; k&lt;input-&gt;getNumberOfSequences(); k++)
-<a name="l00045"></a>00045               {
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047                 <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> temp = <a class="code" href="classCircal_1_1AlignmentFactory.html#e64b8253a8e582e31f5d4e0d7421142c">GotohAlignment</a>(input-&gt;getSequence(u),
-<a name="l00048"></a>00048                     input-&gt;getSequence(k), scoreM);
-<a name="l00049"></a>00049                 out.<a class="code" href="classCircal_1_1Alignment.html#9068711091bc065e281c076da5bd7dcb">addSequence</a>(temp.getSequence(0));
-<a name="l00050"></a>00050                 out.addSequence(temp.getSequence(1));
-<a name="l00051"></a>00051               }
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053           }
-<a name="l00054"></a>00054         <span class="keywordflow">return</span> out;
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056       }
-<a name="l00057"></a><a class="code" href="classCircal_1_1MultipleAlignmentFactory.html#fd5d4739a7a6b6ae695b61fe4c683144">00057</a>     <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1MultipleAlignmentFactory.html#fd5d4739a7a6b6ae695b61fe4c683144">MultipleAlignmentFactory::NMWalignMultiple</a>(
-<a name="l00058"></a>00058         <span class="keyword">const</span> bpp::VectorSequenceContainer* input, <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM)
-<a name="l00059"></a>00059       {
-<a name="l00060"></a>00060         <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> out(input-&gt;getAlphabet());
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062         <span class="keywordflow">for</span> (uint u=0; u&lt;input-&gt;getNumberOfSequences(); u++)
-<a name="l00063"></a>00063           {
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065             <span class="keywordflow">for</span> (uint k=u+1; k&lt;input-&gt;getNumberOfSequences(); k++)
-<a name="l00066"></a>00066               {
-<a name="l00067"></a>00067 
-<a name="l00068"></a>00068                 <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> temp = <a class="code" href="classCircal_1_1AlignmentFactory.html#1de385e4c4c204601895bce0d12acead">NeedlemanWunschAlignment</a>(
-<a name="l00069"></a>00069                     input-&gt;getSequence(u), input-&gt;getSequence(k), scoreM);
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071                 out.<a class="code" href="classCircal_1_1Alignment.html#9068711091bc065e281c076da5bd7dcb">addSequence</a>(temp.getSequence(0));
-<a name="l00072"></a>00072                 out.addSequence(temp.getSequence(1));
-<a name="l00073"></a>00073               }
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075           }
-<a name="l00076"></a>00076         <span class="keywordflow">return</span> out;
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078       }
-<a name="l00079"></a>00079 
-<a name="l00080"></a>00080   }
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 21 21:14:16 2008 for CircalPP by&nbsp;
+<a name="l00035"></a><a class="code" href="classCircal_1_1MultipleAlignmentFactory.html#7269edee2a627143253ef90711eec760">00035</a>     <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1MultipleAlignmentFactory.html#7269edee2a627143253ef90711eec760">MultipleAlignmentFactory::GotohalignMultiple</a>(
+<a name="l00036"></a>00036         <span class="keyword">const</span> bpp::VectorSequenceContainer* input, <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM,
+<a name="l00037"></a>00037         <span class="keywordtype">bool</span> verbose)
+<a name="l00038"></a>00038       {
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040         <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> out(input-&gt;getAlphabet());
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042 <span class="preprocessor">#ifdef _OPENMP            </span>
+<a name="l00043"></a>00043 <span class="preprocessor"></span><span class="preprocessor">#pragma omp parallel for</span>
+<a name="l00044"></a>00044 <span class="preprocessor"></span><span class="preprocessor">#endif    </span>
+<a name="l00045"></a>00045 <span class="preprocessor"></span>        <span class="keywordflow">for</span> (uint u=0; u&lt;input-&gt;getNumberOfSequences(); u++)
+<a name="l00046"></a>00046           {
+<a name="l00047"></a>00047 
+<a name="l00048"></a>00048             <span class="keywordflow">for</span> (uint k=u+1; k&lt;input-&gt;getNumberOfSequences(); k++)
+<a name="l00049"></a>00049               {
+<a name="l00050"></a>00050                 <span class="keywordflow">if</span> (verbose)
+<a name="l00051"></a>00051                   std::cout &lt;&lt; <span class="stringliteral">"*"</span> &lt;&lt; std::flush;
+<a name="l00052"></a>00052                 <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> temp = <a class="code" href="classCircal_1_1AlignmentFactory.html#8d6e6e2bb3c061770c10fda190f28877">GotohAlignment</a>(input-&gt;getSequence(u),
+<a name="l00053"></a>00053                     input-&gt;getSequence(k), scoreM, verbose);
+<a name="l00054"></a>00054                 out.<a class="code" href="classCircal_1_1Alignment.html#9068711091bc065e281c076da5bd7dcb">addSequence</a>(temp.getSequence(0));
+<a name="l00055"></a>00055                 out.addSequence(temp.getSequence(1));
+<a name="l00056"></a>00056               }
+<a name="l00057"></a>00057             <span class="keywordflow">if</span> (verbose)
+<a name="l00058"></a>00058               std::cout &lt;&lt; std::endl;
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060           }
+<a name="l00061"></a>00061         <span class="keywordflow">return</span> out;
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063       }
+<a name="l00064"></a><a class="code" href="classCircal_1_1MultipleAlignmentFactory.html#12044c37a192e7e9d895d86ec1d426ae">00064</a>     <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1MultipleAlignmentFactory.html#12044c37a192e7e9d895d86ec1d426ae">MultipleAlignmentFactory::NMWalignMultiple</a>(
+<a name="l00065"></a>00065         <span class="keyword">const</span> bpp::VectorSequenceContainer* input, <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM,
+<a name="l00066"></a>00066         <span class="keywordtype">bool</span> verbose)
+<a name="l00067"></a>00067       {
+<a name="l00068"></a>00068         <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> out(input-&gt;getAlphabet());
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 <span class="preprocessor">#ifdef _OPENMP            </span>
+<a name="l00071"></a>00071 <span class="preprocessor"></span><span class="preprocessor">#pragma omp parallel for</span>
+<a name="l00072"></a>00072 <span class="preprocessor"></span><span class="preprocessor">#endif    </span>
+<a name="l00073"></a>00073 <span class="preprocessor"></span>        <span class="keywordflow">for</span> (uint u=0; u&lt;input-&gt;getNumberOfSequences(); u++)
+<a name="l00074"></a>00074           {
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076             <span class="keywordflow">for</span> (uint k=u+1; k&lt;input-&gt;getNumberOfSequences(); k++)
+<a name="l00077"></a>00077               {
+<a name="l00078"></a>00078                 <span class="keywordflow">if</span> (verbose)
+<a name="l00079"></a>00079                   std::cout &lt;&lt; <span class="stringliteral">"*"</span> &lt;&lt; std::flush;
+<a name="l00080"></a>00080                 <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> temp = <a class="code" href="classCircal_1_1AlignmentFactory.html#06cf2e0ea959c22e0cd42278b19c94e4">NeedlemanWunschAlignment</a>(
+<a name="l00081"></a>00081                     input-&gt;getSequence(u), input-&gt;getSequence(k), scoreM);
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083                 out.<a class="code" href="classCircal_1_1Alignment.html#9068711091bc065e281c076da5bd7dcb">addSequence</a>(temp.getSequence(0));
+<a name="l00084"></a>00084                 out.addSequence(temp.getSequence(1));
+<a name="l00085"></a>00085               }
+<a name="l00086"></a>00086             <span class="keywordflow">if</span> (verbose)
+<a name="l00087"></a>00087               std::cout &lt;&lt; std::endl;
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089           }
+<a name="l00090"></a>00090         <span class="keywordflow">return</span> out;
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092       }
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094   }
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Sun Feb 24 19:08:16 2008 for CircalPP by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>

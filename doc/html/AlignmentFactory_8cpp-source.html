@@ -820,9 +820,9 @@
 <a name="l00802"></a>00802         <span class="keywordflow">return</span> out;
 <a name="l00803"></a>00803       }
 <a name="l00804"></a>00804 
-<a name="l00805"></a><a class="code" href="classCircal_1_1AlignmentFactory.html#1de385e4c4c204601895bce0d12acead">00805</a>     <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1AlignmentFactory.html#1de385e4c4c204601895bce0d12acead">AlignmentFactory::NeedlemanWunschAlignment</a>(
+<a name="l00805"></a><a class="code" href="classCircal_1_1AlignmentFactory.html#06cf2e0ea959c22e0cd42278b19c94e4">00805</a>     <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1AlignmentFactory.html#06cf2e0ea959c22e0cd42278b19c94e4">AlignmentFactory::NeedlemanWunschAlignment</a>(
 <a name="l00806"></a>00806         <span class="keyword">const</span> bpp::Sequence* inA, <span class="keyword">const</span> bpp::Sequence* inB,
-<a name="l00807"></a>00807         <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM)
+<a name="l00807"></a>00807         <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM, <span class="keywordtype">bool</span> verbose)
 <a name="l00808"></a>00808       {
 <a name="l00809"></a>00809         <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> D =
 <a name="l00810"></a>00810             <a class="code" href="classCircal_1_1AlignmentFactory.html#3686548dbeea38c49ee1cf12c13de560">matrix</a>-&gt;<a class="code" href="classCircal_1_1MatrixHelper.html#69554a977a56437127203bf586e5d594">InitializeScoreMatrixDistances</a>(inA, inB, scoreM);
@@ -837,8 +837,8 @@
 <a name="l00819"></a>00819 
 <a name="l00820"></a>00820       }
 <a name="l00821"></a>00821 
-<a name="l00822"></a><a class="code" href="classCircal_1_1AlignmentFactory.html#e64b8253a8e582e31f5d4e0d7421142c">00822</a>     <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1AlignmentFactory.html#e64b8253a8e582e31f5d4e0d7421142c">AlignmentFactory::GotohAlignment</a>(<span class="keyword">const</span> bpp::Sequence* inA,
-<a name="l00823"></a>00823         <span class="keyword">const</span> bpp::Sequence* inB, <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM)
+<a name="l00822"></a><a class="code" href="classCircal_1_1AlignmentFactory.html#8d6e6e2bb3c061770c10fda190f28877">00822</a>     <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1AlignmentFactory.html#8d6e6e2bb3c061770c10fda190f28877">AlignmentFactory::GotohAlignment</a>(<span class="keyword">const</span> bpp::Sequence* inA,
+<a name="l00823"></a>00823         <span class="keyword">const</span> bpp::Sequence* inB, <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM, <span class="keywordtype">bool</span> verbose)
 <a name="l00824"></a>00824       {
 <a name="l00825"></a>00825 
 <a name="l00826"></a>00826         <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> D = <a class="code" href="classCircal_1_1AlignmentFactory.html#3686548dbeea38c49ee1cf12c13de560">matrix</a>-&gt;<a class="code" href="classCircal_1_1MatrixHelper.html#8c12cd1078ffbb6c4c93ebbb8cb384d5">InitScoreMatrixWith</a>(inA, inB, 0);
@@ -854,8 +854,8 @@
 <a name="l00836"></a>00836         <span class="keywordflow">return</span> <a class="code" href="classCircal_1_1AlignmentFactory.html#e9a87f9cf77459708e957d887b2f358d">BacktrackingGotohGlobal</a>(inA, inB, scoreM, &amp;D, &amp;P, &amp;Q, i, j);
 <a name="l00837"></a>00837 
 <a name="l00838"></a>00838       }
-<a name="l00839"></a><a class="code" href="classCircal_1_1AlignmentFactory.html#23e99c31f6461f57a178ad0a67ba952a">00839</a>     <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1AlignmentFactory.html#23e99c31f6461f57a178ad0a67ba952a">AlignmentFactory::SmithWaterman</a>(<span class="keyword">const</span> bpp::Sequence* inA,
-<a name="l00840"></a>00840         <span class="keyword">const</span> bpp::Sequence* inB, <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM)
+<a name="l00839"></a><a class="code" href="classCircal_1_1AlignmentFactory.html#a16ba19c77b29cd8c2126c8e28e6ee27">00839</a>     <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1AlignmentFactory.html#a16ba19c77b29cd8c2126c8e28e6ee27">AlignmentFactory::SmithWaterman</a>(<span class="keyword">const</span> bpp::Sequence* inA,
+<a name="l00840"></a>00840         <span class="keyword">const</span> bpp::Sequence* inB, <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM, <span class="keywordtype">bool</span> verbose)
 <a name="l00841"></a>00841       {
 <a name="l00842"></a>00842         <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> D =
 <a name="l00843"></a>00843             <a class="code" href="classCircal_1_1AlignmentFactory.html#3686548dbeea38c49ee1cf12c13de560">matrix</a>-&gt;<a class="code" href="classCircal_1_1MatrixHelper.html#69554a977a56437127203bf586e5d594">InitializeScoreMatrixDistances</a>(inA, inB, scoreM);
@@ -868,8 +868,8 @@
 <a name="l00850"></a>00850         <span class="keywordflow">return</span> <a class="code" href="classCircal_1_1AlignmentFactory.html#2c2d383ecd1f50ab572e1813188987e7">BacktrackingSmithWaterman</a>(inA, inB, scoreM, &amp;D, i, j);
 <a name="l00851"></a>00851 
 <a name="l00852"></a>00852       }
-<a name="l00853"></a><a class="code" href="classCircal_1_1AlignmentFactory.html#f1c93cb44d62c205901f9ef067321c5e">00853</a>     <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1AlignmentFactory.html#f1c93cb44d62c205901f9ef067321c5e">AlignmentFactory::SmithWatermanAffin</a>(<span class="keyword">const</span> bpp::Sequence* inA,
-<a name="l00854"></a>00854         <span class="keyword">const</span> bpp::Sequence* inB, <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM)
+<a name="l00853"></a><a class="code" href="classCircal_1_1AlignmentFactory.html#fecf05d5484d763107d60794b9510248">00853</a>     <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1AlignmentFactory.html#fecf05d5484d763107d60794b9510248">AlignmentFactory::SmithWatermanAffin</a>(<span class="keyword">const</span> bpp::Sequence* inA,
+<a name="l00854"></a>00854         <span class="keyword">const</span> bpp::Sequence* inB, <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM, <span class="keywordtype">bool</span> verbose)
 <a name="l00855"></a>00855       {
 <a name="l00856"></a>00856         <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> D = <a class="code" href="classCircal_1_1AlignmentFactory.html#3686548dbeea38c49ee1cf12c13de560">matrix</a>-&gt;<a class="code" href="classCircal_1_1MatrixHelper.html#8c12cd1078ffbb6c4c93ebbb8cb384d5">InitScoreMatrixWith</a>(inA, inB, 0);
 <a name="l00857"></a>00857         <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> P = <a class="code" href="classCircal_1_1AlignmentFactory.html#3686548dbeea38c49ee1cf12c13de560">matrix</a>-&gt;<a class="code" href="classCircal_1_1MatrixHelper.html#8c12cd1078ffbb6c4c93ebbb8cb384d5">InitScoreMatrixWith</a>(inA, inB, 0);
@@ -886,7 +886,7 @@
 <a name="l00868"></a>00868       }
 <a name="l00869"></a>00869 
 <a name="l00870"></a>00870   }
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 21 21:14:16 2008 for CircalPP by&nbsp;
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Sun Feb 24 19:08:15 2008 for CircalPP by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>

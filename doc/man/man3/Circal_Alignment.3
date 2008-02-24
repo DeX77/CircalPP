@@ -1,4 +1,4 @@
-.TH "Circal::Alignment" 3 "21 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
+.TH "Circal::Alignment" 3 "24 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -15,22 +15,25 @@ Circal::Alignment \-
 .RI "\fBAlignment\fP (const bpp::Alphabet *alpha)"
 .br
 .ti -1c
-.RI "\fBAlignment\fP ()"
-.br
-.ti -1c
 .RI "virtual \fB~Alignment\fP ()"
 .br
 .ti -1c
-.RI "uint \fBget_origSize\fP ()"
+.RI "uint \fBget_offsetA\fP ()"
+.br
+.ti -1c
+.RI "void \fBset_offsetA\fP (const uint &orig)"
+.br
+.ti -1c
+.RI "uint \fBget_offsetB\fP ()"
+.br
+.ti -1c
+.RI "void \fBset_offsetB\fP (const uint &orig)"
 .br
 .ti -1c
 .RI "double \fBget_Score\fP ()"
 .br
 .ti -1c
 .RI "void \fBset_Score\fP (const double &s)"
-.br
-.ti -1c
-.RI "void \fBset_origSize\fP (const uint &orig)"
 .br
 .ti -1c
 .RI "void \fBaddSequence\fP (const bpp::Sequence *sequence)"
@@ -40,7 +43,10 @@ Circal::Alignment \-
 
 .in +1c
 .ti -1c
-.RI "uint \fBorigSize\fP"
+.RI "uint \fBoffsetA\fP"
+.br
+.ti -1c
+.RI "uint \fBoffsetB\fP"
 .br
 .ti -1c
 .RI "double \fBScore\fP"
@@ -55,55 +61,70 @@ Definition at line 36 of file Alignment.h.
 .PP
 Definition at line 27 of file Alignment.cpp.
 .PP
-References set_Score().
-.SS "Circal::Alignment::Alignment ()"
-.PP
+References set_offsetA(), set_offsetB(), and set_Score().
 .SS "Circal::Alignment::~Alignment ()\fC [virtual]\fP"
 .PP
-Definition at line 35 of file Alignment.cpp.
+Definition at line 37 of file Alignment.cpp.
 .SH "Member Function Documentation"
 .PP 
-.SS "uint Circal::Alignment::get_origSize ()"
+.SS "uint Circal::Alignment::get_offsetA ()"
 .PP
-Definition at line 39 of file Alignment.cpp.
+Definition at line 42 of file Alignment.cpp.
 .PP
-References origSize.
+References offsetA.
 .PP
-Referenced by Circal::Output::TCoffeeLibFormat().
+Referenced by Circal::Output::TCoffeeAlignFormat().
+.SS "void Circal::Alignment::set_offsetA (const uint & orig)"
+.PP
+Definition at line 46 of file Alignment.cpp.
+.PP
+Referenced by Alignment().
+.SS "uint Circal::Alignment::get_offsetB ()"
+.PP
+Definition at line 51 of file Alignment.cpp.
+.PP
+References offsetB.
+.PP
+Referenced by Circal::Output::TCoffeeAlignFormat().
+.SS "void Circal::Alignment::set_offsetB (const uint & orig)"
+.PP
+Definition at line 55 of file Alignment.cpp.
+.PP
+Referenced by Alignment().
 .SS "double Circal::Alignment::get_Score (void)"
 .PP
-Definition at line 48 of file Alignment.cpp.
+Definition at line 60 of file Alignment.cpp.
 .PP
 References Score.
 .PP
-Referenced by Circal::Output::AlignmentPrettyPrint(), and main().
+Referenced by Circal::Output::AlignmentPrettyPrint().
 .SS "void Circal::Alignment::set_Score (const double & s)"
 .PP
-Definition at line 53 of file Alignment.cpp.
+Definition at line 65 of file Alignment.cpp.
 .PP
 References Score.
 .PP
 Referenced by Alignment().
-.SS "void Circal::Alignment::set_origSize (const uint & orig)"
-.PP
-Definition at line 43 of file Alignment.cpp.
-.PP
-References origSize.
 .SS "void Circal::Alignment::addSequence (const bpp::Sequence * sequence)"
 .PP
-Definition at line 58 of file Alignment.cpp.
+Definition at line 70 of file Alignment.cpp.
 .PP
-Referenced by Circal::MultipleAlignmentFactory::GotohalignMultiple(), and Circal::MultipleAlignmentFactory::NMWalignMultiple().
+Referenced by Circal::MultiplePseudoCircularAlignmentFactory::GotohalignMultiple(), Circal::MultipleAlignmentFactory::GotohalignMultiple(), Circal::MultiplePseudoCircularAlignmentFactory::NMWalignMultiple(), and Circal::MultipleAlignmentFactory::NMWalignMultiple().
 .SH "Member Data Documentation"
 .PP 
-.SS "uint \fBCircal::Alignment::origSize\fP\fC [private]\fP"
+.SS "uint \fBCircal::Alignment::offsetA\fP\fC [private]\fP"
 .PP
 Definition at line 38 of file Alignment.h.
 .PP
-Referenced by get_origSize(), and set_origSize().
-.SS "double \fBCircal::Alignment::Score\fP\fC [private]\fP"
+Referenced by get_offsetA().
+.SS "uint \fBCircal::Alignment::offsetB\fP\fC [private]\fP"
 .PP
 Definition at line 39 of file Alignment.h.
+.PP
+Referenced by get_offsetB().
+.SS "double \fBCircal::Alignment::Score\fP\fC [private]\fP"
+.PP
+Definition at line 40 of file Alignment.h.
 .PP
 Referenced by get_Score(), and set_Score().
 

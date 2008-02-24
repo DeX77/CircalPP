@@ -1,4 +1,4 @@
-.TH "Circal::AlignmentFactory" 3 "21 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
+.TH "Circal::AlignmentFactory" 3 "24 Feb 2008" "Version 0.1" "CircalPP" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -20,16 +20,16 @@ Inherited by \fBCircal::CircularAlignmentFactory\fP\fC [virtual]\fP, \fBCircal::
 .RI "virtual \fB~AlignmentFactory\fP ()"
 .br
 .ti -1c
-.RI "virtual \fBAlignment\fP \fBNeedlemanWunschAlignment\fP (const bpp::Sequence *inA, const bpp::Sequence *inB, const \fBScoringModel\fP *scoreM)"
+.RI "virtual \fBAlignment\fP \fBNeedlemanWunschAlignment\fP (const bpp::Sequence *inA, const bpp::Sequence *inB, const \fBScoringModel\fP *scoreM, bool verbose=false)"
 .br
 .ti -1c
-.RI "virtual \fBAlignment\fP \fBGotohAlignment\fP (const bpp::Sequence *inA, const bpp::Sequence *inB, const \fBScoringModel\fP *scoreM)"
+.RI "virtual \fBAlignment\fP \fBGotohAlignment\fP (const bpp::Sequence *inA, const bpp::Sequence *inB, const \fBScoringModel\fP *scoreM, bool verbose=false)"
 .br
 .ti -1c
-.RI "virtual \fBAlignment\fP \fBSmithWaterman\fP (const bpp::Sequence *inA, const bpp::Sequence *inB, const \fBScoringModel\fP *scoreM)"
+.RI "virtual \fBAlignment\fP \fBSmithWaterman\fP (const bpp::Sequence *inA, const bpp::Sequence *inB, const \fBScoringModel\fP *scoreM, bool verbose=false)"
 .br
 .ti -1c
-.RI "virtual \fBAlignment\fP \fBSmithWatermanAffin\fP (const bpp::Sequence *inA, const bpp::Sequence *inB, const \fBScoringModel\fP *scoreM)"
+.RI "virtual \fBAlignment\fP \fBSmithWatermanAffin\fP (const bpp::Sequence *inA, const bpp::Sequence *inB, const \fBScoringModel\fP *scoreM, bool verbose=false)"
 .br
 .in -1c
 .SS "Protected Member Functions"
@@ -151,30 +151,26 @@ Definition at line 679 of file AlignmentFactory.cpp.
 References Circal::ScoringModel::BestOfTwo(), Circal::ScoringModel::ScoreOf(), Circal::ScoringModel::ScoreOfGapExtend(), and Circal::ScoringModel::ScoreOfGapOpen().
 .PP
 Referenced by Circal::PseudoCircularAlignmentFactory::GotohAlignment(), and SmithWatermanAffin().
-.SS "\fBAlignment\fP Circal::AlignmentFactory::NeedlemanWunschAlignment (const bpp::Sequence * inA, const bpp::Sequence * inB, const \fBScoringModel\fP * scoreM)\fC [virtual]\fP"
-.PP
-Reimplemented in \fBCircal::CircularAlignmentFactory\fP.
+.SS "\fBAlignment\fP Circal::AlignmentFactory::NeedlemanWunschAlignment (const bpp::Sequence * inA, const bpp::Sequence * inB, const \fBScoringModel\fP * scoreM, bool verbose = \fCfalse\fP)\fC [virtual]\fP"
 .PP
 Definition at line 805 of file AlignmentFactory.cpp.
 .PP
 References BacktrackingNMW(), ForwardRecursionNMW(), Circal::MatrixHelper::InitializeScoreMatrixDistances(), and matrix.
 .PP
 Referenced by Circal::MultipleAlignmentFactory::NMWalignMultiple().
-.SS "\fBAlignment\fP Circal::AlignmentFactory::GotohAlignment (const bpp::Sequence * inA, const bpp::Sequence * inB, const \fBScoringModel\fP * scoreM)\fC [virtual]\fP"
-.PP
-Reimplemented in \fBCircal::CircularAlignmentFactory\fP.
+.SS "\fBAlignment\fP Circal::AlignmentFactory::GotohAlignment (const bpp::Sequence * inA, const bpp::Sequence * inB, const \fBScoringModel\fP * scoreM, bool verbose = \fCfalse\fP)\fC [virtual]\fP"
 .PP
 Definition at line 822 of file AlignmentFactory.cpp.
 .PP
 References BacktrackingGotohGlobal(), ForwardRecursionGotoh(), Circal::MatrixHelper::InitScoreMatrixWith(), and matrix.
 .PP
 Referenced by Circal::MultipleAlignmentFactory::GotohalignMultiple().
-.SS "\fBAlignment\fP Circal::AlignmentFactory::SmithWaterman (const bpp::Sequence * inA, const bpp::Sequence * inB, const \fBScoringModel\fP * scoreM)\fC [virtual]\fP"
+.SS "\fBAlignment\fP Circal::AlignmentFactory::SmithWaterman (const bpp::Sequence * inA, const bpp::Sequence * inB, const \fBScoringModel\fP * scoreM, bool verbose = \fCfalse\fP)\fC [virtual]\fP"
 .PP
 Definition at line 839 of file AlignmentFactory.cpp.
 .PP
 References BacktrackingSmithWaterman(), ForwardRecursionSmithWaterman(), Circal::MatrixHelper::InitializeScoreMatrixDistances(), and matrix.
-.SS "\fBAlignment\fP Circal::AlignmentFactory::SmithWatermanAffin (const bpp::Sequence * inA, const bpp::Sequence * inB, const \fBScoringModel\fP * scoreM)\fC [virtual]\fP"
+.SS "\fBAlignment\fP Circal::AlignmentFactory::SmithWatermanAffin (const bpp::Sequence * inA, const bpp::Sequence * inB, const \fBScoringModel\fP * scoreM, bool verbose = \fCfalse\fP)\fC [virtual]\fP"
 .PP
 Definition at line 853 of file AlignmentFactory.cpp.
 .PP
@@ -189,6 +185,8 @@ Referenced by AlignmentFactory(), Circal::PseudoCircularAlignmentFactory::GotohA
 .SS "\fBOutput\fP* \fBCircal::AlignmentFactory::prettyPrint\fP\fC [protected]\fP"
 .PP
 Definition at line 38 of file AlignmentFactory.h.
+.PP
+Referenced by Circal::MultiplePseudoCircularAlignmentFactory::GotohalignMultiple(), and Circal::MultiplePseudoCircularAlignmentFactory::NMWalignMultiple().
 
 .SH "Author"
 .PP 

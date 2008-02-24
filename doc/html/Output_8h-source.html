@@ -45,30 +45,38 @@
 <a name="l00027"></a>00027 <span class="keyword">namespace </span>bpp
 <a name="l00028"></a>00028   {
 <a name="l00029"></a>00029     <span class="keyword">class </span>Sequence;
-<a name="l00030"></a>00030   }
-<a name="l00031"></a>00031 
-<a name="l00032"></a>00032 <span class="keyword">namespace </span>Circal
-<a name="l00033"></a>00033   {
-<a name="l00034"></a>00034     <span class="keyword">class </span>Alignment;
-<a name="l00035"></a>00035     <span class="keyword">typedef</span> std::vector&lt; std::vector&lt;double&gt; &gt; <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a>;
-<a name="l00036"></a>00036     <span class="keyword">typedef</span> std::valarray&lt; std::valarray &lt;bool&gt; &gt; <a class="code" href="namespaceCircal.html#b5cbf04ae410080c3875d2691c10d64c">BoolMatrix</a>;
-<a name="l00037"></a>00037 
-<a name="l00038"></a><a class="code" href="classCircal_1_1Output.html">00038</a>     <span class="keyword">class </span><a class="code" href="classCircal_1_1Output.html">Output</a>
-<a name="l00039"></a>00039       {
-<a name="l00040"></a>00040   <span class="keyword">public</span>:
-<a name="l00041"></a>00041       <a class="code" href="classCircal_1_1Output.html#f7a38f5496d10ae2cfac9646e7c1f6fa">Output</a>();
-<a name="l00042"></a>00042       <span class="keyword">virtual</span> <a class="code" href="classCircal_1_1Output.html#e3f937db11ee87443ea1e75049e0706e">~Output</a>();
-<a name="l00043"></a>00043       std::string <a class="code" href="classCircal_1_1Output.html#dea07429ad2ed3d082aa4d9ef85e8114">SequencePrettyPrint</a>(bpp::Sequence* A);
-<a name="l00044"></a>00044       std::string <a class="code" href="classCircal_1_1Output.html#47c40c57355de8604a457c7b4f26448a">ScoreMatrixPrettyPrint</a>(bpp::Sequence* A, bpp::Sequence* B,
-<a name="l00045"></a>00045           <span class="keyword">const</span> <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> &amp;D);
-<a name="l00046"></a>00046       std::string <a class="code" href="classCircal_1_1Output.html#ab041c2ce86bb7ab5f682cdab596d06b">AlignmentPrettyPrint</a>(<a class="code" href="classCircal_1_1Alignment.html">Alignment</a>* aln);
-<a name="l00047"></a>00047       std::string <a class="code" href="classCircal_1_1Output.html#b92b148d9dcd8b3692140c0d9020ab1b">AdjacenceMatrixPrettyPrint</a>(<span class="keyword">const</span> <a class="code" href="namespaceCircal.html#b5cbf04ae410080c3875d2691c10d64c">BoolMatrix</a> &amp;G);
-<a name="l00048"></a>00048       std::string <a class="code" href="classCircal_1_1Output.html#57d8fa1161c56174dfbd91af97a58c9e">TCoffeeLibFormat</a>(<a class="code" href="classCircal_1_1Alignment.html">Alignment</a>* aln);
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050       };
-<a name="l00051"></a>00051   }
-<a name="l00052"></a>00052 <span class="preprocessor">#endif </span><span class="comment">/*OUTPUT_H_*/</span>
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 21 21:14:16 2008 for CircalPP by&nbsp;
+<a name="l00030"></a>00030     <span class="keyword">class </span>VectorSequenceContainer;
+<a name="l00031"></a>00031   }
+<a name="l00032"></a>00032 
+<a name="l00033"></a>00033 <span class="keyword">namespace </span>Circal
+<a name="l00034"></a>00034   {
+<a name="l00035"></a>00035     <span class="keyword">class </span>Alignment;
+<a name="l00036"></a>00036     <span class="keyword">typedef</span> std::vector&lt; std::vector&lt;double&gt; &gt; <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a>;
+<a name="l00037"></a>00037     <span class="keyword">typedef</span> std::valarray&lt; std::valarray &lt;bool&gt; &gt; <a class="code" href="namespaceCircal.html#b5cbf04ae410080c3875d2691c10d64c">BoolMatrix</a>;
+<a name="l00038"></a>00038 
+<a name="l00039"></a><a class="code" href="classCircal_1_1Output.html">00039</a>     <span class="keyword">class </span><a class="code" href="classCircal_1_1Output.html">Output</a>
+<a name="l00040"></a>00040       {
+<a name="l00041"></a>00041   <span class="keyword">public</span>:
+<a name="l00042"></a>00042       <a class="code" href="classCircal_1_1Output.html#f7a38f5496d10ae2cfac9646e7c1f6fa">Output</a>();
+<a name="l00043"></a>00043       <span class="keyword">virtual</span> <a class="code" href="classCircal_1_1Output.html#e3f937db11ee87443ea1e75049e0706e">~Output</a>();
+<a name="l00044"></a>00044       std::string <a class="code" href="classCircal_1_1Output.html#dea07429ad2ed3d082aa4d9ef85e8114">SequencePrettyPrint</a>(bpp::Sequence* A);
+<a name="l00045"></a>00045       std::string <a class="code" href="classCircal_1_1Output.html#ab041c2ce86bb7ab5f682cdab596d06b">AlignmentPrettyPrint</a>(<a class="code" href="classCircal_1_1Alignment.html">Alignment</a>* aln);
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047       std::string <a class="code" href="classCircal_1_1Output.html#2ed0aa94d088dcffe1c3d1fa633aed0a">ScoreMatrixPrettyPrint</a>(<span class="keyword">const</span> bpp::Sequence* A,
+<a name="l00048"></a>00048           <span class="keyword">const</span> bpp::Sequence* B, <span class="keyword">const</span> <a class="code" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> &amp;D);
+<a name="l00049"></a>00049       std::string <a class="code" href="classCircal_1_1Output.html#b92b148d9dcd8b3692140c0d9020ab1b">AdjacenceMatrixPrettyPrint</a>(<span class="keyword">const</span> <a class="code" href="namespaceCircal.html#b5cbf04ae410080c3875d2691c10d64c">BoolMatrix</a> &amp;G);
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051       std::string <a class="code" href="classCircal_1_1Output.html#eeba75375812d32a5ed680a67b406f37">TCoffeeLibHeader</a>(<span class="keyword">const</span> bpp::VectorSequenceContainer* input);
+<a name="l00052"></a>00052       std::string <a class="code" href="classCircal_1_1Output.html#8d4d121954ec0c10ad6b3b1268651c08">TCoffeeAlignFormat</a>(<a class="code" href="classCircal_1_1Alignment.html">Alignment</a>* aln,
+<a name="l00053"></a>00053           <span class="keyword">const</span> bpp::VectorSequenceContainer* input);
+<a name="l00054"></a>00054       std::string <a class="code" href="classCircal_1_1Output.html#4f74b8fc9c68d69e1d26ade8c6fbf35d">TCoffeeLibFooter</a>(<span class="keywordtype">void</span>);
+<a name="l00055"></a>00055       std::string <a class="code" href="classCircal_1_1Output.html#726f8644afc9acca3f02a3983c7409fe">TCoffeeLibFormat</a>(<a class="code" href="classCircal_1_1Alignment.html">Alignment</a>* aln,
+<a name="l00056"></a>00056           <span class="keyword">const</span> bpp::VectorSequenceContainer* input);
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058       };
+<a name="l00059"></a>00059   }
+<a name="l00060"></a>00060 <span class="preprocessor">#endif </span><span class="comment">/*OUTPUT_H_*/</span>
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Sun Feb 24 19:08:16 2008 for CircalPP by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>

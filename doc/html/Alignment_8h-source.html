@@ -53,23 +53,30 @@
 <a name="l00035"></a>00035 
 <a name="l00036"></a><a class="code" href="classCircal_1_1Alignment.html">00036</a>     <span class="keyword">class </span><a class="code" href="classCircal_1_1Alignment.html">Alignment</a> : <span class="keyword">public</span> bpp::AlignedSequenceContainer
 <a name="l00037"></a>00037       {
-<a name="l00038"></a><a class="code" href="classCircal_1_1Alignment.html#4899d9988a47852fc888a900e3ffdaf7">00038</a>       uint <a class="code" href="classCircal_1_1Alignment.html#4899d9988a47852fc888a900e3ffdaf7">origSize</a>;
-<a name="l00039"></a><a class="code" href="classCircal_1_1Alignment.html#894c310f50b7ec0b44c53d38b03a4c4c">00039</a>       <span class="keywordtype">double</span> <a class="code" href="classCircal_1_1Alignment.html#894c310f50b7ec0b44c53d38b03a4c4c">Score</a>;
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041   <span class="keyword">public</span>:
-<a name="l00042"></a>00042       <a class="code" href="classCircal_1_1Alignment.html#4487be03e5c0685d42b2f414fda5e50b">Alignment</a>(<span class="keyword">const</span> bpp::Alphabet* alpha);
-<a name="l00043"></a>00043       <a class="code" href="classCircal_1_1Alignment.html#4487be03e5c0685d42b2f414fda5e50b">Alignment</a>();
-<a name="l00044"></a>00044       <span class="keyword">virtual</span> <a class="code" href="classCircal_1_1Alignment.html#4a0146b22bceb4dff7a0583378f6145c">~Alignment</a>();
-<a name="l00045"></a>00045       uint <a class="code" href="classCircal_1_1Alignment.html#77734f8eb8623b665e518afae2e49789">get_origSize</a>();
-<a name="l00046"></a>00046       <span class="keywordtype">double</span> <a class="code" href="classCircal_1_1Alignment.html#e4dc0a9b6c0b89f3e3c375b963c76ec1">get_Score</a>();
-<a name="l00047"></a>00047       <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1Alignment.html#94d66a0aa8ca3a3ecd47801acbbbc16a">set_Score</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;s);
-<a name="l00048"></a>00048       <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1Alignment.html#89a2f964067b1f766a3327e8008a0f45">set_origSize</a>(<span class="keyword">const</span> uint &amp;orig);
-<a name="l00049"></a>00049       <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1Alignment.html#9068711091bc065e281c076da5bd7dcb">addSequence</a>(<span class="keyword">const</span> bpp::Sequence*  sequence);
-<a name="l00050"></a>00050       <span class="comment">//void addSequence(const bpp::Sequence &amp; sequence) throw(bpp::Exception);</span>
-<a name="l00051"></a>00051       };
-<a name="l00052"></a>00052   }
-<a name="l00053"></a>00053 <span class="preprocessor">#endif </span><span class="comment">/*ALIGNMENT_H_*/</span>
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 21 21:14:16 2008 for CircalPP by&nbsp;
+<a name="l00038"></a><a class="code" href="classCircal_1_1Alignment.html#8f289b66dbb1373f0d857f5b43f814dc">00038</a>       uint <a class="code" href="classCircal_1_1Alignment.html#8f289b66dbb1373f0d857f5b43f814dc">offsetA</a>;
+<a name="l00039"></a><a class="code" href="classCircal_1_1Alignment.html#8afb2ec44c7cda3c08759eb544ea822a">00039</a>       uint <a class="code" href="classCircal_1_1Alignment.html#8afb2ec44c7cda3c08759eb544ea822a">offsetB</a>;
+<a name="l00040"></a><a class="code" href="classCircal_1_1Alignment.html#894c310f50b7ec0b44c53d38b03a4c4c">00040</a>       <span class="keywordtype">double</span> <a class="code" href="classCircal_1_1Alignment.html#894c310f50b7ec0b44c53d38b03a4c4c">Score</a>;
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042   <span class="keyword">public</span>:
+<a name="l00043"></a>00043       <a class="code" href="classCircal_1_1Alignment.html#6c1d8170276265997eb8729e83a65fa8">Alignment</a>(<span class="keyword">const</span> bpp::Alphabet* alpha);
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045       <span class="keyword">virtual</span> <a class="code" href="classCircal_1_1Alignment.html#4a0146b22bceb4dff7a0583378f6145c">~Alignment</a>();
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047       uint <a class="code" href="classCircal_1_1Alignment.html#1ba1a02f0da981faca500e0988bf1ac8">get_offsetA</a>();
+<a name="l00048"></a>00048       <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1Alignment.html#222ba2a7ddae54bda89e809b59aa7f12">set_offsetA</a>(<span class="keyword">const</span> uint &amp;orig);
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050       uint <a class="code" href="classCircal_1_1Alignment.html#6822c7df4eab6cd256934baa7ae71ee8">get_offsetB</a>();
+<a name="l00051"></a>00051       <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1Alignment.html#cdf5f3f56151b4ea4829a826b6b88b63">set_offsetB</a>(<span class="keyword">const</span> uint &amp;orig);
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053       <span class="keywordtype">double</span> <a class="code" href="classCircal_1_1Alignment.html#e4dc0a9b6c0b89f3e3c375b963c76ec1">get_Score</a>();
+<a name="l00054"></a>00054       <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1Alignment.html#94d66a0aa8ca3a3ecd47801acbbbc16a">set_Score</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;s);
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056       <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1Alignment.html#9068711091bc065e281c076da5bd7dcb">addSequence</a>(<span class="keyword">const</span> bpp::Sequence* sequence);
+<a name="l00057"></a>00057       <span class="comment">//void addSequence(const bpp::Sequence &amp; sequence) throw(bpp::Exception);</span>
+<a name="l00058"></a>00058       };
+<a name="l00059"></a>00059   }
+<a name="l00060"></a>00060 <span class="preprocessor">#endif </span><span class="comment">/*ALIGNMENT_H_*/</span>
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Sun Feb 24 19:08:15 2008 for CircalPP by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>

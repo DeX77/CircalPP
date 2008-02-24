@@ -44,18 +44,23 @@
 <a name="l00026"></a>00026 <span class="keyword">namespace </span>Circal
 <a name="l00027"></a>00027   {
 <a name="l00028"></a><a class="code" href="classCircal_1_1MultiplePseudoCircularAlignmentFactory.html">00028</a>     <span class="keyword">class </span><a class="code" href="classCircal_1_1MultiplePseudoCircularAlignmentFactory.html">MultiplePseudoCircularAlignmentFactory</a> :
-<a name="l00029"></a>00029       <span class="keyword">public</span> <a class="code" href="classCircal_1_1PseudoCircularAlignmentFactory.html">PseudoCircularAlignmentFactory</a>, <span class="keyword">public</span> <a class="code" href="classCircal_1_1MultipleAlignmentFactory.html">MultipleAlignmentFactory</a>
+<a name="l00029"></a>00029       <span class="keyword">public</span> <a class="code" href="classCircal_1_1MultipleAlignmentFactory.html">MultipleAlignmentFactory</a>, <span class="keyword">public</span> <a class="code" href="classCircal_1_1PseudoCircularAlignmentFactory.html">PseudoCircularAlignmentFactory</a>
 <a name="l00030"></a>00030       {
 <a name="l00031"></a>00031 
 <a name="l00032"></a>00032   <span class="keyword">public</span>:
 <a name="l00033"></a>00033       <span class="keyword">explicit</span> <a class="code" href="classCircal_1_1MultiplePseudoCircularAlignmentFactory.html#35501504926816a4031c14b03b26903b">MultiplePseudoCircularAlignmentFactory</a>();
 <a name="l00034"></a>00034       <span class="keyword">virtual</span> <a class="code" href="classCircal_1_1MultiplePseudoCircularAlignmentFactory.html#e4b045519eab95324a91eb9cd2b02d77">~MultiplePseudoCircularAlignmentFactory</a>();
 <a name="l00035"></a>00035 
-<a name="l00036"></a>00036       };
-<a name="l00037"></a>00037   }
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039 <span class="preprocessor">#endif </span><span class="comment">/*MULTIPLEPSEUDOCIRCULARALIGNMENT_H_*/</span>
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 21 21:14:16 2008 for CircalPP by&nbsp;
+<a name="l00036"></a>00036       <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1MultiplePseudoCircularAlignmentFactory.html#47d7db6773b0de0b35387cf0346af2bb">NMWalignMultiple</a>(<span class="keyword">const</span> bpp::VectorSequenceContainer* input,
+<a name="l00037"></a>00037           <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM, <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;delta, <span class="keywordtype">bool</span> verbose);
+<a name="l00038"></a>00038       <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1MultiplePseudoCircularAlignmentFactory.html#e1c5bfaba040571300262dc25c31fb77">GotohalignMultiple</a>(<span class="keyword">const</span> bpp::VectorSequenceContainer* input,
+<a name="l00039"></a>00039           <span class="keyword">const</span> <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM, <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;delta, <span class="keywordtype">bool</span> verbose);
+<a name="l00040"></a>00040 
+<a name="l00041"></a>00041       };
+<a name="l00042"></a>00042   }
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044 <span class="preprocessor">#endif </span><span class="comment">/*MULTIPLEPSEUDOCIRCULARALIGNMENT_H_*/</span>
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Sun Feb 24 19:08:16 2008 for CircalPP by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>

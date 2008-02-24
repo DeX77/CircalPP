@@ -48,13 +48,13 @@ Collaboration diagram for Circal::AlignmentFactory:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1AlignmentFactory.html#76d219a7899be2c7e3ad545eaec92544">~AlignmentFactory</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classCircal_1_1Alignment.html">Alignment</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1AlignmentFactory.html#1de385e4c4c204601895bce0d12acead">NeedlemanWunschAlignment</a> (const bpp::Sequence *inA, const bpp::Sequence *inB, const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *scoreM)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classCircal_1_1Alignment.html">Alignment</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1AlignmentFactory.html#06cf2e0ea959c22e0cd42278b19c94e4">NeedlemanWunschAlignment</a> (const bpp::Sequence *inA, const bpp::Sequence *inB, const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *scoreM, bool verbose=false)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classCircal_1_1Alignment.html">Alignment</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1AlignmentFactory.html#e64b8253a8e582e31f5d4e0d7421142c">GotohAlignment</a> (const bpp::Sequence *inA, const bpp::Sequence *inB, const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *scoreM)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classCircal_1_1Alignment.html">Alignment</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1AlignmentFactory.html#8d6e6e2bb3c061770c10fda190f28877">GotohAlignment</a> (const bpp::Sequence *inA, const bpp::Sequence *inB, const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *scoreM, bool verbose=false)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classCircal_1_1Alignment.html">Alignment</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1AlignmentFactory.html#23e99c31f6461f57a178ad0a67ba952a">SmithWaterman</a> (const bpp::Sequence *inA, const bpp::Sequence *inB, const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *scoreM)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classCircal_1_1Alignment.html">Alignment</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1AlignmentFactory.html#a16ba19c77b29cd8c2126c8e28e6ee27">SmithWaterman</a> (const bpp::Sequence *inA, const bpp::Sequence *inB, const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *scoreM, bool verbose=false)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classCircal_1_1Alignment.html">Alignment</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1AlignmentFactory.html#f1c93cb44d62c205901f9ef067321c5e">SmithWatermanAffin</a> (const bpp::Sequence *inA, const bpp::Sequence *inB, const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *scoreM)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classCircal_1_1Alignment.html">Alignment</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1AlignmentFactory.html#fecf05d5484d763107d60794b9510248">SmithWatermanAffin</a> (const bpp::Sequence *inA, const bpp::Sequence *inB, const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *scoreM, bool verbose=false)</td></tr>
 
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1AlignmentFactory.html#23a0c386ae5a5fe2233b21a25bc92bc3">ForwardRecursionNMW</a> (const bpp::Sequence *A, const bpp::Sequence *B, const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *scoreM, <a class="el" href="namespaceCircal.html#f94948de4bda3c857d80444f2fbce6ee">ScoreMatrix</a> *D)</td></tr>
@@ -173,7 +173,7 @@ Collaboration diagram for Circal::AlignmentFactory:</div>
 
 <p>Definition at line <a class="el" href="AlignmentFactory_8cpp-source.html#l00358">358</a> of file <a class="el" href="AlignmentFactory_8cpp-source.html">AlignmentFactory.cpp</a>.</p>
 
-<p>References <a class="el" href="ScoringModel_8cpp-source.html#l00180">Circal::ScoringModel::BestOfThree()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00126">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00164">Circal::ScoringModel::ScoreOfGapExtend()</a>, and <a class="el" href="ScoringModel_8cpp-source.html#l00159">Circal::ScoringModel::ScoreOfGapOpen()</a>.</p>
+<p>References <a class="el" href="ScoringModel_8cpp-source.html#l00179">Circal::ScoringModel::BestOfThree()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00125">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00163">Circal::ScoringModel::ScoreOfGapExtend()</a>, and <a class="el" href="ScoringModel_8cpp-source.html#l00158">Circal::ScoringModel::ScoreOfGapOpen()</a>.</p>
 
 <p>Referenced by <a class="el" href="CircularAlignmentFactory_8cpp-source.html#l00083">Circal::CircularAlignmentFactory::NeedlemanWunschAlignment()</a>, and <a class="el" href="AlignmentFactory_8cpp-source.html#l00805">NeedlemanWunschAlignment()</a>.</p>
 
@@ -241,7 +241,7 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="AlignmentFactory_8cpp-source.html#l00386">386</a> of file <a class="el" href="AlignmentFactory_8cpp-source.html">AlignmentFactory.cpp</a>.</p>
 
-<p>References <a class="el" href="ScoringModel_8cpp-source.html#l00126">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00164">Circal::ScoringModel::ScoreOfGapExtend()</a>, and <a class="el" href="ScoringModel_8cpp-source.html#l00159">Circal::ScoringModel::ScoreOfGapOpen()</a>.</p>
+<p>References <a class="el" href="ScoringModel_8cpp-source.html#l00125">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00163">Circal::ScoringModel::ScoreOfGapExtend()</a>, and <a class="el" href="ScoringModel_8cpp-source.html#l00158">Circal::ScoringModel::ScoreOfGapOpen()</a>.</p>
 
 <p>Referenced by <a class="el" href="CircularAlignmentFactory_8cpp-source.html#l00083">Circal::CircularAlignmentFactory::NeedlemanWunschAlignment()</a>, and <a class="el" href="AlignmentFactory_8cpp-source.html#l00805">NeedlemanWunschAlignment()</a>.</p>
 
@@ -309,7 +309,7 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="AlignmentFactory_8cpp-source.html#l00038">38</a> of file <a class="el" href="AlignmentFactory_8cpp-source.html">AlignmentFactory.cpp</a>.</p>
 
-<p>References <a class="el" href="ScoringModel_8cpp-source.html#l00180">Circal::ScoringModel::BestOfThree()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00174">Circal::ScoringModel::BestOfTwo()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00126">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00164">Circal::ScoringModel::ScoreOfGapExtend()</a>, and <a class="el" href="ScoringModel_8cpp-source.html#l00159">Circal::ScoringModel::ScoreOfGapOpen()</a>.</p>
+<p>References <a class="el" href="ScoringModel_8cpp-source.html#l00179">Circal::ScoringModel::BestOfThree()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00173">Circal::ScoringModel::BestOfTwo()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00125">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00163">Circal::ScoringModel::ScoreOfGapExtend()</a>, and <a class="el" href="ScoringModel_8cpp-source.html#l00158">Circal::ScoringModel::ScoreOfGapOpen()</a>.</p>
 
 <p>Referenced by <a class="el" href="CircularAlignmentFactory_8cpp-source.html#l00035">Circal::CircularAlignmentFactory::GotohAlignment()</a>, and <a class="el" href="AlignmentFactory_8cpp-source.html#l00822">GotohAlignment()</a>.</p>
 
@@ -389,7 +389,7 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="AlignmentFactory_8cpp-source.html#l00081">81</a> of file <a class="el" href="AlignmentFactory_8cpp-source.html">AlignmentFactory.cpp</a>.</p>
 
-<p>References <a class="el" href="ScoringModel_8cpp-source.html#l00174">Circal::ScoringModel::BestOfTwo()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00126">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00164">Circal::ScoringModel::ScoreOfGapExtend()</a>, and <a class="el" href="ScoringModel_8cpp-source.html#l00159">Circal::ScoringModel::ScoreOfGapOpen()</a>.</p>
+<p>References <a class="el" href="ScoringModel_8cpp-source.html#l00173">Circal::ScoringModel::BestOfTwo()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00125">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00163">Circal::ScoringModel::ScoreOfGapExtend()</a>, and <a class="el" href="ScoringModel_8cpp-source.html#l00158">Circal::ScoringModel::ScoreOfGapOpen()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -467,7 +467,7 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="AlignmentFactory_8cpp-source.html#l00213">213</a> of file <a class="el" href="AlignmentFactory_8cpp-source.html">AlignmentFactory.cpp</a>.</p>
 
-<p>References <a class="el" href="ScoringModel_8cpp-source.html#l00174">Circal::ScoringModel::BestOfTwo()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00126">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00164">Circal::ScoringModel::ScoreOfGapExtend()</a>, and <a class="el" href="ScoringModel_8cpp-source.html#l00159">Circal::ScoringModel::ScoreOfGapOpen()</a>.</p>
+<p>References <a class="el" href="ScoringModel_8cpp-source.html#l00173">Circal::ScoringModel::BestOfTwo()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00125">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00163">Circal::ScoringModel::ScoreOfGapExtend()</a>, and <a class="el" href="ScoringModel_8cpp-source.html#l00158">Circal::ScoringModel::ScoreOfGapOpen()</a>.</p>
 
 <p>Referenced by <a class="el" href="CircularAlignmentFactory_8cpp-source.html#l00035">Circal::CircularAlignmentFactory::GotohAlignment()</a>, and <a class="el" href="AlignmentFactory_8cpp-source.html#l00822">GotohAlignment()</a>.</p>
 
@@ -535,9 +535,9 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="AlignmentFactory_8cpp-source.html#l00489">489</a> of file <a class="el" href="AlignmentFactory_8cpp-source.html">AlignmentFactory.cpp</a>.</p>
 
-<p>References <a class="el" href="ScoringModel_8cpp-source.html#l00180">Circal::ScoringModel::BestOfThree()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00174">Circal::ScoringModel::BestOfTwo()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00126">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00164">Circal::ScoringModel::ScoreOfGapExtend()</a>, and <a class="el" href="ScoringModel_8cpp-source.html#l00159">Circal::ScoringModel::ScoreOfGapOpen()</a>.</p>
+<p>References <a class="el" href="ScoringModel_8cpp-source.html#l00179">Circal::ScoringModel::BestOfThree()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00173">Circal::ScoringModel::BestOfTwo()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00125">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00163">Circal::ScoringModel::ScoreOfGapExtend()</a>, and <a class="el" href="ScoringModel_8cpp-source.html#l00158">Circal::ScoringModel::ScoreOfGapOpen()</a>.</p>
 
-<p>Referenced by <a class="el" href="PseudoCircularAlignmentFactory_8cpp-source.html#l00599">Circal::PseudoCircularAlignmentFactory::NeedlemanWunschAlignment()</a>, and <a class="el" href="AlignmentFactory_8cpp-source.html#l00839">SmithWaterman()</a>.</p>
+<p>Referenced by <a class="el" href="PseudoCircularAlignmentFactory_8cpp-source.html#l00610">Circal::PseudoCircularAlignmentFactory::NeedlemanWunschAlignment()</a>, and <a class="el" href="AlignmentFactory_8cpp-source.html#l00839">SmithWaterman()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -603,9 +603,9 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="AlignmentFactory_8cpp-source.html#l00534">534</a> of file <a class="el" href="AlignmentFactory_8cpp-source.html">AlignmentFactory.cpp</a>.</p>
 
-<p>References <a class="el" href="ScoringModel_8cpp-source.html#l00126">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00164">Circal::ScoringModel::ScoreOfGapExtend()</a>, and <a class="el" href="ScoringModel_8cpp-source.html#l00159">Circal::ScoringModel::ScoreOfGapOpen()</a>.</p>
+<p>References <a class="el" href="ScoringModel_8cpp-source.html#l00125">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00163">Circal::ScoringModel::ScoreOfGapExtend()</a>, and <a class="el" href="ScoringModel_8cpp-source.html#l00158">Circal::ScoringModel::ScoreOfGapOpen()</a>.</p>
 
-<p>Referenced by <a class="el" href="PseudoCircularAlignmentFactory_8cpp-source.html#l00599">Circal::PseudoCircularAlignmentFactory::NeedlemanWunschAlignment()</a>, and <a class="el" href="AlignmentFactory_8cpp-source.html#l00839">SmithWaterman()</a>.</p>
+<p>Referenced by <a class="el" href="PseudoCircularAlignmentFactory_8cpp-source.html#l00610">Circal::PseudoCircularAlignmentFactory::NeedlemanWunschAlignment()</a>, and <a class="el" href="AlignmentFactory_8cpp-source.html#l00839">SmithWaterman()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -683,9 +683,9 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="AlignmentFactory_8cpp-source.html#l00622">622</a> of file <a class="el" href="AlignmentFactory_8cpp-source.html">AlignmentFactory.cpp</a>.</p>
 
-<p>References <a class="el" href="ScoringModel_8cpp-source.html#l00180">Circal::ScoringModel::BestOfThree()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00174">Circal::ScoringModel::BestOfTwo()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00126">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00164">Circal::ScoringModel::ScoreOfGapExtend()</a>, and <a class="el" href="ScoringModel_8cpp-source.html#l00159">Circal::ScoringModel::ScoreOfGapOpen()</a>.</p>
+<p>References <a class="el" href="ScoringModel_8cpp-source.html#l00179">Circal::ScoringModel::BestOfThree()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00173">Circal::ScoringModel::BestOfTwo()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00125">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00163">Circal::ScoringModel::ScoreOfGapExtend()</a>, and <a class="el" href="ScoringModel_8cpp-source.html#l00158">Circal::ScoringModel::ScoreOfGapOpen()</a>.</p>
 
-<p>Referenced by <a class="el" href="PseudoCircularAlignmentFactory_8cpp-source.html#l00636">Circal::PseudoCircularAlignmentFactory::GotohAlignment()</a>, and <a class="el" href="AlignmentFactory_8cpp-source.html#l00853">SmithWatermanAffin()</a>.</p>
+<p>Referenced by <a class="el" href="PseudoCircularAlignmentFactory_8cpp-source.html#l00651">Circal::PseudoCircularAlignmentFactory::GotohAlignment()</a>, and <a class="el" href="AlignmentFactory_8cpp-source.html#l00853">SmithWatermanAffin()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -763,9 +763,9 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="AlignmentFactory_8cpp-source.html#l00679">679</a> of file <a class="el" href="AlignmentFactory_8cpp-source.html">AlignmentFactory.cpp</a>.</p>
 
-<p>References <a class="el" href="ScoringModel_8cpp-source.html#l00174">Circal::ScoringModel::BestOfTwo()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00126">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00164">Circal::ScoringModel::ScoreOfGapExtend()</a>, and <a class="el" href="ScoringModel_8cpp-source.html#l00159">Circal::ScoringModel::ScoreOfGapOpen()</a>.</p>
+<p>References <a class="el" href="ScoringModel_8cpp-source.html#l00173">Circal::ScoringModel::BestOfTwo()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00125">Circal::ScoringModel::ScoreOf()</a>, <a class="el" href="ScoringModel_8cpp-source.html#l00163">Circal::ScoringModel::ScoreOfGapExtend()</a>, and <a class="el" href="ScoringModel_8cpp-source.html#l00158">Circal::ScoringModel::ScoreOfGapOpen()</a>.</p>
 
-<p>Referenced by <a class="el" href="PseudoCircularAlignmentFactory_8cpp-source.html#l00636">Circal::PseudoCircularAlignmentFactory::GotohAlignment()</a>, and <a class="el" href="AlignmentFactory_8cpp-source.html#l00853">SmithWatermanAffin()</a>.</p>
+<p>Referenced by <a class="el" href="PseudoCircularAlignmentFactory_8cpp-source.html#l00651">Circal::PseudoCircularAlignmentFactory::GotohAlignment()</a>, and <a class="el" href="AlignmentFactory_8cpp-source.html#l00853">SmithWatermanAffin()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -778,7 +778,7 @@ Here is the call graph for this function:</div>
 
 </div>
 </div><p>
-<a class="anchor" name="1de385e4c4c204601895bce0d12acead"></a><!-- doxytag: member="Circal::AlignmentFactory::NeedlemanWunschAlignment" ref="1de385e4c4c204601895bce0d12acead" args="(const bpp::Sequence *inA, const bpp::Sequence *inB, const ScoringModel *scoreM)" -->
+<a class="anchor" name="06cf2e0ea959c22e0cd42278b19c94e4"></a><!-- doxytag: member="Circal::AlignmentFactory::NeedlemanWunschAlignment" ref="06cf2e0ea959c22e0cd42278b19c94e4" args="(const bpp::Sequence *inA, const bpp::Sequence *inB, const ScoringModel *scoreM, bool verbose=false)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -798,7 +798,13 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *&nbsp;</td>
-          <td class="paramname"> <em>scoreM</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>scoreM</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>verbose</em> = <code>false</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -811,26 +817,24 @@ Here is the call graph for this function:</div>
 
 <p>
 
-<p>Reimplemented in <a class="el" href="classCircal_1_1CircularAlignmentFactory.html#875288196816426e679eb5bcaf2ec442">Circal::CircularAlignmentFactory</a>.</p>
-
 <p>Definition at line <a class="el" href="AlignmentFactory_8cpp-source.html#l00805">805</a> of file <a class="el" href="AlignmentFactory_8cpp-source.html">AlignmentFactory.cpp</a>.</p>
 
 <p>References <a class="el" href="AlignmentFactory_8cpp-source.html#l00386">BacktrackingNMW()</a>, <a class="el" href="AlignmentFactory_8cpp-source.html#l00358">ForwardRecursionNMW()</a>, <a class="el" href="MatrixHelper_8cpp-source.html#l00071">Circal::MatrixHelper::InitializeScoreMatrixDistances()</a>, and <a class="el" href="AlignmentFactory_8h-source.html#l00037">matrix</a>.</p>
 
-<p>Referenced by <a class="el" href="MultipleAlignmentFactory_8cpp-source.html#l00057">Circal::MultipleAlignmentFactory::NMWalignMultiple()</a>.</p>
+<p>Referenced by <a class="el" href="MultipleAlignmentFactory_8cpp-source.html#l00064">Circal::MultipleAlignmentFactory::NMWalignMultiple()</a>.</p>
 
 <p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dynsection">
-<p><center><img src="classCircal_1_1AlignmentFactory_1de385e4c4c204601895bce0d12acead_cgraph.png" border="0" usemap="#classCircal_1_1AlignmentFactory_1de385e4c4c204601895bce0d12acead_cgraph_map" alt=""></center>
-<map name="classCircal_1_1AlignmentFactory_1de385e4c4c204601895bce0d12acead_cgraph_map">
+<p><center><img src="classCircal_1_1AlignmentFactory_06cf2e0ea959c22e0cd42278b19c94e4_cgraph.png" border="0" usemap="#classCircal_1_1AlignmentFactory_06cf2e0ea959c22e0cd42278b19c94e4_cgraph_map" alt=""></center>
+<map name="classCircal_1_1AlignmentFactory_06cf2e0ea959c22e0cd42278b19c94e4_cgraph_map">
 <area shape="rect" href="classCircal_1_1AlignmentFactory.html#170edf47373ca95d9cd716d4ace79950" title="Circal::AlignmentFactory::BacktrackingNMW" alt="" coords="453,107,755,133"><area shape="rect" href="classCircal_1_1AlignmentFactory.html#23a0c386ae5a5fe2233b21a25bc92bc3" title="Circal::AlignmentFactory::ForwardRecursionNMW" alt="" coords="436,56,772,83"><area shape="rect" href="classCircal_1_1MatrixHelper.html#69554a977a56437127203bf586e5d594" title="Circal::MatrixHelper::InitializeScoreMatrixDistances" alt="" coords="429,157,779,184"><area shape="rect" href="classCircal_1_1ScoringModel.html#c9093a36aae9269b516c34438d2df279" title="Circal::ScoringModel::ScoreOf" alt="" coords="864,56,1077,83"><area shape="rect" href="classCircal_1_1ScoringModel.html#dc158e70948f9cce9c80ef7df6cdde6f" title="Circal::ScoringModel::ScoreOfGapExtend" alt="" coords="828,157,1113,184"><area shape="rect" href="classCircal_1_1ScoringModel.html#3f934683024d21df07165eee183ee918" title="Circal::ScoringModel::ScoreOfGapOpen" alt="" coords="833,107,1108,133"><area shape="rect" href="classCircal_1_1ScoringModel.html#7a0e45da2b4c5912f08258bd56dd1788" title="Circal::ScoringModel::BestOfTwo" alt="" coords="1164,31,1391,57"><area shape="rect" href="classCircal_1_1ScoringModel.html#4a300e1b772adbbda981a5608710c027" title="Circal::ScoringModel::BestOfThree" alt="" coords="851,5,1091,32"><area shape="rect" href="classCircal_1_1MatrixHelper.html#8c12cd1078ffbb6c4c93ebbb8cb384d5" title="Circal::MatrixHelper::InitScoreMatrixWith" alt="" coords="829,208,1112,235"></map>
 </div>
 
 </div>
 </div><p>
-<a class="anchor" name="e64b8253a8e582e31f5d4e0d7421142c"></a><!-- doxytag: member="Circal::AlignmentFactory::GotohAlignment" ref="e64b8253a8e582e31f5d4e0d7421142c" args="(const bpp::Sequence *inA, const bpp::Sequence *inB, const ScoringModel *scoreM)" -->
+<a class="anchor" name="8d6e6e2bb3c061770c10fda190f28877"></a><!-- doxytag: member="Circal::AlignmentFactory::GotohAlignment" ref="8d6e6e2bb3c061770c10fda190f28877" args="(const bpp::Sequence *inA, const bpp::Sequence *inB, const ScoringModel *scoreM, bool verbose=false)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -850,7 +854,13 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *&nbsp;</td>
-          <td class="paramname"> <em>scoreM</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>scoreM</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>verbose</em> = <code>false</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -863,8 +873,6 @@ Here is the call graph for this function:</div>
 
 <p>
 
-<p>Reimplemented in <a class="el" href="classCircal_1_1CircularAlignmentFactory.html#2011395ecb3e47fc21987dcc9b9a4812">Circal::CircularAlignmentFactory</a>.</p>
-
 <p>Definition at line <a class="el" href="AlignmentFactory_8cpp-source.html#l00822">822</a> of file <a class="el" href="AlignmentFactory_8cpp-source.html">AlignmentFactory.cpp</a>.</p>
 
 <p>References <a class="el" href="AlignmentFactory_8cpp-source.html#l00213">BacktrackingGotohGlobal()</a>, <a class="el" href="AlignmentFactory_8cpp-source.html#l00038">ForwardRecursionGotoh()</a>, <a class="el" href="MatrixHelper_8cpp-source.html#l00100">Circal::MatrixHelper::InitScoreMatrixWith()</a>, and <a class="el" href="AlignmentFactory_8h-source.html#l00037">matrix</a>.</p>
@@ -875,14 +883,14 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dynsection">
-<p><center><img src="classCircal_1_1AlignmentFactory_e64b8253a8e582e31f5d4e0d7421142c_cgraph.png" border="0" usemap="#classCircal_1_1AlignmentFactory_e64b8253a8e582e31f5d4e0d7421142c_cgraph_map" alt=""></center>
-<map name="classCircal_1_1AlignmentFactory_e64b8253a8e582e31f5d4e0d7421142c_cgraph_map">
+<p><center><img src="classCircal_1_1AlignmentFactory_8d6e6e2bb3c061770c10fda190f28877_cgraph.png" border="0" usemap="#classCircal_1_1AlignmentFactory_8d6e6e2bb3c061770c10fda190f28877_cgraph_map" alt=""></center>
+<map name="classCircal_1_1AlignmentFactory_8d6e6e2bb3c061770c10fda190f28877_cgraph_map">
 <area shape="rect" href="classCircal_1_1AlignmentFactory.html#e9a87f9cf77459708e957d887b2f358d" title="Circal::AlignmentFactory::BacktrackingGotohGlobal" alt="" coords="344,145,691,172"><area shape="rect" href="classCircal_1_1AlignmentFactory.html#824141099efd7e6eb36390937a1abec3" title="Circal::AlignmentFactory::ForwardRecursionGotoh" alt="" coords="347,95,688,121"><area shape="rect" href="classCircal_1_1MatrixHelper.html#8c12cd1078ffbb6c4c93ebbb8cb384d5" title="Circal::MatrixHelper::InitScoreMatrixWith" alt="" coords="376,196,659,223"><area shape="rect" href="classCircal_1_1ScoringModel.html#7a0e45da2b4c5912f08258bd56dd1788" title="Circal::ScoringModel::BestOfTwo" alt="" coords="1076,95,1303,121"><area shape="rect" href="classCircal_1_1ScoringModel.html#c9093a36aae9269b516c34438d2df279" title="Circal::ScoringModel::ScoreOf" alt="" coords="776,145,989,172"><area shape="rect" href="classCircal_1_1ScoringModel.html#dc158e70948f9cce9c80ef7df6cdde6f" title="Circal::ScoringModel::ScoreOfGapExtend" alt="" coords="740,95,1025,121"><area shape="rect" href="classCircal_1_1ScoringModel.html#3f934683024d21df07165eee183ee918" title="Circal::ScoringModel::ScoreOfGapOpen" alt="" coords="745,196,1020,223"><area shape="rect" href="classCircal_1_1ScoringModel.html#4a300e1b772adbbda981a5608710c027" title="Circal::ScoringModel::BestOfThree" alt="" coords="763,44,1003,71"></map>
 </div>
 
 </div>
 </div><p>
-<a class="anchor" name="23e99c31f6461f57a178ad0a67ba952a"></a><!-- doxytag: member="Circal::AlignmentFactory::SmithWaterman" ref="23e99c31f6461f57a178ad0a67ba952a" args="(const bpp::Sequence *inA, const bpp::Sequence *inB, const ScoringModel *scoreM)" -->
+<a class="anchor" name="a16ba19c77b29cd8c2126c8e28e6ee27"></a><!-- doxytag: member="Circal::AlignmentFactory::SmithWaterman" ref="a16ba19c77b29cd8c2126c8e28e6ee27" args="(const bpp::Sequence *inA, const bpp::Sequence *inB, const ScoringModel *scoreM, bool verbose=false)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -902,7 +910,13 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *&nbsp;</td>
-          <td class="paramname"> <em>scoreM</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>scoreM</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>verbose</em> = <code>false</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -923,14 +937,14 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dynsection">
-<p><center><img src="classCircal_1_1AlignmentFactory_23e99c31f6461f57a178ad0a67ba952a_cgraph.png" border="0" usemap="#classCircal_1_1AlignmentFactory_23e99c31f6461f57a178ad0a67ba952a_cgraph_map" alt=""></center>
-<map name="classCircal_1_1AlignmentFactory_23e99c31f6461f57a178ad0a67ba952a_cgraph_map">
+<p><center><img src="classCircal_1_1AlignmentFactory_a16ba19c77b29cd8c2126c8e28e6ee27_cgraph.png" border="0" usemap="#classCircal_1_1AlignmentFactory_a16ba19c77b29cd8c2126c8e28e6ee27_cgraph_map" alt=""></center>
+<map name="classCircal_1_1AlignmentFactory_a16ba19c77b29cd8c2126c8e28e6ee27_cgraph_map">
 <area shape="rect" href="classCircal_1_1AlignmentFactory.html#2c2d383ecd1f50ab572e1813188987e7" title="Circal::AlignmentFactory::BacktrackingSmithWaterman" alt="" coords="363,137,733,164"><area shape="rect" href="classCircal_1_1AlignmentFactory.html#2554dd57c516fefab4b3c746a10d5a9e" title="Circal::AlignmentFactory::ForwardRecursionSmithWaterman" alt="" coords="345,87,751,113"><area shape="rect" href="classCircal_1_1MatrixHelper.html#69554a977a56437127203bf586e5d594" title="Circal::MatrixHelper::InitializeScoreMatrixDistances" alt="" coords="373,188,723,215"><area shape="rect" href="classCircal_1_1ScoringModel.html#c9093a36aae9269b516c34438d2df279" title="Circal::ScoringModel::ScoreOf" alt="" coords="837,87,1051,113"><area shape="rect" href="classCircal_1_1ScoringModel.html#dc158e70948f9cce9c80ef7df6cdde6f" title="Circal::ScoringModel::ScoreOfGapExtend" alt="" coords="801,137,1087,164"><area shape="rect" href="classCircal_1_1ScoringModel.html#3f934683024d21df07165eee183ee918" title="Circal::ScoringModel::ScoreOfGapOpen" alt="" coords="807,188,1081,215"><area shape="rect" href="classCircal_1_1ScoringModel.html#7a0e45da2b4c5912f08258bd56dd1788" title="Circal::ScoringModel::BestOfTwo" alt="" coords="1137,36,1364,63"><area shape="rect" href="classCircal_1_1ScoringModel.html#4a300e1b772adbbda981a5608710c027" title="Circal::ScoringModel::BestOfThree" alt="" coords="824,36,1064,63"><area shape="rect" href="classCircal_1_1MatrixHelper.html#8c12cd1078ffbb6c4c93ebbb8cb384d5" title="Circal::MatrixHelper::InitScoreMatrixWith" alt="" coords="803,239,1085,265"></map>
 </div>
 
 </div>
 </div><p>
-<a class="anchor" name="f1c93cb44d62c205901f9ef067321c5e"></a><!-- doxytag: member="Circal::AlignmentFactory::SmithWatermanAffin" ref="f1c93cb44d62c205901f9ef067321c5e" args="(const bpp::Sequence *inA, const bpp::Sequence *inB, const ScoringModel *scoreM)" -->
+<a class="anchor" name="fecf05d5484d763107d60794b9510248"></a><!-- doxytag: member="Circal::AlignmentFactory::SmithWatermanAffin" ref="fecf05d5484d763107d60794b9510248" args="(const bpp::Sequence *inA, const bpp::Sequence *inB, const ScoringModel *scoreM, bool verbose=false)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -950,7 +964,13 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="classCircal_1_1ScoringModel.html">ScoringModel</a> *&nbsp;</td>
-          <td class="paramname"> <em>scoreM</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>scoreM</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>verbose</em> = <code>false</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -971,8 +991,8 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dynsection">
-<p><center><img src="classCircal_1_1AlignmentFactory_f1c93cb44d62c205901f9ef067321c5e_cgraph.png" border="0" usemap="#classCircal_1_1AlignmentFactory_f1c93cb44d62c205901f9ef067321c5e_cgraph_map" alt=""></center>
-<map name="classCircal_1_1AlignmentFactory_f1c93cb44d62c205901f9ef067321c5e_cgraph_map">
+<p><center><img src="classCircal_1_1AlignmentFactory_fecf05d5484d763107d60794b9510248_cgraph.png" border="0" usemap="#classCircal_1_1AlignmentFactory_fecf05d5484d763107d60794b9510248_cgraph_map" alt=""></center>
+<map name="classCircal_1_1AlignmentFactory_fecf05d5484d763107d60794b9510248_cgraph_map">
 <area shape="rect" href="classCircal_1_1AlignmentFactory.html#38e1e5e94033be95ebe5438df2cdae96" title="Circal::AlignmentFactory::BacktrackingSmithWatermanAffin" alt="" coords="392,145,792,172"><area shape="rect" href="classCircal_1_1AlignmentFactory.html#b4cb6cb6ecbffc8d2d6edf46d54b75aa" title="Circal::AlignmentFactory::ForwardRecursionSmithWatermanAffin" alt="" coords="375,95,809,121"><area shape="rect" href="classCircal_1_1MatrixHelper.html#8c12cd1078ffbb6c4c93ebbb8cb384d5" title="Circal::MatrixHelper::InitScoreMatrixWith" alt="" coords="451,196,733,223"><area shape="rect" href="classCircal_1_1ScoringModel.html#7a0e45da2b4c5912f08258bd56dd1788" title="Circal::ScoringModel::BestOfTwo" alt="" coords="1196,95,1423,121"><area shape="rect" href="classCircal_1_1ScoringModel.html#c9093a36aae9269b516c34438d2df279" title="Circal::ScoringModel::ScoreOf" alt="" coords="896,145,1109,172"><area shape="rect" href="classCircal_1_1ScoringModel.html#dc158e70948f9cce9c80ef7df6cdde6f" title="Circal::ScoringModel::ScoreOfGapExtend" alt="" coords="860,95,1145,121"><area shape="rect" href="classCircal_1_1ScoringModel.html#3f934683024d21df07165eee183ee918" title="Circal::ScoringModel::ScoreOfGapOpen" alt="" coords="865,196,1140,223"><area shape="rect" href="classCircal_1_1ScoringModel.html#4a300e1b772adbbda981a5608710c027" title="Circal::ScoringModel::BestOfThree" alt="" coords="883,44,1123,71"></map>
 </div>
 
@@ -994,7 +1014,7 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="AlignmentFactory_8h-source.html#l00037">37</a> of file <a class="el" href="AlignmentFactory_8h-source.html">AlignmentFactory.h</a>.</p>
 
-<p>Referenced by <a class="el" href="AlignmentFactory_8cpp-source.html#l00029">AlignmentFactory()</a>, <a class="el" href="PseudoCircularAlignmentFactory_8cpp-source.html#l00636">Circal::PseudoCircularAlignmentFactory::GotohAlignment()</a>, <a class="el" href="CircularAlignmentFactory_8cpp-source.html#l00035">Circal::CircularAlignmentFactory::GotohAlignment()</a>, <a class="el" href="AlignmentFactory_8cpp-source.html#l00822">GotohAlignment()</a>, <a class="el" href="PseudoCircularAlignmentFactory_8cpp-source.html#l00599">Circal::PseudoCircularAlignmentFactory::NeedlemanWunschAlignment()</a>, <a class="el" href="CircularAlignmentFactory_8cpp-source.html#l00083">Circal::CircularAlignmentFactory::NeedlemanWunschAlignment()</a>, <a class="el" href="AlignmentFactory_8cpp-source.html#l00805">NeedlemanWunschAlignment()</a>, <a class="el" href="AlignmentFactory_8cpp-source.html#l00839">SmithWaterman()</a>, <a class="el" href="AlignmentFactory_8cpp-source.html#l00853">SmithWatermanAffin()</a>, and <a class="el" href="AlignmentFactory_8cpp-source.html#l00034">~AlignmentFactory()</a>.</p>
+<p>Referenced by <a class="el" href="AlignmentFactory_8cpp-source.html#l00029">AlignmentFactory()</a>, <a class="el" href="PseudoCircularAlignmentFactory_8cpp-source.html#l00651">Circal::PseudoCircularAlignmentFactory::GotohAlignment()</a>, <a class="el" href="CircularAlignmentFactory_8cpp-source.html#l00035">Circal::CircularAlignmentFactory::GotohAlignment()</a>, <a class="el" href="AlignmentFactory_8cpp-source.html#l00822">GotohAlignment()</a>, <a class="el" href="PseudoCircularAlignmentFactory_8cpp-source.html#l00610">Circal::PseudoCircularAlignmentFactory::NeedlemanWunschAlignment()</a>, <a class="el" href="CircularAlignmentFactory_8cpp-source.html#l00083">Circal::CircularAlignmentFactory::NeedlemanWunschAlignment()</a>, <a class="el" href="AlignmentFactory_8cpp-source.html#l00805">NeedlemanWunschAlignment()</a>, <a class="el" href="AlignmentFactory_8cpp-source.html#l00839">SmithWaterman()</a>, <a class="el" href="AlignmentFactory_8cpp-source.html#l00853">SmithWatermanAffin()</a>, and <a class="el" href="AlignmentFactory_8cpp-source.html#l00034">~AlignmentFactory()</a>.</p>
 
 </div>
 </div><p>
@@ -1013,11 +1033,13 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="AlignmentFactory_8h-source.html#l00038">38</a> of file <a class="el" href="AlignmentFactory_8h-source.html">AlignmentFactory.h</a>.</p>
 
+<p>Referenced by <a class="el" href="MultiplePseudoCircularAlignmentFactory_8cpp-source.html#l00033">Circal::MultiplePseudoCircularAlignmentFactory::GotohalignMultiple()</a>, and <a class="el" href="MultiplePseudoCircularAlignmentFactory_8cpp-source.html#l00062">Circal::MultiplePseudoCircularAlignmentFactory::NMWalignMultiple()</a>.</p>
+
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>Uni/workspace/CircalPP/src/<a class="el" href="AlignmentFactory_8h-source.html">AlignmentFactory.h</a><li>Uni/workspace/CircalPP/src/<a class="el" href="AlignmentFactory_8cpp-source.html">AlignmentFactory.cpp</a></ul>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 21 21:14:28 2008 for CircalPP by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Feb 24 19:08:37 2008 for CircalPP by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>

@@ -32,22 +32,26 @@
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#6c1d8170276265997eb8729e83a65fa8">Alignment</a> (const bpp::Alphabet *alpha)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#4487be03e5c0685d42b2f414fda5e50b">Alignment</a> ()</td></tr>
-
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#4a0146b22bceb4dff7a0583378f6145c">~Alignment</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">uint&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#77734f8eb8623b665e518afae2e49789">get_origSize</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">uint&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#1ba1a02f0da981faca500e0988bf1ac8">get_offsetA</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#222ba2a7ddae54bda89e809b59aa7f12">set_offsetA</a> (const uint &amp;orig)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">uint&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#6822c7df4eab6cd256934baa7ae71ee8">get_offsetB</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#cdf5f3f56151b4ea4829a826b6b88b63">set_offsetB</a> (const uint &amp;orig)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#e4dc0a9b6c0b89f3e3c375b963c76ec1">get_Score</a> ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#94d66a0aa8ca3a3ecd47801acbbbc16a">set_Score</a> (const double &amp;s)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#89a2f964067b1f766a3327e8008a0f45">set_origSize</a> (const uint &amp;orig)</td></tr>
-
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#9068711091bc065e281c076da5bd7dcb">addSequence</a> (const bpp::Sequence *sequence)</td></tr>
 
 <tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">uint&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#4899d9988a47852fc888a900e3ffdaf7">origSize</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">uint&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#8f289b66dbb1373f0d857f5b43f814dc">offsetA</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">uint&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#8afb2ec44c7cda3c08759eb544ea822a">offsetB</a></td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircal_1_1Alignment.html#894c310f50b7ec0b44c53d38b03a4c4c">Score</a></td></tr>
 
@@ -76,7 +80,7 @@
 
 <p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00027">27</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
 
-<p>References <a class="el" href="Alignment_8cpp-source.html#l00053">set_Score()</a>.</p>
+<p>References <a class="el" href="Alignment_8cpp-source.html#l00046">set_offsetA()</a>, <a class="el" href="Alignment_8cpp-source.html#l00055">set_offsetB()</a>, and <a class="el" href="Alignment_8cpp-source.html#l00065">set_Score()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -84,27 +88,8 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classCircal_1_1Alignment_6c1d8170276265997eb8729e83a65fa8_cgraph.png" border="0" usemap="#classCircal_1_1Alignment_6c1d8170276265997eb8729e83a65fa8_cgraph_map" alt=""></center>
 <map name="classCircal_1_1Alignment_6c1d8170276265997eb8729e83a65fa8_cgraph_map">
-<area shape="rect" href="classCircal_1_1Alignment.html#94d66a0aa8ca3a3ecd47801acbbbc16a" title="Circal::Alignment::set_Score" alt="" coords="259,5,461,32"></map>
+<area shape="rect" href="classCircal_1_1Alignment.html#222ba2a7ddae54bda89e809b59aa7f12" title="Circal::Alignment::set_offsetA" alt="" coords="260,5,471,32"><area shape="rect" href="classCircal_1_1Alignment.html#cdf5f3f56151b4ea4829a826b6b88b63" title="Circal::Alignment::set_offsetB" alt="" coords="260,56,471,83"><area shape="rect" href="classCircal_1_1Alignment.html#94d66a0aa8ca3a3ecd47801acbbbc16a" title="Circal::Alignment::set_Score" alt="" coords="264,107,467,133"></map>
 </div>
-
-</div>
-</div><p>
-<a class="anchor" name="4487be03e5c0685d42b2f414fda5e50b"></a><!-- doxytag: member="Circal::Alignment::Alignment" ref="4487be03e5c0685d42b2f414fda5e50b" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Circal::Alignment::Alignment           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td width="100%"></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
 
 </div>
 </div><p>
@@ -125,17 +110,17 @@ Here is the call graph for this function:</div>
 
 <p>
 
-<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00035">35</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00037">37</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
 
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="77734f8eb8623b665e518afae2e49789"></a><!-- doxytag: member="Circal::Alignment::get_origSize" ref="77734f8eb8623b665e518afae2e49789" args="()" -->
+<a class="anchor" name="1ba1a02f0da981faca500e0988bf1ac8"></a><!-- doxytag: member="Circal::Alignment::get_offsetA" ref="1ba1a02f0da981faca500e0988bf1ac8" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint Circal::Alignment::get_origSize           </td>
+          <td class="memname">uint Circal::Alignment::get_offsetA           </td>
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
@@ -147,11 +132,84 @@ Here is the call graph for this function:</div>
 
 <p>
 
-<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00039">39</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00042">42</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
 
-<p>References <a class="el" href="Alignment_8h-source.html#l00038">origSize</a>.</p>
+<p>References <a class="el" href="Alignment_8h-source.html#l00038">offsetA</a>.</p>
 
-<p>Referenced by <a class="el" href="Output_8cpp-source.html#l00104">Circal::Output::TCoffeeLibFormat()</a>.</p>
+<p>Referenced by <a class="el" href="Output_8cpp-source.html#l00106">Circal::Output::TCoffeeAlignFormat()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="222ba2a7ddae54bda89e809b59aa7f12"></a><!-- doxytag: member="Circal::Alignment::set_offsetA" ref="222ba2a7ddae54bda89e809b59aa7f12" args="(const uint &amp;orig)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Circal::Alignment::set_offsetA           </td>
+          <td>(</td>
+          <td class="paramtype">const uint &amp;&nbsp;</td>
+          <td class="paramname"> <em>orig</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00046">46</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
+
+<p>Referenced by <a class="el" href="Alignment_8cpp-source.html#l00027">Alignment()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6822c7df4eab6cd256934baa7ae71ee8"></a><!-- doxytag: member="Circal::Alignment::get_offsetB" ref="6822c7df4eab6cd256934baa7ae71ee8" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint Circal::Alignment::get_offsetB           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00051">51</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
+
+<p>References <a class="el" href="Alignment_8h-source.html#l00039">offsetB</a>.</p>
+
+<p>Referenced by <a class="el" href="Output_8cpp-source.html#l00106">Circal::Output::TCoffeeAlignFormat()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="cdf5f3f56151b4ea4829a826b6b88b63"></a><!-- doxytag: member="Circal::Alignment::set_offsetB" ref="cdf5f3f56151b4ea4829a826b6b88b63" args="(const uint &amp;orig)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Circal::Alignment::set_offsetB           </td>
+          <td>(</td>
+          <td class="paramtype">const uint &amp;&nbsp;</td>
+          <td class="paramname"> <em>orig</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00055">55</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
+
+<p>Referenced by <a class="el" href="Alignment_8cpp-source.html#l00027">Alignment()</a>.</p>
 
 </div>
 </div><p>
@@ -173,11 +231,11 @@ Here is the call graph for this function:</div>
 
 <p>
 
-<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00048">48</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00060">60</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
 
-<p>References <a class="el" href="Alignment_8h-source.html#l00039">Score</a>.</p>
+<p>References <a class="el" href="Alignment_8h-source.html#l00040">Score</a>.</p>
 
-<p>Referenced by <a class="el" href="Output_8cpp-source.html#l00063">Circal::Output::AlignmentPrettyPrint()</a>, and <a class="el" href="main_8cpp-source.html#l00037">main()</a>.</p>
+<p>Referenced by <a class="el" href="Output_8cpp-source.html#l00065">Circal::Output::AlignmentPrettyPrint()</a>.</p>
 
 </div>
 </div><p>
@@ -199,35 +257,11 @@ Here is the call graph for this function:</div>
 
 <p>
 
-<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00053">53</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00065">65</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
 
-<p>References <a class="el" href="Alignment_8h-source.html#l00039">Score</a>.</p>
+<p>References <a class="el" href="Alignment_8h-source.html#l00040">Score</a>.</p>
 
 <p>Referenced by <a class="el" href="Alignment_8cpp-source.html#l00027">Alignment()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="89a2f964067b1f766a3327e8008a0f45"></a><!-- doxytag: member="Circal::Alignment::set_origSize" ref="89a2f964067b1f766a3327e8008a0f45" args="(const uint &amp;orig)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Circal::Alignment::set_origSize           </td>
-          <td>(</td>
-          <td class="paramtype">const uint &amp;&nbsp;</td>
-          <td class="paramname"> <em>orig</em>          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td width="100%"></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00043">43</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
-
-<p>References <a class="el" href="Alignment_8h-source.html#l00038">origSize</a>.</p>
 
 </div>
 </div><p>
@@ -249,19 +283,19 @@ Here is the call graph for this function:</div>
 
 <p>
 
-<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00058">58</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Alignment_8cpp-source.html#l00070">70</a> of file <a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="MultipleAlignmentFactory_8cpp-source.html#l00035">Circal::MultipleAlignmentFactory::GotohalignMultiple()</a>, and <a class="el" href="MultipleAlignmentFactory_8cpp-source.html#l00057">Circal::MultipleAlignmentFactory::NMWalignMultiple()</a>.</p>
+<p>Referenced by <a class="el" href="MultiplePseudoCircularAlignmentFactory_8cpp-source.html#l00033">Circal::MultiplePseudoCircularAlignmentFactory::GotohalignMultiple()</a>, <a class="el" href="MultipleAlignmentFactory_8cpp-source.html#l00035">Circal::MultipleAlignmentFactory::GotohalignMultiple()</a>, <a class="el" href="MultiplePseudoCircularAlignmentFactory_8cpp-source.html#l00062">Circal::MultiplePseudoCircularAlignmentFactory::NMWalignMultiple()</a>, and <a class="el" href="MultipleAlignmentFactory_8cpp-source.html#l00064">Circal::MultipleAlignmentFactory::NMWalignMultiple()</a>.</p>
 
 </div>
 </div><p>
 <hr><h2>Member Data Documentation</h2>
-<a class="anchor" name="4899d9988a47852fc888a900e3ffdaf7"></a><!-- doxytag: member="Circal::Alignment::origSize" ref="4899d9988a47852fc888a900e3ffdaf7" args="" -->
+<a class="anchor" name="8f289b66dbb1373f0d857f5b43f814dc"></a><!-- doxytag: member="Circal::Alignment::offsetA" ref="8f289b66dbb1373f0d857f5b43f814dc" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint <a class="el" href="classCircal_1_1Alignment.html#4899d9988a47852fc888a900e3ffdaf7">Circal::Alignment::origSize</a><code> [private]</code>          </td>
+          <td class="memname">uint <a class="el" href="classCircal_1_1Alignment.html#8f289b66dbb1373f0d857f5b43f814dc">Circal::Alignment::offsetA</a><code> [private]</code>          </td>
         </tr>
       </table>
 </div>
@@ -271,7 +305,26 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="Alignment_8h-source.html#l00038">38</a> of file <a class="el" href="Alignment_8h-source.html">Alignment.h</a>.</p>
 
-<p>Referenced by <a class="el" href="Alignment_8cpp-source.html#l00039">get_origSize()</a>, and <a class="el" href="Alignment_8cpp-source.html#l00043">set_origSize()</a>.</p>
+<p>Referenced by <a class="el" href="Alignment_8cpp-source.html#l00042">get_offsetA()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8afb2ec44c7cda3c08759eb544ea822a"></a><!-- doxytag: member="Circal::Alignment::offsetB" ref="8afb2ec44c7cda3c08759eb544ea822a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint <a class="el" href="classCircal_1_1Alignment.html#8afb2ec44c7cda3c08759eb544ea822a">Circal::Alignment::offsetB</a><code> [private]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definition at line <a class="el" href="Alignment_8h-source.html#l00039">39</a> of file <a class="el" href="Alignment_8h-source.html">Alignment.h</a>.</p>
+
+<p>Referenced by <a class="el" href="Alignment_8cpp-source.html#l00051">get_offsetB()</a>.</p>
 
 </div>
 </div><p>
@@ -288,15 +341,15 @@ Here is the call graph for this function:</div>
 
 <p>
 
-<p>Definition at line <a class="el" href="Alignment_8h-source.html#l00039">39</a> of file <a class="el" href="Alignment_8h-source.html">Alignment.h</a>.</p>
+<p>Definition at line <a class="el" href="Alignment_8h-source.html#l00040">40</a> of file <a class="el" href="Alignment_8h-source.html">Alignment.h</a>.</p>
 
-<p>Referenced by <a class="el" href="Alignment_8cpp-source.html#l00048">get_Score()</a>, and <a class="el" href="Alignment_8cpp-source.html#l00053">set_Score()</a>.</p>
+<p>Referenced by <a class="el" href="Alignment_8cpp-source.html#l00060">get_Score()</a>, and <a class="el" href="Alignment_8cpp-source.html#l00065">set_Score()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>Uni/workspace/CircalPP/src/<a class="el" href="Alignment_8h-source.html">Alignment.h</a><li>Uni/workspace/CircalPP/src/<a class="el" href="Alignment_8cpp-source.html">Alignment.cpp</a></ul>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 21 21:14:22 2008 for CircalPP by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Feb 24 19:08:34 2008 for CircalPP by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>

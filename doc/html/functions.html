@@ -33,7 +33,6 @@
     <li><a href="#index_a"><span>a</span></a></li>
     <li><a href="#index_b"><span>b</span></a></li>
     <li><a href="#index_c"><span>c</span></a></li>
-    <li><a href="#index_e"><span>e</span></a></li>
     <li><a href="#index_f"><span>f</span></a></li>
     <li><a href="#index_g"><span>g</span></a></li>
     <li><a href="#index_i"><span>i</span></a></li>
@@ -45,6 +44,7 @@
     <li><a href="#index_s"><span>s</span></a></li>
     <li><a href="#index_t"><span>t</span></a></li>
     <li><a href="#index_v"><span>v</span></a></li>
+    <li><a href="#index_w"><span>w</span></a></li>
     <li><a href="#index_~"><span>~</span></a></li>
   </ul>
 </div>
@@ -58,7 +58,7 @@ Here is a list of all class members with links to the classes they belong to:
 <li>AdjacenceMatrixPrettyPrint()
 : <a class="el" href="classCircal_1_1Output.html#b92b148d9dcd8b3692140c0d9020ab1b">Circal::Output</a>
 <li>Alignment()
-: <a class="el" href="classCircal_1_1Alignment.html#4487be03e5c0685d42b2f414fda5e50b">Circal::Alignment</a>
+: <a class="el" href="classCircal_1_1Alignment.html#6c1d8170276265997eb8729e83a65fa8">Circal::Alignment</a>
 <li>AlignmentFactory()
 : <a class="el" href="classCircal_1_1AlignmentFactory.html#caefc112c9430071c8bcb3761d832d6b">Circal::AlignmentFactory</a>
 <li>AlignmentPrettyPrint()
@@ -66,7 +66,8 @@ Here is a list of all class members with links to the classes they belong to:
 <li>AlignmentSymbol()
 : <a class="el" href="classCircal_1_1AlignmentSymbol.html#a5037b9684df598918e945203f517cc1">Circal::AlignmentSymbol</a>
 <li>appendFromStream()
-: <a class="el" href="classCircal_1_1ExtendedFasta.html#11a043c398568f66c551bcdd2987f4c1">Circal::ExtendedFasta</a>
+: <a class="el" href="classCircal_1_1WhitespaceFasta.html#8e35d785e2d97a71b081bb7a02c12309">Circal::WhitespaceFasta</a>
+, <a class="el" href="classCircal_1_1CorrectedFasta.html#00ac2b9dfd12ba34255618acc0193c8c">Circal::CorrectedFasta</a>
 </ul>
 <h3><a class="anchor" name="index_b">- b -</a></h3><ul>
 <li>BacktrackingGotohGlobal()
@@ -79,7 +80,7 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="classCircal_1_1AlignmentFactory.html#2c2d383ecd1f50ab572e1813188987e7">Circal::AlignmentFactory</a>
 , <a class="el" href="classCircal_1_1PseudoCircularAlignmentFactory.html#bbebcc77eef75596c7eeb73a24c5d5ed">Circal::PseudoCircularAlignmentFactory</a>
 <li>BacktrackingSmithWatermanAffin()
-: <a class="el" href="classCircal_1_1PseudoCircularAlignmentFactory.html#af28f0bd23a9451562e6af23df1b39aa">Circal::PseudoCircularAlignmentFactory</a>
+: <a class="el" href="classCircal_1_1PseudoCircularAlignmentFactory.html#dce787a2350cfd3683dd0682ef064d5a">Circal::PseudoCircularAlignmentFactory</a>
 , <a class="el" href="classCircal_1_1AlignmentFactory.html#38e1e5e94033be95ebe5438df2cdae96">Circal::AlignmentFactory</a>
 <li>BestOfThree()
 : <a class="el" href="classCircal_1_1ScoringModel.html#4a300e1b772adbbda981a5608710c027">Circal::ScoringModel</a>
@@ -95,16 +96,14 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="classCircal_1_1ScoringModel.html#73e7d5817e567d8731732657be3ae459">Circal::ScoringModel</a>
 <li>convertModeltoAlphabet()
 : <a class="el" href="classCircal_1_1VertebrateMitochondrialGenomeAlphabet.html#6b3fa1f62294d8c683be6e705f963bce">Circal::VertebrateMitochondrialGenomeAlphabet</a>
+<li>CorrectedFasta()
+: <a class="el" href="classCircal_1_1CorrectedFasta.html#886f025a1872bf6ed19773f4ecb4406c">Circal::CorrectedFasta</a>
 <li>CreateAdjacenceGraph()
 : <a class="el" href="classCircal_1_1MatrixHelper.html#86ccdcd3fc84854e446918af43d9b9d2">Circal::MatrixHelper</a>
 <li>CutColumnFromTo()
 : <a class="el" href="classCircal_1_1MatrixHelper.html#341c7274b762c4d1c32950816d3c8594">Circal::MatrixHelper</a>
 <li>CutRowFromTo()
 : <a class="el" href="classCircal_1_1MatrixHelper.html#baf89eb7d195cd23dbd1b12ddd89ff3d">Circal::MatrixHelper</a>
-</ul>
-<h3><a class="anchor" name="index_e">- e -</a></h3><ul>
-<li>ExtendedFasta()
-: <a class="el" href="classCircal_1_1ExtendedFasta.html#02b5e7407e6cf437f61e3d4e78d738ec">Circal::ExtendedFasta</a>
 </ul>
 <h3><a class="anchor" name="index_f">- f -</a></h3><ul>
 <li>ForwardRecursionGotoh()
@@ -125,15 +124,17 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="classCircal_1_1AlignmentSymbol.html#d27fdb207847b400876f66b4b0054211">Circal::AlignmentSymbol</a>
 <li>GenomeAlphabet()
 : <a class="el" href="classCircal_1_1GenomeAlphabet.html#1c7ac6e806bb5b5910b34e9af91c9d7a">Circal::GenomeAlphabet</a>
-<li>get_origSize()
-: <a class="el" href="classCircal_1_1Alignment.html#77734f8eb8623b665e518afae2e49789">Circal::Alignment</a>
+<li>get_offsetA()
+: <a class="el" href="classCircal_1_1Alignment.html#1ba1a02f0da981faca500e0988bf1ac8">Circal::Alignment</a>
+<li>get_offsetB()
+: <a class="el" href="classCircal_1_1Alignment.html#6822c7df4eab6cd256934baa7ae71ee8">Circal::Alignment</a>
 <li>get_Score()
 : <a class="el" href="classCircal_1_1Alignment.html#e4dc0a9b6c0b89f3e3c375b963c76ec1">Circal::Alignment</a>
 <li>getAlphabetType()
 : <a class="el" href="classCircal_1_1VertebrateMitochondrialGenomeAlphabet.html#475afe4d4419ae921934aa8b70ff8b59">Circal::VertebrateMitochondrialGenomeAlphabet</a>
 <li>getChar()
-: <a class="el" href="classCircal_1_1RotatedSequence.html#02c66f9b086da552376900b1a2004dcc">Circal::RotatedSequence</a>
-, <a class="el" href="classCircal_1_1PseudoRotatedSequence.html#fbfa83464c33febec8196f23cd296a31">Circal::PseudoRotatedSequence</a>
+: <a class="el" href="classCircal_1_1PseudoRotatedSequence.html#fbfa83464c33febec8196f23cd296a31">Circal::PseudoRotatedSequence</a>
+, <a class="el" href="classCircal_1_1RotatedSequence.html#02c66f9b086da552376900b1a2004dcc">Circal::RotatedSequence</a>
 <li>GetModelSize()
 : <a class="el" href="classCircal_1_1ScoringModel.html#5a72855024938d033e28072bc5528a1b">Circal::ScoringModel</a>
 <li>getNumberOfTypes()
@@ -143,14 +144,15 @@ Here is a list of all class members with links to the classes they belong to:
 <li>getUnknownCharacterCode()
 : <a class="el" href="classCircal_1_1VertebrateMitochondrialGenomeAlphabet.html#3301033c95c2504db33946db676d93f8">Circal::VertebrateMitochondrialGenomeAlphabet</a>
 <li>getValue()
-: <a class="el" href="classCircal_1_1PseudoRotatedSequence.html#48c964ebdf631807be5e58140e5378c6">Circal::PseudoRotatedSequence</a>
-, <a class="el" href="classCircal_1_1RotatedSequence.html#0b523c27f14abd33c0a5ba92abb9ecfa">Circal::RotatedSequence</a>
+: <a class="el" href="classCircal_1_1RotatedSequence.html#0b523c27f14abd33c0a5ba92abb9ecfa">Circal::RotatedSequence</a>
+, <a class="el" href="classCircal_1_1PseudoRotatedSequence.html#48c964ebdf631807be5e58140e5378c6">Circal::PseudoRotatedSequence</a>
 <li>GotohAlignment()
-: <a class="el" href="classCircal_1_1CircularAlignmentFactory.html#2011395ecb3e47fc21987dcc9b9a4812">Circal::CircularAlignmentFactory</a>
-, <a class="el" href="classCircal_1_1AlignmentFactory.html#e64b8253a8e582e31f5d4e0d7421142c">Circal::AlignmentFactory</a>
-, <a class="el" href="classCircal_1_1PseudoCircularAlignmentFactory.html#8af80fa1638dd2b69b27a2cc528b6ed1">Circal::PseudoCircularAlignmentFactory</a>
+: <a class="el" href="classCircal_1_1AlignmentFactory.html#8d6e6e2bb3c061770c10fda190f28877">Circal::AlignmentFactory</a>
+, <a class="el" href="classCircal_1_1PseudoCircularAlignmentFactory.html#ebfd497019d9d510398f69824da5c37b">Circal::PseudoCircularAlignmentFactory</a>
+, <a class="el" href="classCircal_1_1CircularAlignmentFactory.html#2011395ecb3e47fc21987dcc9b9a4812">Circal::CircularAlignmentFactory</a>
 <li>GotohalignMultiple()
-: <a class="el" href="classCircal_1_1MultipleAlignmentFactory.html#3da56cffbb33fe069f6664f422f95293">Circal::MultipleAlignmentFactory</a>
+: <a class="el" href="classCircal_1_1MultiplePseudoCircularAlignmentFactory.html#e1c5bfaba040571300262dc25c31fb77">Circal::MultiplePseudoCircularAlignmentFactory</a>
+, <a class="el" href="classCircal_1_1MultipleAlignmentFactory.html#7269edee2a627143253ef90711eec760">Circal::MultipleAlignmentFactory</a>
 </ul>
 <h3><a class="anchor" name="index_i">- i -</a></h3><ul>
 <li>InitializeScoreMatrixDistances()
@@ -188,25 +190,28 @@ Here is a list of all class members with links to the classes they belong to:
 </ul>
 <h3><a class="anchor" name="index_n">- n -</a></h3><ul>
 <li>NeedlemanWunschAlignment()
-: <a class="el" href="classCircal_1_1AlignmentFactory.html#1de385e4c4c204601895bce0d12acead">Circal::AlignmentFactory</a>
+: <a class="el" href="classCircal_1_1AlignmentFactory.html#06cf2e0ea959c22e0cd42278b19c94e4">Circal::AlignmentFactory</a>
 , <a class="el" href="classCircal_1_1CircularAlignmentFactory.html#875288196816426e679eb5bcaf2ec442">Circal::CircularAlignmentFactory</a>
-, <a class="el" href="classCircal_1_1PseudoCircularAlignmentFactory.html#5fbac3b1fea116808a17d9046300ed65">Circal::PseudoCircularAlignmentFactory</a>
+, <a class="el" href="classCircal_1_1PseudoCircularAlignmentFactory.html#de2586f4840d130ca24636c2fa3d7c69">Circal::PseudoCircularAlignmentFactory</a>
 <li>negativeMatch
 : <a class="el" href="classCircal_1_1AlignmentSymbol.html#63243049e31d18acafa977a22710e557">Circal::AlignmentSymbol</a>
 <li>NMWalignMultiple()
-: <a class="el" href="classCircal_1_1MultipleAlignmentFactory.html#fd5d4739a7a6b6ae695b61fe4c683144">Circal::MultipleAlignmentFactory</a>
+: <a class="el" href="classCircal_1_1MultipleAlignmentFactory.html#12044c37a192e7e9d895d86ec1d426ae">Circal::MultipleAlignmentFactory</a>
+, <a class="el" href="classCircal_1_1MultiplePseudoCircularAlignmentFactory.html#47d7db6773b0de0b35387cf0346af2bb">Circal::MultiplePseudoCircularAlignmentFactory</a>
 <li>NormalizeScores()
 : <a class="el" href="classCircal_1_1ScoringModel.html#9c4029894b6d5d238f1ba870ea59a622">Circal::ScoringModel</a>
 </ul>
 <h3><a class="anchor" name="index_o">- o -</a></h3><ul>
 <li>offset
 : <a class="el" href="classCircal_1_1RotatedSequence.html#63069c3a23ddd24e52b935ff2fe741d4">Circal::RotatedSequence</a>
+<li>offsetA
+: <a class="el" href="classCircal_1_1Alignment.html#8f289b66dbb1373f0d857f5b43f814dc">Circal::Alignment</a>
+<li>offsetB
+: <a class="el" href="classCircal_1_1Alignment.html#8afb2ec44c7cda3c08759eb544ea822a">Circal::Alignment</a>
 <li>operator[]()
-: <a class="el" href="classCircal_1_1PseudoRotatedSequence.html#56da5d9337b808f82a9e90dcd38f3c31">Circal::PseudoRotatedSequence</a>
-, <a class="el" href="classCircal_1_1RotatedSequence.html#bfa366e9d55c1ffebc5c1dcb2fc11855">Circal::RotatedSequence</a>
+: <a class="el" href="classCircal_1_1RotatedSequence.html#bfa366e9d55c1ffebc5c1dcb2fc11855">Circal::RotatedSequence</a>
 , <a class="el" href="classCircal_1_1PseudoRotatedSequence.html#ae61f22e5caff53b3d0d3b0c2ad2218f">Circal::PseudoRotatedSequence</a>
-<li>origSize
-: <a class="el" href="classCircal_1_1Alignment.html#4899d9988a47852fc888a900e3ffdaf7">Circal::Alignment</a>
+, <a class="el" href="classCircal_1_1RotatedSequence.html#2c55ef48027cac9fa1628d5fca9691f4">Circal::RotatedSequence</a>
 <li>Output()
 : <a class="el" href="classCircal_1_1Output.html#f7a38f5496d10ae2cfac9646e7c1f6fa">Circal::Output</a>
 </ul>
@@ -230,7 +235,7 @@ Here is a list of all class members with links to the classes they belong to:
 <li>Score
 : <a class="el" href="classCircal_1_1Alignment.html#894c310f50b7ec0b44c53d38b03a4c4c">Circal::Alignment</a>
 <li>ScoreMatrixPrettyPrint()
-: <a class="el" href="classCircal_1_1Output.html#47c40c57355de8604a457c7b4f26448a">Circal::Output</a>
+: <a class="el" href="classCircal_1_1Output.html#2ed0aa94d088dcffe1c3d1fa633aed0a">Circal::Output</a>
 <li>ScoreOf()
 : <a class="el" href="classCircal_1_1ScoringModel.html#c9093a36aae9269b516c34438d2df279">Circal::ScoringModel</a>
 <li>ScoreOfGapExtend()
@@ -251,22 +256,30 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="classCircal_1_1MatrixHelper.html#8a261ceaa3de47879c771252a3e38b53">Circal::MatrixHelper</a>
 <li>SequencePrettyPrint()
 : <a class="el" href="classCircal_1_1Output.html#dea07429ad2ed3d082aa4d9ef85e8114">Circal::Output</a>
-<li>set_origSize()
-: <a class="el" href="classCircal_1_1Alignment.html#89a2f964067b1f766a3327e8008a0f45">Circal::Alignment</a>
+<li>set_offsetA()
+: <a class="el" href="classCircal_1_1Alignment.html#222ba2a7ddae54bda89e809b59aa7f12">Circal::Alignment</a>
+<li>set_offsetB()
+: <a class="el" href="classCircal_1_1Alignment.html#cdf5f3f56151b4ea4829a826b6b88b63">Circal::Alignment</a>
 <li>set_Score()
 : <a class="el" href="classCircal_1_1Alignment.html#94d66a0aa8ca3a3ecd47801acbbbc16a">Circal::Alignment</a>
 <li>size()
 : <a class="el" href="classCircal_1_1PseudoRotatedSequence.html#f6a9b351636ffee4468adbf1e58fdb4a">Circal::PseudoRotatedSequence</a>
 <li>SmithWaterman()
-: <a class="el" href="classCircal_1_1AlignmentFactory.html#23e99c31f6461f57a178ad0a67ba952a">Circal::AlignmentFactory</a>
+: <a class="el" href="classCircal_1_1AlignmentFactory.html#a16ba19c77b29cd8c2126c8e28e6ee27">Circal::AlignmentFactory</a>
 <li>SmithWatermanAffin()
-: <a class="el" href="classCircal_1_1AlignmentFactory.html#f1c93cb44d62c205901f9ef067321c5e">Circal::AlignmentFactory</a>
+: <a class="el" href="classCircal_1_1AlignmentFactory.html#fecf05d5484d763107d60794b9510248">Circal::AlignmentFactory</a>
 <li>symbol
 : <a class="el" href="classCircal_1_1AlignmentSymbol.html#c3ca0649bbfcf50c7f50c6ea280a5745">Circal::AlignmentSymbol</a>
 </ul>
 <h3><a class="anchor" name="index_t">- t -</a></h3><ul>
+<li>TCoffeeAlignFormat()
+: <a class="el" href="classCircal_1_1Output.html#8d4d121954ec0c10ad6b3b1268651c08">Circal::Output</a>
+<li>TCoffeeLibFooter()
+: <a class="el" href="classCircal_1_1Output.html#4f74b8fc9c68d69e1d26ade8c6fbf35d">Circal::Output</a>
 <li>TCoffeeLibFormat()
-: <a class="el" href="classCircal_1_1Output.html#57d8fa1161c56174dfbd91af97a58c9e">Circal::Output</a>
+: <a class="el" href="classCircal_1_1Output.html#726f8644afc9acca3f02a3983c7409fe">Circal::Output</a>
+<li>TCoffeeLibHeader()
+: <a class="el" href="classCircal_1_1Output.html#eeba75375812d32a5ed680a67b406f37">Circal::Output</a>
 <li>toString()
 : <a class="el" href="classCircal_1_1RotatedSequence.html#b862eae54b9c8fb912a4ae45a204ab4e">Circal::RotatedSequence</a>
 <li>type
@@ -275,6 +288,10 @@ Here is a list of all class members with links to the classes they belong to:
 <h3><a class="anchor" name="index_v">- v -</a></h3><ul>
 <li>VertebrateMitochondrialGenomeAlphabet()
 : <a class="el" href="classCircal_1_1VertebrateMitochondrialGenomeAlphabet.html#151482f92385b56201bb05ea9b583a28">Circal::VertebrateMitochondrialGenomeAlphabet</a>
+</ul>
+<h3><a class="anchor" name="index_w">- w -</a></h3><ul>
+<li>WhitespaceFasta()
+: <a class="el" href="classCircal_1_1WhitespaceFasta.html#1f47805c3e0292dc6b7be224a3ec06bf">Circal::WhitespaceFasta</a>
 </ul>
 <h3><a class="anchor" name="index_~">- ~ -</a></h3><ul>
 <li>~Alignment()
@@ -285,8 +302,8 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="classCircal_1_1AlignmentSymbol.html#4371b3c3d720bc4ed70cdd2b8a564b5a">Circal::AlignmentSymbol</a>
 <li>~CircularAlignmentFactory()
 : <a class="el" href="classCircal_1_1CircularAlignmentFactory.html#bfcebb9e1c8e590d23943ffed3d9298b">Circal::CircularAlignmentFactory</a>
-<li>~ExtendedFasta()
-: <a class="el" href="classCircal_1_1ExtendedFasta.html#44e77ee18226eaededa97bb1e36baa8d">Circal::ExtendedFasta</a>
+<li>~CorrectedFasta()
+: <a class="el" href="classCircal_1_1CorrectedFasta.html#0cf5d4979869682b1217514c7034da39">Circal::CorrectedFasta</a>
 <li>~GenomeAlphabet()
 : <a class="el" href="classCircal_1_1GenomeAlphabet.html#60b29009b1ecbbf24af83988d7a28d55">Circal::GenomeAlphabet</a>
 <li>~MatrixHelper()
@@ -313,8 +330,10 @@ Here is a list of all class members with links to the classes they belong to:
 : <a class="el" href="classCircal_1_1ScoringModel.html#0f91c4aa719a37596655f30751b485c4">Circal::ScoringModel</a>
 <li>~VertebrateMitochondrialGenomeAlphabet()
 : <a class="el" href="classCircal_1_1VertebrateMitochondrialGenomeAlphabet.html#8a3ec2256f7e2245aa296a185b801015">Circal::VertebrateMitochondrialGenomeAlphabet</a>
+<li>~WhitespaceFasta()
+: <a class="el" href="classCircal_1_1WhitespaceFasta.html#9cde8d78c3f94f7e599fed3dd4aab2d1">Circal::WhitespaceFasta</a>
 </ul>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Feb 21 21:14:21 2008 for CircalPP by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Feb 24 19:08:33 2008 for CircalPP by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>
