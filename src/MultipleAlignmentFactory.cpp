@@ -33,45 +33,58 @@ namespace Circal
       }
 
     Alignment MultipleAlignmentFactory::GotohalignMultiple(
-        const bpp::VectorSequenceContainer* input, const ScoringModel* scoreM)
+        const bpp::VectorSequenceContainer* input, const ScoringModel* scoreM,
+        bool verbose)
       {
 
         Alignment out(input->getAlphabet());
-
+        
+#ifdef _OPENMP            
+#pragma omp parallel for
+#endif    
         for (uint u=0; u<input->getNumberOfSequences(); u++)
           {
 
             for (uint k=u+1; k<input->getNumberOfSequences(); k++)
               {
-                std::cout << "*" << std::flush;
+                if (verbose)
+                  std::cout << "*" << std::flush;
                 Alignment temp = GotohAlignment(input->getSequence(u),
-                    input->getSequence(k), scoreM);
+                    input->getSequence(k), scoreM,verbose);
                 out.addSequence(temp.getSequence(0));
                 out.addSequence(temp.getSequence(1));
               }
-            std::cout << std::endl;
+            if (verbose)
+              std::cout << std::endl;
 
           }
         return out;
 
       }
     Alignment MultipleAlignmentFactory::NMWalignMultiple(
-        const bpp::VectorSequenceContainer* input, const ScoringModel* scoreM)
+        const bpp::VectorSequenceContainer* input, const ScoringModel* scoreM,
+        bool verbose)
       {
         Alignment out(input->getAlphabet());
 
+#ifdef _OPENMP            
+#pragma omp parallel for
+#endif    
         for (uint u=0; u<input->getNumberOfSequences(); u++)
           {
 
             for (uint k=u+1; k<input->getNumberOfSequences(); k++)
               {
-
+                if (verbose)
+                  std::cout << "*" << std::flush;
                 Alignment temp = NeedlemanWunschAlignment(
                     input->getSequence(u), input->getSequence(k), scoreM);
 
                 out.addSequence(temp.getSequence(0));
                 out.addSequence(temp.getSequence(1));
               }
+            if (verbose)
+              std::cout << std::endl;
 
           }
         return out;

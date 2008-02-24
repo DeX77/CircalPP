@@ -189,7 +189,8 @@ namespace Circal
     Alignment PseudoCircularAlignmentFactory::BacktrackingSmithWatermanAffin(
         const bpp::Sequence* A, const PseudoRotatedSequence* B,
         const ScoringModel* scoreM, const int &delta, const ScoreMatrix3D* D,
-        const ScoreMatrix3D* P, const ScoreMatrix3D* Q, uint &i, uint &j)
+        const ScoreMatrix3D* P, const ScoreMatrix3D* Q, uint &i, uint &j,
+        bool verbose)
       {
 
         //Debug purpose
@@ -327,6 +328,16 @@ namespace Circal
                 break;
               }
 
+          }
+
+        out.set_offsetB(j);
+        out.set_offsetA(i);
+
+        if (verbose)
+          {
+            std::cout << "Offset B: " << j << endl;
+            std::cout << "Offset A: " << i << endl;
+            std::cout << cout.str() << std::endl;
           }
 
         bpp::Sequence* seqA = new bpp::Sequence(A->getName(), outA, A->getAlphabet());
@@ -598,7 +609,7 @@ namespace Circal
 
     Alignment PseudoCircularAlignmentFactory::NeedlemanWunschAlignment(
         const bpp::Sequence* inA, const bpp::Sequence* inB,
-        const ScoringModel* scoreM, const int &delta)
+        const ScoringModel* scoreM, const int &delta, bool verbose)
       {
         //First of all check which of the sequences is longer
         if (inA->size()>inB->size())
@@ -639,8 +650,9 @@ namespace Circal
 
     Alignment PseudoCircularAlignmentFactory::GotohAlignment(
         const bpp::Sequence* inA, const bpp::Sequence* inB,
-        const ScoringModel* scoreM, const int &delta)
+        const ScoringModel* scoreM, const int &delta, bool verbose)
       {
+
         //First of all check which of the sequences is longer
         if (inA->size()>inB->size())
           return GotohAlignment(inB, inA, scoreM, delta);
@@ -669,10 +681,11 @@ namespace Circal
         if ((horizontalStart-horizontalEnd) <= inB->size())
           {
             //Seems to be ok
-            std::cout << "Optimum sofort gefunden!" << std::endl;
+            if (verbose)
+              std::cout << "Optimum sofort gefunden!" << std::endl;
             return temp;
           }
-        else
+        else if (verbose)
           std::cout << "Yipi ya yay Schweinebacke" << std::endl;
 
         //The hard way
@@ -688,7 +701,7 @@ namespace Circal
             &kQ, i, j);
 
         return BacktrackingSmithWatermanAffin(inA, &B, scoreM, delta, &kD, &kP,
-            &kQ, i, j);
+            &kQ, i, j,verbose);
 
       }
   }

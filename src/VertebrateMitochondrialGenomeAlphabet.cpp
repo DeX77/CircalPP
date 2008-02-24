@@ -70,8 +70,8 @@ namespace Circal
     void VertebrateMitochondrialGenomeAlphabet::convertModeltoAlphabet(
         const ScoringModel* scm)
       {
-        alphabet.resize(scm->GetModelSize()+1);
-
+        alphabet.resize(scm->GetModelSize()+1);        
+        
         int i=1;
         uint size;
         string temp = "";
@@ -86,6 +86,7 @@ namespace Circal
             alphabet[i].name = temp;
             size = itr->second.symbol.length();
             i++;
+//            std::cout << "Chevron <" << temp << "> added" << std::endl;
           }
         //Add gap code
         alphabet[0].num = -1;

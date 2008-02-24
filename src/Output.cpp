@@ -103,48 +103,39 @@ namespace Circal
 
       }
     //Shamelessly stolen from MARNA 
-    std::string Output::TCoffeeLibFormat(Alignment* aln)
+    std::string Output::TCoffeeLibFormat(Alignment* aln,
+        const bpp::VectorSequenceContainer* input)
       {
         std::stringstream out;
-        int p1 = 1;
-        int p2 = 1;
-
-        uint index1 = 1;
-        uint index2 = 2;
-        out << aln->get_origSize() << endl;
-
-        out << aln->getSequence(0)->getName() << " ";
-        out << aln->getSequence(0)->size() << " ";
-        out << PseudoRotatedSequence(aln->getSequence(0)).toString();
-        out << std::endl;
-
-        //Followed by a line with SeqName, Nr of Sited, Sequence for each Sequence        
-        for (uint i=1; i < ((aln->get_origSize()-1)*2); i+=2)
+        
+        //First of all: How many Sequences are there?
+        out << input->getNumberOfSequences() << std::endl;
+        
+        //Next: what sequences?
+        for (uint i=0;i<input->getNumberOfSequences();i++)
           {
-            out << aln->getSequence(i)->getName() << " ";
-            out << aln->getSequence(i)->size() << " ";
-            out << PseudoRotatedSequence(aln->getSequence(i)).toString();
-            out << std::endl;
+            Circal::PseudoRotatedSequence temp(input->getSequence(i));
+            
+            out << temp.getName()
+            << " "
+            << temp.size()
+            << " "
+            << temp.toString()
+            << std::endl;
           }
-
-        //As we save pairs of Sequences we have to iterate by 2
+        
+        //Iterate by 2
         for (uint j=0; j < aln->getNumberOfSequences(); j+=2)
           {
-            p1 = 1;
-            p2 = 1;
+            out << "#"
+            << input->getSequencePosition(aln->getSequence(j)->getName())+1
+            << " "
+            << input->getSequencePosition(aln->getSequence(j+1)->getName())+1
+            << std::endl;            
 
-            if (index2 == aln->get_origSize())
-              {
-                index1++;
-                index2 = index1+1;
-              }
-            out << "#";
-            out << index1;
-            out << " ";
-            out << index2;
-            out << std::endl;
-            index2++;
-
+            uint p1 = aln->get_offsetA();
+            uint p2 = aln->get_offsetB();
+            
             for (uint i=0; i < aln->getSequence(j)->size(); i++)
               {
 
@@ -157,6 +148,8 @@ namespace Circal
                   out << p1-1 << " " << p2-1 << " " << 100 << std::endl;
               }
           }
+        
+        
         //Tail of T_Coffee_Lib format
         out << "CPU 0" << std::endl;
         out << "! SEQ_1_TO_N" << std::endl;

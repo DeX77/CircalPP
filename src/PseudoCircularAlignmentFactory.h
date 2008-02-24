@@ -43,20 +43,21 @@ namespace Circal
           const int &delta, ScoreMatrix3D* D, ScoreMatrix3D* P,
           ScoreMatrix3D* Q, uint &bi, uint &bj);
 
-      virtual Alignment BacktrackingSmithWatermanAffin(
-          const bpp::Sequence* A, const PseudoRotatedSequence* B,
-          const ScoringModel* scoreM, const int &delta, const ScoreMatrix3D* D,
-          const ScoreMatrix3D* P, const ScoreMatrix3D* Q, uint &i, uint &j);
+      virtual Alignment BacktrackingSmithWatermanAffin(const bpp::Sequence* A,
+          const PseudoRotatedSequence* B, const ScoringModel* scoreM,
+          const int &delta, const ScoreMatrix3D* D, const ScoreMatrix3D* P,
+          const ScoreMatrix3D* Q, uint &i, uint &j, bool verbose=false);
 
   public:
       PseudoCircularAlignmentFactory();
       virtual ~PseudoCircularAlignmentFactory();
 
       Alignment NeedlemanWunschAlignment(const bpp::Sequence* A,
-          const bpp::Sequence* B, const ScoringModel* scoreM, const int &delta);
+          const bpp::Sequence* B, const ScoringModel* scoreM, const int &delta,
+          bool verbose=false);
 
       Alignment GotohAlignment(const bpp::Sequence* A, const bpp::Sequence* B,
-          const ScoringModel* scoreM, const int &delta);
+          const ScoringModel* scoreM, const int &delta, bool verbose=false);
 
       };
   }

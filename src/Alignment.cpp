@@ -29,6 +29,8 @@ namespace Circal
 
       {
         this->set_Score(-numeric_limits<int>::infinity());
+        this->set_offsetA(1);
+        this->set_offsetB(1);
 
       }
 
@@ -36,15 +38,25 @@ namespace Circal
       {
 
       }
-    uint Alignment::get_origSize()
+    
+    uint Alignment::get_offsetA()
       {
-        return this->origSize;
+        return this->offsetA;
       }
-    void Alignment::set_origSize(const uint &orig)
+    void Alignment::set_offsetA(const uint &offsetA)
       {
-        this->origSize = orig;
+        this->offsetA = offsetA;
       }
 
+    uint Alignment::get_offsetB()
+      {
+        return this->offsetB;
+      }
+    void Alignment::set_offsetB(const uint &offsetB)
+      {
+        this->offsetB = offsetB;
+      }
+    
     double Alignment::get_Score(void)
       {
         return this->Score;

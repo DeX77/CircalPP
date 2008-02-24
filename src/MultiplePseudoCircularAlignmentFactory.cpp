@@ -18,6 +18,7 @@
  */
 
 #include "MultiplePseudoCircularAlignmentFactory.h"
+#include "Output.h"
 
 namespace Circal
   {
@@ -27,6 +28,65 @@ namespace Circal
 
     MultiplePseudoCircularAlignmentFactory::~MultiplePseudoCircularAlignmentFactory()
       {
+      }
+
+    Alignment MultiplePseudoCircularAlignmentFactory::GotohalignMultiple(
+        const bpp::VectorSequenceContainer* input, const ScoringModel* scoreM,
+        const int &delta, bool verbose)
+      {
+
+        Alignment out(input->getAlphabet());
+
+#ifdef _OPENMP            
+#pragma omp parallel for
+#endif    
+        for (uint u=0; u<input->getNumberOfSequences(); u++)
+          {
+
+            for (uint k=u+1; k<input->getNumberOfSequences(); k++)
+              {
+
+                Alignment temp = GotohAlignment(input->getSequence(u),
+                    input->getSequence(k), scoreM, delta, verbose);
+                out.addSequence(temp.getSequence(0));
+                out.addSequence(temp.getSequence(1));
+                if (verbose)
+                  std::cout << prettyPrint->AlignmentPrettyPrint(&temp)
+                      <<std::endl;
+              }
+
+          }
+        return out;
+
+      }
+    Alignment MultiplePseudoCircularAlignmentFactory::NMWalignMultiple(
+        const bpp::VectorSequenceContainer* input, const ScoringModel* scoreM,
+        const int &delta, bool verbose)
+      {
+        Alignment out(input->getAlphabet());
+
+#ifdef _OPENMP            
+#pragma omp parallel for
+#endif    
+        for (uint u=0; u<input->getNumberOfSequences(); u++)
+          {
+
+            for (uint k=u+1; k<input->getNumberOfSequences(); k++)
+              {
+                Alignment temp = NeedlemanWunschAlignment(
+                    input->getSequence(u), input->getSequence(k), scoreM,
+                    delta, verbose);
+
+                out.addSequence(temp.getSequence(0));
+                out.addSequence(temp.getSequence(1));
+                if (verbose)
+                  std::cout << prettyPrint->AlignmentPrettyPrint(&temp)
+                      <<std::endl;
+              }
+
+          }
+        return out;
+
       }
 
   }

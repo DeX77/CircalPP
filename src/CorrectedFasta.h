@@ -17,28 +17,24 @@
  St, Fifth Floor, Boston, MA 02110, USA
  */
 
-#ifndef MULTIPLEPSEUDOCIRCULARALIGNMENT_H_
-#define MULTIPLEPSEUDOCIRCULARALIGNMENT_H_
+#ifndef CORRECTEDFASTA_H_
+#define CORRECTEDFASTA_H_
 
-#include "PseudoCircularAlignmentFactory.h"
-#include "MultipleAlignmentFactory.h"
+#include <sstream>
+#include <Seq/Fasta.h>
+#include <Seq/alphabets>
 
 namespace Circal
   {
-    class MultiplePseudoCircularAlignmentFactory :
-      public MultipleAlignmentFactory, public PseudoCircularAlignmentFactory
+    class CorrectedFasta : public bpp::Fasta
       {
-
   public:
-      explicit MultiplePseudoCircularAlignmentFactory();
-      virtual ~MultiplePseudoCircularAlignmentFactory();
+      CorrectedFasta();
+      virtual ~CorrectedFasta();
 
-      Alignment NMWalignMultiple(const bpp::VectorSequenceContainer* input,
-          const ScoringModel* scoreM, const int &delta, bool verbose);
-      Alignment GotohalignMultiple(const bpp::VectorSequenceContainer* input,
-          const ScoringModel* scoreM, const int &delta, bool verbose);
-
+      void
+          appendFromStream(istream & input, bpp::VectorSequenceContainer & vsc) const
+              throw (bpp::Exception);
       };
   }
-
-#endif /*MULTIPLEPSEUDOCIRCULARALIGNMENT_H_*/
+#endif /*CORRECTEDFASTA_H_*/

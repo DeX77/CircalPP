@@ -79,14 +79,14 @@ namespace Circal
       virtual ~AlignmentFactory();
 
       virtual Alignment NeedlemanWunschAlignment(const bpp::Sequence* inA,
-          const bpp::Sequence* inB, const ScoringModel* scoreM);
+          const bpp::Sequence* inB, const ScoringModel* scoreM, bool verbose=false);
       virtual Alignment GotohAlignment(const bpp::Sequence* inA,
-          const bpp::Sequence* inB, const ScoringModel* scoreM);
+          const bpp::Sequence* inB, const ScoringModel* scoreM, bool verbose=false);
 
       virtual Alignment SmithWaterman(const bpp::Sequence* inA,
-          const bpp::Sequence* inB, const ScoringModel* scoreM);
+          const bpp::Sequence* inB, const ScoringModel* scoreM, bool verbose=false);
       virtual Alignment SmithWatermanAffin(const bpp::Sequence* inA,
-          const bpp::Sequence* inB, const ScoringModel* scoreM);
+          const bpp::Sequence* inB, const ScoringModel* scoreM, bool verbose=false);
             
       };
 

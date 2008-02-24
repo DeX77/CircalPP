@@ -46,8 +46,9 @@ binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am__objects_1 = Alignment.$(OBJEXT) AlignmentFactory.$(OBJEXT) \
 	AlignmentSymbol.$(OBJEXT) CircularAlignmentFactory.$(OBJEXT) \
-	ErrorClasses.$(OBJEXT) ExtendedFasta.$(OBJEXT) \
-	GenomeAlphabet.$(OBJEXT) main.$(OBJEXT) MatrixHelper.$(OBJEXT) \
+	ErrorClasses.$(OBJEXT) CorrectedFasta.$(OBJEXT) \
+	WhitespaceFasta.$(OBJEXT) GenomeAlphabet.$(OBJEXT) \
+	main.$(OBJEXT) MatrixHelper.$(OBJEXT) \
 	PseudoCircularAlignmentFactory.$(OBJEXT) \
 	MultipleAlignmentFactory.$(OBJEXT) \
 	MultipleCircularAlignmentFactory.$(OBJEXT) \
@@ -175,7 +176,8 @@ AlignmentFactory.cpp\
 AlignmentSymbol.cpp\
 CircularAlignmentFactory.cpp\
 ErrorClasses.cpp\
-ExtendedFasta.cpp\
+CorrectedFasta.cpp\
+WhitespaceFasta.cpp\
 GenomeAlphabet.cpp\
 main.cpp\
 MatrixHelper.cpp\
@@ -196,7 +198,8 @@ AlignmentFactory.h\
 AlignmentSymbol.h\
 CircularAlignmentFactory.h\
 ErrorClasses.h\
-ExtendedFasta.h\
+CorrectedFasta.h\
+WhitespaceFasta.h\
 GenomeAlphabet.h\
 MatrixHelper.h\
 PseudoCircularAlignmentFactory.h\
@@ -281,8 +284,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/AlignmentFactory.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/AlignmentSymbol.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CircularAlignmentFactory.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CorrectedFasta.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ErrorClasses.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ExtendedFasta.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/GenomeAlphabet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MatrixHelper.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MultipleAlignmentFactory.Po@am__quote@
@@ -295,6 +298,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RotatedSequence.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ScoringModel.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/VertebrateMitochondrialGenomeAlphabet.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/WhitespaceFasta.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
 
 .cpp.o:

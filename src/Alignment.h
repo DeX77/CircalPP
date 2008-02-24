@@ -35,18 +35,25 @@ namespace Circal
 
     class Alignment : public bpp::AlignedSequenceContainer
       {
-      uint origSize;
+      uint offsetA;
+      uint offsetB;
       double Score;
 
   public:
       Alignment(const bpp::Alphabet* alpha);
-      Alignment();
+
       virtual ~Alignment();
-      uint get_origSize();
+
+      uint get_offsetA();
+      void set_offsetA(const uint &orig);
+
+      uint get_offsetB();
+      void set_offsetB(const uint &orig);
+
       double get_Score();
       void set_Score(const double &s);
-      void set_origSize(const uint &orig);
-      void addSequence(const bpp::Sequence*  sequence);
+
+      void addSequence(const bpp::Sequence* sequence);
       //void addSequence(const bpp::Sequence & sequence) throw(bpp::Exception);
       };
   }

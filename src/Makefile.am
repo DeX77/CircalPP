@@ -4,7 +4,8 @@ AlignmentFactory.cpp\
 AlignmentSymbol.cpp\
 CircularAlignmentFactory.cpp\
 ErrorClasses.cpp\
-ExtendedFasta.cpp\
+CorrectedFasta.cpp\
+WhitespaceFasta.cpp\
 GenomeAlphabet.cpp\
 main.cpp\
 MatrixHelper.cpp\
@@ -25,7 +26,8 @@ AlignmentFactory.h\
 AlignmentSymbol.h\
 CircularAlignmentFactory.h\
 ErrorClasses.h\
-ExtendedFasta.h\
+CorrectedFasta.h\
+WhitespaceFasta.h\
 GenomeAlphabet.h\
 MatrixHelper.h\
 PseudoCircularAlignmentFactory.h\

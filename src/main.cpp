@@ -24,7 +24,8 @@
 #include "MultipleCircularAlignmentFactory.h"
 #include "MultiplePseudoCircularAlignmentFactory.h"
 #include "ScoringModel.h"
-#include "ExtendedFasta.h"
+#include "CorrectedFasta.h"
+#include "WhitespaceFasta.h"
 #include "Output.h"
 #include "RandomSequence.h"
 #include "VertebrateMitochondrialGenomeAlphabet.h"
@@ -58,39 +59,75 @@ std::string usage()
   }
 void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
     const Circal::ScoringModel &scoreM, const std::string &outFilename,
-    const std::string &resultFilename, bool outF, bool resultF)
+    const std::string &resultFilename, bool outF, bool resultF, int &delta,
+    bool verbose)
   {
 
-    //Initialize FASTA Reader
-    Circal::ExtendedFasta seqReader;
-    Circal::ExtendedFasta seqWriter;
+    if (verbose)
+      std::cout << "AlphaTyp: " << alpha->getAlphabetType() << std::endl;
 
     //Container for read sequences
     bpp::VectorSequenceContainer sequences(alpha);
 
-    //Check for Sequence File Existence
-    if (!bpp::FileTools::fileExists(seqFilename))
+    //Initialize FASTA Reader
+    if (alpha->getAlphabetType() == "Vertebrate Mitochondrial Genome")
       {
-        std::cerr << "Can't open Sequence File "<< seqFilename
-            << " using stdin instead" << std::endl;
+        if (verbose)
+          std::cout << "Using WhitespaceFasta Reader" << std::endl;
+        Circal::WhitespaceFasta seqReader;
+        //Check for Sequence File Existence
+        if (!bpp::FileTools::fileExists(seqFilename))
+          {
+            std::cerr << "Can't open Sequence File "<< seqFilename
+                << " using stdin instead" << std::endl;
+            seqReader.read(std::cin, sequences);
+          }
+        else
+          //Try parsing the file for FASTA
+          try
+            {
+              seqReader.read(seqFilename,sequences);
+            }
+          catch(bpp::Exception &e)
+            {
+              std::cerr << "Invalid File Format!" << std::endl;
+              std::cerr << e.what() << std::endl;
+              exit(-1);
+            }
       }
     else
-      //Try parsing the file for FASTA
-      try
-        {
-          seqReader.read(seqFilename,sequences);
-        }
-      catch(bpp::Exception &e)
-        {
-          std::cerr << "Invalid File Format!" << std::endl;
-          std::cerr << e.what() << std::endl;
-          exit(-1);
-        }
-    seqReader.read(std::cin, sequences);
+      {
+        if (verbose)
+          std::cout << "Using CorrectedFasta Reader" << std::endl;
+
+        Circal::WhitespaceFasta seqReader;
+        //Check for Sequence File Existence
+        if (!bpp::FileTools::fileExists(seqFilename))
+          {
+            std::cerr << "Can't open Sequence File "<< seqFilename
+                << " using stdin instead" << std::endl;
+            seqReader.read(std::cin, sequences);
+          }
+        else
+          //Try parsing the file for FASTA
+          try
+            {
+              seqReader.read(seqFilename,sequences);
+            }
+          catch(bpp::Exception &e)
+            {
+              std::cerr << "Invalid File Format!" << std::endl;
+              std::cerr << e.what() << std::endl;
+              exit(-1);
+            }
+      }
+
+    Circal::CorrectedFasta seqWriter;
 
     //Create Multiple Circular Alignment
     Circal::MultiplePseudoCircularAlignmentFactory circal;
-    Circal::Alignment multi = circal.GotohalignMultiple(&sequences, &scoreM);
+    Circal::Alignment multi = circal.GotohalignMultiple(&sequences, &scoreM,
+        delta, verbose);
 
     if (outF)
       seqWriter.write(outFilename,
@@ -101,11 +138,10 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
     if (resultF)
       {
         ofstream foo(resultFilename.c_str());
-        foo << prettyPrint.TCoffeeLibFormat(&multi);
+        foo << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
       }
-
     else
-      std::cout << prettyPrint.TCoffeeLibFormat(&multi);
+      std::cout << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
   }
 
 int main(int args, char* argv[])
@@ -125,7 +161,7 @@ int main(int args, char* argv[])
 
     for (int i=1; i<args; i++)
       {
-        std::cout << argv[i] << std::endl;
+        //        std::cout << argv[i] << std::endl;
 
         if (argv[i][0]=='-')
           switch (argv[i][1])
@@ -161,9 +197,6 @@ int main(int args, char* argv[])
             }
           case 'G':
             {
-              //Check for Scoring model
-              if (!scoreSet)
-                break;
               //Use Self defined Alphabet
               alphaTyp = "SELF";
 
@@ -190,12 +223,16 @@ int main(int args, char* argv[])
           case 'F':
             {
               outFilename = argv[i+1];
+              if (verbose)
+                std::cout << "Output Fasta-File: " << outFilename << std::endl;
               outF = true;
               break;
             }
           case 'O':
             {
               resultFilename = argv[i+1];
+              if (verbose)
+                std::cout << "Output File: " << resultFilename << std::endl;
               resultF = true;
               break;
             }
@@ -212,7 +249,14 @@ int main(int args, char* argv[])
             }
       }
 
-    while (!alphaSet | !scoreSet)
+    //Check for Alphabet and Scoring Sheme set
+    if (!alphaSet | !scoreSet)
+      {
+        std::cerr << usage();
+        exit(-1);
+      }
+
+    if ((alphaTyp == "SELF") && (scoreFilename == ""))
       {
         std::cerr << usage();
         exit(-1);
@@ -227,7 +271,7 @@ int main(int args, char* argv[])
         Circal::ScoringModel scoreM(scoreFilename);
 
         doAllignment(alpha, seqFilename, scoreM, outFilename, resultFilename,
-            outF, resultF);
+            outF, resultF, delta, verbose);
         delete alpha;
       }
     else if (alphaTyp == "RNA")
@@ -238,7 +282,7 @@ int main(int args, char* argv[])
         Circal::ScoringModel scoreM(scoreFilename);
 
         doAllignment(alpha, seqFilename, scoreM, outFilename, resultFilename,
-            outF, resultF);
+            outF, resultF, delta, verbose);
         delete alpha;
       }
     else
@@ -250,7 +294,7 @@ int main(int args, char* argv[])
             new Circal::VertebrateMitochondrialGenomeAlphabet(&scoreM);
 
         doAllignment(alpha, seqFilename, scoreM, outFilename, resultFilename,
-            outF, resultF);
+            outF, resultF, delta, verbose);
         delete alpha;
       }
 

@@ -804,7 +804,7 @@ namespace Circal
 
     Alignment AlignmentFactory::NeedlemanWunschAlignment(
         const bpp::Sequence* inA, const bpp::Sequence* inB,
-        const ScoringModel* scoreM)
+        const ScoringModel* scoreM, bool verbose)
       {
         ScoreMatrix D =
             matrix->InitializeScoreMatrixDistances(inA, inB, scoreM);
@@ -820,7 +820,7 @@ namespace Circal
       }
 
     Alignment AlignmentFactory::GotohAlignment(const bpp::Sequence* inA,
-        const bpp::Sequence* inB, const ScoringModel* scoreM)
+        const bpp::Sequence* inB, const ScoringModel* scoreM, bool verbose)
       {
 
         ScoreMatrix D = matrix->InitScoreMatrixWith(inA, inB, 0);
@@ -837,7 +837,7 @@ namespace Circal
 
       }
     Alignment AlignmentFactory::SmithWaterman(const bpp::Sequence* inA,
-        const bpp::Sequence* inB, const ScoringModel* scoreM)
+        const bpp::Sequence* inB, const ScoringModel* scoreM, bool verbose)
       {
         ScoreMatrix D =
             matrix->InitializeScoreMatrixDistances(inA, inB, scoreM);
@@ -851,7 +851,7 @@ namespace Circal
 
       }
     Alignment AlignmentFactory::SmithWatermanAffin(const bpp::Sequence* inA,
-        const bpp::Sequence* inB, const ScoringModel* scoreM)
+        const bpp::Sequence* inB, const ScoringModel* scoreM, bool verbose)
       {
         ScoreMatrix D = matrix->InitScoreMatrixWith(inA, inB, 0);
         ScoreMatrix P = matrix->InitScoreMatrixWith(inA, inB, 0);

@@ -27,6 +27,7 @@
 namespace bpp
   {
     class Sequence;
+    class VectorSequenceContainer;
   }
 
 namespace Circal
@@ -41,11 +42,12 @@ namespace Circal
       Output();
       virtual ~Output();
       std::string SequencePrettyPrint(bpp::Sequence* A);
-      std::string ScoreMatrixPrettyPrint(const bpp::Sequence* A,const bpp::Sequence* B,
-          const ScoreMatrix &D);
+      std::string ScoreMatrixPrettyPrint(const bpp::Sequence* A,
+          const bpp::Sequence* B, const ScoreMatrix &D);
       std::string AlignmentPrettyPrint(Alignment* aln);
       std::string AdjacenceMatrixPrettyPrint(const BoolMatrix &G);
-      std::string TCoffeeLibFormat(Alignment* aln);
+      std::string TCoffeeLibFormat(Alignment* aln,
+          const bpp::VectorSequenceContainer* input);
 
       };
   }
