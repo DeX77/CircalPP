@@ -44,7 +44,8 @@ std::string usage()
     out<< std::endl;
     out<<"options:" << std::endl;
     out<<" -v  verbose mode" << std::endl;
-    out<<" -s  output results stepwise" << std::endl;
+    out<<" -m  build multiple alignment using t-coffee" << std::endl;
+    out<<" -s  output results stepwise (for very large files)" << std::endl;
     out<<" -d  <integer>  delta value" << std::endl;
     out<<" -D  input is dna" << std::endl;
     out<<" -R  input is rna" << std::endl;
@@ -61,7 +62,7 @@ std::string usage()
 void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
     const Circal::ScoringModel &scoreM, const std::string &outFilename,
     const std::string &resultFilename, bool outF, bool resultF, int &delta,
-    bool verbose, bool stepWise)
+    bool verbose, bool stepWise, bool multipl)
   {
 
     //Container for read sequences
@@ -161,7 +162,8 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
                     foo << prettyPrint.TCoffeeAlignFormat(&temp, &sequences);
                   }
                 else
-                  std::cout << prettyPrint.TCoffeeAlignFormat(&temp, &sequences);
+                  std::cout
+                      << prettyPrint.TCoffeeAlignFormat(&temp, &sequences);
               }
             if (verbose)
               std::clog << std::endl;
@@ -192,6 +194,16 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
         else
           std::cout << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
       }
+    if (multipl)
+      if (fork()==0)
+        {
+          std::string argument = "-in=L"+resultFilename+",Mclustalw_pair";
+          
+          execl("t_coffee", "t_coffee", argument.c_str(), NULL);
+          std::cerr << "Error could not launch T-Coffee.. not in path?"
+              << std::endl;
+          exit(1);
+        }
   }
 
 int main(int args, char* argv[])
@@ -202,6 +214,7 @@ int main(int args, char* argv[])
     bool alphaSet = false;
     bool scoreSet = false;
     bool stepWise = false;
+    bool multipl = false;
 
     std::string alphaTyp;
     std::string seqFilename;
@@ -217,6 +230,9 @@ int main(int args, char* argv[])
         if (argv[i][0]=='-')
           switch (argv[i][1])
             {
+          case 'm':
+            multipl = true;
+            break;
           case 's':
             stepWise = true;
             break;
@@ -325,7 +341,7 @@ int main(int args, char* argv[])
         Circal::ScoringModel scoreM(scoreFilename);
 
         doAllignment(alpha, seqFilename, scoreM, outFilename, resultFilename,
-            outF, resultF, delta, verbose, stepWise);
+            outF, resultF, delta, verbose, stepWise, multipl);
         delete alpha;
       }
     else if (alphaTyp == "RNA")
@@ -336,7 +352,7 @@ int main(int args, char* argv[])
         Circal::ScoringModel scoreM(scoreFilename);
 
         doAllignment(alpha, seqFilename, scoreM, outFilename, resultFilename,
-            outF, resultF, delta, verbose, stepWise);
+            outF, resultF, delta, verbose, stepWise, multipl);
         delete alpha;
       }
     else
@@ -348,7 +364,7 @@ int main(int args, char* argv[])
             new Circal::VertebrateMitochondrialGenomeAlphabet(&scoreM);
 
         doAllignment(alpha, seqFilename, scoreM, outFilename, resultFilename,
-            outF, resultF, delta, verbose, stepWise);
+            outF, resultF, delta, verbose, stepWise, multipl);
         delete alpha;
       }
 
