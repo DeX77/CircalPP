@@ -1,6 +1,6 @@
 # The actual Makefiles produced
-Makefile
-Makefile.in
+*Makefile
+*Makefile.in
 
 # The local aclocal.m4 file
 aclocal.m4
@@ -27,5 +27,5 @@ depcomp
 
 # Not sure what this one is for
 autom4te.cache/*
-
+admin/*
 m4/*
