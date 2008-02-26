@@ -139,9 +139,6 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
         else
           std::cout << prettyPrint.TCoffeeLibHeader(&sequences);
 
-#ifdef _OPENMP            
-#pragma omp parallel for
-#endif    
         for (uint u=0; u<sequences.getNumberOfSequences(); u++)
           {
 
