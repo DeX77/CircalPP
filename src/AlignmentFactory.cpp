@@ -629,6 +629,9 @@ namespace Circal
 
         double bestScore = 0;
 
+        double gapExA;
+        double gapExB;
+
         //Forward
         for (uint i=1; i<A->size()+1; i++)
           for (uint j=1; j<B->size()+1; j++)
@@ -638,17 +641,26 @@ namespace Circal
               diagScore = D->at(i-1).at(j-1) + scoreM->ScoreOf(A->getChar(i-1), B->getChar(j
                   -1));
 
+              gapExB = scoreM->ScoreOfGapExtend(B->getChar(j-1));
+              gapExA = scoreM->ScoreOfGapExtend(A->getChar(i-1));
+
               //Score of Open Gap in A
-              gapOpenP = D->at(i-1).at(j) + scoreM->ScoreOfGapOpen(B->getChar(j-1))
-                  + scoreM->ScoreOfGapExtend(B->getChar(j-1));
+              gapOpenP = D->at(i-1).at(j);
+              gapOpenP += scoreM->ScoreOfGapOpen(B->getChar(j-1));
+              gapOpenP += gapExB;
+
               //Score of continue Gap in A
-              gapExtendP = P->at(i-1).at(j)+ scoreM->ScoreOfGapExtend(B->getChar(j-1));
+              gapExtendP = P->at(i-1).at(j);
+              gapExtendP +=+gapExB;
 
               //Score of Open Gap in B
-              gapOpenQ = D->at(i).at(j-1) + scoreM->ScoreOfGapOpen(A->getChar(i-1))
-                  + scoreM->ScoreOfGapExtend(A->getChar(i-1));
+              gapOpenQ = D->at(i).at(j-1);
+              gapOpenQ += scoreM->ScoreOfGapOpen(A->getChar(i-1));
+              gapOpenQ += gapExA;
+
               //Score of continue Gap in B
-              gapExtendQ = Q->at(i).at(j-1) + scoreM->ScoreOfGapExtend(A->getChar(i-1));
+              gapExtendQ = Q->at(i).at(j-1);
+              gapExtendQ += gapExA;
 
               //Set Helper Matrices Values
               P->at(i).at(j) = scoreM->BestOfTwo(gapOpenP, gapExtendP);
