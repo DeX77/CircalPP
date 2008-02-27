@@ -31,7 +31,7 @@ namespace Circal
       }
 
     Alignment MultiplePseudoCircularAlignmentFactory::GotohalignMultiple(
-        const bpp::VectorSequenceContainer* input, const ScoringModel* scoreM,
+        const bpp::VectorSequenceContainer* input, ScoringModel* scoreM,
         const int &delta, bool verbose)
       {
 
@@ -60,7 +60,7 @@ namespace Circal
 
       }
     Alignment MultiplePseudoCircularAlignmentFactory::NMWalignMultiple(
-        const bpp::VectorSequenceContainer* input, const ScoringModel* scoreM,
+        const bpp::VectorSequenceContainer* input, ScoringModel* scoreM,
         const int &delta, bool verbose)
       {
         Alignment out(input->getAlphabet());

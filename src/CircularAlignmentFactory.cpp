@@ -33,7 +33,7 @@ namespace Circal
       }
 
     Alignment CircularAlignmentFactory::GotohAlignment(const bpp::Sequence* A,
-        const bpp::Sequence* B, const ScoringModel* scoreM)
+        const bpp::Sequence* B, ScoringModel* scoreM)
       {
 
         double bestScore = 0;
@@ -55,7 +55,8 @@ namespace Circal
 
             RotatedSequence rotB(B, i);
 
-            AlignmentFactory::ForwardRecursionGotoh(A, &rotB, scoreM, &D, &P, &Q);
+            AlignmentFactory::ForwardRecursionGotoh(A, &rotB, scoreM, &D, &P,
+                &Q);
             tempScore = D.at(D.size()-1).at(D.at(0).size()-1);
 
             if (scoreM->BestOfTwo(tempScore, bestScore) != bestScore)
@@ -81,8 +82,7 @@ namespace Circal
       }
 
     Alignment CircularAlignmentFactory::NeedlemanWunschAlignment(
-        const bpp::Sequence* A, const bpp::Sequence* B,
-        const ScoringModel* scoreM)
+        const bpp::Sequence* A, const bpp::Sequence* B, ScoringModel* scoreM)
       {
 
         double bestScore = 0;

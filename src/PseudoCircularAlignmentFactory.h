@@ -25,26 +25,25 @@
 namespace Circal
   {
     class PseudoRotatedSequence;
-    typedef std::vector< std::vector< std::vector<double> > > ScoreMatrix3D;
 
     class PseudoCircularAlignmentFactory : public virtual AlignmentFactory
       {
       //Needleman Wunsch Alignment
       virtual double ForwardRecursionSmithWaterman(const bpp::Sequence* A,
-          const PseudoRotatedSequence* B, const ScoringModel* scoreM,
+          const PseudoRotatedSequence* B, ScoringModel* scoreM,
           const int &delta, ScoreMatrix3D* D, uint &bi, uint &bj);
       virtual Alignment BacktrackingSmithWaterman(const bpp::Sequence* A,
-          const PseudoRotatedSequence* B, const ScoringModel* scoreM,
+          const PseudoRotatedSequence* B, ScoringModel* scoreM,
           const int &delta, const ScoreMatrix3D* D, uint &i, uint &j);
 
       //Gotoh Alignment
       virtual double ForwardRecursionSmithWatermanAffin(const bpp::Sequence* A,
-          const PseudoRotatedSequence* B, const ScoringModel* scoreM,
+          const PseudoRotatedSequence* B, ScoringModel* scoreM,
           const int &delta, ScoreMatrix3D* D, ScoreMatrix3D* P,
           ScoreMatrix3D* Q, uint &bi, uint &bj);
 
       virtual Alignment BacktrackingSmithWatermanAffin(const bpp::Sequence* A,
-          const PseudoRotatedSequence* B, const ScoringModel* scoreM,
+          const PseudoRotatedSequence* B, ScoringModel* scoreM,
           const int &delta, const ScoreMatrix3D* D, const ScoreMatrix3D* P,
           const ScoreMatrix3D* Q, uint &i, uint &j, bool verbose=false);
 
@@ -53,11 +52,11 @@ namespace Circal
       virtual ~PseudoCircularAlignmentFactory();
 
       Alignment NeedlemanWunschAlignment(const bpp::Sequence* A,
-          const bpp::Sequence* B, const ScoringModel* scoreM, const int &delta,
+          const bpp::Sequence* B, ScoringModel* scoreM, const int &delta,
           bool verbose=false);
 
       Alignment GotohAlignment(const bpp::Sequence* A, const bpp::Sequence* B,
-          const ScoringModel* scoreM, const int &delta, bool verbose=false);
+          ScoringModel* scoreM, const int &delta, bool verbose=false);
 
       };
   }

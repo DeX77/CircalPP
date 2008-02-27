@@ -36,7 +36,7 @@ namespace Circal
         delete matrix;
       }
     void AlignmentFactory::ForwardRecursionGotoh(const bpp::Sequence* A,
-        const bpp::Sequence* B, const ScoringModel* scoreM, ScoreMatrix* D,
+        const bpp::Sequence* B, ScoringModel* scoreM, ScoreMatrix* D,
         ScoreMatrix* P, ScoreMatrix* Q)
       {
 
@@ -79,9 +79,8 @@ namespace Circal
       }
 
     Alignment AlignmentFactory::BacktrackingGotohGlocal(const bpp::Sequence* A,
-        const bpp::Sequence* B, const ScoringModel* scoreM,
-        const ScoreMatrix* D, const ScoreMatrix* P, const ScoreMatrix* Q,
-        uint &i, uint &j)
+        const bpp::Sequence* B, ScoringModel* scoreM, const ScoreMatrix* D,
+        const ScoreMatrix* P, const ScoreMatrix* Q, uint &i, uint &j)
       {
 
         Alignment out(A->getAlphabet());
@@ -211,9 +210,8 @@ namespace Circal
 
       }
     Alignment AlignmentFactory::BacktrackingGotohGlobal(const bpp::Sequence* A,
-        const bpp::Sequence* B, const ScoringModel* scoreM,
-        const ScoreMatrix* D, const ScoreMatrix* P, const ScoreMatrix* Q,
-        uint &i, uint &j)
+        const bpp::Sequence* B, ScoringModel* scoreM, const ScoreMatrix* D,
+        const ScoreMatrix* P, const ScoreMatrix* Q, uint &i, uint &j)
       {
 
         Alignment out(A->getAlphabet());
@@ -356,7 +354,7 @@ namespace Circal
 
       }
     void AlignmentFactory::ForwardRecursionNMW(const bpp::Sequence* A,
-        const bpp::Sequence* B, const ScoringModel* scoreM, ScoreMatrix* D)
+        const bpp::Sequence* B, ScoringModel* scoreM, ScoreMatrix* D)
       {
         double gapOpenP;
         double gapOpenQ;
@@ -384,8 +382,8 @@ namespace Circal
             }
       }
     Alignment AlignmentFactory::BacktrackingNMW(const bpp::Sequence* A,
-        const bpp::Sequence* B, const ScoringModel* scoreM,
-        const ScoreMatrix* D, uint &i, uint &j)
+        const bpp::Sequence* B, ScoringModel* scoreM, const ScoreMatrix* D,
+        uint &i, uint &j)
       {
 
         vector<int> outA;
@@ -487,8 +485,8 @@ namespace Circal
 
       }
     double AlignmentFactory::ForwardRecursionSmithWaterman(
-        const bpp::Sequence* A, const bpp::Sequence* B,
-        const ScoringModel* scoreM, ScoreMatrix* D, uint &bi, uint &bj)
+        const bpp::Sequence* A, const bpp::Sequence* B, ScoringModel* scoreM,
+        ScoreMatrix* D, uint &bi, uint &bj)
       {
         double gapOpenP;
         double gapOpenQ;
@@ -532,8 +530,8 @@ namespace Circal
       }
 
     Alignment AlignmentFactory::BacktrackingSmithWaterman(
-        const bpp::Sequence* A, const bpp::Sequence* B,
-        const ScoringModel* scoreM, const ScoreMatrix* D, uint &i, uint &j)
+        const bpp::Sequence* A, const bpp::Sequence* B, ScoringModel* scoreM,
+        const ScoreMatrix* D, uint &i, uint &j)
       {
         vector<int> outA;
         vector<int>::iterator itA = outA.begin();
@@ -620,9 +618,8 @@ namespace Circal
       }
 
     double AlignmentFactory::ForwardRecursionSmithWatermanAffin(
-        const bpp::Sequence* A, const bpp::Sequence* B,
-        const ScoringModel* scoreM, ScoreMatrix* D, ScoreMatrix* P,
-        ScoreMatrix* Q, uint &bi, uint &bj)
+        const bpp::Sequence* A, const bpp::Sequence* B, ScoringModel* scoreM,
+        ScoreMatrix* D, ScoreMatrix* P, ScoreMatrix* Q, uint &bi, uint &bj)
       {
         double gapOpenP = 0;
         double gapExtendP = 0;
@@ -677,9 +674,9 @@ namespace Circal
       }
 
     Alignment AlignmentFactory::BacktrackingSmithWatermanAffin(
-        const bpp::Sequence* A, const bpp::Sequence* B,
-        const ScoringModel* scoreM, const ScoreMatrix* D, const ScoreMatrix* P,
-        const ScoreMatrix* Q, uint &i, uint &j)
+        const bpp::Sequence* A, const bpp::Sequence* B, ScoringModel* scoreM,
+        const ScoreMatrix* D, const ScoreMatrix* P, const ScoreMatrix* Q,
+        uint &i, uint &j)
       {
         Alignment out(A->getAlphabet());
 
@@ -804,7 +801,7 @@ namespace Circal
 
     Alignment AlignmentFactory::NeedlemanWunschAlignment(
         const bpp::Sequence* inA, const bpp::Sequence* inB,
-        const ScoringModel* scoreM, bool verbose)
+        ScoringModel* scoreM, bool verbose)
       {
         ScoreMatrix D =
             matrix->InitializeScoreMatrixDistances(inA, inB, scoreM);
@@ -820,7 +817,7 @@ namespace Circal
       }
 
     Alignment AlignmentFactory::GotohAlignment(const bpp::Sequence* inA,
-        const bpp::Sequence* inB, const ScoringModel* scoreM, bool verbose)
+        const bpp::Sequence* inB, ScoringModel* scoreM, bool verbose)
       {
 
         ScoreMatrix D = matrix->InitScoreMatrixWith(inA, inB, 0);
@@ -837,7 +834,7 @@ namespace Circal
 
       }
     Alignment AlignmentFactory::SmithWaterman(const bpp::Sequence* inA,
-        const bpp::Sequence* inB, const ScoringModel* scoreM, bool verbose)
+        const bpp::Sequence* inB, ScoringModel* scoreM, bool verbose)
       {
         ScoreMatrix D =
             matrix->InitializeScoreMatrixDistances(inA, inB, scoreM);
@@ -851,7 +848,7 @@ namespace Circal
 
       }
     Alignment AlignmentFactory::SmithWatermanAffin(const bpp::Sequence* inA,
-        const bpp::Sequence* inB, const ScoringModel* scoreM, bool verbose)
+        const bpp::Sequence* inB, ScoringModel* scoreM, bool verbose)
       {
         ScoreMatrix D = matrix->InitScoreMatrixWith(inA, inB, 0);
         ScoreMatrix P = matrix->InitScoreMatrixWith(inA, inB, 0);

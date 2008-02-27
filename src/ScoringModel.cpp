@@ -60,12 +60,9 @@ namespace Circal
 
         uint Size = 1;
 
-        ModelValues::iterator it;
-
         // Main loop : for all file lines
         while (!input.eof())
           {
-            it = model.begin();
             getline(input, temp, '\n'); // Copy current line in temporary string
 
             if (temp[0] != '#')
@@ -98,14 +95,12 @@ namespace Circal
                         sc.negativeMatch = negativeMatch;
                         sc.missmatch = -missmatch;
 
-                        model.insert(it, pair<const std::string,
-                            AlignmentSymbol>(sc.symbol, sc));
-                        it++;
+                        model.insert(pair<const std::string, AlignmentSymbol>(
+                            sc.symbol, sc));
                         //Also add negative Symbol Version
                         sc.symbol = "-" + sc.symbol;
-                        model.insert(it, pair<const std::string,
-                            AlignmentSymbol>(sc.symbol, sc));
-                        it++;
+                        model.insert(pair<const std::string, AlignmentSymbol>(
+                            sc.symbol, sc));
                       }
                   }
 
@@ -122,7 +117,7 @@ namespace Circal
         input.close();
       }
 
-    double ScoringModel::ScoreOf(const std::string &A, const std::string &B) const
+    double ScoringModel::ScoreOf(const std::string &A, const std::string &B)
       {
 
         double outA = 0;
@@ -131,22 +126,18 @@ namespace Circal
         //Check if two symbols are completly identical
         if (A.compare(B) == 0)
           {
-            ModelValues::const_iterator foo = model.find(A);
-            return foo->second.match;
+            return model[A].match;
           }
         else
         //Check for negative values
         if ((A.compare("-"+B) == 0) || (B.compare("-"+A) == 0))
           {
-            ModelValues::const_iterator foo = model.find(A);
-            return foo->second.negativeMatch;
+            return model[A].negativeMatch;
           }
         else
           {
-            ModelValues::const_iterator foo = model.find(A);
-            outA = foo->second.missmatch;
-            foo = model.find(B);
-            outB = foo->second.missmatch;
+            outA = model[A].missmatch;
+            outB = model[B].missmatch;
             //Check wich one is worse
             if (BestOfTwo(outA, outB) != outA)
               return outA;
@@ -155,15 +146,13 @@ namespace Circal
           }
       }
 
-    double ScoringModel::ScoreOfGapOpen(const std::string A) const
+    double ScoringModel::ScoreOfGapOpen(const std::string A)
       {
-        ModelValues::const_iterator foo = model.find(A);
-        return foo->second.gapOpen;
+        return model[A].gapOpen;
       }
-    double ScoringModel::ScoreOfGapExtend(const std::string A) const
+    double ScoringModel::ScoreOfGapExtend(const std::string A)
       {
-        ModelValues::const_iterator foo = model.find(A);
-        return foo->second.gapExtend;
+        return model[A].gapExtend;
       }
     int ScoringModel::GetModelSize(void) const
       {
@@ -183,12 +172,12 @@ namespace Circal
         return BestOfTwo(A, BestOfTwo(B, C) );
 
       }
-    
+
     ModelValues::const_iterator ScoringModel::constitStart(void) const
       {
         return model.begin();
       }
-    
+
     ModelValues::const_iterator ScoringModel::constitEnd(void) const
       {
         return model.end();
@@ -207,9 +196,9 @@ namespace Circal
       {
         for (ModelValues::iterator foo = itStart(); foo != itEnd(); foo++)
           {
-            foo->second.match /= maxValue;            
+            foo->second.match /= maxValue;
             foo->second.negativeMatch /= maxValue;
-                        
+
           }
       }
   }

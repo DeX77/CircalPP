@@ -20,14 +20,26 @@
 #ifndef SCORINGMODEL_H_
 #define SCORINGMODEL_H_
 
+#include "AlignmentSymbol.h"
+//Try tu include unordered set
+#include <tr1/unordered_map>
+
+//Didn't work? Ok we use map instead
+#ifndef _TR1_UNORDERED_MP
 #include <map>
+#endif
+
 #include <string>
 
 namespace Circal
-  {
-    class AlignmentSymbol;
+  {    
+
+#ifdef _TR1_UNORDERED_MAP
+    typedef std::tr1::unordered_map<std::string, AlignmentSymbol> ModelValues;
+#else
     typedef std::map<const std::string, AlignmentSymbol> ModelValues;
 
+#endif
     class ScoringModel
       {
 
@@ -41,19 +53,19 @@ namespace Circal
       void read(const std::string & path);
       void read(std::istream & input);
 
-      double ScoreOf(const std::string &A, const std::string &B) const;
-      double ScoreOfGapOpen(const std::string A) const;
-      double ScoreOfGapExtend(const std::string A) const;
+      double ScoreOf(const std::string &A, const std::string &B);
+      double ScoreOfGapOpen(const std::string A) ;
+      double ScoreOfGapExtend(const std::string A) ;
       int GetModelSize(void) const;
 
       double BestOfTwo(const double A, const double B) const;
-      double BestOfThree(const double A,const  double B,const  double C)const;
-      
+      double BestOfThree(const double A, const double B, const double C) const;
+
       void NormalizeScores(const double &maxValue);
-      
+
       ModelValues::const_iterator constitStart(void) const;
       ModelValues::const_iterator constitEnd(void) const;
-      
+
       ModelValues::iterator itStart(void);
       ModelValues::iterator itEnd(void);
 

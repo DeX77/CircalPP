@@ -35,16 +35,18 @@ namespace Circal
 
     double PseudoCircularAlignmentFactory::ForwardRecursionSmithWatermanAffin(
         const bpp::Sequence* A, const PseudoRotatedSequence* B,
-        const ScoringModel* scoreM, const int &delta, ScoreMatrix3D* D,
+        ScoringModel* scoreM, const int &delta, ScoreMatrix3D* D,
         ScoreMatrix3D* P, ScoreMatrix3D* Q, uint &bi, uint &bj)
       {
 
         double gapOpenP;
         double gapExtendP;
         double gapOpenQ;
-        double gapExtendQ;
+        double gapExtendQ;        
         double diagScore;
-
+        double gapExA;
+        double gapExB;
+        
         double lrla = 0;
 
         //B is doubled=pseudorotated so correct size is B/2
@@ -76,11 +78,16 @@ namespace Circal
                     diagScore = scoreM->ScoreOf(A->getChar(i-1), B->getChar(j
                         -1));
 
+                    gapExB = scoreM->ScoreOfGapExtend(B->getChar(j-1));
+                    
                     //Score of Open Gap in A
-                    gapOpenP = D->at(i-1).at(j).at(0) + scoreM->ScoreOfGapOpen(B->getChar(j-1))
-                        + scoreM->ScoreOfGapExtend(B->getChar(j-1));
+                    gapOpenP = D->at(i-1).at(j).at(0);
+                    gapOpenP += scoreM->ScoreOfGapOpen(B->getChar(j-1));
+                    gapOpenP += gapExB;
+                    
                     //Score of continue Gap in A
-                    gapExtendP = P->at(i-1).at(j).at(0)+ scoreM->ScoreOfGapExtend(B->getChar(j-1));
+                    gapExtendP = P->at(i-1).at(j).at(0);
+                    gapExtendP += gapExB;
 
                     //Set Helper Matrices Values
                     P->at(i).at(j).at(0) = scoreM->BestOfTwo(gapOpenP, gapExtendP);
@@ -99,22 +106,29 @@ namespace Circal
 
                     for (int k=1; k<slaps; k++)
                       {
+                        gapExB = scoreM->ScoreOfGapExtend(B->getChar(j-1));
+                        gapExA = scoreM->ScoreOfGapExtend(A->getChar(i-1));
+                        
                         //Score of Match eg. Mismatch
                         diagScore = D->at(i-1).at(j-1).at(k-1) + scoreM->ScoreOf(A->getChar(i-1),
                             B->getChar(j -1));
 
                         //Score of Open Gap in A
-                        gapOpenP = D->at(i-1).at(j).at(k) + scoreM->ScoreOfGapOpen(B->getChar(j-1))
-                            + scoreM->ScoreOfGapExtend(B->getChar(j-1));
+                        gapOpenP  = D->at(i-1).at(j).at(k);
+                        gapOpenP += scoreM->ScoreOfGapOpen(B->getChar(j-1));
+                        gapOpenP += gapExB;
+                        
                         //Score of continue Gap in A
-                        gapExtendP = P->at(i-1).at(j).at(k)+ scoreM->ScoreOfGapExtend(B->getChar(j-1));
-
+                        gapOpenP  = P->at(i-1).at(j).at(k);
+                        gapOpenP += gapExB;
+                        
                         //Score of Open Gap in B
-                        gapOpenQ = D->at(i).at(j-1).at(k-1) + scoreM->ScoreOfGapOpen(A->getChar(i
-                            -1)) + scoreM->ScoreOfGapExtend(A->getChar(i-1));
+                        gapOpenQ  = D->at(i).at(j-1).at(k-1);
+                        gapOpenQ += scoreM->ScoreOfGapOpen(A->getChar(i-1));
+                        gapOpenQ += gapExA;
+                        
                         //Score of continue Gap in B
-                        gapExtendQ = Q->at(i).at(j-1).at(k-1)
-                            + scoreM->ScoreOfGapExtend(A->getChar(i -1));
+                        gapExtendQ = Q->at(i).at(j-1).at(k-1) + gapExA;
 
                         //Set Helper Matrices Values
                         P->at(i).at(j).at(k) = scoreM->BestOfTwo(gapOpenP, gapExtendP);
@@ -141,22 +155,30 @@ namespace Circal
                   for (int k=0; k<slaps; k++)
                     {
 
+                      gapExA = scoreM->ScoreOfGapExtend(A->getChar(i-1));
+                      gapExB = scoreM->ScoreOfGapExtend(B->getChar(j-1));
+                        
                       //Score of Match eg. Mismatch
                       diagScore = D->at(i-1).at(j-1).at(k) + scoreM->ScoreOf(A->getChar(i-1),
                           B->getChar(j -1));
 
                       //Score of Open Gap in A
-                      gapOpenP = D->at(i-1).at(j).at(k) + scoreM->ScoreOfGapOpen(B->getChar(j-1))
-                          + scoreM->ScoreOfGapExtend(B->getChar(j-1));
+                      gapOpenP  = D->at(i-1).at(j).at(k);
+                      gapOpenP += scoreM->ScoreOfGapOpen(B->getChar(j-1));
+                      gapOpenP += gapExB;
+                      
                       //Score of continue Gap in A
-                      gapExtendP = P->at(i-1).at(j).at(k)+ scoreM->ScoreOfGapExtend(B->getChar(j-1));
-
+                      gapExtendP  = P->at(i-1).at(j).at(k);
+                      gapExtendP += gapExB;
+                      
                       //Score of Open Gap in B
-                      gapOpenQ = D->at(i).at(j-1).at(k) + scoreM->ScoreOfGapOpen(A->getChar(i-1))
-                          + scoreM->ScoreOfGapExtend(A->getChar(i-1));
+                      gapOpenQ  = D->at(i).at(j-1).at(k);
+                      gapOpenQ += scoreM->ScoreOfGapOpen(A->getChar(i-1));
+                      gapOpenQ += gapExA;
+                      
                       //Score of continue Gap in B
-                      gapExtendQ = Q->at(i).at(j-1).at(k)
-                          + scoreM->ScoreOfGapExtend(A->getChar(i-1));
+                      gapExtendQ  = Q->at(i).at(j-1).at(k);
+                      gapExtendQ += gapExA;
 
                       //Set Helper Matrices Values
                       P->at(i).at(j).at(k) = scoreM->BestOfTwo(gapOpenP, gapExtendP);
@@ -188,7 +210,7 @@ namespace Circal
       }
     Alignment PseudoCircularAlignmentFactory::BacktrackingSmithWatermanAffin(
         const bpp::Sequence* A, const PseudoRotatedSequence* B,
-        const ScoringModel* scoreM, const int &delta, const ScoreMatrix3D* D,
+        ScoringModel* scoreM, const int &delta, const ScoreMatrix3D* D,
         const ScoreMatrix3D* P, const ScoreMatrix3D* Q, uint &i, uint &j,
         bool verbose)
       {
@@ -358,7 +380,7 @@ namespace Circal
       }
     double PseudoCircularAlignmentFactory::ForwardRecursionSmithWaterman(
         const bpp::Sequence* A, const PseudoRotatedSequence* B,
-        const ScoringModel* scoreM, const int &delta, ScoreMatrix3D* D,
+        ScoringModel* scoreM, const int &delta, ScoreMatrix3D* D,
         uint &bi, uint &bj)
       {
         double gapOpenP;
@@ -483,7 +505,7 @@ namespace Circal
 
     Alignment PseudoCircularAlignmentFactory::BacktrackingSmithWaterman(
         const bpp::Sequence* A, const PseudoRotatedSequence* B,
-        const ScoringModel* scoreM, const int &delta, const ScoreMatrix3D* D,
+        ScoringModel* scoreM, const int &delta, const ScoreMatrix3D* D,
         uint &i, uint &j)
       {
 
@@ -609,7 +631,7 @@ namespace Circal
 
     Alignment PseudoCircularAlignmentFactory::NeedlemanWunschAlignment(
         const bpp::Sequence* inA, const bpp::Sequence* inB,
-        const ScoringModel* scoreM, const int &delta, bool verbose)
+        ScoringModel* scoreM, const int &delta, bool verbose)
       {
         //First of all check which of the sequences is longer
         if (inA->size()>inB->size())
@@ -650,7 +672,7 @@ namespace Circal
 
     Alignment PseudoCircularAlignmentFactory::GotohAlignment(
         const bpp::Sequence* inA, const bpp::Sequence* inB,
-        const ScoringModel* scoreM, const int &delta, bool verbose)
+        ScoringModel* scoreM, const int &delta, bool verbose)
       {
 
         //First of all check which of the sequences is longer

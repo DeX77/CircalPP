@@ -24,6 +24,8 @@
 #include <valarray>
 #include <string>
 
+#include "MatrixHelper.h"
+
 namespace bpp
   {
     class Sequence;
@@ -33,8 +35,7 @@ namespace bpp
 namespace Circal
   {
     class Alignment;
-    typedef std::vector< std::vector<double> > ScoreMatrix;
-    typedef std::valarray< std::valarray <bool> > BoolMatrix;
+
 
     class Output
       {

@@ -60,7 +60,7 @@ std::string usage()
     return out.str();
   }
 void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
-    const Circal::ScoringModel &scoreM, const std::string &outFilename,
+    Circal::ScoringModel &scoreM, const std::string &outFilename,
     const std::string &resultFilename, bool outF, bool resultF, int &delta,
     bool verbose, bool stepWise, bool multipl)
   {

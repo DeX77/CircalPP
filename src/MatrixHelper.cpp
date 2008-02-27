@@ -70,7 +70,7 @@ namespace Circal
 
     ScoreMatrix MatrixHelper::InitializeScoreMatrixDistances(
         const bpp::Sequence* A, const bpp::Sequence* B,
-        const ScoringModel* scoreM)
+         ScoringModel* scoreM)
       {
         //Initialize Score Matrix
         ScoreMatrix D = InitScoreMatrixWith(A, B,

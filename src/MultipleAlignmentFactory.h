@@ -34,9 +34,9 @@ namespace Circal
       virtual ~MultipleAlignmentFactory();
 
       Alignment GotohalignMultiple(const bpp::VectorSequenceContainer* input,
-          const ScoringModel* scoreM, bool verbose);
+          ScoringModel* scoreM, bool verbose);
       Alignment NMWalignMultiple(const bpp::VectorSequenceContainer* input,
-          const ScoringModel* scoreM, bool verbose);
+          ScoringModel* scoreM, bool verbose);
       };
   }
 #endif /*MULTIPLEALIGNMENT_H_*/

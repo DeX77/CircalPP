@@ -32,10 +32,10 @@ namespace Circal
       virtual ~CircularAlignmentFactory();
 
       Alignment NeedlemanWunschAlignment(const bpp::Sequence* A,
-          const bpp::Sequence* B, const ScoringModel* scoreM);
+          const bpp::Sequence* B, ScoringModel* scoreM);
 
       Alignment GotohAlignment(const bpp::Sequence* A, const bpp::Sequence* B,
-          const ScoringModel* scoreM);
+          ScoringModel* scoreM);
       };
   }
 #endif /*CIRCULARALIGNMENT_H_*/

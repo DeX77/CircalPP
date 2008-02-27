@@ -21,14 +21,13 @@
 #define ALIGNMENTFACTORY_H_
 
 #include "Alignment.h"
+#include "MatrixHelper.h"
 #include <vector>
 
 namespace Circal
   {
-    class ScoringModel;
-    class MatrixHelper;
+    class ScoringModel;    
     class Output;
-    typedef std::vector< std::vector<double> > ScoreMatrix;
 
     class AlignmentFactory
       {
@@ -39,55 +38,54 @@ namespace Circal
 
       //Needleman Wunsch Alignment
       virtual void ForwardRecursionNMW(const bpp::Sequence* A,
-          const bpp::Sequence* B, const ScoringModel* scoreM, ScoreMatrix* D);
+          const bpp::Sequence* B, ScoringModel* scoreM, ScoreMatrix* D);
       virtual Alignment BacktrackingNMW(const bpp::Sequence* outA,
-          const bpp::Sequence* outB, const ScoringModel* scoreM,
+          const bpp::Sequence* outB, ScoringModel* scoreM,
           const ScoreMatrix* D, uint &i, uint &j);
 
       //Gotoh Alignment
       virtual void ForwardRecursionGotoh(const bpp::Sequence* A,
-          const bpp::Sequence* B, const ScoringModel* scoreM, ScoreMatrix* D,
+          const bpp::Sequence* B, ScoringModel* scoreM, ScoreMatrix* D,
           ScoreMatrix* P, ScoreMatrix* Q);
       virtual Alignment BacktrackingGotohGlocal(const bpp::Sequence* outA,
-          const bpp::Sequence* outB, const ScoringModel* scoreM,
+          const bpp::Sequence* outB, ScoringModel* scoreM,
           const ScoreMatrix* D, const ScoreMatrix* P, const ScoreMatrix* Q,
           uint &i, uint &j);
       virtual Alignment BacktrackingGotohGlobal(const bpp::Sequence* outA,
-          const bpp::Sequence* outB, const ScoringModel* scoreM,
+          const bpp::Sequence* outB, ScoringModel* scoreM,
           const ScoreMatrix* D, const ScoreMatrix* P, const ScoreMatrix* Q,
           uint &i, uint &j);
 
       //Smith-Waterman Alignment
       virtual double ForwardRecursionSmithWaterman(const bpp::Sequence* A,
-          const bpp::Sequence* B, const ScoringModel* scoreM, ScoreMatrix* D,
+          const bpp::Sequence* B, ScoringModel* scoreM, ScoreMatrix* D,
           uint &i, uint &j);
       virtual Alignment BacktrackingSmithWaterman(const bpp::Sequence* A,
-          const bpp::Sequence* B, const ScoringModel* scoreM,
-          const ScoreMatrix* D, uint &i, uint &j);
+          const bpp::Sequence* B, ScoringModel* scoreM, const ScoreMatrix* D,
+          uint &i, uint &j);
 
       //Smith-Waterman Alignment-Affin
       virtual double ForwardRecursionSmithWatermanAffin(const bpp::Sequence* A,
-          const bpp::Sequence* B, const ScoringModel* scoreM, ScoreMatrix* D,
+          const bpp::Sequence* B, ScoringModel* scoreM, ScoreMatrix* D,
           ScoreMatrix* P, ScoreMatrix* Q, uint &bi, uint &bj);
       virtual Alignment BacktrackingSmithWatermanAffin(const bpp::Sequence* A,
-          const bpp::Sequence* B, const ScoringModel* scoreM,
-          const ScoreMatrix* D, const ScoreMatrix* P, const ScoreMatrix* Q,
-          uint &i, uint &j);
+          const bpp::Sequence* B, ScoringModel* scoreM, const ScoreMatrix* D,
+          const ScoreMatrix* P, const ScoreMatrix* Q, uint &i, uint &j);
 
   public:
       AlignmentFactory();
       virtual ~AlignmentFactory();
 
       virtual Alignment NeedlemanWunschAlignment(const bpp::Sequence* inA,
-          const bpp::Sequence* inB, const ScoringModel* scoreM, bool verbose=false);
+          const bpp::Sequence* inB, ScoringModel* scoreM, bool verbose=false);
       virtual Alignment GotohAlignment(const bpp::Sequence* inA,
-          const bpp::Sequence* inB, const ScoringModel* scoreM, bool verbose=false);
+          const bpp::Sequence* inB, ScoringModel* scoreM, bool verbose=false);
 
       virtual Alignment SmithWaterman(const bpp::Sequence* inA,
-          const bpp::Sequence* inB, const ScoringModel* scoreM, bool verbose=false);
+          const bpp::Sequence* inB, ScoringModel* scoreM, bool verbose=false);
       virtual Alignment SmithWatermanAffin(const bpp::Sequence* inA,
-          const bpp::Sequence* inB, const ScoringModel* scoreM, bool verbose=false);
-            
+          const bpp::Sequence* inB, ScoringModel* scoreM, bool verbose=false);
+
       };
 
   }

@@ -44,14 +44,12 @@ namespace Circal
       virtual ~MatrixHelper();
 
       ScoreMatrix InitializeScoreMatrixDistances(const bpp::Sequence* A,
-          const bpp::Sequence* B, const ScoringModel* scoreM);
+          const bpp::Sequence* B, ScoringModel* scoreM);
 
       ScoreMatrix InitScoreMatrixWith(const bpp::Sequence* A,
           const bpp::Sequence* B, const double &init);
-      ScoreMatrix3D
-          InitScoreMatrix3DWith(const bpp::Sequence* A,
-              const PseudoRotatedSequence* B, const int &delta,
-              const double &init);
+      ScoreMatrix3D InitScoreMatrix3DWith(const bpp::Sequence* A,
+          const PseudoRotatedSequence* B, const int &delta, const double &init);
 
       BoolMatrix CreateAdjacenceGraph(Alignment* pairWiseAlignments,
           int biggestSequenceSize);
