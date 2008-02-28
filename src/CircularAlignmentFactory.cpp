@@ -33,7 +33,7 @@ namespace Circal
       }
 
     Alignment CircularAlignmentFactory::GotohAlignment(const bpp::Sequence* A,
-        const bpp::Sequence* B, ScoringModel* scoreM)
+        const bpp::Sequence* B, ScoringModel* scoreM, int &delta, bool verbose)
       {
 
         double bestScore = 0;
@@ -82,7 +82,8 @@ namespace Circal
       }
 
     Alignment CircularAlignmentFactory::NeedlemanWunschAlignment(
-        const bpp::Sequence* A, const bpp::Sequence* B, ScoringModel* scoreM)
+        const bpp::Sequence* A, const bpp::Sequence* B, ScoringModel* scoreM,
+        int &delta, bool verbose)
       {
 
         double bestScore = 0;

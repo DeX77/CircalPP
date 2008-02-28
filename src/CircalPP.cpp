@@ -44,6 +44,7 @@ std::string usage()
     out<< std::endl;
     out<<"options:" << std::endl;
     out<<" -v  verbose mode" << std::endl;
+    out<<" -b  brute-force mode" << std::endl;
     out<<" -m  build multiple alignment using t-coffee" << std::endl;
     out<<" -s  output results stepwise (for very large files)" << std::endl;
     out<<" -d  <integer>  delta value" << std::endl;
@@ -62,7 +63,7 @@ std::string usage()
 void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
     Circal::ScoringModel &scoreM, const std::string &outFilename,
     const std::string &resultFilename, bool outF, bool resultF, int &delta,
-    bool verbose, bool stepWise, bool multipl)
+    bool verbose, bool stepWise, bool multipl, bool brute)
   {
 
     //Container for read sequences
@@ -124,80 +125,156 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
     Circal::CorrectedFasta seqWriter;
     Circal::Output prettyPrint;
 
-    //Create Multiple Circular Alignment
-    Circal::MultiplePseudoCircularAlignmentFactory circal;
-    Circal::PseudoCircularAlignmentFactory pseuC;
-    if (stepWise)
+    if (brute)
       {
-
-        if (resultF)
-          {
-            //Overwritting would be realy uncool
-            ofstream foo(resultFilename.c_str(), ios_base::app);
-            foo << prettyPrint.TCoffeeLibHeader(&sequences);
-          }
-        else
-          std::cout << prettyPrint.TCoffeeLibHeader(&sequences);
-
-        for (uint u=0; u<sequences.getNumberOfSequences(); u++)
+        //Create Multiple Circular Alignment
+        Circal::MultipleCircularAlignmentFactory circal;
+        Circal::CircularAlignmentFactory pseuC;
+        if (stepWise)
           {
 
-            for (uint k=u+1; k<sequences.getNumberOfSequences(); k++)
+            if (resultF)
               {
-                if (verbose)
-                  std::clog << "*" << std::flush;
-                Circal::Alignment temp = pseuC.GotohAlignment(
-                    sequences.getSequence(u), sequences.getSequence(k),
-                    &scoreM, delta, verbose);
-                if (outF)
-                  seqWriter.write(outFilename,
-                      *dynamic_cast<bpp::SequenceContainer*>(&temp), false);
-                if (resultF)
-                  {
-                    //Overwritting would be realy uncool
-                    ofstream foo(resultFilename.c_str(), ios_base::app);
-                    foo << prettyPrint.TCoffeeAlignFormat(&temp, &sequences);
-                  }
-                else
-                  std::cout
-                      << prettyPrint.TCoffeeAlignFormat(&temp, &sequences);
+                //Overwritting would be realy uncool
+                ofstream foo(resultFilename.c_str(), ios_base::app);
+                foo << prettyPrint.TCoffeeLibHeader(&sequences);
               }
-            if (verbose)
-              std::clog << std::endl;
+            else
+              std::cout << prettyPrint.TCoffeeLibHeader(&sequences);
 
-          }
-        if (resultF)
-          {
-            //Overwritting would be realy uncool
-            ofstream foo(resultFilename.c_str(), ios_base::app);
-            foo << prettyPrint.TCoffeeLibFooter();
+            for (uint u=0; u<sequences.getNumberOfSequences(); u++)
+              {
+
+                for (uint k=u+1; k<sequences.getNumberOfSequences(); k++)
+                  {
+                    if (verbose)
+                      std::clog << "*" << std::flush;
+                    Circal::Alignment temp = pseuC.GotohAlignment(
+                        sequences.getSequence(u), sequences.getSequence(k),
+                        &scoreM, delta, verbose);
+                    if (outF)
+                      seqWriter.write(outFilename,
+                          *dynamic_cast<bpp::SequenceContainer*>(&temp), false);
+                    if (resultF)
+                      {
+                        //Overwritting would be realy uncool
+                        ofstream foo(resultFilename.c_str(), ios_base::app);
+                        foo
+                            << prettyPrint.TCoffeeAlignFormat(&temp, &sequences);
+                      }
+                    else
+                      std::cout << prettyPrint.TCoffeeAlignFormat(&temp,
+                          &sequences);
+                  }
+                if (verbose)
+                  std::clog << std::endl;
+
+              }
+            if (resultF)
+              {
+                //Overwritting would be realy uncool
+                ofstream foo(resultFilename.c_str(), ios_base::app);
+                foo << prettyPrint.TCoffeeLibFooter();
+              }
+            else
+              std::cout << prettyPrint.TCoffeeLibFooter();
+
           }
         else
-          std::cout << prettyPrint.TCoffeeLibFooter();
-
+          {
+            Circal::Alignment multi = circal.GotohalignMultiple(&sequences,
+                &scoreM, delta, verbose);
+            if (outF)
+              seqWriter.write(outFilename,
+                  *dynamic_cast<bpp::SequenceContainer*>(&multi));
+            if (resultF)
+              {
+                ofstream foo(resultFilename.c_str());
+                foo << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
+              }
+            else
+              std::cout << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
+          }
       }
     else
       {
-        Circal::Alignment multi = circal.GotohalignMultiple(&sequences,
-            &scoreM, delta, verbose);
-        if (outF)
-          seqWriter.write(outFilename,
-              *dynamic_cast<bpp::SequenceContainer*>(&multi));
-        if (resultF)
+        //Create Multiple Circular Alignment
+        Circal::MultiplePseudoCircularAlignmentFactory circal;
+        Circal::PseudoCircularAlignmentFactory pseuC;
+        if (stepWise)
           {
-            ofstream foo(resultFilename.c_str());
-            foo << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
+
+            if (resultF)
+              {
+                //Overwritting would be realy uncool
+                ofstream foo(resultFilename.c_str(), ios_base::app);
+                foo << prettyPrint.TCoffeeLibHeader(&sequences);
+              }
+            else
+              std::cout << prettyPrint.TCoffeeLibHeader(&sequences);
+
+            for (uint u=0; u<sequences.getNumberOfSequences(); u++)
+              {
+
+                for (uint k=u+1; k<sequences.getNumberOfSequences(); k++)
+                  {
+                    if (verbose)
+                      std::clog << "*" << std::flush;
+                    Circal::Alignment temp = pseuC.GotohAlignment(
+                        sequences.getSequence(u), sequences.getSequence(k),
+                        &scoreM, delta, verbose);
+                    if (outF)
+                      seqWriter.write(outFilename,
+                          *dynamic_cast<bpp::SequenceContainer*>(&temp), false);
+                    if (resultF)
+                      {
+                        //Overwritting would be realy uncool
+                        ofstream foo(resultFilename.c_str(), ios_base::app);
+                        foo
+                            << prettyPrint.TCoffeeAlignFormat(&temp, &sequences);
+                      }
+                    else
+                      std::cout << prettyPrint.TCoffeeAlignFormat(&temp,
+                          &sequences);
+                  }
+                if (verbose)
+                  std::clog << std::endl;
+
+              }
+            if (resultF)
+              {
+                //Overwritting would be realy uncool
+                ofstream foo(resultFilename.c_str(), ios_base::app);
+                foo << prettyPrint.TCoffeeLibFooter();
+              }
+            else
+              std::cout << prettyPrint.TCoffeeLibFooter();
+
           }
         else
-          std::cout << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
+          {
+            Circal::Alignment multi = circal.GotohalignMultiple(&sequences,
+                &scoreM, delta, verbose);
+            if (outF)
+              seqWriter.write(outFilename,
+                  *dynamic_cast<bpp::SequenceContainer*>(&multi));
+            if (resultF)
+              {
+                ofstream foo(resultFilename.c_str());
+                foo << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
+              }
+            else
+              std::cout << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
+          }
       }
     if (multipl)
-        {
-          std::string argument = "t_coffee -in=L"+resultFilename+",Mclustalw_pair";
-          
-          system(argument.c_str());
-          exit(1);
-        }
+      {
+        std::string argument = "t_coffee -in=L"+resultFilename
+            +",Mclustalw_pair";
+
+        system(argument.c_str());
+        exit(1);
+      }
   }
 
 int main(int args, char* argv[])
@@ -209,6 +286,7 @@ int main(int args, char* argv[])
     bool scoreSet = false;
     bool stepWise = false;
     bool multipl = false;
+    bool brute = false;
 
     std::string alphaTyp;
     std::string seqFilename;
@@ -232,6 +310,9 @@ int main(int args, char* argv[])
             break;
           case 'v':
             verbose = true;
+            break;
+          case 'b':
+            brute = true;
             break;
           case 'd':
             {
@@ -335,7 +416,7 @@ int main(int args, char* argv[])
         Circal::ScoringModel scoreM(scoreFilename);
 
         doAllignment(alpha, seqFilename, scoreM, outFilename, resultFilename,
-            outF, resultF, delta, verbose, stepWise, multipl);
+            outF, resultF, delta, verbose, stepWise, multipl, brute);
         delete alpha;
       }
     else if (alphaTyp == "RNA")
@@ -346,7 +427,7 @@ int main(int args, char* argv[])
         Circal::ScoringModel scoreM(scoreFilename);
 
         doAllignment(alpha, seqFilename, scoreM, outFilename, resultFilename,
-            outF, resultF, delta, verbose, stepWise, multipl);
+            outF, resultF, delta, verbose, stepWise, multipl, brute);
         delete alpha;
       }
     else
@@ -358,7 +439,7 @@ int main(int args, char* argv[])
             new Circal::VertebrateMitochondrialGenomeAlphabet(&scoreM);
 
         doAllignment(alpha, seqFilename, scoreM, outFilename, resultFilename,
-            outF, resultF, delta, verbose, stepWise, multipl);
+            outF, resultF, delta, verbose, stepWise, multipl, brute);
         delete alpha;
       }
 

@@ -34,7 +34,7 @@ namespace Circal
 
     Alignment MultipleAlignmentFactory::GotohalignMultiple(
         const bpp::VectorSequenceContainer* input, ScoringModel* scoreM,
-        bool verbose)
+        int &delta, bool verbose)
       {
 
         Alignment out(input->getAlphabet());
@@ -63,7 +63,7 @@ namespace Circal
       }
     Alignment MultipleAlignmentFactory::NMWalignMultiple(
         const bpp::VectorSequenceContainer* input, ScoringModel* scoreM,
-        bool verbose)
+        int &delta, bool verbose)
       {
         Alignment out(input->getAlphabet());
 
