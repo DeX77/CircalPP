@@ -192,13 +192,10 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
           std::cout << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
       }
     if (multipl)
-      if (fork()==0)
         {
-          std::string argument = "-in=L"+resultFilename+",Mclustalw_pair";
+          std::string argument = "t_coffee -in=L"+resultFilename+",Mclustalw_pair";
           
-          execl("t_coffee", "t_coffee", argument.c_str(), NULL);
-          std::cerr << "Error could not launch T-Coffee.. not in path?"
-              << std::endl;
+          system(argument.c_str());
           exit(1);
         }
   }
