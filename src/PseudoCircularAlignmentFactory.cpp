@@ -745,12 +745,8 @@ namespace Circal
         uint i = D.size()-1;
         uint j = D.at(0).size()-1;
 
-        //Forward Iteration
-        //        AlignmentFactory::ForwardRecursionGotoh(inA, &B, scoreM, &D, &P, &Q);
-
-        AlignmentFactory::ForwardRecursionSmithWatermanAffin(inA, &B, scoreM,
-            &D, &P, &Q, i, j);
-
+        AlignmentFactory::ForwardRecursionGotoh(inA,&B,scoreM,&D,&P,&Q);
+        
         uint horizontalStart = j;
         Alignment temp = AlignmentFactory::BacktrackingGotohGlobal(inA, &B,
             scoreM, &D, &P, &Q, i, j);
