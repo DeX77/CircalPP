@@ -47,233 +47,277 @@ std::string usage()
     out<<" -b  brute-force mode" << std::endl;
     out<<" -m  build multiple alignment using t-coffee" << std::endl;
     out<<" -s  output results stepwise (for very large files)" << std::endl;
+    out<<" -t  <integer> random sequences statistics up to size n" << std::endl;
     out<<" -d  <integer>  delta value" << std::endl;
     out<<" -D  input is dna" << std::endl;
     out<<" -R  input is rna" << std::endl;
-    out<<" -G  alphabet is build from scoring sheme" << std::endl;
-    out<<" -S  <filename> file including the scoring sheme" << std::endl;
+    out<<" -G  alphabet is build from scoring scheme" << std::endl;
+    out<<" -S  <filename> file including the scoring scheme" << std::endl;
     out<<" -I  <filename> read data from fasta file instead of stdin"
         << std::endl;
     out<<" -F  <filename> write all pairwise alignments as fasta to <filename>"
         << std::endl;
-    out<<" -O <filename> write output to <filename> instead of stdout"
+    out<<" -O  <filename> write output to <filename> instead of stdout"
         << std::endl;
     return out.str();
   }
 void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
     Circal::ScoringModel &scoreM, const std::string &outFilename,
     const std::string &resultFilename, bool outF, bool resultF, int &delta,
-    bool verbose, bool stepWise, bool multipl, bool brute)
+    bool verbose, bool stepWise, bool multipl, bool brute, bool statistic,
+    uint &size)
   {
 
-    //Container for read sequences
-    bpp::VectorSequenceContainer sequences(alpha);
-
-    //Initialize FASTA Reader
-    if (alpha->getAlphabetType() == "Vertebrate Mitochondrial Genome")
+    if (statistic)
       {
-        if (verbose)
-          std::clog << "Using WhitespaceFasta Reader" << std::endl;
-        Circal::WhitespaceFasta seqReader;
-        //Check for Sequence File Existence
-        if (!bpp::FileTools::fileExists(seqFilename))
-          {
-            std::cerr << "Can't open Sequence File "<< seqFilename
-                << " using stdin instead" << std::endl;
-            seqReader.read(std::cin, sequences);
-          }
-        else
-          //Try parsing the file for FASTA
-          try
-            {
-              seqReader.read(seqFilename,sequences);
-            }
-          catch(bpp::Exception &e)
-            {
-              std::cerr << "Invalid File Format!" << std::endl;
-              std::cerr << e.what() << std::endl;
-              exit(-1);
-            }
-      }
-    else
-      {
-        if (verbose)
-          std::clog << "Using CorrectedFasta Reader" << std::endl;
+        int bad;
+        int good;
+        int newSize1;
+        int newSize2;
 
-        Circal::CorrectedFasta seqReader;
-        //Check for Sequence File Existence
-        if (!bpp::FileTools::fileExists(seqFilename))
-          {
-            std::cerr << "Can't open Sequence File "<< seqFilename
-                << " using stdin instead" << std::endl;
-            seqReader.read(std::cin, sequences);
-          }
-        else
-          //Try parsing the file for FASTA
-          try
-            {
-              seqReader.read(seqFilename,sequences);
-            }
-          catch(bpp::Exception &e)
-            {
-              std::cerr << "Invalid File Format!" << std::endl;
-              std::cerr << e.what() << std::endl;
-              exit(-1);
-            }
-      }
-
-    Circal::CorrectedFasta seqWriter;
-    Circal::Output prettyPrint;
-
-    if (brute)
-      {
-        //Create Multiple Circular Alignment
-        Circal::MultipleCircularAlignmentFactory circal;
-        Circal::CircularAlignmentFactory pseuC;
-        if (stepWise)
-          {
-
-            if (resultF)
-              {
-                //Overwritting would be realy uncool
-                ofstream foo(resultFilename.c_str(), ios_base::app);
-                foo << prettyPrint.TCoffeeLibHeader(&sequences);
-              }
-            else
-              std::cout << prettyPrint.TCoffeeLibHeader(&sequences);
-
-            for (uint u=0; u<sequences.getNumberOfSequences(); u++)
-              {
-
-                for (uint k=u+1; k<sequences.getNumberOfSequences(); k++)
-                  {
-                    if (verbose)
-                      std::clog << "*" << std::flush;
-                    Circal::Alignment temp = pseuC.GotohAlignment(
-                        sequences.getSequence(u), sequences.getSequence(k),
-                        &scoreM, delta, verbose);
-                    if (outF)
-                      seqWriter.write(outFilename,
-                          *dynamic_cast<bpp::SequenceContainer*>(&temp), false);
-                    if (resultF)
-                      {
-                        //Overwritting would be realy uncool
-                        ofstream foo(resultFilename.c_str(), ios_base::app);
-                        foo
-                            << prettyPrint.TCoffeeAlignFormat(&temp, &sequences);
-                      }
-                    else
-                      std::cout << prettyPrint.TCoffeeAlignFormat(&temp,
-                          &sequences);
-                  }
-                if (verbose)
-                  std::clog << std::endl;
-
-              }
-            if (resultF)
-              {
-                //Overwritting would be realy uncool
-                ofstream foo(resultFilename.c_str(), ios_base::app);
-                foo << prettyPrint.TCoffeeLibFooter();
-              }
-            else
-              std::cout << prettyPrint.TCoffeeLibFooter();
-
-          }
-        else
-          {
-            Circal::Alignment multi = circal.GotohalignMultiple(&sequences,
-                &scoreM, delta, verbose);
-            if (outF)
-              seqWriter.write(outFilename,
-                  *dynamic_cast<bpp::SequenceContainer*>(&multi));
-            if (resultF)
-              {
-                ofstream foo(resultFilename.c_str());
-                foo << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
-              }
-            else
-              std::cout << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
-          }
-      }
-    else
-      {
-        //Create Multiple Circular Alignment
-        Circal::MultiplePseudoCircularAlignmentFactory circal;
+        Circal::CircularAlignmentFactory realC;
         Circal::PseudoCircularAlignmentFactory pseuC;
-        if (stepWise)
+
+        while (true)
           {
+            //Randomize Size
+            newSize1 = rand() % size;
+            newSize2 = rand() % size;
 
-            if (resultF)
+            Circal::RandomSequence temp1(newSize1, alpha);
+            Circal::RandomSequence temp2(newSize2, alpha);
+
+            Circal::Alignment tempPseu = pseuC.GotohAlignment(&temp1, &temp2,
+                &scoreM, delta, verbose);
+            Circal::Alignment tempPseuGlobal = pseuC.GotohAlignmentGlobal(
+                &temp1, &temp2, &scoreM, delta, verbose);
+            Circal::Alignment tempReal = realC.GotohAlignment(&temp1, &temp2,
+                &scoreM, delta, verbose);
+            if (verbose)
               {
-                //Overwritting would be realy uncool
-                ofstream foo(resultFilename.c_str(), ios_base::app);
-                foo << prettyPrint.TCoffeeLibHeader(&sequences);
+                std::clog << "Size Sequence 1:" << "\t" << newSize1 << "\t"
+                    << "Size Sequence 2:" << "\t" << newSize2 << "\t"
+                    << " score genau:" << "\t" << tempReal.get_Score() << "\t"
+                    << " locale Score: " << "\t" << tempPseu.get_Score()
+                    << "\t" << " globale Score: " << "\t"
+                    << tempPseuGlobal.get_Score() << std::endl;
+                //Recalculate Score from local to global
+              }
+          }
+      }
+    else
+      {
+        //Container for read sequences
+        bpp::VectorSequenceContainer sequences(alpha);
+
+        //Initialize FASTA Reader
+        if (alpha->getAlphabetType() == "Vertebrate Mitochondrial Genome")
+          {
+            if (verbose)
+              std::clog << "Using WhitespaceFasta Reader" << std::endl;
+            Circal::WhitespaceFasta seqReader;
+            //Check for Sequence File Existence
+            if (!bpp::FileTools::fileExists(seqFilename))
+              {
+                std::cerr << "Can't open Sequence File "<< seqFilename
+                    << " using stdin instead" << std::endl;
+                seqReader.read(std::cin, sequences);
               }
             else
-              std::cout << prettyPrint.TCoffeeLibHeader(&sequences);
-
-            for (uint u=0; u<sequences.getNumberOfSequences(); u++)
-              {
-
-                for (uint k=u+1; k<sequences.getNumberOfSequences(); k++)
-                  {
-                    if (verbose)
-                      std::clog << "*" << std::flush;
-                    Circal::Alignment temp = pseuC.GotohAlignment(
-                        sequences.getSequence(u), sequences.getSequence(k),
-                        &scoreM, delta, verbose);
-                    if (outF)
-                      seqWriter.write(outFilename,
-                          *dynamic_cast<bpp::SequenceContainer*>(&temp), false);
-                    if (resultF)
-                      {
-                        //Overwritting would be realy uncool
-                        ofstream foo(resultFilename.c_str(), ios_base::app);
-                        foo
-                            << prettyPrint.TCoffeeAlignFormat(&temp, &sequences);
-                      }
-                    else
-                      std::cout << prettyPrint.TCoffeeAlignFormat(&temp,
-                          &sequences);
-                  }
-                if (verbose)
-                  std::clog << std::endl;
-
-              }
-            if (resultF)
-              {
-                //Overwritting would be realy uncool
-                ofstream foo(resultFilename.c_str(), ios_base::app);
-                foo << prettyPrint.TCoffeeLibFooter();
-              }
-            else
-              std::cout << prettyPrint.TCoffeeLibFooter();
-
+              //Try parsing the file for FASTA
+              try
+                {
+                  seqReader.read(seqFilename,sequences);
+                }
+              catch(bpp::Exception &e)
+                {
+                  std::cerr << "Invalid File Format!" << std::endl;
+                  std::cerr << e.what() << std::endl;
+                  exit(-1);
+                }
           }
         else
           {
-            Circal::Alignment multi = circal.GotohalignMultiple(&sequences,
-                &scoreM, delta, verbose);
-            if (outF)
-              seqWriter.write(outFilename,
-                  *dynamic_cast<bpp::SequenceContainer*>(&multi));
-            if (resultF)
+            if (verbose)
+              std::clog << "Using CorrectedFasta Reader" << std::endl;
+
+            Circal::CorrectedFasta seqReader;
+            //Check for Sequence File Existence
+            if (!bpp::FileTools::fileExists(seqFilename))
               {
-                ofstream foo(resultFilename.c_str());
-                foo << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
+                std::cerr << "Can't open Sequence File "<< seqFilename
+                    << " using stdin instead" << std::endl;
+                seqReader.read(std::cin, sequences);
               }
             else
-              std::cout << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
+              //Try parsing the file for FASTA
+              try
+                {
+                  seqReader.read(seqFilename,sequences);
+                }
+              catch(bpp::Exception &e)
+                {
+                  std::cerr << "Invalid File Format!" << std::endl;
+                  std::cerr << e.what() << std::endl;
+                  exit(-1);
+                }
           }
-      }
-    if (multipl)
-      {
-        std::string argument = "t_coffee -in=L"+resultFilename
-            +",Mclustalw_pair";
 
-        system(argument.c_str());
-        exit(1);
+        Circal::CorrectedFasta seqWriter;
+        Circal::Output prettyPrint;
+
+        if (brute)
+          {
+            //Create Multiple Circular Alignment
+            Circal::MultipleCircularAlignmentFactory circal;
+            Circal::CircularAlignmentFactory pseuC;
+            if (stepWise)
+              {
+
+                if (resultF)
+                  {
+                    //Overwritting would be realy uncool
+                    ofstream foo(resultFilename.c_str(), ios_base::app);
+                    foo << prettyPrint.TCoffeeLibHeader(&sequences);
+                  }
+                else
+                  std::cout << prettyPrint.TCoffeeLibHeader(&sequences);
+
+                for (uint u=0; u<sequences.getNumberOfSequences(); u++)
+                  {
+
+                    for (uint k=u+1; k<sequences.getNumberOfSequences(); k++)
+                      {
+                        if (verbose)
+                          std::clog << "*" << std::flush;
+                        Circal::Alignment temp = pseuC.GotohAlignment(
+                            sequences.getSequence(u), sequences.getSequence(k),
+                            &scoreM, delta, verbose);
+                        if (outF)
+                          seqWriter.write(outFilename,
+                              *dynamic_cast<bpp::SequenceContainer*>(&temp),
+                              false);
+                        if (resultF)
+                          {
+                            //Overwritting would be realy uncool
+                            ofstream foo(resultFilename.c_str(), ios_base::app);
+                            foo << prettyPrint.TCoffeeAlignFormat(&temp,
+                                &sequences);
+                          }
+                        else
+                          std::cout << prettyPrint.TCoffeeAlignFormat(&temp,
+                              &sequences);
+                      }
+                    if (verbose)
+                      std::clog << std::endl;
+
+                  }
+                if (resultF)
+                  {
+                    //Overwritting would be realy uncool
+                    ofstream foo(resultFilename.c_str(), ios_base::app);
+                    foo << prettyPrint.TCoffeeLibFooter();
+                  }
+                else
+                  std::cout << prettyPrint.TCoffeeLibFooter();
+
+              }
+            else
+              {
+                Circal::Alignment multi = circal.GotohalignMultiple(&sequences,
+                    &scoreM, delta, verbose);
+                if (outF)
+                  seqWriter.write(outFilename,
+                      *dynamic_cast<bpp::SequenceContainer*>(&multi));
+                if (resultF)
+                  {
+                    ofstream foo(resultFilename.c_str());
+                    foo << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
+                  }
+                else
+                  std::cout << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
+              }
+          }
+        else
+          {
+            //Create Multiple Circular Alignment
+            Circal::MultiplePseudoCircularAlignmentFactory circal;
+            Circal::PseudoCircularAlignmentFactory pseuC;
+            if (stepWise)
+              {
+
+                if (resultF)
+                  {
+                    //Overwritting would be realy uncool
+                    ofstream foo(resultFilename.c_str(), ios_base::app);
+                    foo << prettyPrint.TCoffeeLibHeader(&sequences);
+                  }
+                else
+                  std::cout << prettyPrint.TCoffeeLibHeader(&sequences);
+
+                for (uint u=0; u<sequences.getNumberOfSequences(); u++)
+                  {
+
+                    for (uint k=u+1; k<sequences.getNumberOfSequences(); k++)
+                      {
+                        if (verbose)
+                          std::clog << "*" << std::flush;
+                        Circal::Alignment temp = pseuC.GotohAlignment(
+                            sequences.getSequence(u), sequences.getSequence(k),
+                            &scoreM, delta, verbose);
+                        if (outF)
+                          seqWriter.write(outFilename,
+                              *dynamic_cast<bpp::SequenceContainer*>(&temp),
+                              false);
+                        if (resultF)
+                          {
+                            //Overwritting would be realy uncool
+                            ofstream foo(resultFilename.c_str(), ios_base::app);
+                            foo << prettyPrint.TCoffeeAlignFormat(&temp,
+                                &sequences);
+                          }
+                        else
+                          std::cout << prettyPrint.TCoffeeAlignFormat(&temp,
+                              &sequences);
+                      }
+                    if (verbose)
+                      std::clog << std::endl;
+
+                  }
+                if (resultF)
+                  {
+                    //Overwritting would be realy uncool
+                    ofstream foo(resultFilename.c_str(), ios_base::app);
+                    foo << prettyPrint.TCoffeeLibFooter();
+                  }
+                else
+                  std::cout << prettyPrint.TCoffeeLibFooter();
+
+              }
+            else
+              {
+                Circal::Alignment multi = circal.GotohalignMultiple(&sequences,
+                    &scoreM, delta, verbose);
+                if (outF)
+                  seqWriter.write(outFilename,
+                      *dynamic_cast<bpp::SequenceContainer*>(&multi));
+                if (resultF)
+                  {
+                    ofstream foo(resultFilename.c_str());
+                    foo << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
+                  }
+                else
+                  std::cout << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
+              }
+          }
+        if (multipl)
+          {
+            std::string argument = "t_coffee -in=L"+resultFilename
+                +",Mclustalw_pair";
+
+            system(argument.c_str());
+            exit(1);
+          }
       }
   }
 
@@ -287,6 +331,8 @@ int main(int args, char* argv[])
     bool stepWise = false;
     bool multipl = false;
     bool brute = false;
+    bool statistic = false;
+    uint size = 0;
 
     std::string alphaTyp;
     std::string seqFilename;
@@ -302,6 +348,15 @@ int main(int args, char* argv[])
         if (argv[i][0]=='-')
           switch (argv[i][1])
             {
+          case 't':
+            {
+              statistic = true;
+              std::stringstream parser(argv[i+1]);
+              parser >> size;
+              if (verbose)
+                std::clog << "max size: " << delta << std::endl;
+              break;
+            }
           case 'm':
             multipl = true;
             break;
@@ -416,7 +471,8 @@ int main(int args, char* argv[])
         Circal::ScoringModel scoreM(scoreFilename);
 
         doAllignment(alpha, seqFilename, scoreM, outFilename, resultFilename,
-            outF, resultF, delta, verbose, stepWise, multipl, brute);
+            outF, resultF, delta, verbose, stepWise, multipl, brute, statistic,
+            size);
         delete alpha;
       }
     else if (alphaTyp == "RNA")
@@ -427,7 +483,8 @@ int main(int args, char* argv[])
         Circal::ScoringModel scoreM(scoreFilename);
 
         doAllignment(alpha, seqFilename, scoreM, outFilename, resultFilename,
-            outF, resultF, delta, verbose, stepWise, multipl, brute);
+            outF, resultF, delta, verbose, stepWise, multipl, brute, statistic,
+            size);
         delete alpha;
       }
     else
@@ -439,7 +496,8 @@ int main(int args, char* argv[])
             new Circal::VertebrateMitochondrialGenomeAlphabet(&scoreM);
 
         doAllignment(alpha, seqFilename, scoreM, outFilename, resultFilename,
-            outF, resultF, delta, verbose, stepWise, multipl, brute);
+            outF, resultF, delta, verbose, stepWise, multipl, brute, statistic,
+            size);
         delete alpha;
       }
 

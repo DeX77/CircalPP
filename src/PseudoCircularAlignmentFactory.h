@@ -55,9 +55,12 @@ namespace Circal
           const bpp::Sequence* B, ScoringModel* scoreM, const int &delta,
           bool verbose=false);
 
-      Alignment GotohAlignment(const bpp::Sequence* A, const bpp::Sequence* B,
-          ScoringModel* scoreM, const int &delta, bool verbose=false);
-
+      Alignment GotohAlignment(const bpp::Sequence* inA,
+          const bpp::Sequence* inB, ScoringModel* scoreM, const int &delta,
+          bool verbose);
+      Alignment GotohAlignmentGlobal(const bpp::Sequence* inA,
+          const bpp::Sequence* inB, ScoringModel* scoreM, const int &delta,
+          bool verbose);
       };
   }
 

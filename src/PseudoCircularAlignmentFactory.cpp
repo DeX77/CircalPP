@@ -42,11 +42,11 @@ namespace Circal
         double gapOpenP;
         double gapExtendP;
         double gapOpenQ;
-        double gapExtendQ;        
+        double gapExtendQ;
         double diagScore;
         double gapExA;
         double gapExB;
-        
+
         double lrla = 0;
 
         //B is doubled=pseudorotated so correct size is B/2
@@ -79,12 +79,12 @@ namespace Circal
                         -1));
 
                     gapExB = scoreM->ScoreOfGapExtend(B->getChar(j-1));
-                    
+
                     //Score of Open Gap in A
                     gapOpenP = D->at(i-1).at(j).at(0);
                     gapOpenP += scoreM->ScoreOfGapOpen(B->getChar(j-1));
                     gapOpenP += gapExB;
-                    
+
                     //Score of continue Gap in A
                     gapExtendP = P->at(i-1).at(j).at(0);
                     gapExtendP += gapExB;
@@ -108,25 +108,25 @@ namespace Circal
                       {
                         gapExB = scoreM->ScoreOfGapExtend(B->getChar(j-1));
                         gapExA = scoreM->ScoreOfGapExtend(A->getChar(i-1));
-                        
+
                         //Score of Match eg. Mismatch
                         diagScore = D->at(i-1).at(j-1).at(k-1) + scoreM->ScoreOf(A->getChar(i-1),
                             B->getChar(j -1));
 
                         //Score of Open Gap in A
-                        gapOpenP  = D->at(i-1).at(j).at(k);
+                        gapOpenP = D->at(i-1).at(j).at(k);
                         gapOpenP += scoreM->ScoreOfGapOpen(B->getChar(j-1));
                         gapOpenP += gapExB;
-                        
+
                         //Score of continue Gap in A
-                        gapOpenP  = P->at(i-1).at(j).at(k);
+                        gapOpenP = P->at(i-1).at(j).at(k);
                         gapOpenP += gapExB;
-                        
+
                         //Score of Open Gap in B
-                        gapOpenQ  = D->at(i).at(j-1).at(k-1);
+                        gapOpenQ = D->at(i).at(j-1).at(k-1);
                         gapOpenQ += scoreM->ScoreOfGapOpen(A->getChar(i-1));
                         gapOpenQ += gapExA;
-                        
+
                         //Score of continue Gap in B
                         gapExtendQ = Q->at(i).at(j-1).at(k-1) + gapExA;
 
@@ -157,27 +157,27 @@ namespace Circal
 
                       gapExA = scoreM->ScoreOfGapExtend(A->getChar(i-1));
                       gapExB = scoreM->ScoreOfGapExtend(B->getChar(j-1));
-                        
+
                       //Score of Match eg. Mismatch
                       diagScore = D->at(i-1).at(j-1).at(k) + scoreM->ScoreOf(A->getChar(i-1),
                           B->getChar(j -1));
 
                       //Score of Open Gap in A
-                      gapOpenP  = D->at(i-1).at(j).at(k);
+                      gapOpenP = D->at(i-1).at(j).at(k);
                       gapOpenP += scoreM->ScoreOfGapOpen(B->getChar(j-1));
                       gapOpenP += gapExB;
-                      
+
                       //Score of continue Gap in A
-                      gapExtendP  = P->at(i-1).at(j).at(k);
+                      gapExtendP = P->at(i-1).at(j).at(k);
                       gapExtendP += gapExB;
-                      
+
                       //Score of Open Gap in B
-                      gapOpenQ  = D->at(i).at(j-1).at(k);
+                      gapOpenQ = D->at(i).at(j-1).at(k);
                       gapOpenQ += scoreM->ScoreOfGapOpen(A->getChar(i-1));
                       gapOpenQ += gapExA;
-                      
+
                       //Score of continue Gap in B
-                      gapExtendQ  = Q->at(i).at(j-1).at(k);
+                      gapExtendQ = Q->at(i).at(j-1).at(k);
                       gapExtendQ += gapExA;
 
                       //Set Helper Matrices Values
@@ -380,8 +380,8 @@ namespace Circal
       }
     double PseudoCircularAlignmentFactory::ForwardRecursionSmithWaterman(
         const bpp::Sequence* A, const PseudoRotatedSequence* B,
-        ScoringModel* scoreM, const int &delta, ScoreMatrix3D* D,
-        uint &bi, uint &bj)
+        ScoringModel* scoreM, const int &delta, ScoreMatrix3D* D, uint &bi,
+        uint &bj)
       {
         double gapOpenP;
         double gapOpenQ;
@@ -677,7 +677,7 @@ namespace Circal
 
         //First of all check which of the sequences is longer
         if (inA->size()>inB->size())
-          return GotohAlignment(inB, inA, scoreM, delta);
+          return GotohAlignment(inB, inA, scoreM, delta, verbose);
 
         PseudoRotatedSequence B(inB);
 
@@ -726,4 +726,62 @@ namespace Circal
             &kQ, i, j, verbose);
 
       }
+
+    Alignment PseudoCircularAlignmentFactory::GotohAlignmentGlobal(
+        const bpp::Sequence* inA, const bpp::Sequence* inB,
+        ScoringModel* scoreM, const int &delta, bool verbose)
+      {
+
+        //First of all check which of the sequences is longer
+        if (inA->size()>inB->size())
+          return GotohAlignment(inB, inA, scoreM, delta, verbose);
+
+        PseudoRotatedSequence B(inB);
+
+        ScoreMatrix D = matrix->InitScoreMatrixWith(inA, &B, 0);
+        ScoreMatrix P = matrix->InitScoreMatrixWith(inA, &B, 0);
+        ScoreMatrix Q = matrix->InitScoreMatrixWith(inA, &B, 0);
+
+        uint i = D.size()-1;
+        uint j = D.at(0).size()-1;
+
+        //Forward Iteration
+        //        AlignmentFactory::ForwardRecursionGotoh(inA, &B, scoreM, &D, &P, &Q);
+
+        AlignmentFactory::ForwardRecursionSmithWatermanAffin(inA, &B, scoreM,
+            &D, &P, &Q, i, j);
+
+        uint horizontalStart = j;
+        Alignment temp = AlignmentFactory::BacktrackingGotohGlobal(inA, &B,
+            scoreM, &D, &P, &Q, i, j);
+        uint horizontalEnd = j;
+
+        //Check for length of actual Alignment
+        if ((horizontalStart-horizontalEnd) <= inB->size())
+          {
+            //Seems to be ok
+            if (verbose)
+              std::clog << std::endl << "Optimum sofort gefunden!" << std::endl;
+            return temp;
+          }
+        else if (verbose)
+          std::clog << std::endl << "Yipi ya yay Schweinebacke" << std::endl;
+
+        //The hard way
+        ScoreMatrix3D kD = matrix->InitScoreMatrix3DWith(inA, &B, delta, 0);
+        ScoreMatrix3D kP = matrix->InitScoreMatrix3DWith(inA, &B, delta, 0);
+        ScoreMatrix3D kQ = matrix->InitScoreMatrix3DWith(inA, &B, delta, 0);
+
+        i = D.size()-1;
+        j = D.at(0).size()-1;
+
+        //Forward Iteration
+        ForwardRecursionSmithWatermanAffin(inA, &B, scoreM, delta, &kD, &kP,
+            &kQ, i, j);
+
+        return BacktrackingSmithWatermanAffin(inA, &B, scoreM, delta, &kD, &kP,
+            &kQ, i, j, verbose);
+
+      }
+
   }
