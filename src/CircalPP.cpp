@@ -354,7 +354,7 @@ int main(int args, char* argv[])
               std::stringstream parser(argv[i+1]);
               parser >> size;
               if (verbose)
-                std::clog << "max size: " << delta << std::endl;
+                std::clog << "max size: " << size << std::endl;
               break;
             }
           case 'm':
