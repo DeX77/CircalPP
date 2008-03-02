@@ -89,18 +89,22 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
 
             Circal::Alignment tempPseu = pseuC.GotohAlignment(&temp1, &temp2,
                 &scoreM, delta, verbose);
-            Circal::Alignment tempPseuGlobal = pseuC.GotohAlignmentGlobal(
-                &temp1, &temp2, &scoreM, delta, verbose);
             Circal::Alignment tempReal = realC.GotohAlignment(&temp1, &temp2,
                 &scoreM, delta, verbose);
+            //Dirty hack
+            uint difference = std::abs((long long int)(tempReal.getSequence(0)->size() - tempPseu.getSequence(0)->size()));
+            double realGlobalScore = tempPseu.get_Score();
+            realGlobalScore += scoreM.ScoreOfGapExtend("A") * difference;
+            realGlobalScore += scoreM.ScoreOfGapOpen("A");
+
             if (verbose)
               {
                 std::clog << "Size Sequence 1:" << "\t" << newSize1 << "\t"
                     << "Size Sequence 2:" << "\t" << newSize2 << "\t"
-                    << " score genau:" << "\t" << tempReal.get_Score() << "\t"
                     << " locale Score: " << "\t" << tempPseu.get_Score()
-                    << "\t" << " globale Score: " << "\t"
-                    << tempPseuGlobal.get_Score() << std::endl;
+                    << "\t" << " globale Score: " << "\t" << realGlobalScore
+                    << "\t" << " score genau:" << "\t" << tempReal.get_Score()
+                    << "\t" << std::endl;
                 //Recalculate Score from local to global
               }
           }
