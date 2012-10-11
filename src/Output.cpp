@@ -24,7 +24,7 @@
 #include "PseudoRotatedSequence.h"
 #include <Seq/SymbolList.h>
 
-#include <Seq/sequences>
+
 #include <iostream>
 #include <sstream>
 

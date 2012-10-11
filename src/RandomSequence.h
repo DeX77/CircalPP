@@ -20,7 +20,7 @@
 #ifndef RANDOMSEQUENCE_H_
 #define RANDOMSEQUENCE_H_
 
-#include <Seq/Sequence.h>
+#include <Bpp/Seq/Sequence.h>
 
 namespace Circal
   {

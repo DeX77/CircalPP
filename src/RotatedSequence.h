@@ -20,7 +20,7 @@
 #ifndef ROTATEDSEQUENCE_H_
 #define ROTATEDSEQUENCE_H_
 
-#include <Seq/Sequence.h>
+#include <Bpp/Seq/Sequence.h>
 
 namespace bpp
   {

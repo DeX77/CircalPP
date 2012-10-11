@@ -21,9 +21,10 @@
 #define ALIGNMENT_H_
 
 //Includes from Bio++ 
-#include <Seq/AbstractSequenceContainer.h>
-#include <Seq/ioseq>
-#include <Utils/FileTools.h>
+#include <Bpp/Seq/Container/AbstractSequenceContainer.h>
+#include <Bpp/Seq/Container/AlignedSequenceContainer.h>
+#include <Bpp/Seq/Io/IoSequence.h>
+#include <Bpp/Io/FileTools.h>
 
 namespace bpp
   {

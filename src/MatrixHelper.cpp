@@ -22,7 +22,7 @@
 #include "Alignment.h"
 #include "PseudoRotatedSequence.h"
 #include "ErrorClasses.h"
-#include <Seq/sequences>
+#include <limits>
 
 namespace Circal
   {

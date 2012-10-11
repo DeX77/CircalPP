@@ -21,11 +21,11 @@
 #define SCORE_H_
 
 //Includes from Bio++
-#include <Seq/alphabets>
-#include <Seq/sequences>
-#include <Seq/containers>
-#include <Seq/ioseq>
-#include <Utils/FileTools.h>
+
+
+
+#include <Bpp/Seq/Io/IoSequence.h>
+#include <Bpp/Io/FileTools.h>
 #include <string>
 
 namespace Circal

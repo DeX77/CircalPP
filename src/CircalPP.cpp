@@ -29,8 +29,9 @@
 #include "Output.h"
 #include "RandomSequence.h"
 #include "VertebrateMitochondrialGenomeAlphabet.h"
-#include <Seq/alphabets>
 #include <NumCalc/RandomTools.h>
+#include <Bpp/Seq/Alphabet/DNA.h>
+#include <Bpp/Seq/Alphabet/RNA.h>
 #include <iostream>
 #include <fstream>
 #include <sstream>

@@ -20,7 +20,6 @@
 #include "MultipleAlignmentFactory.h"
 #include "Output.h"
 #include "MatrixHelper.h"
-#include <Seq/VectorSequenceContainer.h>
 
 namespace Circal
   {

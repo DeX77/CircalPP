@@ -21,7 +21,7 @@ St, Fifth Floor, Boston, MA 02110, USA
 #define GENOMEALPHABET_H_
 
 //Includes from Bio++
-#include <Seq/alphabets>
+#include <Bpp/Seq/Alphabet/AbstractAlphabet.h>
 
 namespace Circal
   {

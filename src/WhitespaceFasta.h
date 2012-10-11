@@ -21,8 +21,8 @@
 #define WHITESPACEFASTA_H_
 
 #include <sstream>
-#include <Seq/Fasta.h>
-#include <Seq/alphabets>
+#include <Bpp/Seq/Io/Fasta.h>
+
 
 namespace Circal
   {
