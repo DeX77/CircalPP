@@ -182,7 +182,7 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
                 if (resultF)
                   {
                     //Overwritting would be realy uncool
-                    ofstream foo(resultFilename.c_str(), ios_base::app);
+                    std::ofstream foo(resultFilename.c_str(), std::ios_base::app);
                     foo << prettyPrint.TCoffeeLibHeader(&sequences);
                   }
                 else
@@ -205,7 +205,7 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
                         if (resultF)
                           {
                             //Overwritting would be realy uncool
-                            ofstream foo(resultFilename.c_str(), ios_base::app);
+                            std::ofstream foo(resultFilename.c_str(), std::ios_base::app);
                             foo << prettyPrint.TCoffeeAlignFormat(&temp,
                                 &sequences);
                           }
@@ -220,7 +220,7 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
                 if (resultF)
                   {
                     //Overwritting would be realy uncool
-                    ofstream foo(resultFilename.c_str(), ios_base::app);
+                    std::ofstream foo(resultFilename.c_str(), std::ios_base::app);
                     foo << prettyPrint.TCoffeeLibFooter();
                   }
                 else
@@ -236,7 +236,7 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
                       *dynamic_cast<bpp::SequenceContainer*>(&multi));
                 if (resultF)
                   {
-                    ofstream foo(resultFilename.c_str());
+                    std::ofstream foo(resultFilename.c_str());
                     foo << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
                   }
                 else
@@ -254,7 +254,7 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
                 if (resultF)
                   {
                     //Overwritting would be realy uncool
-                    ofstream foo(resultFilename.c_str(), ios_base::app);
+                    std::ofstream foo(resultFilename.c_str(), std::ios_base::app);
                     foo << prettyPrint.TCoffeeLibHeader(&sequences);
                   }
                 else
@@ -277,7 +277,7 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
                         if (resultF)
                           {
                             //Overwritting would be realy uncool
-                            ofstream foo(resultFilename.c_str(), ios_base::app);
+                            std::ofstream foo(resultFilename.c_str(), std::ios_base::app);
                             foo << prettyPrint.TCoffeeAlignFormat(&temp,
                                 &sequences);
                           }
@@ -292,7 +292,7 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
                 if (resultF)
                   {
                     //Overwritting would be realy uncool
-                    ofstream foo(resultFilename.c_str(), ios_base::app);
+                    std::ofstream foo(resultFilename.c_str(), std::ios_base::app);
                     foo << prettyPrint.TCoffeeLibFooter();
                   }
                 else
@@ -308,7 +308,7 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
                       *dynamic_cast<bpp::SequenceContainer*>(&multi));
                 if (resultF)
                   {
-                    ofstream foo(resultFilename.c_str());
+                    std::ofstream foo(resultFilename.c_str());
                     foo << prettyPrint.TCoffeeLibFormat(&multi, &sequences);
                   }
                 else

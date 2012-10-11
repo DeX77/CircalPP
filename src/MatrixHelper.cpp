@@ -74,7 +74,7 @@ namespace Circal
       {
         //Initialize Score Matrix
         ScoreMatrix D = InitScoreMatrixWith(A, B,
-            numeric_limits<double>::infinity());
+            std::numeric_limits<double>::infinity());
 
         D.at(0).at(0) = 0;
 
@@ -101,7 +101,7 @@ namespace Circal
         const bpp::Sequence* B, const double &init)
       {
         //Initialize Score Matrix
-        ScoreMatrix P(A->size()+1, vector<double>(B->size() +1, init));
+        ScoreMatrix P(A->size()+1, std::vector<double>(B->size() +1, init));
 
         return P;
       }
@@ -113,8 +113,8 @@ namespace Circal
         if (delta != 0)
           slaps /= delta;
 
-        ScoreMatrix3D P(A->size()+1, vector< vector<double> >(B->size() +1,
-            vector<double>(slaps, init)));
+        ScoreMatrix3D P(A->size()+1, std::vector< std::vector<double> >(B->size() +1,
+            std::vector<double>(slaps, init)));
 
         return P;
       }
@@ -123,10 +123,10 @@ namespace Circal
         Alignment* pairWiseAlignments, int biggestSequenceSize)
       {
         //Construct Graph as Adjacence Matrix
-        valarray <bool> tmp(false, biggestSequenceSize);
+        std::valarray <bool> tmp(false, biggestSequenceSize);
         BoolMatrix G(tmp, pairWiseAlignments->getNumberOfSequences()/2);
 
-        cout << "constructing Graph"<< endl;
+        std::cout << "constructing Graph"<< std::endl;
         for (uint i=1; i<pairWiseAlignments->getNumberOfSequences(); i +=2)
           {
 #ifdef _OPENMP            

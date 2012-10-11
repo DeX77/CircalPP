@@ -33,7 +33,7 @@ namespace Circal
       virtual ~CorrectedFasta();
 
       void
-          appendFromStream(istream & input, bpp::VectorSequenceContainer & vsc) const
+          appendFromStream(std::istream & input, bpp::VectorSequenceContainer & vsc) const
               throw (bpp::Exception);
       };
   }

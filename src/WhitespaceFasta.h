@@ -33,7 +33,7 @@ namespace Circal
       WhitespaceFasta();
       virtual ~WhitespaceFasta();
       void
-          appendFromStream(istream & input, bpp::VectorSequenceContainer & vsc) const
+          appendFromStream(std::istream & input, bpp::VectorSequenceContainer & vsc) const
               throw (bpp::Exception);
       };
 

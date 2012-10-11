@@ -216,14 +216,14 @@ namespace Circal
       {
 
         //Debug purpose
-        stringstream cout;
+        std::stringstream cout;
 
         Alignment out(A->getAlphabet());
 
-        vector<int> outA;
-        vector<int>::iterator itA = outA.begin();
-        vector<int> outB;
-        vector<int>::iterator itB = outB.begin();
+        std::vector<int> outA;
+        std::vector<int>::iterator itA = outA.begin();
+        std::vector<int> outB;
+        std::vector<int>::iterator itB = outB.begin();
 
         double minScore = 0;
 
@@ -276,14 +276,14 @@ namespace Circal
                     + scoreM->ScoreOfGapExtend(A->getChar(i-1)))
                   {
                     minScore +=scoreM->ScoreOfGapOpen(A->getChar(i-1));
-                    cout << "Left"<< endl;
+                    cout << "Left"<< std::endl;
                     cout << "Score + "
                         << scoreM->ScoreOfGapOpen(A->getChar(i-1)) << std::endl;
                   }
                 //Continued Gap in A
                 else if (Q->at(i).at(j).at(gk) == Q->at(i).at(j-1).at(gk) + scoreM->ScoreOfGapExtend(A->getChar(i-1)))
                   {
-                    cout << "Left cont "<< endl;
+                    cout << "Left cont "<< std::endl;
                   }
                 else
                   {
@@ -305,7 +305,7 @@ namespace Circal
                 if (P->at(i).at(j).at(gk) == D->at(i-1).at(j).at(gk) + scoreM->ScoreOfGapOpen(B->getChar(j-1))
                     + scoreM->ScoreOfGapExtend(B->getChar(j-1)))
                   {
-                    cout << "Up"<< endl;
+                    cout << "Up"<< std::endl;
                     minScore +=scoreM->ScoreOfGapOpen(B->getChar(j-1));
                     cout << "Score + "
                         << scoreM->ScoreOfGapOpen(B->getChar(j-1)) << std::endl;
@@ -313,7 +313,7 @@ namespace Circal
                 //Continued Gap in B
                 else if (P->at(i).at(j).at(gk) == P->at(i-1).at(j).at(gk) + scoreM->ScoreOfGapExtend(B->getChar(j -1)))
                   {
-                    cout << "Up cont"<< endl;
+                    cout << "Up cont"<< std::endl;
                   }
                 else
                   {
@@ -333,7 +333,7 @@ namespace Circal
             else if (D->at(i).at(j).at(gk) == D->at(i-1).at(j-1).at(gk) + scoreM->ScoreOf(A->getChar(i-1), B->getChar(j-1)))
               {
                 minScore += scoreM->ScoreOf(A->getChar(i-1), B->getChar(j-1));
-                cout << "Diag"<< endl;
+                cout << "Diag"<< std::endl;
                 cout << "Score + " << scoreM->ScoreOf(A->getChar(i-1),
                     B->getChar(j-1)) << std::endl;
                 itA = outA.insert(itA, A->getValue(i-1));
@@ -357,8 +357,8 @@ namespace Circal
 
         if (verbose)
           {
-            std::cout << "Offset B: " << j << endl;
-            std::cout << "Offset A: " << i << endl;
+            std::cout << "Offset B: " << j << std::endl;
+            std::cout << "Offset A: " << i << std::endl;
             std::cout << cout.str() << std::endl;
           }
 
@@ -509,10 +509,10 @@ namespace Circal
         uint &i, uint &j)
       {
 
-        vector<int> outA;
-        vector<int>::iterator itA = outA.begin();
-        vector<int> outB;
-        vector<int>::iterator itB = outB.begin();
+        std::vector<int> outA;
+        std::vector<int>::iterator itA = outA.begin();
+        std::vector<int> outB;
+        std::vector<int>::iterator itB = outB.begin();
 
         Alignment out(A->getAlphabet());
 
@@ -556,7 +556,7 @@ namespace Circal
             //Lonely Gap in A
             if (ScoreD == ScoreLeftD + scoreM->ScoreOfGapOpen(A->getChar(i -1)))
               {
-                //cout << "Left"<< endl;
+                //cout << "Left"<< std::endl;
                 minScore += scoreM->ScoreOfGapOpen(A->getChar(i-1));
                 itA = outA.insert(itA, -1);
                 itB = outB.insert(itB, B->getValue(j-1));
@@ -568,7 +568,7 @@ namespace Circal
             else if (ScoreD == ScoreUpD
                 + scoreM->ScoreOfGapOpen(B->getChar(j-1)))
               {
-                //cout << "Up"<< endl;
+                //cout << "Up"<< std::endl;
                 minScore += scoreM->ScoreOfGapOpen(B->getChar(j-1));
                 itA = outA.insert(itA, A->getValue(i-1));
                 itB = outB.insert(itB, -1);
@@ -580,7 +580,7 @@ namespace Circal
                 B->getChar(j-1)))
               {
                 minScore += scoreM->ScoreOf(A->getChar(i-1), B->getChar(j-1));
-                //cout << "Diag"<< endl;
+                //cout << "Diag"<< std::endl;
                 itA = outA.insert(itA, A->getValue(i-1));
                 itB = outB.insert(itB, B->getValue(j-1));
                 i--;
@@ -589,14 +589,14 @@ namespace Circal
 
             else
               {
-                cout << "42!!! Lost in D"<< endl;
+                std::cout << "42!!! Lost in D"<< std::endl;
               }
 
           }
 
         while (i> 0)
           {
-            //cout << "Overlapp A"<< endl;
+            //cout << "Overlapp A"<< std::endl;
             minScore += scoreM->ScoreOfGapOpen(A->getChar(i-1));
             itA = outA.insert(itA, A->getValue(i-1));
             itB = outB.insert(itB, -1);
@@ -605,7 +605,7 @@ namespace Circal
 
         while (j> 0)
           {
-            //cout << "Overlapp B"<< endl;
+            //cout << "Overlapp B"<< std::endl;
             minScore += scoreM->ScoreOfGapOpen(B->getChar(j-1));
             itB = outB.insert(itB, B->getValue(j-1));
             itA = outA.insert(itA, -1);

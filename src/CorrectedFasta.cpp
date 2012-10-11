@@ -29,7 +29,7 @@ namespace Circal
       {
       }
 
-    void CorrectedFasta::appendFromStream(istream & input,
+    void CorrectedFasta::appendFromStream(std::istream & input,
         bpp::VectorSequenceContainer & vsc) const throw (bpp::Exception)
       {
         if (!input)

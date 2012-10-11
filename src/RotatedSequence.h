@@ -50,7 +50,7 @@ namespace Circal
        *
        * @param pos The position of the character to retrieve.
        */
-      virtual string getChar(unsigned int pos) const
+      virtual std::string getChar(unsigned int pos) const
           throw (bpp::IndexOutOfBoundsException);
 
       /**

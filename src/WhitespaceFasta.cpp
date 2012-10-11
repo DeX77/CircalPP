@@ -29,7 +29,7 @@ namespace Circal
     WhitespaceFasta::~WhitespaceFasta()
       {
       }
-    void WhitespaceFasta::appendFromStream(istream & input,
+    void WhitespaceFasta::appendFromStream(std::istream & input,
         bpp::VectorSequenceContainer & vsc) const throw(bpp::Exception)
       {
         if (!input)
@@ -37,8 +37,8 @@ namespace Circal
             throw bpp::IOException ("Fasta::read: fail to open file");
           }
 
-        string temp, name, base = ""; // Initialization
-        vector<int> sequence;
+        std::string temp, name, base = ""; // Initialization
+        std::vector<int> sequence;
 
         // Main loop : for all file lines
         while (!input.eof())
@@ -64,7 +64,7 @@ namespace Circal
             else if (!temp.empty())// Sequence isolation
               {
                 sequence.clear();
-                stringstream seqstream(temp);
+                std::stringstream seqstream(temp);
                 
                 while (seqstream)
                   {
