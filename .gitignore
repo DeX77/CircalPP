@@ -29,3 +29,9 @@ depcomp
 autom4te.cache/*
 admin/*
 m4/*
+
+#Eclipse
+.project
+
+#text editor backup files
+*~
