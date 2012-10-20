@@ -40,7 +40,7 @@ namespace Circal
         int getUnknownCharacterCode() const;
         std::string getAlphabetType() const;
         bool isUnresolved(int state) const;
-        bool isUnresolved(const string &state) const;
+        bool isUnresolved(const std::string &state) const;
 
         void convertModeltoAlphabet(const ScoringModel* scm);
       };

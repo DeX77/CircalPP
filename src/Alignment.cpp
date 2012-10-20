@@ -21,42 +21,39 @@
 #include "ScoringModel.h"
 #include "MatrixHelper.h"
 #include "Output.h"
+#include <limits>
 
 namespace Circal
   {
     Alignment::Alignment(const bpp::Alphabet* alpha) :
-      VectorSequenceContainer(alpha), AlignedSequenceContainer(alpha)
-
+        VectorSequenceContainer(alpha), AlignedSequenceContainer(alpha),
+        offsetA(1), offsetB(1), Score(-std::numeric_limits<int>::infinity())
       {
-        this->set_Score(-numeric_limits<int>::infinity());
-        this->set_offsetA(1);
-        this->set_offsetB(1);
-
       }
 
     Alignment::~Alignment()
       {
 
       }
-    
+
     uint Alignment::get_offsetA()
       {
         return this->offsetA;
       }
-    void Alignment::set_offsetA(const uint &offsetA)
+    void Alignment::set_offsetA(const uint &offset_to_set)
       {
-        this->offsetA = offsetA;
+        this->offsetA = offset_to_set;
       }
 
     uint Alignment::get_offsetB()
       {
         return this->offsetB;
       }
-    void Alignment::set_offsetB(const uint &offsetB)
+    void Alignment::set_offsetB(const uint &offset_to_set)
       {
-        this->offsetB = offsetB;
+        this->offsetB = offset_to_set;
       }
-    
+
     double Alignment::get_Score(void)
       {
         return this->Score;
@@ -67,12 +64,10 @@ namespace Circal
         this->Score = s;
       }
 
-    void Alignment::addSequence(const bpp::Sequence* sequence)
+    void Alignment::addSequence(const SequenceProxy sequence)
       {
-        //Override stupid Memory leaks
-        //bpp::VectorSequenceContainer::addSequence(sequence, checkNames);
 
-        _sequences.push_back(sequence->clone());
+        bpp::VectorSequenceContainer::addSequence(sequence);
 
       }
 

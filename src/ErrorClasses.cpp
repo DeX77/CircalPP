@@ -24,8 +24,8 @@
 namespace Circal
   {
 
-    MatrixOutofBoundsError::MatrixOutofBoundsError(const uint &start,
-        const uint &end, const uint &size)
+    MatrixOutofBoundsError::MatrixOutofBoundsError(const unsigned int &start,
+        const unsigned int &end, const unsigned int &size)
       {
         std::cerr << "Error: Matrix out of Bounds:" << " Start: " << start
             << " End: " << end << " Size: " << size << std::endl;

@@ -32,8 +32,8 @@ namespace Circal
       {
       }
 
-    Alignment CircularAlignmentFactory::GotohAlignment(const bpp::Sequence* A,
-        const bpp::Sequence* B, ScoringModel* scoreM, int &delta, bool verbose)
+    Alignment CircularAlignmentFactory::GotohAlignment(const SequenceProxy A,
+        const SequenceProxy B, ScoringModel* scoreM, int &delta, bool verbose)
       {
 
         double bestScore = 0;
@@ -47,15 +47,15 @@ namespace Circal
         //#ifdef _OPENMP            
         //#pragma omp parallel for shared(offset)
         //#endif      
-        for (uint i=1; i<=A->size(); i++)
+        for (uint i=1; i<=A.size(); i++)
           {
-            D = matrix->InitScoreMatrixWith(A, B, 0);
-            P = matrix->InitScoreMatrixWith(A, B, 0);
-            Q = matrix->InitScoreMatrixWith(A, B, 0);
+            D = matrix.InitScoreMatrixWith(A, B, 0);
+            P = matrix.InitScoreMatrixWith(A, B, 0);
+            Q = matrix.InitScoreMatrixWith(A, B, 0);
 
             RotatedSequence rotB(B, i);
 
-            AlignmentFactory::ForwardRecursionGotoh(A, &rotB, scoreM, &D, &P,
+            AlignmentFactory::ForwardRecursionGotoh(A, rotB, scoreM, &D, &P,
                 &Q);
             tempScore = D.at(D.size()-1).at(D.at(0).size()-1);
 
@@ -67,22 +67,22 @@ namespace Circal
 
           }
         //Stupid but seems the only way
-        D = matrix->InitScoreMatrixWith(A, B, 0);
-        P = matrix->InitScoreMatrixWith(A, B, 0);
-        Q = matrix->InitScoreMatrixWith(A, B, 0);
+        D = matrix.InitScoreMatrixWith(A, B, 0);
+        P = matrix.InitScoreMatrixWith(A, B, 0);
+        Q = matrix.InitScoreMatrixWith(A, B, 0);
 
         RotatedSequence rotB(B, offset);
-        AlignmentFactory::ForwardRecursionGotoh(A, &rotB, scoreM, &D, &P, &Q);
+        AlignmentFactory::ForwardRecursionGotoh(A, rotB, scoreM, &D, &P, &Q);
 
         uint i = D.size()-1;
         uint j = D.at(0).size()-1;
 
-        return BacktrackingGotohGlobal(A, &rotB, scoreM, &D, &P, &Q, i, j);
+        return BacktrackingGotohGlobal(A, rotB, scoreM, &D, &P, &Q, i, j);
 
       }
 
     Alignment CircularAlignmentFactory::NeedlemanWunschAlignment(
-        const bpp::Sequence* A, const bpp::Sequence* B, ScoringModel* scoreM,
+        const SequenceProxy A, const SequenceProxy B, ScoringModel* scoreM,
         int &delta, bool verbose)
       {
 
@@ -95,13 +95,13 @@ namespace Circal
         //#ifdef _OPENMP            
         //#pragma omp parallel for shared(offset)
         //#endif      
-        for (uint i=1; i<=A->size(); i++)
+        for (uint i=1; i<=A.size(); i++)
           {
-            D = matrix->InitScoreMatrixWith(A, B, 0);
+            D = matrix.InitScoreMatrixWith(A, B, 0);
 
             RotatedSequence rotB(B, i);
 
-            AlignmentFactory::ForwardRecursionNMW(A, &rotB, scoreM, &D);
+            AlignmentFactory::ForwardRecursionNMW(A, rotB, scoreM, &D);
             tempScore = D.at(D.size()-1).at(D.at(0).size()-1);
 
             if (scoreM->BestOfTwo(tempScore, bestScore) != bestScore)
@@ -112,15 +112,15 @@ namespace Circal
 
           }
         //Stupid but seems the only way
-        D = matrix->InitScoreMatrixWith(A, B, 0);
+        D = matrix.InitScoreMatrixWith(A, B, 0);
 
         RotatedSequence rotB(B, offset);
-        AlignmentFactory::ForwardRecursionNMW(A, &rotB, scoreM, &D);
+        AlignmentFactory::ForwardRecursionNMW(A, rotB, scoreM, &D);
 
         uint i = D.size()-1;
         uint j = D.at(0).size()-1;
 
-        return BacktrackingNMW(A, &rotB, scoreM, &D, i, j);
+        return BacktrackingNMW(A, rotB, scoreM, &D, i, j);
 
       }
   }

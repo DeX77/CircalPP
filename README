@@ -8,7 +8,7 @@ latest state of the art version via GIT by:
 git clone git://github.com/DeX77/CircalPP.git
 Dependencies
 CircalPP depends on three of the BioPP Libraries, obtainable from
-http://162.38.181.25/BioPP at least version 1.5 is needed, because CircalPP makes
+http://biopp.univ-montp2.fr at least version 2.0.3 is needed, because CircalPP makes
 use of the introduced namespaces. It is recommended to use a C++ compiler pro-
 viding the at least the tr1 lib or newer: CircalPP will make use of the new un-
 ordered map container introduced by TR1.

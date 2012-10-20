@@ -18,6 +18,7 @@
  */
 
 #include "CorrectedFasta.h"
+#include "SequenceProxy.h"
 
 namespace Circal
   {
@@ -34,10 +35,10 @@ namespace Circal
       {
         if (!input)
           {
-            throw bpp::IOException ("Fasta::read: fail to open file");
+            throw bpp::IOException("Fasta::read: fail to open file");
           }
 
-        string temp, name, sequence = ""; // Initialization
+        std::string temp, name, sequence = ""; // Initialization
 
         // Main loop : for all file lines
         while (!input.eof())
@@ -51,7 +52,8 @@ namespace Circal
                 if ((name != "") && (sequence != ""))
                   {
                     // New sequence creation, and addition in existing VectorSequenceContainer
-                    bpp::Sequence * seq = new bpp::Sequence(name, sequence, vsc.getAlphabet());
+                    SequenceProxy * seq = new SequenceProxy(name, sequence,
+                        vsc.getAlphabet());
                     vsc.addSequence(*seq);
                     delete seq;
                     //name = ""; no need for that, no?
@@ -68,7 +70,8 @@ namespace Circal
         // Addition of the last sequence in file
         if ((name != "") && (sequence != ""))
           {
-            bpp::Sequence * seq = new bpp::Sequence(name, sequence, vsc.getAlphabet());
+            SequenceProxy * seq = new SequenceProxy(name, sequence,
+                vsc.getAlphabet());
             vsc.addSequence(*seq);
             delete seq;
           }

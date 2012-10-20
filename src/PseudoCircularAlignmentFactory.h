@@ -29,21 +29,21 @@ namespace Circal
     class PseudoCircularAlignmentFactory : public virtual AlignmentFactory
       {
       //Needleman Wunsch Alignment
-      virtual double ForwardRecursionSmithWaterman(const bpp::Sequence* A,
-          const PseudoRotatedSequence* B, ScoringModel* scoreM,
+      virtual double ForwardRecursionSmithWaterman(const SequenceProxy A,
+          const PseudoRotatedSequence B, ScoringModel* scoreM,
           const int &delta, ScoreMatrix3D* D, uint &bi, uint &bj);
-      virtual Alignment BacktrackingSmithWaterman(const bpp::Sequence* A,
-          const PseudoRotatedSequence* B, ScoringModel* scoreM,
+      virtual Alignment BacktrackingSmithWaterman(const SequenceProxy A,
+          const PseudoRotatedSequence B, ScoringModel* scoreM,
           const int &delta, const ScoreMatrix3D* D, uint &i, uint &j);
 
       //Gotoh Alignment
-      virtual double ForwardRecursionSmithWatermanAffin(const bpp::Sequence* A,
-          const PseudoRotatedSequence* B, ScoringModel* scoreM,
+      virtual double ForwardRecursionSmithWatermanAffin(const SequenceProxy A,
+          const PseudoRotatedSequence B, ScoringModel* scoreM,
           const int &delta, ScoreMatrix3D* D, ScoreMatrix3D* P,
           ScoreMatrix3D* Q, uint &bi, uint &bj);
 
-      virtual Alignment BacktrackingSmithWatermanAffin(const bpp::Sequence* A,
-          const PseudoRotatedSequence* B, ScoringModel* scoreM,
+      virtual Alignment BacktrackingSmithWatermanAffin(const SequenceProxy A,
+          const PseudoRotatedSequence B, ScoringModel* scoreM,
           const int &delta, const ScoreMatrix3D* D, const ScoreMatrix3D* P,
           const ScoreMatrix3D* Q, uint &i, uint &j, bool verbose=false);
 
@@ -51,12 +51,12 @@ namespace Circal
       PseudoCircularAlignmentFactory();
       virtual ~PseudoCircularAlignmentFactory();
 
-      Alignment NeedlemanWunschAlignment(const bpp::Sequence* A,
-          const bpp::Sequence* B, ScoringModel* scoreM, const int &delta,
+      Alignment NeedlemanWunschAlignment(const SequenceProxy A,
+          const SequenceProxy B, ScoringModel* scoreM, const int &delta,
           bool verbose=false);
 
-      Alignment GotohAlignment(const bpp::Sequence* inA,
-          const bpp::Sequence* inB, ScoringModel* scoreM, const int &delta,
+      Alignment GotohAlignment(const SequenceProxy inA,
+          const SequenceProxy inB, ScoringModel* scoreM, const int &delta,
           bool verbose);
       };
   }

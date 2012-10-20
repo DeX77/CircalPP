@@ -20,19 +20,24 @@
 #include "ScoringModel.h"
 #include "AlignmentSymbol.h"
 
+#include <Bpp/Text/TextTools.h>
 #include <algorithm>
+#include <sstream>
 
 namespace Circal
   {
-    ScoringModel::ScoringModel()
+    ScoringModel::ScoringModel() :
+        model()
       {
       }
-    ScoringModel::ScoringModel(const std::string & path)
+    ScoringModel::ScoringModel(const std::string & path) :
+        model()
       {
         read(path);
       }
 
-    ScoringModel::ScoringModel(std::istream & input)
+    ScoringModel::ScoringModel(std::istream & input) :
+        model()
       {
         read(input);
       }
@@ -44,11 +49,12 @@ namespace Circal
       {
         if (!input)
           {
-            throw bpp::IOException ("ScoringModel::ScoringModel: fail to open file");
+            throw bpp::IOException(
+                "ScoringModel::ScoringModel: fail to open file");
           }
 
-        string temp;
-        string type;
+        std::string temp;
+        std::string type;
 
         double gapStart = 0;
         double gapExtend = 0;
@@ -67,7 +73,7 @@ namespace Circal
 
             if (temp[0] != '#')
               {
-                istringstream istring(temp);
+                std::istringstream istring(temp);
                 istring >> type >> gapStart >> gapExtend >> match
                     >> negativeMatch >> missmatch;
                 istring >> temp; //Cut out the ":" char
@@ -95,12 +101,14 @@ namespace Circal
                         sc.negativeMatch = negativeMatch;
                         sc.missmatch = -missmatch;
 
-                        model.insert(pair<const std::string, AlignmentSymbol>(
-                            sc.symbol, sc));
+                        model.insert(
+                            std::pair<const std::string, AlignmentSymbol>(
+                                sc.symbol, sc));
                         //Also add negative Symbol Version
                         sc.symbol = "-" + sc.symbol;
-                        model.insert(pair<const std::string, AlignmentSymbol>(
-                            sc.symbol, sc));
+                        model.insert(
+                            std::pair<const std::string, AlignmentSymbol>(
+                                sc.symbol, sc));
                       }
                   }
 
@@ -112,7 +120,7 @@ namespace Circal
 
     void ScoringModel::read(const std::string &path)
       {
-        ifstream input(path.c_str(), ios::in);
+        std::ifstream input(path.c_str(), std::ios::in);
         read(input);
         input.close();
       }
@@ -130,7 +138,7 @@ namespace Circal
           }
         else
         //Check for negative values
-        if ((A.compare("-"+B) == 0) || (B.compare("-"+A) == 0))
+        if ((A.compare("-" + B) == 0) || (B.compare("-" + A) == 0))
           {
             return model[A].negativeMatch;
           }
@@ -169,7 +177,7 @@ namespace Circal
         const double C) const
       {
 
-        return BestOfTwo(A, BestOfTwo(B, C) );
+        return BestOfTwo(A, BestOfTwo(B, C));
 
       }
 

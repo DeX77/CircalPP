@@ -23,10 +23,9 @@
 namespace Circal
   {
 
-    RotatedSequence::RotatedSequence(const bpp::Sequence* a, const uint &i) :
-      bpp::Sequence(*a)
+    RotatedSequence::RotatedSequence(const SequenceProxy a, const uint &i) :
+    SequenceProxy(a), offset(i)
       {
-        this->offset = i;
       }
 
     RotatedSequence::~RotatedSequence()
@@ -40,21 +39,21 @@ namespace Circal
         pos = ((pos+offset) % this->size());
         if (pos > this->size())
           throw bpp::IndexOutOfBoundsException("SymbolList::getChar. Invalid position.", pos, 0, size() - 1);
-        return _content[pos];
+        return this->getValue(pos);
       }
 
-    string RotatedSequence::getChar(unsigned int pos) const
+    std::string RotatedSequence::getChar(unsigned int pos) const
         throw (bpp::IndexOutOfBoundsException)
       {
         pos = ((pos+offset) % this->size());
         if (pos > this->size())
           throw bpp::IndexOutOfBoundsException("SymbolList::getChar. Invalid position.", pos, 0, size() - 1);
-        string c = "";
+        std::string c = "";
         try
           {
-            c = _alphabet -> intToChar(_content[pos]);
+            c = this->getAlphabet()->intToChar(this->getValue(pos));
           }
-        catch(bpp::BadIntException bie)
+        catch(bpp::BadIntException*)
           {
 
             //This should never happen!
@@ -62,22 +61,22 @@ namespace Circal
         return c;
       }
 
-    const int & RotatedSequence::operator[](unsigned int i) const
+//    const int & RotatedSequence::operator[](unsigned int i) const
+//      {
+//        i = ((i+offset) % this->size());
+//        return content_[i];
+//      }
+//    int & RotatedSequence::operator[](unsigned int i)
+//      {
+//        i = ((i+offset) % this->size());
+//        return content_[i];
+//      }
+    std::string RotatedSequence::toString() const
       {
-        i = ((i+offset) % this->size());
-        return _content[i];
-      }
-    int & RotatedSequence::operator[](unsigned int i)
-      {
-        i = ((i+offset) % this->size());
-        return _content[i];
-      }
-    string RotatedSequence::toString() const
-      {
-        string result = "";
+        std::string result = "";
         for(unsigned int i = 0; i < this->size(); i++)
           {
-            result += _alphabet -> intToChar(getValue(i));
+            result += this->getAlphabet()->intToChar(this->getValue(i));
           }
         return result;
       }

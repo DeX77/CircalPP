@@ -22,8 +22,8 @@
 namespace Circal
   {
 
-    PseudoRotatedSequence::PseudoRotatedSequence(const bpp::Sequence* a) :
-      RotatedSequence(a, 0)
+    PseudoRotatedSequence::PseudoRotatedSequence(const SequenceProxy a) :
+        RotatedSequence(a, 0)
       {
       }
 
@@ -33,45 +33,35 @@ namespace Circal
     unsigned int PseudoRotatedSequence::size() const
       {
         //Since this Sequence is metarotated return twice the size minus one
-        return ((2* _content.size()));
+        return ((2 * content_.size()));
       }
     int PseudoRotatedSequence::getValue(unsigned int pos) const
         throw (bpp::IndexOutOfBoundsException)
       {
-        pos = pos % _content.size();
+        pos = pos % content_.size();
         if (pos > this->size())
-          throw bpp::IndexOutOfBoundsException("SymbolList::getChar. Invalid position.", pos, 0, size() - 1);
-        return _content[pos];
+          throw bpp::IndexOutOfBoundsException(
+              "SymbolList::getChar. Invalid position.", pos, 0, size() - 1);
+        return content_[pos];
       }
 
-    string PseudoRotatedSequence::getChar(unsigned int pos) const
+    std::string PseudoRotatedSequence::getChar(unsigned int pos) const
         throw (bpp::IndexOutOfBoundsException)
       {
 
-        pos = pos % _content.size();
-        if (pos > this->size())
-          throw bpp::IndexOutOfBoundsException("SymbolList::getChar. Invalid position.", pos, 0, size() - 1);
-        string c = "";
-        try
-          {
-            c = _alphabet -> intToChar(_content[pos]);
-          }
-        catch(bpp::BadIntException bie)
-          {
+        pos = pos % content_.size();
 
-            //This should never happen!
-          }
-        return c;
+        return bpp::BasicSequence::getChar(pos);
       }
     const int & PseudoRotatedSequence::operator[](unsigned int i) const
       {
-        i = i % _content.size();
-        return _content[i];
+        i = i % content_.size();
+        return content_[i];
       }
     int & PseudoRotatedSequence::operator[](unsigned int i)
       {
-        i = i % _content.size();
-        return _content[i];
+        i = i % content_.size();
+        return content_[i];
       }
   }
 

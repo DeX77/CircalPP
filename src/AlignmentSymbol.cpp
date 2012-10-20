@@ -20,7 +20,8 @@ St, Fifth Floor, Boston, MA 02110, USA
 #include "AlignmentSymbol.h"
 namespace Circal
   {
-    AlignmentSymbol::AlignmentSymbol()
+    AlignmentSymbol::AlignmentSymbol() :
+    symbol(""), type(""), gapOpen(0), gapExtend(0), match(1), negativeMatch(-1), missmatch(2)
       {      
       }
 

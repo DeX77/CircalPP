@@ -51,7 +51,7 @@ namespace Circal
                 out.addSequence(temp.getSequence(0));
                 out.addSequence(temp.getSequence(1));
                 if (verbose)
-                  std::cout << prettyPrint->AlignmentPrettyPrint(&temp)
+                  std::cout << prettyPrint.AlignmentPrettyPrint(&temp)
                       <<std::endl;
               }
 
@@ -80,7 +80,7 @@ namespace Circal
                 out.addSequence(temp.getSequence(0));
                 out.addSequence(temp.getSequence(1));
                 if (verbose)
-                  std::cout << prettyPrint->AlignmentPrettyPrint(&temp)
+                  std::cout << prettyPrint.AlignmentPrettyPrint(&temp)
                       <<std::endl;
               }
 

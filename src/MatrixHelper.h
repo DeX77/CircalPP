@@ -20,6 +20,7 @@
 #ifndef MATRIXHELPER_H_
 #define MATRIXHELPER_H_
 
+#include "SequenceProxy.h"
 #include <vector>
 #include <valarray>
 
@@ -43,13 +44,13 @@ namespace Circal
       MatrixHelper();
       virtual ~MatrixHelper();
 
-      ScoreMatrix InitializeScoreMatrixDistances(const bpp::Sequence* A,
-          const bpp::Sequence* B, ScoringModel* scoreM);
+      ScoreMatrix InitializeScoreMatrixDistances(const SequenceProxy A,
+          const SequenceProxy B, ScoringModel* scoreM);
 
-      ScoreMatrix InitScoreMatrixWith(const bpp::Sequence* A,
-          const bpp::Sequence* B, const double &init);
-      ScoreMatrix3D InitScoreMatrix3DWith(const bpp::Sequence* A,
-          const PseudoRotatedSequence* B, const int &delta, const double &init);
+      ScoreMatrix InitScoreMatrixWith(const SequenceProxy A,
+          const SequenceProxy B, const double &init);
+      ScoreMatrix3D InitScoreMatrix3DWith(const SequenceProxy A,
+          const PseudoRotatedSequence B, const int &delta, const double &init);
 
       BoolMatrix CreateAdjacenceGraph(Alignment* pairWiseAlignments,
           int biggestSequenceSize);

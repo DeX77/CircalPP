@@ -29,7 +29,7 @@ namespace Circal
       {
   public:
 
-      PseudoRotatedSequence(const bpp::Sequence* a);
+      PseudoRotatedSequence(const SequenceProxy a);
       virtual ~PseudoRotatedSequence();
 
       /**

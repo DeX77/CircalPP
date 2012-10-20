@@ -20,16 +20,116 @@
 #ifndef RANDOMSEQUENCE_H_
 #define RANDOMSEQUENCE_H_
 
-#include <Bpp/Seq/Sequence.h>
+#include "SequenceProxy.h"
 
 namespace Circal
   {
 
-    class RandomSequence : public bpp::Sequence
+    class RandomSequence: public SequenceProxy
       {
-  public:
-      RandomSequence(const uint &size, const bpp::Alphabet* alpha);
+    public:
+      RandomSequence(const uint &sequence_size, const bpp::Alphabet* alpha);
       virtual ~RandomSequence();
+
+      //Virtual overrides
+      void setToSizeL(unsigned int newSize)
+        {
+          BasicSequence::setToSizeL(newSize);
+        }
+      ;
+      std::string toString() const
+        {
+          return BasicSymbolList::toString();
+        }
+      ;
+      std::string getChar(unsigned int pos) const
+          throw (bpp::IndexOutOfBoundsException)
+        {
+          return BasicSymbolList::getChar(pos);
+        }
+      ;
+      void shuffle()
+        {
+          BasicSymbolList::shuffle();
+        }
+      ;
+      void setElement(unsigned int pos, const std::string& c)
+          throw (bpp::BadCharException, bpp::IndexOutOfBoundsException)
+        {
+          BasicSymbolList::setElement(pos, c);
+        }
+      ;
+      void setElement(unsigned int pos, int v) throw (bpp::BadIntException,
+          bpp::IndexOutOfBoundsException)
+        {
+          BasicSymbolList::setElement(pos, v);
+        }
+      ;
+      void addElement(const std::string& c) throw (bpp::BadCharException)
+        {
+          BasicSymbolList::addElement(c);
+        }
+      ;
+      void addElement(unsigned int pos, const std::string& c)
+          throw (bpp::BadCharException, bpp::IndexOutOfBoundsException)
+        {
+          BasicSymbolList::addElement(pos, c);
+        }
+      ;
+      const int& operator[](unsigned int i) const
+        {
+          return content_[i];
+        }
+      ;
+      int& operator[](unsigned int i)
+        {
+          return content_[i];
+        }
+      ;
+      const bpp::Alphabet* getAlphabet() const
+        {
+          return BasicSymbolList::getAlphabet();
+        }
+      ;
+      unsigned int size() const
+        {
+          return BasicSymbolList::size();
+        }
+      ;
+      const std::vector<int>& getContent() const
+        {
+          return BasicSymbolList::getContent();
+        }
+      ;
+      void deleteElement(unsigned int pos)
+          throw (bpp::IndexOutOfBoundsException)
+        {
+          BasicSequence::deleteElement(pos);
+        }
+      ;
+      void deleteElements(unsigned int pos, unsigned int len)
+          throw (bpp::IndexOutOfBoundsException)
+        {
+          BasicSequence::deleteElements(pos, len);
+        }
+      ;
+      void addElement(int v) throw (bpp::BadIntException)
+        {
+          return BasicSequence::addElement(v);
+        }
+      ;
+      void addElement(unsigned int pos, int v) throw (bpp::BadIntException,
+          bpp::IndexOutOfBoundsException)
+        {
+          return BasicSequence::addElement(pos, v);
+        }
+      ;
+      int getValue(unsigned int pos) const
+          throw (bpp::IndexOutOfBoundsException)
+        {
+          return BasicSequence::getValue(pos);
+        }
+      ;
       };
 
   }

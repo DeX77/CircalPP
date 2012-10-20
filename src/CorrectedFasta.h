@@ -35,6 +35,8 @@ namespace Circal
       void
           appendFromStream(std::istream & input, bpp::VectorSequenceContainer & vsc) const
               throw (bpp::Exception);
+      const std::string getDataType() const { return "Sequence"; };
       };
+
   }
 #endif /*CORRECTEDFASTA_H_*/

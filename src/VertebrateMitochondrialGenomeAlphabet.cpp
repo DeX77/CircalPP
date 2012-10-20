@@ -21,6 +21,8 @@
 #include "AlignmentSymbol.h"
 #include "ScoringModel.h"
 
+#include <Bpp/Seq/Alphabet/AlphabetState.h>
+
 namespace Circal
   {
     VertebrateMitochondrialGenomeAlphabet::VertebrateMitochondrialGenomeAlphabet()
@@ -38,12 +40,12 @@ namespace Circal
       }
     unsigned int VertebrateMitochondrialGenomeAlphabet::getSize() const
       {
-        return alphabet.size();
+        return GenomeAlphabet::getSize();
       }
 
     unsigned int VertebrateMitochondrialGenomeAlphabet::getNumberOfTypes() const
       {
-        return alphabet.size()-1;
+        return GenomeAlphabet::getNumberOfTypes();
       }
 
     int VertebrateMitochondrialGenomeAlphabet::getUnknownCharacterCode() const
@@ -51,18 +53,18 @@ namespace Circal
         return 0;
       }
 
-    string VertebrateMitochondrialGenomeAlphabet::getAlphabetType() const
+    std::string VertebrateMitochondrialGenomeAlphabet::getAlphabetType() const
       {
         return "Vertebrate Mitochondrial Genome";
       }
 
     bool VertebrateMitochondrialGenomeAlphabet::isUnresolved(int state) const
       {
-        return ((uint)state > getNumberOfTypes());
+        return ((unsigned int) state > getNumberOfTypes());
       }
 
     bool VertebrateMitochondrialGenomeAlphabet::isUnresolved(
-        const string &state) const
+        const std::string &state) const
       {
         return isUnresolved(charToInt(state));
       }
@@ -70,29 +72,27 @@ namespace Circal
     void VertebrateMitochondrialGenomeAlphabet::convertModeltoAlphabet(
         const ScoringModel* scm)
       {
-        alphabet.resize(scm->GetModelSize()+1);        
-        
-        int i=1;
-        uint size;
-        string temp = "";
-
-        for (ModelValues::const_iterator itr = scm->constitStart(); itr
-            != scm->constitEnd(); itr++)
-          {
-            temp = itr->first;
-            alphabet[i].num = i-1;
-            alphabet[i].letter = temp;
-            alphabet[i].abbr = temp;
-            alphabet[i].name = temp;
-            size = itr->second.symbol.length();
-            i++;
-//            std::cout << "Chevron <" << temp << "> added" << std::endl;
-          }
+//        alphabet_->resize(scm->GetModelSize() + 1);
+//
+//        int i = 1;
+//        unsigned int size;
+//        std::string temp = "";
+//
+//        for (ModelValues::const_iterator itr = scm->constitStart();
+//            itr != scm->constitEnd(); itr++)
+//          {
+//            temp = itr->first;
+//            alphabet_[i].num = i - 1;
+//            alphabet_[i].letter = temp;
+//            alphabet_[i].abbr = temp;
+//            alphabet_[i].name = temp;
+//            size = itr->second.symbol.length();
+//            i++;
+////            std::cout << "Chevron <" << temp << "> added" << std::endl;
+//          }
         //Add gap code
-        alphabet[0].num = -1;
-        alphabet[0].letter = string(size, '_');
-        alphabet[0].abbr = string(size, '_');
-        alphabet[0].name = "Gap";
+        bpp::AlphabetState gap(-1, "_", "Gap");
+        registerState(gap);
 
       }
   }

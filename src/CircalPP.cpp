@@ -32,6 +32,7 @@
 #include <NumCalc/RandomTools.h>
 #include <Bpp/Seq/Alphabet/DNA.h>
 #include <Bpp/Seq/Alphabet/RNA.h>
+#include <Bpp/Seq/Io/Fasta.h>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -40,25 +41,27 @@ std::string usage()
   {
     std::stringstream out;
 
-    out<< std::endl;
-    out<<"usage: CircalPP [options]" << std::endl;
-    out<< std::endl;
-    out<<"options:" << std::endl;
-    out<<" -v  verbose mode" << std::endl;
-    out<<" -b  brute-force mode" << std::endl;
-    out<<" -m  build multiple alignment using t-coffee" << std::endl;
-    out<<" -s  output results stepwise (for very large files)" << std::endl;
-    out<<" -t  <integer> random sequences statistics up to size n" << std::endl;
-    out<<" -d  <integer>  delta value" << std::endl;
-    out<<" -D  input is dna" << std::endl;
-    out<<" -R  input is rna" << std::endl;
-    out<<" -G  alphabet is build from scoring scheme" << std::endl;
-    out<<" -S  <filename> file including the scoring scheme" << std::endl;
-    out<<" -I  <filename> read data from fasta file instead of stdin"
+    out << std::endl;
+    out << "usage: CircalPP [options]" << std::endl;
+    out << std::endl;
+    out << "options:" << std::endl;
+    out << " -v  verbose mode" << std::endl;
+    out << " -b  brute-force mode" << std::endl;
+    out << " -m  build multiple alignment using t-coffee" << std::endl;
+    out << " -s  output results stepwise (for very large files)" << std::endl;
+    out << " -t  <integer> random sequences statistics up to size n"
         << std::endl;
-    out<<" -F  <filename> write all pairwise alignments as fasta to <filename>"
+    out << " -d  <integer>  delta value" << std::endl;
+    out << " -D  input is dna" << std::endl;
+    out << " -R  input is rna" << std::endl;
+    out << " -G  alphabet is build from scoring scheme" << std::endl;
+    out << " -S  <filename> file including the scoring scheme" << std::endl;
+    out << " -I  <filename> read data from fasta file instead of stdin"
         << std::endl;
-    out<<" -O  <filename> write output to <filename> instead of stdout"
+    out
+        << " -F  <filename> write all pairwise alignments as fasta to <filename>"
+        << std::endl;
+    out << " -O  <filename> write output to <filename> instead of stdout"
         << std::endl;
     return out.str();
   }
@@ -71,8 +74,6 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
 
     if (statistic)
       {
-        int bad;
-        int good;
         int newSize1;
         int newSize2;
 
@@ -88,12 +89,14 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
             Circal::RandomSequence temp1(newSize1, alpha);
             Circal::RandomSequence temp2(newSize2, alpha);
 
-            Circal::Alignment tempPseu = pseuC.GotohAlignment(&temp1, &temp2,
+            Circal::Alignment tempPseu = pseuC.GotohAlignment(temp1, temp2,
                 &scoreM, delta, verbose);
-            Circal::Alignment tempReal = realC.GotohAlignment(&temp1, &temp2,
+            Circal::Alignment tempReal = realC.GotohAlignment(temp1, temp2,
                 &scoreM, delta, verbose);
             //Dirty hack
-            uint difference = std::abs((long long int)(tempReal.getSequence(0)->size() - tempPseu.getSequence(0)->size()));
+            uint difference = std::abs(
+                (long long int) (tempReal.getSequence(0).size()
+                    - tempPseu.getSequence(0).size()));
             double realGlobalScore = tempPseu.get_Score();
             realGlobalScore += scoreM.ScoreOfGapExtend("A") * difference;
             realGlobalScore += scoreM.ScoreOfGapOpen("A");
@@ -102,10 +105,10 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
               {
                 std::clog << "Size Sequence 1:" << "\t" << newSize1 << "\t"
                     << "Size Sequence 2:" << "\t" << newSize2 << "\t"
-                    << " locale Score: " << "\t" << tempPseu.get_Score()
-                    << "\t" << " globale Score: " << "\t" << realGlobalScore
-                    << "\t" << " score genau:" << "\t" << tempReal.get_Score()
-                    << "\t" << std::endl;
+                    << " locale Score: " << "\t" << tempPseu.get_Score() << "\t"
+                    << " globale Score: " << "\t" << realGlobalScore << "\t"
+                    << " score genau:" << "\t" << tempReal.get_Score() << "\t"
+                    << std::endl;
                 //Recalculate Score from local to global
               }
           }
@@ -124,7 +127,7 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
             //Check for Sequence File Existence
             if (!bpp::FileTools::fileExists(seqFilename))
               {
-                std::cerr << "Can't open Sequence File "<< seqFilename
+                std::cerr << "Can't open Sequence File " << seqFilename
                     << " using stdin instead" << std::endl;
                 seqReader.read(std::cin, sequences);
               }
@@ -132,9 +135,8 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
               //Try parsing the file for FASTA
               try
                 {
-                  seqReader.read(seqFilename,sequences);
-                }
-              catch(bpp::Exception &e)
+                  seqReader.read(seqFilename, sequences);
+                } catch (bpp::Exception &e)
                 {
                   std::cerr << "Invalid File Format!" << std::endl;
                   std::cerr << e.what() << std::endl;
@@ -150,7 +152,7 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
             //Check for Sequence File Existence
             if (!bpp::FileTools::fileExists(seqFilename))
               {
-                std::cerr << "Can't open Sequence File "<< seqFilename
+                std::cerr << "Can't open Sequence File " << seqFilename
                     << " using stdin instead" << std::endl;
                 seqReader.read(std::cin, sequences);
               }
@@ -158,9 +160,8 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
               //Try parsing the file for FASTA
               try
                 {
-                  seqReader.read(seqFilename,sequences);
-                }
-              catch(bpp::Exception &e)
+                  seqReader.read(seqFilename, sequences);
+                } catch (bpp::Exception &e)
                 {
                   std::cerr << "Invalid File Format!" << std::endl;
                   std::cerr << e.what() << std::endl;
@@ -182,16 +183,18 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
                 if (resultF)
                   {
                     //Overwritting would be realy uncool
-                    std::ofstream foo(resultFilename.c_str(), std::ios_base::app);
+                    std::ofstream foo(resultFilename.c_str(),
+                        std::ios_base::app);
                     foo << prettyPrint.TCoffeeLibHeader(&sequences);
                   }
                 else
                   std::cout << prettyPrint.TCoffeeLibHeader(&sequences);
 
-                for (uint u=0; u<sequences.getNumberOfSequences(); u++)
+                for (uint u = 0; u < sequences.getNumberOfSequences(); u++)
                   {
 
-                    for (uint k=u+1; k<sequences.getNumberOfSequences(); k++)
+                    for (uint k = u + 1; k < sequences.getNumberOfSequences();
+                        k++)
                       {
                         if (verbose)
                           std::clog << "*" << std::flush;
@@ -205,13 +208,16 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
                         if (resultF)
                           {
                             //Overwritting would be realy uncool
-                            std::ofstream foo(resultFilename.c_str(), std::ios_base::app);
-                            foo << prettyPrint.TCoffeeAlignFormat(&temp,
-                                &sequences);
+                            std::ofstream foo(resultFilename.c_str(),
+                                std::ios_base::app);
+                            foo
+                                << prettyPrint.TCoffeeAlignFormat(&temp,
+                                    &sequences);
                           }
                         else
-                          std::cout << prettyPrint.TCoffeeAlignFormat(&temp,
-                              &sequences);
+                          std::cout
+                              << prettyPrint.TCoffeeAlignFormat(&temp,
+                                  &sequences);
                       }
                     if (verbose)
                       std::clog << std::endl;
@@ -220,7 +226,8 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
                 if (resultF)
                   {
                     //Overwritting would be realy uncool
-                    std::ofstream foo(resultFilename.c_str(), std::ios_base::app);
+                    std::ofstream foo(resultFilename.c_str(),
+                        std::ios_base::app);
                     foo << prettyPrint.TCoffeeLibFooter();
                   }
                 else
@@ -254,16 +261,18 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
                 if (resultF)
                   {
                     //Overwritting would be realy uncool
-                    std::ofstream foo(resultFilename.c_str(), std::ios_base::app);
+                    std::ofstream foo(resultFilename.c_str(),
+                        std::ios_base::app);
                     foo << prettyPrint.TCoffeeLibHeader(&sequences);
                   }
                 else
                   std::cout << prettyPrint.TCoffeeLibHeader(&sequences);
 
-                for (uint u=0; u<sequences.getNumberOfSequences(); u++)
+                for (uint u = 0; u < sequences.getNumberOfSequences(); u++)
                   {
 
-                    for (uint k=u+1; k<sequences.getNumberOfSequences(); k++)
+                    for (uint k = u + 1; k < sequences.getNumberOfSequences();
+                        k++)
                       {
                         if (verbose)
                           std::clog << "*" << std::flush;
@@ -277,13 +286,16 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
                         if (resultF)
                           {
                             //Overwritting would be realy uncool
-                            std::ofstream foo(resultFilename.c_str(), std::ios_base::app);
-                            foo << prettyPrint.TCoffeeAlignFormat(&temp,
-                                &sequences);
+                            std::ofstream foo(resultFilename.c_str(),
+                                std::ios_base::app);
+                            foo
+                                << prettyPrint.TCoffeeAlignFormat(&temp,
+                                    &sequences);
                           }
                         else
-                          std::cout << prettyPrint.TCoffeeAlignFormat(&temp,
-                              &sequences);
+                          std::cout
+                              << prettyPrint.TCoffeeAlignFormat(&temp,
+                                  &sequences);
                       }
                     if (verbose)
                       std::clog << std::endl;
@@ -292,7 +304,8 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
                 if (resultF)
                   {
                     //Overwritting would be realy uncool
-                    std::ofstream foo(resultFilename.c_str(), std::ios_base::app);
+                    std::ofstream foo(resultFilename.c_str(),
+                        std::ios_base::app);
                     foo << prettyPrint.TCoffeeLibFooter();
                   }
                 else
@@ -317,8 +330,8 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
           }
         if (multipl)
           {
-            std::string argument = "t_coffee -in=L"+resultFilename
-                +",Mclustalw_pair";
+            std::string argument = "t_coffee -in=L" + resultFilename
+                + ",Mclustalw_pair";
 
             system(argument.c_str());
             exit(1);
@@ -346,17 +359,17 @@ int main(int args, char* argv[])
     std::string resultFilename;
     int delta = 1;
 
-    for (int i=1; i<args; i++)
+    for (int i = 1; i < args; i++)
       {
         //        std::cout << argv[i] << std::endl;
 
-        if (argv[i][0]=='-')
+        if (argv[i][0] == '-')
           switch (argv[i][1])
             {
           case 't':
             {
               statistic = true;
-              std::stringstream parser(argv[i+1]);
+              std::stringstream parser(argv[i + 1]);
               parser >> size;
               if (verbose)
                 std::clog << "max size: " << size << std::endl;
@@ -376,7 +389,7 @@ int main(int args, char* argv[])
             break;
           case 'd':
             {
-              std::stringstream parser(argv[i+1]);
+              std::stringstream parser(argv[i + 1]);
               parser >> delta;
               if (verbose)
                 std::clog << "Delta: " << delta << std::endl;
@@ -412,13 +425,13 @@ int main(int args, char* argv[])
             }
           case 'S':
             {
-              scoreFilename = argv[i+1];
+              scoreFilename = argv[i + 1];
               if (verbose)
                 std::clog << "ScoreFile: " << scoreFilename << std::endl;
               //Check for Scoring File Existence
               if (!bpp::FileTools::fileExists(scoreFilename))
                 {
-                  std::cerr << "Can't open Scoring File "<< scoreFilename
+                  std::cerr << "Can't open Scoring File " << scoreFilename
                       << std::endl;
                   exit(-1);
                 }
@@ -427,7 +440,7 @@ int main(int args, char* argv[])
             }
           case 'F':
             {
-              outFilename = argv[i+1];
+              outFilename = argv[i + 1];
               if (verbose)
                 std::clog << "Output Fasta-File: " << outFilename << std::endl;
               outF = true;
@@ -435,7 +448,7 @@ int main(int args, char* argv[])
             }
           case 'O':
             {
-              resultFilename = argv[i+1];
+              resultFilename = argv[i + 1];
               if (verbose)
                 std::clog << "Output File: " << resultFilename << std::endl;
               resultF = true;
@@ -443,7 +456,7 @@ int main(int args, char* argv[])
             }
           case 'I':
             {
-              seqFilename = argv[i+1];
+              seqFilename = argv[i + 1];
               if (verbose)
                 std::clog << "InputFile: " << seqFilename << std::endl;
               break;
@@ -451,6 +464,7 @@ int main(int args, char* argv[])
 
           default:
             std::cerr << usage();
+            break;
             }
       }
 

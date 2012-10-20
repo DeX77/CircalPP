@@ -21,11 +21,11 @@ St, Fifth Floor, Boston, MA 02110, USA
 #define GENOMEALPHABET_H_
 
 //Includes from Bio++
-#include <Bpp/Seq/Alphabet/AbstractAlphabet.h>
+#include <Bpp/Seq/Alphabet/DefaultAlphabet.h>
 
 namespace Circal
   {
-    class GenomeAlphabet : public bpp::AbstractAlphabet
+    class GenomeAlphabet : public bpp::DefaultAlphabet
       {
 
     public:

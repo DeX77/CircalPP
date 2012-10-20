@@ -39,11 +39,10 @@ namespace Circal
 
         try
           {
-            if ( (start> end )|| (end> D->size()))
-            throw new MatrixOutofBoundsError(start,end,(int)D->size());
-            D->erase(D->begin()+start, D->begin()+end);
-          }
-        catch (MatrixOutofBoundsError)
+            if ((start > end) || (end > D->size()))
+              throw new MatrixOutofBoundsError(start, end, (int) D->size());
+            D->erase(D->begin() + start, D->begin() + end);
+          } catch (MatrixOutofBoundsError*)
           {
 
           }
@@ -53,15 +52,15 @@ namespace Circal
         const uint &end)
       {
 
-        for (uint i=0; i<=D->size()-1; i++)
+        for (uint i = 0; i <= D->size() - 1; i++)
           {
             try
               {
-                if ( (start> end )|| (end> D->at(i).size()))
-                throw new MatrixOutofBoundsError(start,end,D->at(i).size());
-                D->at(i).erase(D->at(i).begin()+start, D->at(i).begin()+end);
-              }
-            catch (MatrixOutofBoundsError)
+                if ((start > end) || (end > D->at(i).size()))
+                  throw new MatrixOutofBoundsError(start, end, D->at(i).size());
+                D->at(i).erase(D->at(i).begin() + start,
+                    D->at(i).begin() + end);
+              } catch (MatrixOutofBoundsError*)
               {
 
               }
@@ -69,8 +68,7 @@ namespace Circal
       }
 
     ScoreMatrix MatrixHelper::InitializeScoreMatrixDistances(
-        const bpp::Sequence* A, const bpp::Sequence* B,
-         ScoringModel* scoreM)
+        const SequenceProxy A, const SequenceProxy B, ScoringModel* scoreM)
       {
         //Initialize Score Matrix
         ScoreMatrix D = InitScoreMatrixWith(A, B,
@@ -78,67 +76,70 @@ namespace Circal
 
         D.at(0).at(0) = 0;
 
-        D.at(0).at(1) = scoreM->ScoreOfGapOpen(B->getChar(0));
-        +scoreM->ScoreOfGapExtend(B->getChar(0));
+        D.at(0).at(1) = scoreM->ScoreOfGapOpen(B.getChar(0))
+            + scoreM->ScoreOfGapExtend(B.getChar(0));
 #ifdef _OPENMP            
 #pragma omp parallel for
 #endif 
-        for (uint i=2; i<D.at(0).size(); i++)
-          D.at(0).at(i) = D.at(0).at(i-1) + scoreM->ScoreOfGapExtend(B->getChar(i-1));
+        for (uint i = 2; i < D.at(0).size(); i++)
+          D.at(0).at(i) = D.at(0).at(i - 1)
+              + scoreM->ScoreOfGapExtend(B.getChar(i - 1));
 
-        D.at(1).at(0) = scoreM->ScoreOfGapOpen(A->getChar(0))
-            + scoreM->ScoreOfGapExtend(A->getChar(0));
+        D.at(1).at(0) = scoreM->ScoreOfGapOpen(A.getChar(0))
+            + scoreM->ScoreOfGapExtend(A.getChar(0));
 #ifdef _OPENMP            
 #pragma omp parallel for
 #endif         
-        for (uint i=2; i<D.size(); i++)
-          D.at(i).at(0) = D.at(i-1).at(0) + scoreM->ScoreOfGapExtend(A->getChar(i-1));
+        for (uint i = 2; i < D.size(); i++)
+          D.at(i).at(0) = D.at(i - 1).at(0)
+              + scoreM->ScoreOfGapExtend(A.getChar(i - 1));
 
         return D;
       }
 
-    ScoreMatrix MatrixHelper::InitScoreMatrixWith(const bpp::Sequence* A,
-        const bpp::Sequence* B, const double &init)
+    ScoreMatrix MatrixHelper::InitScoreMatrixWith(const SequenceProxy A,
+        const SequenceProxy B, const double &init)
       {
         //Initialize Score Matrix
-        ScoreMatrix P(A->size()+1, std::vector<double>(B->size() +1, init));
+        ScoreMatrix P(A.size() + 1, std::vector<double>(B.size() + 1, init));
 
         return P;
       }
-    ScoreMatrix3D MatrixHelper::InitScoreMatrix3DWith(const bpp::Sequence* A,
-        const PseudoRotatedSequence* B, const int &delta, const double &init)
+    ScoreMatrix3D MatrixHelper::InitScoreMatrix3DWith(const SequenceProxy A,
+        const PseudoRotatedSequence B, const int &delta, const double &init)
       {
         //B is doubled=pseudorotated so correct size is B/2
-        int slaps = B->size()/2;
+        int slaps = B.size() / 2;
         if (delta != 0)
           slaps /= delta;
 
-        ScoreMatrix3D P(A->size()+1, std::vector< std::vector<double> >(B->size() +1,
-            std::vector<double>(slaps, init)));
+        ScoreMatrix3D P(A.size() + 1,
+            std::vector<std::vector<double> >(B.size() + 1,
+                std::vector<double>(slaps, init)));
 
         return P;
       }
 
-    BoolMatrix MatrixHelper::CreateAdjacenceGraph(
-        Alignment* pairWiseAlignments, int biggestSequenceSize)
+    BoolMatrix MatrixHelper::CreateAdjacenceGraph(Alignment* pairWiseAlignments,
+        int biggestSequenceSize)
       {
         //Construct Graph as Adjacence Matrix
-        std::valarray <bool> tmp(false, biggestSequenceSize);
-        BoolMatrix G(tmp, pairWiseAlignments->getNumberOfSequences()/2);
+        std::valarray<bool> tmp(false, biggestSequenceSize);
+        BoolMatrix G(tmp, pairWiseAlignments->getNumberOfSequences() / 2);
 
-        std::cout << "constructing Graph"<< std::endl;
-        for (uint i=1; i<pairWiseAlignments->getNumberOfSequences(); i +=2)
+        std::cout << "constructing Graph" << std::endl;
+        for (uint i = 1; i < pairWiseAlignments->getNumberOfSequences(); i += 2)
           {
 #ifdef _OPENMP            
 #pragma omp parallel for shared(G)
 #endif 
-            for (uint j=0; j<pairWiseAlignments->getSequence(i)->size(); j++)
+            for (uint j = 0; j < pairWiseAlignments->getSequence(i).size(); j++)
               {
                 //Check for match or not mismatch := !gap
-                if (pairWiseAlignments->getSequence(i)->getValue(j) != -1)
-                  G[i/2][j] = true;
+                if (pairWiseAlignments->getSequence(i).getValue(j) != -1)
+                  G[i / 2][j] = true;
                 else
-                  G[i/2][j] = false;
+                  G[i / 2][j] = false;
               }
           }
 
@@ -152,7 +153,7 @@ namespace Circal
         int i = start;
         double minScore = M->at(row).at(start);
 
-        for (uint k=1; k<start; k++)
+        for (uint k = 1; k < start; k++)
           {
             if (scoreM->BestOfTwo(M->at(row).at(k), minScore) != minScore)
               {
@@ -171,14 +172,15 @@ namespace Circal
         int i = start;
         double minScore = M->at(row).at(start).at(k);
 
-        for (uint p=1; p<start; p++)
+        for (uint p = 1; p < start; p++)
           {
-            for (uint t=k; t<M->at(row).at(start).size(); t++)
-              if (scoreM->BestOfTwo(M->at(row).at(p).at(t), minScore) != minScore)
+            for (uint t = k; t < M->at(row).at(start).size(); t++)
+              if (scoreM->BestOfTwo(M->at(row).at(p).at(t), minScore)
+                  != minScore)
                 {
                   i = p;
                   minScore = M->at(row).at(p).at(t);
-                  k= t;
+                  k = t;
                 }
           }
         return i;
@@ -192,7 +194,7 @@ namespace Circal
         int j = start;
         double minScore = M->at(start).at(column);
 
-        for (uint k=1; k<start; k++)
+        for (uint k = 1; k < start; k++)
           {
             if (scoreM->BestOfTwo(M->at(k).at(column), minScore) != minScore)
               {
@@ -211,10 +213,11 @@ namespace Circal
         int j = start;
         double minScore = M->at(start).at(column).at(k);
 
-        for (uint p=1; p<start; p++)
-          for (uint l=k; l<M->at(p).at(column).size(); l++)
+        for (uint p = 1; p < start; p++)
+          for (uint l = k; l < M->at(p).at(column).size(); l++)
             {
-              if (scoreM->BestOfTwo(M->at(p).at(column).at(l), minScore) != minScore)
+              if (scoreM->BestOfTwo(M->at(p).at(column).at(l), minScore)
+                  != minScore)
                 {
                   j = p;
                   minScore = M->at(p).at(column).at(l);
@@ -233,16 +236,19 @@ namespace Circal
         int tempJ = SearchBestInColumn(M, scoreM, i, j);
 
         if (scoreM->BestOfTwo(minScore, M->at(tempI).at(j)) != minScore)
-          if (scoreM->BestOfTwo(M->at(tempI).at(j) , M->at(i).at(tempJ)) == M->at(i).at(tempJ))
-            {
-              j = tempJ;
-              minScore = M->at(i).at(tempJ);
-            }
-          else
-            {
-              i = tempI;
-              minScore = M->at(tempI).at(j);
-            }
+          {
+            if (scoreM->BestOfTwo(M->at(tempI).at(j), M->at(i).at(tempJ))
+                == M->at(i).at(tempJ))
+              {
+                j = tempJ;
+                minScore = M->at(i).at(tempJ);
+              }
+            else
+              {
+                i = tempI;
+                minScore = M->at(tempI).at(j);
+              }
+          }
 
         return minScore;
       }

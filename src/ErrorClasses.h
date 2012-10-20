@@ -29,7 +29,7 @@ namespace Circal
       {
 
   public:
-      MatrixOutofBoundsError(const uint &start, const uint &end, const uint &size);
+      MatrixOutofBoundsError(const unsigned int &start, const unsigned int &end, const unsigned int &size);
       virtual ~MatrixOutofBoundsError();
 
       };

@@ -20,7 +20,7 @@
 #ifndef ROTATEDSEQUENCE_H_
 #define ROTATEDSEQUENCE_H_
 
-#include <Bpp/Seq/Sequence.h>
+#include "SequenceProxy.h"
 
 namespace bpp
   {
@@ -29,12 +29,12 @@ namespace bpp
 namespace Circal
   {
 
-    class RotatedSequence : public bpp::Sequence
+    class RotatedSequence: public SequenceProxy
       {
       uint offset;
-  public:
+    public:
 
-      RotatedSequence(const bpp::Sequence* a, const uint &i);
+      RotatedSequence(const SequenceProxy a, const uint &i);
       virtual ~RotatedSequence();
 
       /**
@@ -53,31 +53,6 @@ namespace Circal
       virtual std::string getChar(unsigned int pos) const
           throw (bpp::IndexOutOfBoundsException);
 
-      /**
-       * @name Provide direct access to the list content.
-       *
-       * @warning These operators allow you to modifiy the list content.
-       * No alphabet checking is performed for your modifications, so use with care, or
-       * consider using the setContent() method.
-       *
-       * @{
-       */
-
-      /**
-       * @brief Operator [] overloaded for quick access to a character in list.
-       *
-       * @param i The position to retrieve.
-       * @return The integer value of character at position i.
-       */
-      virtual const int & operator[](unsigned int i) const;
-
-      /**
-       * @brief Operator [] overloaded for quick access to a character in list.
-       *
-       * @param i The position to retrieve.
-       * @return The integer value of character at position i.
-       */
-      virtual int & operator[](unsigned int i);
 
       /** @} */
 
@@ -89,7 +64,6 @@ namespace Circal
        * @return The whole list as a string.
        */
       std::string toString() const;
-
       };
 
   }

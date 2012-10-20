@@ -42,11 +42,11 @@ namespace Circal
   public:
       Output();
       virtual ~Output();
-      std::string SequencePrettyPrint(bpp::Sequence* A);
+      std::string SequencePrettyPrint(SequenceProxy A);
       std::string AlignmentPrettyPrint(Alignment* aln);
 
-      std::string ScoreMatrixPrettyPrint(const bpp::Sequence* A,
-          const bpp::Sequence* B, const ScoreMatrix &D);
+      std::string ScoreMatrixPrettyPrint(const SequenceProxy A,
+          const SequenceProxy B, const ScoreMatrix &D);
       std::string AdjacenceMatrixPrettyPrint(const BoolMatrix &G);
 
       std::string TCoffeeLibHeader(const bpp::VectorSequenceContainer* input);
