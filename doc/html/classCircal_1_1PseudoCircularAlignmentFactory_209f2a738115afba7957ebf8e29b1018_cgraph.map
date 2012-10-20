@@ -1,9 +1,0 @@
-<area shape="rect" href="$classCircal_1_1Alignment.html#0a0ef49213d04275c7c932a6f55f8d52" title="Circal::Alignment::addSequence" alt="" coords="524,5,751,32">
-<area shape="rect" href="$classCircal_1_1ScoringModel.html#2af91279a78623322072a65a071f572b" title="Circal::ScoringModel::BestOfTwo" alt="" coords="524,56,751,83">
-<area shape="rect" href="$classCircal_1_1PseudoRotatedSequence.html#fbfa83464c33febec8196f23cd296a31" title="Get the element at position &#39;pos&#39; as a character." alt="" coords="492,107,783,133">
-<area shape="rect" href="$classCircal_1_1PseudoRotatedSequence.html#f6a9b351636ffee4468adbf1e58fdb4a" title="Get the number of elements in the list." alt="" coords="832,157,1093,184">
-<area shape="rect" href="$classCircal_1_1PseudoRotatedSequence.html#48c964ebdf631807be5e58140e5378c6" title="Get the element at position &#39;pos&#39; as an int." alt="" coords="491,208,784,235">
-<area shape="rect" href="$classCircal_1_1ScoringModel.html#c9093a36aae9269b516c34438d2df279" title="Circal::ScoringModel::ScoreOf" alt="" coords="531,259,744,285">
-<area shape="rect" href="$classCircal_1_1ScoringModel.html#dc158e70948f9cce9c80ef7df6cdde6f" title="Circal::ScoringModel::ScoreOfGapExtend" alt="" coords="495,309,780,336">
-<area shape="rect" href="$classCircal_1_1ScoringModel.html#3f934683024d21df07165eee183ee918" title="Circal::ScoringModel::ScoreOfGapOpen" alt="" coords="500,360,775,387">
-<area shape="rect" href="$classCircal_1_1Alignment.html#94d66a0aa8ca3a3ecd47801acbbbc16a" title="Circal::Alignment::set_Score" alt="" coords="536,411,739,437">
