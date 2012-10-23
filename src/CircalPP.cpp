@@ -95,7 +95,7 @@ void doAllignment(const bpp::Alphabet* alpha, const std::string &seqFilename,
                 &scoreM, delta, verbose);
             //Dirty hack
             uint difference = std::abs(
-                (long long int) (tempReal.getSequence(0).size()
+                (long int) (tempReal.getSequence(0).size()
                     - tempPseu.getSequence(0).size()));
             double realGlobalScore = tempPseu.get_Score();
             realGlobalScore += scoreM.ScoreOfGapExtend("A") * difference;
