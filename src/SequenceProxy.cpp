@@ -19,28 +19,31 @@
 
 #include "SequenceProxy.h"
 
-SequenceProxy::SequenceProxy(const std::string& name,
-    const std::vector<int>& sequence, const bpp::Alphabet* alpha)
-        throw (bpp::BadIntException) :
-    bpp::BasicSequence(name, sequence, alpha)
+namespace Circal
   {
-    // TODO Auto-generated constructor stub
+    SequenceProxy::SequenceProxy(const std::string& name,
+        const std::vector<int>& sequence, const bpp::Alphabet* alpha)
+            throw (bpp::BadIntException) :
+        bpp::BasicSequence(name, sequence, alpha)
+      {
+        // TODO Auto-generated constructor stub
+
+      }
+    SequenceProxy::SequenceProxy(const bpp::Sequence& sequence) :
+        bpp::BasicSequence(sequence)
+      {
+
+      }
+
+    SequenceProxy::SequenceProxy(const std::string& name,
+        const std::string& sequence, const bpp::Alphabet* alpha) :
+        bpp::BasicSequence(name, sequence, alpha)
+      {
+
+      }
+    SequenceProxy::~SequenceProxy()
+      {
+        // TODO Auto-generated destructor stub
+      }
 
   }
-SequenceProxy::SequenceProxy(const bpp::Sequence& sequence) :
-    bpp::BasicSequence(sequence)
-  {
-
-  }
-
-SequenceProxy::SequenceProxy(const std::string& name,
-    const std::string& sequence, const bpp::Alphabet* alpha) :
-    bpp::BasicSequence(name, sequence, alpha)
-  {
-
-  }
-SequenceProxy::~SequenceProxy()
-  {
-    // TODO Auto-generated destructor stub
-  }
-
