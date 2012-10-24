@@ -34,7 +34,7 @@ First run
 
 When you run the tool without any options it will present you the following:
 
-`usage: CircalPP [options]  
+> usage: CircalPP [options]  
 options:  
 -v verbose mode  
 -b brute-force mode  
@@ -48,7 +48,7 @@ options:
 -S <filename> file including the scoring scheme  
 -I <filename> read data from fasta file instead of stdin  
 -F <filename> write all pairwise alignments as fasta to  
--O <filename> write output to <filename> instead of stdout`
+-O <filename> write output to <filename> instead of stdout
 
 From these only the used Scoring scheme and the used alphabet type are an obliga-
 tion. It is recommended to change the delta value, because it defaults to 1. Input
