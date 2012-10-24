@@ -29,7 +29,6 @@
 #include "Output.h"
 #include "RandomSequence.h"
 #include "VertebrateMitochondrialGenomeAlphabet.h"
-#include <NumCalc/RandomTools.h>
 #include <Bpp/Seq/Alphabet/DNA.h>
 #include <Bpp/Seq/Alphabet/RNA.h>
 #include <Bpp/Seq/Io/Fasta.h>
@@ -521,7 +520,7 @@ int main(int args, char* argv[])
       }
 
     //WTF!=?? Why do I have to delete this!?
-    delete bpp::RandomTools::DEFAULT_GENERATOR;
+    //delete bpp::RandomTools::DEFAULT_GENERATOR;
     return 0;
 
   }
