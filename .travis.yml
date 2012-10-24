@@ -8,7 +8,9 @@ script:
   - make
   - make test
 install:
-  - sudo apt-get update
+  - echo | sudo apt-add-repository ppa:dhart/ppa
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq libwxgtk2.8 cxxtest
   - wget http://biopp.univ-montp2.fr/repos/apt/debian/pool/main/libb/libbpp-core/libbpp-core2_2.0.3-1_i386.deb
   - sudo dpkg -i libbpp-core2_2.0.3-1_i386.deb
   - wget http://biopp.univ-montp2.fr/repos/apt/debian/pool/main/libb/libbpp-core/libbpp-core-dev_2.0.3-1_i386.deb
