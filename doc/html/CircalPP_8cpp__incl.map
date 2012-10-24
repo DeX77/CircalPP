@@ -1,2 +1,19 @@
 <map id="github/CircalPP/src/CircalPP.cpp" name="github/CircalPP/src/CircalPP.cpp">
+<area shape="rect" id="node3" href="$MultipleCircularAlignmentFactory_8h.html" title="MultipleCircularAlignment\lFactory.h" alt="" coords="228,97,399,138"/>
+<area shape="rect" id="node30" href="$Output_8h.html" title="Output.h" alt="" coords="373,352,445,379"/>
+<area shape="rect" id="node42" href="$MultiplePseudoCircularAlignmentFactory_8h.html" title="MultiplePseudoCircularAlignment\lFactory.h" alt="" coords="423,97,637,138"/>
+<area shape="rect" id="node48" href="$ScoringModel_8h.html" title="ScoringModel.h" alt="" coords="1072,269,1183,296"/>
+<area shape="rect" id="node60" href="$CorrectedFasta_8h.html" title="CorrectedFasta.h" alt="" coords="1025,104,1148,131"/>
+<area shape="rect" id="node66" href="$WhitespaceFasta_8h.html" title="WhitespaceFasta.h" alt="" coords="866,104,1000,131"/>
+<area shape="rect" id="node71" href="$RandomSequence_8h.html" title="RandomSequence.h" alt="" coords="679,269,819,296"/>
+<area shape="rect" id="node74" href="$VertebrateMitochondrialGenomeAlphabet_8h.html" title="VertebrateMitochondrialGenome\lAlphabet.h" alt="" coords="1223,97,1431,138"/>
+<area shape="rect" id="node5" href="$CircularAlignmentFactory_8h.html" title="CircularAlignmentFactory.h" alt="" coords="5,187,184,213"/>
+<area shape="rect" id="node38" href="$MultipleAlignmentFactory_8h.html" title="MultipleAlignmentFactory.h" alt="" coords="458,187,637,213"/>
+<area shape="rect" id="node7" href="$AlignmentFactory_8h.html" title="AlignmentFactory.h" alt="" coords="269,269,403,296"/>
+<area shape="rect" id="node9" href="$Alignment_8h.html" title="Alignment.h" alt="" coords="812,352,903,379"/>
+<area shape="rect" id="node23" href="$MatrixHelper_8h.html" title="MatrixHelper.h" alt="" coords="288,435,395,461"/>
+<area shape="rect" id="node11" href="$SequenceProxy_8h.html" title="SequenceProxy.h" alt="" coords="420,517,545,544"/>
+<area shape="rect" id="node44" href="$PseudoCircularAlignmentFactory_8h.html" title="PseudoCircularAlignmentFactory.h" alt="" coords="209,187,432,213"/>
+<area shape="rect" id="node50" href="$AlignmentSymbol_8h.html" title="AlignmentSymbol.h" alt="" coords="1175,352,1309,379"/>
+<area shape="rect" id="node76" href="$GenomeAlphabet_8h.html" title="GenomeAlphabet.h" alt="" coords="1260,187,1393,213"/>
 </map>

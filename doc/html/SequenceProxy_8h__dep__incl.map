@@ -1,0 +1,29 @@
+<map id="github/CircalPP/include/SequenceProxy.h" name="github/CircalPP/include/SequenceProxy.h">
+<area shape="rect" id="node3" href="$CorrectedFasta_8cpp.html" title="github/CircalPP/src\l/CorrectedFasta.cpp" alt="" coords="5,97,145,138"/>
+<area shape="rect" id="node5" href="$PseudoCircularAlignmentFactory_8cpp.html" title="github/CircalPP/src\l/PseudoCircularAlignmentFactory.cpp" alt="" coords="277,466,520,507"/>
+<area shape="rect" id="node7" href="$SequenceProxy_8cpp.html" title="github/CircalPP/src\l/SequenceProxy.cpp" alt="" coords="222,97,364,138"/>
+<area shape="rect" id="node9" href="$Alignment_8h.html" title="github/CircalPP/include\l/Alignment.h" alt="" coords="1182,187,1340,229"/>
+<area shape="rect" id="node46" href="$MatrixHelper_8h.html" title="github/CircalPP/include\l/MatrixHelper.h" alt="" coords="803,97,961,138"/>
+<area shape="rect" id="node68" href="$RotatedSequence_8h.html" title="github/CircalPP/include\l/RotatedSequence.h" alt="" coords="1646,97,1804,138"/>
+<area shape="rect" id="node80" href="$RandomSequence_8h.html" title="github/CircalPP/include\l/RandomSequence.h" alt="" coords="389,97,547,138"/>
+<area shape="rect" id="node11" href="$Alignment_8cpp.html" title="github/CircalPP/src\l/Alignment.cpp" alt="" coords="710,278,844,319"/>
+<area shape="rect" id="node13" href="$MatrixHelper_8cpp.html" title="github/CircalPP/src\l/MatrixHelper.cpp" alt="" coords="1417,278,1551,319"/>
+<area shape="rect" id="node15" href="$Output_8cpp.html" title="github/CircalPP/src\l/Output.cpp" alt="" coords="1155,278,1289,319"/>
+<area shape="rect" id="node17" href="$AlignmentFactory_8h.html" title="github/CircalPP/include\l/AlignmentFactory.h" alt="" coords="921,278,1079,319"/>
+<area shape="rect" id="node31" href="$MultipleAlignmentFactory_8h.html" title="github/CircalPP/include\l/MultipleAlignmentFactory.h" alt="" coords="1099,369,1283,410"/>
+<area shape="rect" id="node19" href="$AlignmentFactory_8cpp.html" title="github/CircalPP/src\l/AlignmentFactory.cpp" alt="" coords="379,369,532,410"/>
+<area shape="rect" id="node21" href="$CircularAlignmentFactory_8h.html" title="github/CircalPP/include\l/CircularAlignmentFactory.h" alt="" coords="1307,369,1491,410"/>
+<area shape="rect" id="node41" href="$PseudoCircularAlignmentFactory_8h.html" title="github/CircalPP/include\l/PseudoCircularAlignmentFactory.h" alt="" coords="846,369,1073,410"/>
+<area shape="rect" id="node23" href="$CircularAlignmentFactory_8cpp.html" title="github/CircalPP/src\l/CircularAlignmentFactory.cpp" alt="" coords="1394,466,1592,507"/>
+<area shape="rect" id="node25" href="$MultipleCircularAlignmentFactory_8h.html" title="github/CircalPP/include\l/MultipleCircularAlignmentFactory.h" alt="" coords="1124,466,1353,507"/>
+<area shape="rect" id="node27" href="$CircalPP_8cpp.html" title="github/CircalPP/src\l/CircalPP.cpp" alt="" coords="713,570,847,611"/>
+<area shape="rect" id="node29" href="$MultipleCircularAlignmentFactory_8cpp.html" title="github/CircalPP/src\l/MultipleCircularAlignment\lFactory.cpp" alt="" coords="1151,563,1325,619"/>
+<area shape="rect" id="node33" href="$MultipleAlignmentFactory_8cpp.html" title="github/CircalPP/src\l/MultipleAlignmentFactory.cpp" alt="" coords="658,466,856,507"/>
+<area shape="rect" id="node36" href="$MultiplePseudoCircularAlignmentFactory_8h.html" title="github/CircalPP/include\l/MultiplePseudoCircularAlignment\lFactory.h" alt="" coords="881,459,1100,515"/>
+<area shape="rect" id="node39" href="$MultiplePseudoCircularAlignmentFactory_8cpp.html" title="github/CircalPP/src\l/MultiplePseudoCircularAlignment\lFactory.cpp" alt="" coords="405,563,624,619"/>
+<area shape="rect" id="node57" href="$Output_8h.html" title="github/CircalPP/include\l/Output.h" alt="" coords="567,187,725,229"/>
+<area shape="rect" id="node71" href="$RotatedSequence_8cpp.html" title="github/CircalPP/src\l/RotatedSequence.cpp" alt="" coords="1899,187,2052,229"/>
+<area shape="rect" id="node73" href="$PseudoRotatedSequence_8h.html" title="github/CircalPP/include\l/PseudoRotatedSequence.h" alt="" coords="1497,187,1681,229"/>
+<area shape="rect" id="node78" href="$PseudoRotatedSequence_8cpp.html" title="github/CircalPP/src\l/PseudoRotatedSequence.cpp" alt="" coords="1626,278,1824,319"/>
+<area shape="rect" id="node83" href="$RandomSequence_8cpp.html" title="github/CircalPP/src\l/RandomSequence.cpp" alt="" coords="222,187,380,229"/>
+</map>

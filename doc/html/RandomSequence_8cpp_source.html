@@ -17,7 +17,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">CircalPP
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">1.0</span>
    </div>
   </td>
  </tr>
@@ -30,6 +30,7 @@
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
@@ -49,24 +50,24 @@
 <div class="title">RandomSequence.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="RandomSequence_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;RandomSequence.h&quot;</span></div>
+<a href="RandomSequence_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="RandomSequence_8h.html">RandomSequence.h</a>&quot;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">namespace </span>Circal</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;  {</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    RandomSequence::RandomSequence(<span class="keyword">const</span> uint &amp;sequence_size, <span class="keyword">const</span> bpp::Alphabet* alpha) :</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;      SequenceProxy(<span class="stringliteral">&quot;Random Sequence&quot;</span>, std::vector&lt;int&gt;(), alpha)</div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="code" href="classCircal_1_1RandomSequence.html#a42ad8c48a7c9c2de1e1034e193eafc32">    6</a></span>&#160;    <a class="code" href="classCircal_1_1RandomSequence.html#a42ad8c48a7c9c2de1e1034e193eafc32">RandomSequence::RandomSequence</a>(<span class="keyword">const</span> uint &amp;sequence_size, <span class="keyword">const</span> bpp::Alphabet* alpha) :</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;      <a class="code" href="classCircal_1_1SequenceProxy.html">SequenceProxy</a>(<span class="stringliteral">&quot;Random Sequence&quot;</span>, std::vector&lt;int&gt;(), alpha)</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;      {</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <span class="keywordtype">int</span> k=-10;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <span class="keywordflow">for</span> (uint i=0; i&lt; sequence_size; i++)</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;          {</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;            <span class="comment">//This makes sure we add a valid symbol</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            k = rand() % 4;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            this-&gt;addElement(k);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            this-&gt;<a class="code" href="classCircal_1_1RandomSequence.html#a08d701f67147770b45212c87718f838d">addElement</a>(k);</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;          }</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;      }</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    RandomSequence::~RandomSequence()</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="code" href="classCircal_1_1RandomSequence.html#acd612e70ea793e398a751d1527244fdb">   18</a></span>&#160;    <a class="code" href="classCircal_1_1RandomSequence.html#acd612e70ea793e398a751d1527244fdb">RandomSequence::~RandomSequence</a>()</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;      {</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;      }</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
@@ -74,7 +75,7 @@
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Oct 24 2012 17:48:32 for CircalPP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Oct 24 2012 18:32:15 for CircalPP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

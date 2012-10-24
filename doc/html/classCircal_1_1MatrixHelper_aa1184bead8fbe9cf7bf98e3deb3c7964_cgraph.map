@@ -1,0 +1,7 @@
+<map id="Circal::MatrixHelper::InitializeScoreMatrixDistances" name="Circal::MatrixHelper::InitializeScoreMatrixDistances">
+<area shape="rect" id="node3" href="$classCircal_1_1SequenceProxy.html#a8e9efb167cc1fe47195200f16c78da59" title="Circal::SequenceProxy\l::getChar" alt="" coords="262,5,418,46"/>
+<area shape="rect" id="node5" href="$classCircal_1_1MatrixHelper.html#a6a6d23acefddde3887486aaa5af8e2cf" title="Circal::MatrixHelper\l::InitScoreMatrixWith" alt="" coords="267,70,413,111"/>
+<area shape="rect" id="node9" href="$classCircal_1_1ScoringModel.html#a91a01de7730179047023deea4f36c5a3" title="Circal::ScoringModel\l::ScoreOfGapExtend" alt="" coords="269,135,411,177"/>
+<area shape="rect" id="node11" href="$classCircal_1_1ScoringModel.html#a4b3659e9d9017887011f7c89f099f88f" title="Circal::ScoringModel\l::ScoreOfGapOpen" alt="" coords="269,201,411,242"/>
+<area shape="rect" id="node7" href="$classCircal_1_1SequenceProxy.html#a619d0681bd32fb3c497b36cab10a4799" title="Circal::SequenceProxy\l::size" alt="" coords="467,70,623,111"/>
+</map>

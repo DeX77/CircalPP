@@ -1,0 +1,9 @@
+<map id="Circal::AlignmentFactory::BacktrackingSmithWatermanAffin" name="Circal::AlignmentFactory::BacktrackingSmithWatermanAffin">
+<area shape="rect" id="node3" href="$classCircal_1_1ScoringModel.html#a7a0e45da2b4c5912f08258bd56dd1788" title="Circal::ScoringModel\l::BestOfTwo" alt="" coords="486,105,629,147"/>
+<area shape="rect" id="node5" href="$classCircal_1_1SequenceProxy.html#ab1726cd7ce5f2e69c029c34adbb9df2d" title="Circal::SequenceProxy\l::getAlphabet" alt="" coords="281,36,437,77"/>
+<area shape="rect" id="node7" href="$classCircal_1_1SequenceProxy.html#a8e9efb167cc1fe47195200f16c78da59" title="Circal::SequenceProxy\l::getChar" alt="" coords="281,101,437,143"/>
+<area shape="rect" id="node9" href="$classCircal_1_1SequenceProxy.html#ae4a070377ca0b940e5bef7226d70e1c7" title="Circal::SequenceProxy\l::getValue" alt="" coords="281,167,437,208"/>
+<area shape="rect" id="node11" href="$classCircal_1_1ScoringModel.html#ae2cf9590d9151d9bf777ebdb2f021dcd" title="Circal::ScoringModel\l::ScoreOf" alt="" coords="287,232,430,273"/>
+<area shape="rect" id="node14" href="$classCircal_1_1ScoringModel.html#a91a01de7730179047023deea4f36c5a3" title="Circal::ScoringModel\l::ScoreOfGapExtend" alt="" coords="287,297,430,339"/>
+<area shape="rect" id="node16" href="$classCircal_1_1ScoringModel.html#a4b3659e9d9017887011f7c89f099f88f" title="Circal::ScoringModel\l::ScoreOfGapOpen" alt="" coords="287,363,430,404"/>
+</map>

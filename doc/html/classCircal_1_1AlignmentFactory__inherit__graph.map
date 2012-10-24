@@ -1,0 +1,7 @@
+<map id="Circal::AlignmentFactory" name="Circal::AlignmentFactory">
+<area shape="rect" id="node3" href="$classCircal_1_1CircularAlignmentFactory.html" title="Circal::CircularAlignment\lFactory" alt="" coords="243,5,410,46"/>
+<area shape="rect" id="node7" href="$classCircal_1_1MultipleAlignmentFactory.html" title="Circal::MultipleAlignment\lFactory" alt="" coords="243,70,410,111"/>
+<area shape="rect" id="node12" href="$classCircal_1_1PseudoCircularAlignmentFactory.html" title="Circal::PseudoCircularAlignment\lFactory" alt="" coords="221,135,432,177"/>
+<area shape="rect" id="node5" href="$classCircal_1_1MultipleCircularAlignmentFactory.html" title="Circal::MultipleCircular\lAlignmentFactory" alt="" coords="503,38,657,79"/>
+<area shape="rect" id="node10" href="$classCircal_1_1MultiplePseudoCircularAlignmentFactory.html" title="Circal::MultiplePseudoCircular\lAlignmentFactory" alt="" coords="481,119,679,161"/>
+</map>

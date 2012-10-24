@@ -17,7 +17,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">CircalPP
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">1.0</span>
    </div>
   </td>
  </tr>
@@ -30,6 +30,7 @@
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
@@ -68,20 +69,20 @@
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> St, Fifth Floor, Boston, MA 02110, USA</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;CorrectedFasta.h&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;SequenceProxy.h&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="CorrectedFasta_8h.html">CorrectedFasta.h</a>&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SequenceProxy_8h.html">SequenceProxy.h</a>&quot;</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">namespace </span>Circal</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;  {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    CorrectedFasta::CorrectedFasta()</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="code" href="classCircal_1_1CorrectedFasta.html#a886f025a1872bf6ed19773f4ecb4406c">   25</a></span>&#160;    <a class="code" href="classCircal_1_1CorrectedFasta.html#a886f025a1872bf6ed19773f4ecb4406c">CorrectedFasta::CorrectedFasta</a>()</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;      {</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;      }</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    CorrectedFasta::~CorrectedFasta()</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="code" href="classCircal_1_1CorrectedFasta.html#a0cf5d4979869682b1217514c7034da39">   29</a></span>&#160;    <a class="code" href="classCircal_1_1CorrectedFasta.html#a0cf5d4979869682b1217514c7034da39">CorrectedFasta::~CorrectedFasta</a>()</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;      {</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;      }</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> CorrectedFasta::appendFromStream(std::istream &amp; input,</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="code" href="classCircal_1_1CorrectedFasta.html#a31e44a8baae629aa3b8c3fdf626517f9">   33</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCircal_1_1CorrectedFasta.html#a31e44a8baae629aa3b8c3fdf626517f9">CorrectedFasta::appendFromStream</a>(std::istream &amp; input,</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        bpp::VectorSequenceContainer &amp; vsc) <span class="keyword">const</span> <span class="keywordflow">throw</span> (bpp::Exception)</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;      {</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordflow">if</span> (!input)</div>
@@ -103,7 +104,7 @@
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                <span class="keywordflow">if</span> ((name != <span class="stringliteral">&quot;&quot;</span>) &amp;&amp; (sequence != <span class="stringliteral">&quot;&quot;</span>))</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                  {</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                    <span class="comment">// New sequence creation, and addition in existing VectorSequenceContainer</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                    SequenceProxy * seq = <span class="keyword">new</span> SequenceProxy(name, sequence,</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                    <a class="code" href="classCircal_1_1SequenceProxy.html">SequenceProxy</a> * seq = <span class="keyword">new</span> <a class="code" href="classCircal_1_1SequenceProxy.html">SequenceProxy</a>(name, sequence,</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                        vsc.getAlphabet());</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                    vsc.addSequence(*seq);</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                    <span class="keyword">delete</span> seq;</div>
@@ -121,7 +122,7 @@
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="comment">// Addition of the last sequence in file</span></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">if</span> ((name != <span class="stringliteral">&quot;&quot;</span>) &amp;&amp; (sequence != <span class="stringliteral">&quot;&quot;</span>))</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;          {</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            SequenceProxy * seq = <span class="keyword">new</span> SequenceProxy(name, sequence,</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <a class="code" href="classCircal_1_1SequenceProxy.html">SequenceProxy</a> * seq = <span class="keyword">new</span> <a class="code" href="classCircal_1_1SequenceProxy.html">SequenceProxy</a>(name, sequence,</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                vsc.getAlphabet());</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            vsc.addSequence(*seq);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keyword">delete</span> seq;</div>
@@ -131,7 +132,7 @@
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Oct 24 2012 17:48:32 for CircalPP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Oct 24 2012 18:32:15 for CircalPP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

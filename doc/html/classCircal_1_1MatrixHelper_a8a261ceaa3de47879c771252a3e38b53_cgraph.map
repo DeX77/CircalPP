@@ -1,0 +1,5 @@
+<map id="Circal::MatrixHelper::SearchBestPositionFrom" name="Circal::MatrixHelper::SearchBestPositionFrom">
+<area shape="rect" id="node3" href="$classCircal_1_1ScoringModel.html#a7a0e45da2b4c5912f08258bd56dd1788" title="Circal::ScoringModel\l::BestOfTwo" alt="" coords="433,23,575,65"/>
+<area shape="rect" id="node5" href="$classCircal_1_1MatrixHelper.html#ae69e461388db01111d662b709d6ab4f2" title="Circal::MatrixHelper\l::SearchBestInColumn" alt="" coords="229,23,384,65"/>
+<area shape="rect" id="node8" href="$classCircal_1_1MatrixHelper.html#abeed35923850dd22a830a22063a77a0a" title="Circal::MatrixHelper\l::SearchBestInRow" alt="" coords="237,89,376,130"/>
+</map>

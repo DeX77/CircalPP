@@ -1,0 +1,12 @@
+<map id="Circal::Output::TCoffeeLibFormat" name="Circal::Output::TCoffeeLibFormat">
+<area shape="rect" id="node3" href="$classCircal_1_1Alignment.html#ae05f05a0c167fcfd94d2e4296df82300" title="Circal::Alignment::\laddSequence" alt="" coords="257,5,388,46"/>
+<area shape="rect" id="node5" href="$classCircal_1_1Alignment.html#ad9bf896327a1e06d1dd18b3a0c7dab1b" title="Circal::Alignment::\lgetAlphabet" alt="" coords="257,70,388,111"/>
+<area shape="rect" id="node7" href="$classCircal_1_1Alignment.html#aea07637c3dd66e83a5a5a0f5b993d143" title="Circal::Alignment::\lgetNumberOfSequences" alt="" coords="240,135,405,177"/>
+<area shape="rect" id="node9" href="$classCircal_1_1Alignment.html#a85ccde343b51e8b0d702b9d7d6795a0d" title="Circal::Alignment::\lgetSequence" alt="" coords="505,187,636,229"/>
+<area shape="rect" id="node11" href="$classCircal_1_1Output.html#a8d4d121954ec0c10ad6b3b1268651c08" title="Circal::Output::TCoffeeAlign\lFormat" alt="" coords="229,253,416,294"/>
+<area shape="rect" id="node18" href="$classCircal_1_1Output.html#aeeba75375812d32a5ed680a67b406f37" title="Circal::Output::TCoffeeLib\lHeader" alt="" coords="235,383,410,425"/>
+<area shape="rect" id="node13" href="$classCircal_1_1Alignment.html#a1ba1a02f0da981faca500e0988bf1ac8" title="Circal::Alignment::\lget_offsetA" alt="" coords="505,253,636,294"/>
+<area shape="rect" id="node15" href="$classCircal_1_1Alignment.html#a6822c7df4eab6cd256934baa7ae71ee8" title="Circal::Alignment::\lget_offsetB" alt="" coords="505,318,636,359"/>
+<area shape="rect" id="node20" href="$classCircal_1_1PseudoRotatedSequence.html#af6a9b351636ffee4468adbf1e58fdb4a" title="Get the number of elements in the list." alt="" coords="465,383,677,425"/>
+<area shape="rect" id="node22" href="$classCircal_1_1Output.html#a4f74b8fc9c68d69e1d26ade8c6fbf35d" title="Circal::Output::TCoffeeLib\lFooter" alt="" coords="483,449,658,490"/>
+</map>

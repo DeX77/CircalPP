@@ -1,0 +1,12 @@
+<map id="Circal::PseudoCircularAlignmentFactory::BacktrackingSmithWatermanAffin" name="Circal::PseudoCircularAlignmentFactory::BacktrackingSmithWatermanAffin">
+<area shape="rect" id="node3" href="$classCircal_1_1ScoringModel.html#a7a0e45da2b4c5912f08258bd56dd1788" title="Circal::ScoringModel\l::BestOfTwo" alt="" coords="587,184,730,225"/>
+<area shape="rect" id="node5" href="$classCircal_1_1SequenceProxy.html#ab1726cd7ce5f2e69c029c34adbb9df2d" title="Circal::SequenceProxy\l::getAlphabet" alt="" coords="354,49,510,91"/>
+<area shape="rect" id="node7" href="$classCircal_1_1PseudoRotatedSequence.html#ad5cc350d089b09ff5b714e48e31a8d07" title="Get the element at position &#39;pos&#39; as a character." alt="" coords="326,115,538,156"/>
+<area shape="rect" id="node9" href="$classCircal_1_1SequenceProxy.html#a8e9efb167cc1fe47195200f16c78da59" title="Circal::SequenceProxy\l::getChar" alt="" coords="354,180,510,221"/>
+<area shape="rect" id="node11" href="$classCircal_1_1PseudoRotatedSequence.html#a48c964ebdf631807be5e58140e5378c6" title="Get the element at position &#39;pos&#39; as an int." alt="" coords="326,245,538,287"/>
+<area shape="rect" id="node13" href="$classCircal_1_1SequenceProxy.html#ae4a070377ca0b940e5bef7226d70e1c7" title="Circal::SequenceProxy\l::getValue" alt="" coords="354,311,510,352"/>
+<area shape="rect" id="node15" href="$classCircal_1_1ScoringModel.html#ae2cf9590d9151d9bf777ebdb2f021dcd" title="Circal::ScoringModel\l::ScoreOf" alt="" coords="361,376,503,417"/>
+<area shape="rect" id="node18" href="$classCircal_1_1ScoringModel.html#a91a01de7730179047023deea4f36c5a3" title="Circal::ScoringModel\l::ScoreOfGapExtend" alt="" coords="361,441,503,483"/>
+<area shape="rect" id="node20" href="$classCircal_1_1ScoringModel.html#a4b3659e9d9017887011f7c89f099f88f" title="Circal::ScoringModel\l::ScoreOfGapOpen" alt="" coords="361,507,503,548"/>
+<area shape="rect" id="node22" href="$classCircal_1_1PseudoRotatedSequence.html#af6a9b351636ffee4468adbf1e58fdb4a" title="Get the number of elements in the list." alt="" coords="326,572,538,613"/>
+</map>

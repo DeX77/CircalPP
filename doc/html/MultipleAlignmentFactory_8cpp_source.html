@@ -17,7 +17,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">CircalPP
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">1.0</span>
    </div>
   </td>
  </tr>
@@ -30,6 +30,7 @@
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
@@ -68,26 +69,26 @@
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> St, Fifth Floor, Boston, MA 02110, USA</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;MultipleAlignmentFactory.h&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;Output.h&quot;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;MatrixHelper.h&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MultipleAlignmentFactory_8h.html">MultipleAlignmentFactory.h</a>&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Output_8h.html">Output.h</a>&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MatrixHelper_8h.html">MatrixHelper.h</a>&quot;</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">namespace </span>Circal</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    MultipleAlignmentFactory::MultipleAlignmentFactory()</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="code" href="classCircal_1_1MultipleAlignmentFactory.html#a377f18b5178ee35a038d734ae9b4f0f8">   26</a></span>&#160;    <a class="code" href="classCircal_1_1MultipleAlignmentFactory.html#a377f18b5178ee35a038d734ae9b4f0f8">MultipleAlignmentFactory::MultipleAlignmentFactory</a>()</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;      {</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;      }</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    MultipleAlignmentFactory::~MultipleAlignmentFactory()</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="code" href="classCircal_1_1MultipleAlignmentFactory.html#abfeee62c22ee9a141d09fd45af70ee3c">   30</a></span>&#160;    <a class="code" href="classCircal_1_1MultipleAlignmentFactory.html#abfeee62c22ee9a141d09fd45af70ee3c">MultipleAlignmentFactory::~MultipleAlignmentFactory</a>()</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;      {</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;      }</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    Alignment MultipleAlignmentFactory::GotohalignMultiple(</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keyword">const</span> bpp::VectorSequenceContainer* input, ScoringModel* scoreM,</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="code" href="classCircal_1_1MultipleAlignmentFactory.html#a2c19f2b795c00b7c34df5032845e98e0">   34</a></span>&#160;    <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1MultipleAlignmentFactory.html#a2c19f2b795c00b7c34df5032845e98e0">MultipleAlignmentFactory::GotohalignMultiple</a>(</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keyword">const</span> bpp::VectorSequenceContainer* input, <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM,</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordtype">int</span> &amp;delta, <span class="keywordtype">bool</span> verbose)</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;      {</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        Alignment out(input-&gt;getAlphabet());</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> out(input-&gt;getAlphabet());</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#ifdef _OPENMP            </span></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#pragma omp parallel for</span></div>
@@ -99,10 +100,10 @@
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;              {</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <span class="keywordflow">if</span> (verbose)</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                  std::cout &lt;&lt; <span class="stringliteral">&quot;*&quot;</span> &lt;&lt; std::flush;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                Alignment temp = GotohAlignment(input-&gt;getSequence(u),</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> temp = <a class="code" href="classCircal_1_1AlignmentFactory.html#a92691ace1a98348481e56a565450a24b">GotohAlignment</a>(input-&gt;getSequence(u),</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                    input-&gt;getSequence(k), scoreM, verbose);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                out.addSequence(temp.getSequence(0));</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                out.addSequence(temp.getSequence(1));</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                out.<a class="code" href="classCircal_1_1Alignment.html#ae05f05a0c167fcfd94d2e4296df82300">addSequence</a>(temp.<a class="code" href="classCircal_1_1Alignment.html#a85ccde343b51e8b0d702b9d7d6795a0d">getSequence</a>(0));</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                out.addSequence(temp.<a class="code" href="classCircal_1_1Alignment.html#a85ccde343b51e8b0d702b9d7d6795a0d">getSequence</a>(1));</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;              }</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keywordflow">if</span> (verbose)</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;              std::cout &lt;&lt; std::endl;</div>
@@ -111,11 +112,11 @@
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">return</span> out;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;      }</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    Alignment MultipleAlignmentFactory::NMWalignMultiple(</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keyword">const</span> bpp::VectorSequenceContainer* input, ScoringModel* scoreM,</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="code" href="classCircal_1_1MultipleAlignmentFactory.html#a916e35c369ab71801eb6ce4fd4872ff7">   63</a></span>&#160;    <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> <a class="code" href="classCircal_1_1MultipleAlignmentFactory.html#a916e35c369ab71801eb6ce4fd4872ff7">MultipleAlignmentFactory::NMWalignMultiple</a>(</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keyword">const</span> bpp::VectorSequenceContainer* input, <a class="code" href="classCircal_1_1ScoringModel.html">ScoringModel</a>* scoreM,</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">int</span> &amp;delta, <span class="keywordtype">bool</span> verbose)</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;      {</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        Alignment out(input-&gt;getAlphabet());</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> out(input-&gt;getAlphabet());</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#ifdef _OPENMP            </span></div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#pragma omp parallel for</span></div>
@@ -127,11 +128,11 @@
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;              {</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                <span class="keywordflow">if</span> (verbose)</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                  std::cout &lt;&lt; <span class="stringliteral">&quot;*&quot;</span> &lt;&lt; std::flush;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                Alignment temp = NeedlemanWunschAlignment(</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                <a class="code" href="classCircal_1_1Alignment.html">Alignment</a> temp = <a class="code" href="classCircal_1_1AlignmentFactory.html#a844a4235d55680420aec98671116a462">NeedlemanWunschAlignment</a>(</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                    input-&gt;getSequence(u), input-&gt;getSequence(k), scoreM);</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                out.addSequence(temp.getSequence(0));</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                out.addSequence(temp.getSequence(1));</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                out.<a class="code" href="classCircal_1_1Alignment.html#ae05f05a0c167fcfd94d2e4296df82300">addSequence</a>(temp.<a class="code" href="classCircal_1_1Alignment.html#a85ccde343b51e8b0d702b9d7d6795a0d">getSequence</a>(0));</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                out.addSequence(temp.<a class="code" href="classCircal_1_1Alignment.html#a85ccde343b51e8b0d702b9d7d6795a0d">getSequence</a>(1));</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;              }</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <span class="keywordflow">if</span> (verbose)</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;              std::cout &lt;&lt; std::endl;</div>
@@ -145,7 +146,7 @@
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Oct 24 2012 17:48:32 for CircalPP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Oct 24 2012 18:32:15 for CircalPP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

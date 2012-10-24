@@ -17,7 +17,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">CircalPP
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">1.0</span>
    </div>
   </td>
  </tr>
@@ -30,6 +30,7 @@
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
@@ -68,22 +69,22 @@
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> St, Fifth Floor, Boston, MA 02110, USA</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;RotatedSequence.h&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="RotatedSequence_8h.html">RotatedSequence.h</a>&quot;</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">namespace </span>Circal</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;  {</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    RotatedSequence::RotatedSequence(<span class="keyword">const</span> SequenceProxy a, <span class="keyword">const</span> uint &amp;i) :</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    SequenceProxy(a), offset(i)</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="code" href="classCircal_1_1RotatedSequence.html#a2009540ca78672aaf4a9b7ceda365597">   26</a></span>&#160;    <a class="code" href="classCircal_1_1RotatedSequence.html#a2009540ca78672aaf4a9b7ceda365597">RotatedSequence::RotatedSequence</a>(<span class="keyword">const</span> <a class="code" href="classCircal_1_1SequenceProxy.html">SequenceProxy</a> a, <span class="keyword">const</span> uint &amp;i) :</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="classCircal_1_1SequenceProxy.html">SequenceProxy</a>(a), offset(i)</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;      {</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;      }</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    RotatedSequence::~RotatedSequence()</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="code" href="classCircal_1_1RotatedSequence.html#aa7b2c11e48f0c2506e126f8b2a1e3ce9">   31</a></span>&#160;    <a class="code" href="classCircal_1_1RotatedSequence.html#aa7b2c11e48f0c2506e126f8b2a1e3ce9">RotatedSequence::~RotatedSequence</a>()</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;      {</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;      }</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">int</span> RotatedSequence::getValue(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> pos) <span class="keyword">const</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="code" href="classCircal_1_1RotatedSequence.html#a0b523c27f14abd33c0a5ba92abb9ecfa">   35</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classCircal_1_1RotatedSequence.html#a0b523c27f14abd33c0a5ba92abb9ecfa" title="Get the element at position &#39;pos&#39; as an int.">RotatedSequence::getValue</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> pos) <span class="keyword">const</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordflow">throw</span> (bpp::IndexOutOfBoundsException)</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;      {</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
@@ -93,7 +94,7 @@
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">return</span> this-&gt;getValue(pos);</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;      }</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    std::string RotatedSequence::getChar(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> pos) <span class="keyword">const</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="code" href="classCircal_1_1RotatedSequence.html#a35067a72284d0944303e089f14b8bbee">   45</a></span>&#160;    std::string <a class="code" href="classCircal_1_1RotatedSequence.html#a35067a72284d0944303e089f14b8bbee" title="Get the element at position &#39;pos&#39; as a character.">RotatedSequence::getChar</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> pos) <span class="keyword">const</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">throw</span> (bpp::IndexOutOfBoundsException)</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;      {</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        pos = ((pos+offset) % this-&gt;size());</div>
@@ -122,12 +123,12 @@
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">//        i = ((i+offset) % this-&gt;size());</span></div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">//        return content_[i];</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">//      }</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    std::string RotatedSequence::toString()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="code" href="classCircal_1_1RotatedSequence.html#a97d28cd3b1abce29f59b8f54fde99cf7">   74</a></span>&#160;    std::string <a class="code" href="classCircal_1_1RotatedSequence.html#a97d28cd3b1abce29f59b8f54fde99cf7" title="Convert the list as a string.">RotatedSequence::toString</a>()<span class="keyword"> const</span></div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">      </span>{</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        std::string result = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; this-&gt;size(); i++)</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; this-&gt;<a class="code" href="classCircal_1_1SequenceProxy.html#a619d0681bd32fb3c497b36cab10a4799">size</a>(); i++)</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;          {</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            result += this-&gt;getAlphabet()-&gt;intToChar(this-&gt;getValue(i));</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            result += this-&gt;<a class="code" href="classCircal_1_1SequenceProxy.html#ab1726cd7ce5f2e69c029c34adbb9df2d">getAlphabet</a>()-&gt;intToChar(this-&gt;<a class="code" href="classCircal_1_1RotatedSequence.html#a0b523c27f14abd33c0a5ba92abb9ecfa" title="Get the element at position &#39;pos&#39; as an int.">getValue</a>(i));</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;          }</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">return</span> result;</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;      }</div>
@@ -136,7 +137,7 @@
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Oct 24 2012 17:48:32 for CircalPP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Oct 24 2012 18:32:15 for CircalPP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>
