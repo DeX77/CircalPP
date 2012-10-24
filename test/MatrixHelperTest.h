@@ -25,6 +25,7 @@
 #include "ScoringModel.h"
 #include "SequenceProxy.h"
 #include "PseudoRotatedSequence.h"
+#include "Alignment.h"
 
 #include <Bpp/Seq/Alphabet/DNA.h>
 #include <cxxtest/TestSuite.h>
@@ -38,18 +39,34 @@ public:
   bpp::Alphabet* alpha;
   Circal::SequenceProxy A, B;
   Circal::PseudoRotatedSequence C;
+  Circal::Alignment* pairwiseAlign;
 
   MatrixHelperTest() :
-      scoreM(new Circal::ScoringModel()), alpha(new bpp::DNA()), A("A", "AA",
-          alpha), B("B", "BB", alpha), C(B)
+      scoreM(new Circal::ScoringModel()), alpha(new bpp::DNA()), A("A", "AAAA",
+          alpha), B("B", "BBBB", alpha), C(B), pairwiseAlign(
+          new Circal::Alignment(alpha))
     {
+      pairwiseAlign->addSequence(A);
+      pairwiseAlign->addSequence(B);
     }
   ;
   ~MatrixHelperTest()
     {
-      delete scoreM;
+      delete pairwiseAlign;
       delete alpha;
+      delete scoreM;
 
+    }
+  ;
+
+  void testMatrixHelperDestructor(void)
+    {
+      TS_TRACE("Starting MatrixHelperDestructor test");
+
+      Circal::MatrixHelper* temp = new Circal::MatrixHelper();
+      delete temp;
+
+      TS_TRACE("Finishing MatrixHelperDestructor test");
     }
   ;
 
@@ -90,14 +107,19 @@ public:
       TS_TRACE("Finishing InitScoreMatrix3DWith test");
     }
   ;
-//
-//      void testCreateAdjacenceGraph(void)
-//        {
-//          BoolMatrix CreateAdjacenceGraph(Alignment* pairWiseAlignments,
-//              int biggestSequenceSize);
-//        }
-//      ;
-//
+
+  void testCreateAdjacenceGraph(void)
+    {
+      TS_TRACE("Starting CreateAdjacenceGraph test");
+
+      Circal::BoolMatrix output = mhelper.CreateAdjacenceGraph(pairwiseAlign,
+          2);
+
+      TS_ASSERT(output.size() > 0);
+      TS_TRACE("Finishing CreateAdjacenceGraph test");
+    }
+  ;
+
   void testCutRowFromTo(void)
     {
       TS_TRACE("Starting CutRowFromTo test");
@@ -109,6 +131,20 @@ public:
       TS_ASSERT_EQUALS(sm.size(), sizebefore-1);
 
       TS_TRACE("Finishing CutRowFromTo test");
+    }
+  ;
+
+  void testInvalidCutRowFromTo(void)
+    {
+      TS_TRACE("Starting CutRowFromTo with invalid data test");
+
+      Circal::ScoreMatrix sm = mhelper.InitScoreMatrixWith(A, B, 0.5);
+      int sizebefore = sm.size();
+
+      mhelper.CutRowFromTo(&sm, 0, 100);
+      TS_ASSERT_EQUALS(sm.size(), sizebefore);
+
+      TS_TRACE("Finishing CutRowFromTo  with invalid data  test");
     }
   ;
 
@@ -125,43 +161,99 @@ public:
       TS_TRACE("Finishing CutColumnFromTo test");
     }
   ;
-//
-//      void testSearchBestPositionFrom(void)
-//        {
-//          double SearchBestPositionFrom(const ScoreMatrix* M, uint &i, uint &j,
-//              const ScoringModel* scoreM);
-//        }
-//      ;
-//
-//      void testSearchBestInRow(void)
-//        {
-//          int SearchBestInRow(const ScoreMatrix* M, const ScoringModel* scoreM,
-//              const uint &start, const uint &row);
-//        }
-//      ;
-//      void testSearchBestInRow3D(void)
-//        {
-//          int SearchBestInRow3D(const ScoreMatrix3D* M,
-//              const ScoringModel* scoreM, const uint &start, const uint &row,
-//              uint &k);
-//        }
-//      ;
-//
-//      void testSearchBestInColumn(void)
-//        {
-//          int SearchBestInColumn(const ScoreMatrix* M,
-//              const ScoringModel* scoreM, const uint &start,
-//              const uint &column);
-//        }
-//      ;
-//
-//      void testSearchBestInColumn3D(void)
-//        {
-//          int SearchBestInColumn3D(const ScoreMatrix3D* M,
-//              const ScoringModel* scoreM, const uint &start, const uint &column,
-//              uint &k);
-//        }
-//      ;
+
+  void testInvalidCutColumnFromTo(void)
+    {
+      TS_TRACE("Starting CutColumnFromTo with invalid range test");
+
+      Circal::ScoreMatrix sm = mhelper.InitScoreMatrixWith(A, B, 0.5);
+      int sizebefore = sm.at(0).size();
+
+      mhelper.CutColumnFromTo(&sm, 0, 100);
+      TS_ASSERT_EQUALS(sm.at(0).size(), sizebefore);
+
+      TS_TRACE("Finishing CutColumnFromTo with invalid range  test");
+    }
+  ;
+
+  void testSearchBestPositionFrom(void)
+    {
+      TS_TRACE("Starting BestPositionFrom test");
+
+      double empty = -10;
+
+      Circal::ScoreMatrix sm = mhelper.InitScoreMatrixWith(A, B, 0.5);
+      uint temp = 1;
+
+      double output = mhelper.SearchBestPositionFrom(&sm, temp, temp, scoreM);
+
+      TS_ASSERT_DIFFERS( output, empty);
+
+      TS_TRACE("Finishing BestPositionFrom test");
+
+    }
+  ;
+
+  void testSearchBestInRow(void)
+    {
+      TS_TRACE("Starting SearchBestInRow test");
+
+      Circal::ScoreMatrix sm = mhelper.InitScoreMatrixWith(A, B, 0.5);
+      uint temp1 = 1;
+      uint temp0 = 0;
+
+      int output = mhelper.SearchBestInRow(&sm, scoreM, temp0, temp1);
+      TS_ASSERT_DIFFERS( output, 1);
+
+      TS_TRACE("Finishing SearchBestInRow test");
+    }
+  ;
+  void testSearchBestInRow3D(void)
+    {
+      TS_TRACE("Starting SearchBestInRow3D test");
+
+      Circal::ScoreMatrix3D sm3d = mhelper.InitScoreMatrix3DWith(A, B, 0, 0.8);
+      uint temp1 = 1;
+      uint temp0 = 0;
+      uint temp2 = 2;
+      int output = mhelper.SearchBestInRow3D(&sm3d, scoreM, temp0, temp1,
+          temp2);
+      TS_ASSERT_DIFFERS( output, 9999);
+
+      TS_TRACE("Finishing SearchBestInRow3D test");
+    }
+  ;
+
+  void testSearchBestInColumn(void)
+    {
+      TS_TRACE("Starting SearchBestInColumn test");
+
+      Circal::ScoreMatrix sm = mhelper.InitScoreMatrixWith(A, B, 0.5);
+      uint temp1 = 1;
+      uint temp0 = 0;
+
+      int output = mhelper.SearchBestInColumn(&sm, scoreM, temp0, temp1);
+      TS_ASSERT_DIFFERS( output, 999);
+
+      TS_TRACE("Finishing SearchBestInColumn test");
+    }
+  ;
+
+  void testSearchBestInColumn3D(void)
+    {
+      TS_TRACE("Starting SearchBestInColumn3D test");
+
+      Circal::ScoreMatrix3D sm3d = mhelper.InitScoreMatrix3DWith(A, B, 0, 0.8);
+      uint temp1 = 1;
+      uint temp0 = 0;
+      uint temp2 = 2;
+      int output = mhelper.SearchBestInColumn3D(&sm3d, scoreM, temp0, temp1,
+          temp2);
+      TS_ASSERT_DIFFERS( output, 9999);
+
+      TS_TRACE("Finishing SearchBestInColumn3D test");
+    }
+  ;
 
   };
 
