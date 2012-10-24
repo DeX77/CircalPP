@@ -54,10 +54,9 @@ if(CXXTEST_FOUND)
 	add_definitions(-O0 -ggdb -fprofile-arcs -ftest-coverage)
 	
 	# Find all the input files
-	FILE(GLOB srcFiles RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
-		"${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+	FILE(GLOB srcFiles "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 		
-	list( REMOVE_ITEM srcFiles "src/CircalPP.cpp")
+	list( REMOVE_ITEM srcFiles "${CMAKE_CURRENT_SOURCE_DIR}/src/CircalPP.cpp")
 	
 	CXXTEST_ADD_TEST(unittest_MatrixHelper MatrixHelperTest.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/test/MatrixHelperTest.h ${srcFiles})
