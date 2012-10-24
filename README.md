@@ -54,9 +54,17 @@ From these only the used Scoring scheme and the used alphabet type are an obliga
 tion. It is recommended to change the delta value, because it defaults to 1. Input
 ﬁles must be in Fasta format. All ﬁles mentioned in this thesis, and some smaller
 test examples are included in the testcases directory.
+
 Extending CircalPP
+-------
+
 Extending CircalPP to your own needs is easy: all you have to change is in
 CircalPP.cpp in the src directory.
+
+API Documentaion
+-------
+The current API Documentation build using Doxygen can be found at
+http://dex77.github.com/CircalPP/doc/html/index.html
 
 Licence
 -------
