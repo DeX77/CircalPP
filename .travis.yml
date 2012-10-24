@@ -8,8 +8,13 @@ script:
   - make
   - make test
 install:
+  - sudo apt-get update
+  - wget http://biopp.univ-montp2.fr/repos/apt/debian/pool/main/libb/libbpp-core/libbpp-core2_2.0.3-1_i386.deb
+  - sudo dpkg -i libbpp-core2_2.0.3-1_i386.deb
   - wget http://biopp.univ-montp2.fr/repos/apt/debian/pool/main/libb/libbpp-core/libbpp-core-dev_2.0.3-1_i386.deb
   - sudo dpkg -i libbpp-core-dev_2.0.3-1_i386.deb
+  - wget http://biopp.univ-montp2.fr/repos/apt/debian/pool/main/libb/libbpp-seq/libbpp-seq9_2.0.3-1_i386.deb
+  - sudo dpkg -i libbpp-seq9_2.0.3-1_i386.deb
   - wget http://biopp.univ-montp2.fr/repos/apt/debian/pool/main/libb/libbpp-seq/libbpp-seq-dev_2.0.3-1_i386.deb
   - sudo dpkg -i libbpp-seq-dev_2.0.3-1_i386.deb
   - sudo apt-get install cxxtest
