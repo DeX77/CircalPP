@@ -52,31 +52,25 @@ if(CXXTEST_FOUND)
 	include_directories(${CXXTEST_INCLUDE_DIR})
 	enable_testing()
 	add_definitions(-O0 -ggdb -fprofile-arcs -ftest-coverage)
-	 	
+	
+	# Find all the input files
+	FILE(GLOB srcFiles RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
+		"${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+		
+	list( REMOVE_ITEM srcFiles "src/CircalPP.cpp")
+	
 	CXXTEST_ADD_TEST(unittest_MatrixHelper MatrixHelperTest.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/test/MatrixHelperTest.h
-	${CMAKE_CURRENT_SOURCE_DIR}/src/PseudoCircularAlignmentFactory.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/MultipleAlignmentFactory.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/MatrixHelper.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/AlignmentSymbol.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/GenomeAlphabet.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/MultipleCircularAlignmentFactory.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/AlignmentFactory.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/RotatedSequence.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/CircularAlignmentFactory.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/MultiplePseudoCircularAlignmentFactory.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/Alignment.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/ScoringModel.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/PseudoRotatedSequence.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/ErrorClasses.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/Output.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/VertebrateMitochondrialGenomeAlphabet.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/RandomSequence.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/WhitespaceFasta.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/CorrectedFasta.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/SequenceProxy.cpp)
+	${CMAKE_CURRENT_SOURCE_DIR}/test/MatrixHelperTest.h ${srcFiles})
+	
+	CXXTEST_ADD_TEST(unittest_RandomSequenceTest RandomSequenceTest.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/test/RandomSequenceTest.h ${srcFiles})
+	
+	CXXTEST_ADD_TEST(unittest_PseudoRotatedSequenceTest PseudoRotatedSequenceTest.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/test/PseudoRotatedSequenceTest.h ${srcFiles})	
 		
 	target_link_libraries(unittest_MatrixHelper ${LIBS_BPP} gcov)
+	target_link_libraries(unittest_RandomSequenceTest ${LIBS_BPP} gcov)
+	target_link_libraries(unittest_PseudoRotatedSequenceTest ${LIBS_BPP} gcov)	
 endif()
 
 find_program(LCOV_TOOL "lcov")
