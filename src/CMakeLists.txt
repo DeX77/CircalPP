@@ -2,8 +2,6 @@ add_executable(CircalPP PseudoCircularAlignmentFactory.cpp
 						MultipleAlignmentFactory.cpp
 						MatrixHelper.cpp
 						AlignmentSymbol.cpp
-						GenomeAlphabet.cpp
-						MultipleCircularAlignmentFactory.cpp
 						AlignmentFactory.cpp
 						RotatedSequence.cpp
 						CircularAlignmentFactory.cpp
