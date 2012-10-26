@@ -33,7 +33,7 @@ public:
   Circal::SequenceProxy seq;
 
   PseudoRotatedSequenceTest() :
-      alpha(new bpp::DNA()), seq("A", "AAA", alpha)
+      alpha(new bpp::DNA()), seq("A", "AAAA", alpha)
     {
     }
   ;
@@ -74,39 +74,61 @@ public:
     }
   ;
 
-//      unsigned int PseudoRotatedSequence::size() const
-//        {
-//          //Since this Sequence is metarotated return twice the size minus one
-//          return ((2 * content_.size()));
-//        }
-//      int PseudoRotatedSequence::getValue(unsigned int pos) const
-//          throw (bpp::IndexOutOfBoundsException)
-//        {
-//          pos = pos % content_.size();
-//          if (pos > this->size())
-//            throw bpp::IndexOutOfBoundsException(
-//                "SymbolList::getChar. Invalid position.", pos, 0, size() - 1);
-//          return content_[pos];
-//        }
-//
-//      std::string PseudoRotatedSequence::getChar(unsigned int pos) const
-//          throw (bpp::IndexOutOfBoundsException)
-//        {
-//
-//          pos = pos % content_.size();
-//
-//          return bpp::BasicSequence::getChar(pos);
-//        }
-//      const int & PseudoRotatedSequence::operator[](unsigned int i) const
-//        {
-//          i = i % content_.size();
-//          return content_[i];
-//        }
-//      int & PseudoRotatedSequence::operator[](unsigned int i)
-//        {
-//          i = i % content_.size();
-//          return content_[i];
-//        }
+  void testgetValue(void)
+    {
+      TS_TRACE("Starting getValue test");
+      Circal::PseudoRotatedSequence output(seq);
+
+      int first = output.getValue(0);
+      int wrap = output.getValue(output.size() + 1);
+
+      TS_ASSERT_EQUALS(first, wrap);
+
+      TS_TRACE("Finishing getValue test");
+    }
+  ;
+
+  void testgetChar(void)
+    {
+      TS_TRACE("Starting getChar test");
+      Circal::PseudoRotatedSequence output(seq);
+
+      std::string first = output.getChar(0);
+      std::string wrap = output.getChar(output.size() + 1);
+
+      TS_ASSERT_EQUALS(first, wrap);
+
+      TS_TRACE("Finishing getChar test");
+    }
+  ;
+
+  void testConstBracketOperator(void)
+    {
+      TS_TRACE("Starting const Operator[] test");
+      Circal::PseudoRotatedSequence output(seq);
+
+      int first = output[0] ;
+      int wrap = output[output.size() + 1];
+
+      TS_ASSERT_EQUALS(first, wrap);
+
+      TS_TRACE("Finishing const Operator[] test");
+    }
+  ;
+
+  void testBracketOperator(void)
+    {
+      TS_TRACE("Starting Operator[] test");
+      Circal::PseudoRotatedSequence output(seq);
+
+      int first = output[0];
+      int wrap = output[output.size() + 1];
+
+      TS_ASSERT_EQUALS(first, wrap);
+
+      TS_TRACE("Finishing Operator[] test");
+    }
+  ;
 
   };
 
