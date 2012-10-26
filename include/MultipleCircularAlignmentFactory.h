@@ -29,8 +29,8 @@ namespace Circal
       public MultipleAlignmentFactory
       {
   public:
-      explicit MultipleCircularAlignmentFactory();
-      virtual ~MultipleCircularAlignmentFactory();
+      MultipleCircularAlignmentFactory() {};
+      virtual ~MultipleCircularAlignmentFactory() {};
       };
   }
 
