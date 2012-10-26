@@ -53,7 +53,7 @@ namespace Circal
                 "ScoringModel::ScoringModel: fail to open file");
           }
 
-        std::string temp;
+        std::string line, temp;
         std::string type;
 
         double gapStart = 0;
@@ -69,14 +69,13 @@ namespace Circal
         // Main loop : for all file lines
         while (!input.eof())
           {
-            getline(input, temp, '\n'); // Copy current line in temporary string
+            getline(input, line, '\n'); // Copy current line in temporary string
 
-            if (temp[0] != '#')
+            if (line[0] != '#')
               {
-                std::istringstream istring(temp);
+                std::istringstream istring(line);
                 istring >> type >> gapStart >> gapExtend >> match
                     >> negativeMatch >> missmatch;
-                istring >> temp; //Cut out the ":" char
 
                 if (match > maxValue)
                   maxValue = match;
@@ -84,10 +83,14 @@ namespace Circal
                 if (negativeMatch > maxValue)
                   maxValue = negativeMatch;
 
-                while (istring)
+                //extract Items
+                temp = line.substr(line.find_first_of(':')+1, std::string::npos);
+                std::istringstream itemstream(temp);
+
+                while (itemstream.good())
                   {
                     AlignmentSymbol sc;
-                    istring >> temp;
+                    itemstream >> temp;
                     if (!temp.empty())
                       {
                         sc.symbol = bpp::TextTools::toUpper(temp);
