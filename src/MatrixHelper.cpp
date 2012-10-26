@@ -109,7 +109,7 @@ namespace Circal
         const PseudoRotatedSequence B, const int &delta, const double &init)
       {
         //B is doubled=pseudorotated so correct size is B/2
-        int slaps = B.size() / 2;
+        unsigned int slaps = B.size() / 2;
         if (delta != 0)
           slaps /= delta;
 
