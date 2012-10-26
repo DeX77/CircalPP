@@ -62,6 +62,8 @@ public:
       Circal::VertebrateMitochondrialGenomeAlphabet* test =
           new Circal::VertebrateMitochondrialGenomeAlphabet();
 
+      delete test;
+
       TS_TRACE("Finishing Destrucor test");
     }
   ;
