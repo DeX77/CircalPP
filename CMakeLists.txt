@@ -1,8 +1,7 @@
 cmake_minimum_required (VERSION 2.6)
 project (CircalPP)
 
-add_definitions(-Wall -Weffc++ -Wshadow)
-#-Werror -pedantic 
+add_definitions(-Wall -Wshadow -Werror -pedantic)
 
 IF(CMAKE_COMPILER_IS_GNUCC)
   SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fmessage-length=0")
