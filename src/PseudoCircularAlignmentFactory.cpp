@@ -51,7 +51,7 @@ namespace Circal
         double lrla = 0;
 
         //B is doubled=pseudorotated so correct size is B/2
-        int slaps = B.size()/2;
+        int slaps = B.size() / 2;
         //catch (stupid User Exception)
         if (delta != 0)
           slaps /= delta;
@@ -60,42 +60,44 @@ namespace Circal
         //#ifdef _OPENMP            
         //#pragma omp parallel for
         //#endif           
-        for (uint i=1; i<A.size()+1; i++)
+        for (uint i = 1; i < A.size() + 1; i++)
           {
             // haeeh?
-            for (int k=1; k<slaps; k++)
+            for (int k = 1; k < slaps; k++)
               {
                 D->at(i).at(0).at(k) = 0;
                 P->at(i).at(0).at(k) = 0;
                 Q->at(i).at(0).at(k) = 0;
               }
 
-            for (uint j=1; j<B.size()+1; j++)
+            for (uint j = 1; j < B.size() + 1; j++)
               {
                 if (j % delta == 1)
                   {
 
                     //Score of Match eg. Mismatch
-                    diagScore = scoreM->ScoreOf(A.getChar(i-1), B.getChar(j
-                        -1));
+                    diagScore = scoreM->ScoreOf(A.getChar(i - 1),
+                        B.getChar(j - 1));
 
-                    gapExB = scoreM->ScoreOfGapExtend(B.getChar(j-1));
+                    gapExB = scoreM->ScoreOfGapExtend(B.getChar(j - 1));
 
                     //Score of Open Gap in A
-                    gapOpenP = D->at(i-1).at(j).at(0);
-                    gapOpenP += scoreM->ScoreOfGapOpen(B.getChar(j-1));
+                    gapOpenP = D->at(i - 1).at(j).at(0);
+                    gapOpenP += scoreM->ScoreOfGapOpen(B.getChar(j - 1));
                     gapOpenP += gapExB;
 
                     //Score of continue Gap in A
-                    gapExtendP = P->at(i-1).at(j).at(0);
+                    gapExtendP = P->at(i - 1).at(j).at(0);
                     gapExtendP += gapExB;
 
                     //Set Helper Matrices Values
-                    P->at(i).at(j).at(0) = scoreM->BestOfTwo(gapOpenP, gapExtendP);
+                    P->at(i).at(j).at(0) = scoreM->BestOfTwo(gapOpenP,
+                        gapExtendP);
                     Q->at(i).at(j).at(0) = 0;
 
                     //Set Distance Matrix Value
-                    D->at(i).at(j).at(0) = scoreM->BestOfThree(diagScore, P->at(i).at(j).at(0), 0);
+                    D->at(i).at(j).at(0) = scoreM->BestOfThree(diagScore,
+                        P->at(i).at(j).at(0), 0);
 
                     //Save Best LRLA
                     if (scoreM->BestOfTwo(lrla, D->at(i).at(j).at(0) != lrla))
@@ -105,45 +107,50 @@ namespace Circal
                         bj = j;
                       }
 
-                    for (int k=1; k<slaps; k++)
+                    for (int k = 1; k < slaps; k++)
                       {
-                        gapExB = scoreM->ScoreOfGapExtend(B.getChar(j-1));
-                        gapExA = scoreM->ScoreOfGapExtend(A.getChar(i-1));
+                        gapExB = scoreM->ScoreOfGapExtend(B.getChar(j - 1));
+                        gapExA = scoreM->ScoreOfGapExtend(A.getChar(i - 1));
 
                         //Score of Match eg. Mismatch
-                        diagScore = D->at(i-1).at(j-1).at(k-1) + scoreM->ScoreOf(A.getChar(i-1),
-                            B.getChar(j -1));
+                        diagScore = D->at(i - 1).at(j - 1).at(k - 1)
+                            + scoreM->ScoreOf(A.getChar(i - 1),
+                                B.getChar(j - 1));
 
                         //Score of Open Gap in A
-                        gapOpenP = D->at(i-1).at(j).at(k);
-                        gapOpenP += scoreM->ScoreOfGapOpen(B.getChar(j-1));
+                        gapOpenP = D->at(i - 1).at(j).at(k);
+                        gapOpenP += scoreM->ScoreOfGapOpen(B.getChar(j - 1));
                         gapOpenP += gapExB;
 
                         //Score of continue Gap in A
-                        gapOpenP = P->at(i-1).at(j).at(k);
+                        gapOpenP = P->at(i - 1).at(j).at(k);
                         gapOpenP += gapExB;
 
                         //Score of Open Gap in B
-                        gapOpenQ = D->at(i).at(j-1).at(k-1);
-                        gapOpenQ += scoreM->ScoreOfGapOpen(A.getChar(i-1));
+                        gapOpenQ = D->at(i).at(j - 1).at(k - 1);
+                        gapOpenQ += scoreM->ScoreOfGapOpen(A.getChar(i - 1));
                         gapOpenQ += gapExA;
 
                         //Score of continue Gap in B
-                        gapExtendQ = Q->at(i).at(j-1).at(k-1) + gapExA;
+                        gapExtendQ = Q->at(i).at(j - 1).at(k - 1) + gapExA;
 
                         //Set Helper Matrices Values
-                        P->at(i).at(j).at(k) = scoreM->BestOfTwo(gapOpenP, gapExtendP);
-                        Q->at(i).at(j).at(k) = scoreM->BestOfTwo(gapOpenQ, gapExtendQ);
+                        P->at(i).at(j).at(k) = scoreM->BestOfTwo(gapOpenP,
+                            gapExtendP);
+                        Q->at(i).at(j).at(k) = scoreM->BestOfTwo(gapOpenQ,
+                            gapExtendQ);
 
                         //Set Distance Matrix Value
-                        D->at(i).at(j).at(k) = scoreM->BestOfThree(diagScore, P->at(i).at(j).at(k), Q->at(i).at(j).at(k) );
+                        D->at(i).at(j).at(k) = scoreM->BestOfThree(diagScore,
+                            P->at(i).at(j).at(k), Q->at(i).at(j).at(k));
 
                         //Check for 0
                         if (D->at(i).at(j).at(k) < 0)
                           D->at(i).at(j).at(k) = 0;
 
                         //Save Best LRLA
-                        if (scoreM->BestOfTwo(lrla, D->at(i).at(j).at(k) != lrla))
+                        if (scoreM->BestOfTwo(lrla,
+                            D->at(i).at(j).at(k) != lrla))
                           {
                             lrla = D->at(i).at(j).at(k);
                             bi = i;
@@ -153,40 +160,43 @@ namespace Circal
                       }
                   }
                 else
-                  for (int k=0; k<slaps; k++)
+                  for (int k = 0; k < slaps; k++)
                     {
 
-                      gapExA = scoreM->ScoreOfGapExtend(A.getChar(i-1));
-                      gapExB = scoreM->ScoreOfGapExtend(B.getChar(j-1));
+                      gapExA = scoreM->ScoreOfGapExtend(A.getChar(i - 1));
+                      gapExB = scoreM->ScoreOfGapExtend(B.getChar(j - 1));
 
                       //Score of Match eg. Mismatch
-                      diagScore = D->at(i-1).at(j-1).at(k) + scoreM->ScoreOf(A.getChar(i-1),
-                          B.getChar(j -1));
+                      diagScore = D->at(i - 1).at(j - 1).at(k)
+                          + scoreM->ScoreOf(A.getChar(i - 1), B.getChar(j - 1));
 
                       //Score of Open Gap in A
-                      gapOpenP = D->at(i-1).at(j).at(k);
-                      gapOpenP += scoreM->ScoreOfGapOpen(B.getChar(j-1));
+                      gapOpenP = D->at(i - 1).at(j).at(k);
+                      gapOpenP += scoreM->ScoreOfGapOpen(B.getChar(j - 1));
                       gapOpenP += gapExB;
 
                       //Score of continue Gap in A
-                      gapExtendP = P->at(i-1).at(j).at(k);
+                      gapExtendP = P->at(i - 1).at(j).at(k);
                       gapExtendP += gapExB;
 
                       //Score of Open Gap in B
-                      gapOpenQ = D->at(i).at(j-1).at(k);
-                      gapOpenQ += scoreM->ScoreOfGapOpen(A.getChar(i-1));
+                      gapOpenQ = D->at(i).at(j - 1).at(k);
+                      gapOpenQ += scoreM->ScoreOfGapOpen(A.getChar(i - 1));
                       gapOpenQ += gapExA;
 
                       //Score of continue Gap in B
-                      gapExtendQ = Q->at(i).at(j-1).at(k);
+                      gapExtendQ = Q->at(i).at(j - 1).at(k);
                       gapExtendQ += gapExA;
 
                       //Set Helper Matrices Values
-                      P->at(i).at(j).at(k) = scoreM->BestOfTwo(gapOpenP, gapExtendP);
-                      Q->at(i).at(j).at(k) = scoreM->BestOfTwo(gapOpenQ, gapExtendQ);
+                      P->at(i).at(j).at(k) = scoreM->BestOfTwo(gapOpenP,
+                          gapExtendP);
+                      Q->at(i).at(j).at(k) = scoreM->BestOfTwo(gapOpenQ,
+                          gapExtendQ);
 
                       //Set Distance Matrix Value
-                      D->at(i).at(j).at(k) = scoreM->BestOfThree(diagScore, P->at(i).at(j).at(k), Q->at(i).at(j).at(k) );
+                      D->at(i).at(j).at(k) = scoreM->BestOfThree(diagScore,
+                          P->at(i).at(j).at(k), Q->at(i).at(j).at(k));
 
                       //Check for 0
                       if (D->at(i).at(j).at(k) < 0)
@@ -229,35 +239,38 @@ namespace Circal
         double minScore = 0;
 
         //B is doubled=pseudorotated so correct size is B/2
-        int slaps = B.size()/2;
+        int slaps = B.size() / 2;
 
         if (delta != 0)
           slaps /= delta;
 
-        while ( (i>0) && (j>0))
+        while ((i > 0) && (j > 0))
           {
 
             int gk = 0;
             double bestScore = 0;
 
             //Search maximum score within k
-            for (int k=0; k<slaps; k++)
+            for (int k = 0; k < slaps; k++)
               {
                 //Search in D
-                if (scoreM->BestOfTwo(D->at(i).at(j).at(k), bestScore) != bestScore)
+                if (scoreM->BestOfTwo(D->at(i).at(j).at(k), bestScore)
+                    != bestScore)
                   {
                     bestScore = D->at(i).at(j).at(k);
                     gk = k;
                   }
 
                 //.. or Q
-                if (scoreM->BestOfTwo(Q->at(i).at(j).at(k), bestScore) != bestScore)
+                if (scoreM->BestOfTwo(Q->at(i).at(j).at(k), bestScore)
+                    != bestScore)
                   {
                     bestScore = Q->at(i).at(j).at(k);
                     gk = k;
                   }
                 //.. or P
-                if (scoreM->BestOfTwo(P->at(i).at(j).at(k), bestScore) != bestScore)
+                if (scoreM->BestOfTwo(P->at(i).at(j).at(k), bestScore)
+                    != bestScore)
                   {
                     bestScore = P->at(i).at(j).at(k);
                     gk = k;
@@ -269,61 +282,73 @@ namespace Circal
               break;
 
             //Change to Q
-            if (scoreM->BestOfTwo(D->at(i).at(j).at(gk), Q->at(i).at(j).at(gk) ) == Q->at(i).at(j).at(gk))
+            if (scoreM->BestOfTwo(D->at(i).at(j).at(gk), Q->at(i).at(j).at(gk))
+                == Q->at(i).at(j).at(gk))
               {
 
                 //Lonely Gap in A
-                if (Q->at(i).at(j).at(gk) == D->at(i).at(j-1).at(gk) + scoreM->ScoreOfGapOpen(A.getChar(i -1))
-                    + scoreM->ScoreOfGapExtend(A.getChar(i-1)))
+                if (Q->at(i).at(j).at(gk)
+                    == D->at(i).at(j - 1).at(gk)
+                        + scoreM->ScoreOfGapOpen(A.getChar(i - 1))
+                        + scoreM->ScoreOfGapExtend(A.getChar(i - 1)))
                   {
-                    minScore +=scoreM->ScoreOfGapOpen(A.getChar(i-1));
-                    cout << "Left"<< std::endl;
+                    minScore += scoreM->ScoreOfGapOpen(A.getChar(i - 1));
+                    cout << "Left" << std::endl;
                     cout << "Score + "
-                        << scoreM->ScoreOfGapOpen(A.getChar(i-1)) << std::endl;
+                        << scoreM->ScoreOfGapOpen(A.getChar(i - 1))
+                        << std::endl;
                   }
                 //Continued Gap in A
-                else if (Q->at(i).at(j).at(gk) == Q->at(i).at(j-1).at(gk) + scoreM->ScoreOfGapExtend(A.getChar(i-1)))
+                else if (Q->at(i).at(j).at(gk)
+                    == Q->at(i).at(j - 1).at(gk)
+                        + scoreM->ScoreOfGapExtend(A.getChar(i - 1)))
                   {
-                    cout << "Left cont "<< std::endl;
+                    cout << "Left cont " << std::endl;
                   }
                 else
                   {
                     cout << "Changed to Q but not possible?" << std::endl;
                   }
                 itA = outA.insert(itA, -1);
-                itB = outB.insert(itB, B.getValue(j-1));
+                itB = outB.insert(itB, B.getValue(j - 1));
                 j--;
-                minScore +=scoreM->ScoreOfGapExtend(A.getChar(i-1));
-                cout << "Score + " << scoreM->ScoreOfGapExtend(A.getChar(i-1))
+                minScore += scoreM->ScoreOfGapExtend(A.getChar(i - 1));
+                cout << "Score + " << scoreM->ScoreOfGapExtend(A.getChar(i - 1))
                     << std::endl;
                 continue;
               }
 
             //Change to P
-            if (scoreM->BestOfTwo(D->at(i).at(j).at(gk) , P->at(i).at(j).at(gk) ) == P->at(i).at(j).at(gk))
+            if (scoreM->BestOfTwo(D->at(i).at(j).at(gk), P->at(i).at(j).at(gk))
+                == P->at(i).at(j).at(gk))
               {
                 //Lonely Gap in B
-                if (P->at(i).at(j).at(gk) == D->at(i-1).at(j).at(gk) + scoreM->ScoreOfGapOpen(B.getChar(j-1))
-                    + scoreM->ScoreOfGapExtend(B.getChar(j-1)))
+                if (P->at(i).at(j).at(gk)
+                    == D->at(i - 1).at(j).at(gk)
+                        + scoreM->ScoreOfGapOpen(B.getChar(j - 1))
+                        + scoreM->ScoreOfGapExtend(B.getChar(j - 1)))
                   {
-                    cout << "Up"<< std::endl;
-                    minScore +=scoreM->ScoreOfGapOpen(B.getChar(j-1));
+                    cout << "Up" << std::endl;
+                    minScore += scoreM->ScoreOfGapOpen(B.getChar(j - 1));
                     cout << "Score + "
-                        << scoreM->ScoreOfGapOpen(B.getChar(j-1)) << std::endl;
+                        << scoreM->ScoreOfGapOpen(B.getChar(j - 1))
+                        << std::endl;
                   }
                 //Continued Gap in B
-                else if (P->at(i).at(j).at(gk) == P->at(i-1).at(j).at(gk) + scoreM->ScoreOfGapExtend(B.getChar(j -1)))
+                else if (P->at(i).at(j).at(gk)
+                    == P->at(i - 1).at(j).at(gk)
+                        + scoreM->ScoreOfGapExtend(B.getChar(j - 1)))
                   {
-                    cout << "Up cont"<< std::endl;
+                    cout << "Up cont" << std::endl;
                   }
                 else
                   {
                     //                    cout << "Changed to P but not possible?" << std::endl;
                   }
-                minScore +=scoreM->ScoreOfGapExtend(B.getChar(j-1));
-                cout << "Score + " << scoreM->ScoreOfGapExtend(B.getChar(j-1))
+                minScore += scoreM->ScoreOfGapExtend(B.getChar(j - 1));
+                cout << "Score + " << scoreM->ScoreOfGapExtend(B.getChar(j - 1))
                     << std::endl;
-                itA = outA.insert(itA, A.getValue(i-1));
+                itA = outA.insert(itA, A.getValue(i - 1));
                 itB = outB.insert(itB, -1);
                 i--;
                 continue;
@@ -331,14 +356,17 @@ namespace Circal
               }
 
             //Diagonal
-            else if (D->at(i).at(j).at(gk) == D->at(i-1).at(j-1).at(gk) + scoreM->ScoreOf(A.getChar(i-1), B.getChar(j-1)))
+            else if (D->at(i).at(j).at(gk)
+                == D->at(i - 1).at(j - 1).at(gk)
+                    + scoreM->ScoreOf(A.getChar(i - 1), B.getChar(j - 1)))
               {
-                minScore += scoreM->ScoreOf(A.getChar(i-1), B.getChar(j-1));
-                cout << "Diag"<< std::endl;
-                cout << "Score + " << scoreM->ScoreOf(A.getChar(i-1),
-                    B.getChar(j-1)) << std::endl;
-                itA = outA.insert(itA, A.getValue(i-1));
-                itB = outB.insert(itB, B.getValue(j-1));
+                minScore += scoreM->ScoreOf(A.getChar(i - 1), B.getChar(j - 1));
+                cout << "Diag" << std::endl;
+                cout << "Score + "
+                    << scoreM->ScoreOf(A.getChar(i - 1), B.getChar(j - 1))
+                    << std::endl;
+                itA = outA.insert(itA, A.getValue(i - 1));
+                itB = outB.insert(itB, B.getValue(j - 1));
                 i--;
                 j--;
                 continue;
@@ -347,7 +375,7 @@ namespace Circal
             else
               {
 
-                cout << "42!!!"<< std::endl;
+                cout << "42!!!" << std::endl;
                 break;
               }
 
@@ -388,33 +416,35 @@ namespace Circal
         double lrla = 0;
 
         //B is doubled=pseudorotated so correct size is B/2
-        int slaps = B.size()/2;
+        int slaps = B.size() / 2;
 
         if (delta != 0)
           slaps /= delta;
 
         //Forward
-        for (uint i=1; i<A.size()+1; i++)
+        for (uint i = 1; i < A.size() + 1; i++)
           {
             // haeeh?
-            for (int k=1; k<slaps; k++)
+            for (int k = 1; k < slaps; k++)
               {
                 D->at(i).at(0).at(k) = 0;
               }
-            for (uint j=1; j<B.size()+1; j++)
+            for (uint j = 1; j < B.size() + 1; j++)
               {
-                if (j % delta ==1)
+                if (j % delta == 1)
                   {
                     //Score of Match eg. Mismatch
-                    diagScore = scoreM->ScoreOf(A.getChar(i-1), B.getChar(j
-                        -1));
+                    diagScore = scoreM->ScoreOf(A.getChar(i - 1),
+                        B.getChar(j - 1));
 
                     //Score of Open Gap in A
-                    gapOpenP = D->at(i-1).at(j).at(0) + scoreM->ScoreOfGapOpen(B.getChar(j-1))
-                        + scoreM->ScoreOfGapExtend(B.getChar(j-1));
+                    gapOpenP = D->at(i - 1).at(j).at(0)
+                        + scoreM->ScoreOfGapOpen(B.getChar(j - 1))
+                        + scoreM->ScoreOfGapExtend(B.getChar(j - 1));
 
                     //Set Distance Matrix Value
-                    D->at(i).at(j).at(0) = scoreM->BestOfThree(diagScore, gapOpenP, 0);
+                    D->at(i).at(j).at(0) = scoreM->BestOfThree(diagScore,
+                        gapOpenP, 0);
 
                     //Check for 0
                     if (D->at(i).at(j).at(0) < 0)
@@ -428,32 +458,36 @@ namespace Circal
                         bj = j;
                       }
 
-                    for (int k=1; k<slaps; k++)
+                    for (int k = 1; k < slaps; k++)
                       {
                         //Score of Match eg. Mismatch
                         //!! Changed from Original
-                        diagScore = D->at(i-1).at(j-1).at(k-1) + scoreM->ScoreOf(A.getChar(i-1),
-                            B.getChar(j -1));
+                        diagScore = D->at(i - 1).at(j - 1).at(k - 1)
+                            + scoreM->ScoreOf(A.getChar(i - 1),
+                                B.getChar(j - 1));
 
                         //Score of Open Gap in A
-                        gapOpenP = D->at(i-1).at(j).at(k) + scoreM->ScoreOfGapOpen(B.getChar(j-1))
-                            + scoreM->ScoreOfGapExtend(B.getChar(j-1));
+                        gapOpenP = D->at(i - 1).at(j).at(k)
+                            + scoreM->ScoreOfGapOpen(B.getChar(j - 1))
+                            + scoreM->ScoreOfGapExtend(B.getChar(j - 1));
 
                         //Score of Open Gap in B
                         //!! Changed from Original
-                        gapOpenQ = D->at(i).at(j-1).at(k-1) + scoreM->ScoreOfGapOpen(A.getChar(i
-                            -1)) + scoreM->ScoreOfGapExtend(A.getChar(i-1));
+                        gapOpenQ = D->at(i).at(j - 1).at(k - 1)
+                            + scoreM->ScoreOfGapOpen(A.getChar(i - 1))
+                            + scoreM->ScoreOfGapExtend(A.getChar(i - 1));
 
                         //Set Distance Matrix Value
-                        D->at(i).at(j).at(k) = scoreM->BestOfThree(diagScore, gapOpenP,
-                            gapOpenQ);
+                        D->at(i).at(j).at(k) = scoreM->BestOfThree(diagScore,
+                            gapOpenP, gapOpenQ);
 
                         //Check for 0
                         if (D->at(i).at(j).at(k) < 0)
                           D->at(i).at(j).at(k) = 0;
 
                         //Save Best LRLA
-                        if (scoreM->BestOfTwo(lrla, D->at(i).at(j).at(k) != lrla))
+                        if (scoreM->BestOfTwo(lrla,
+                            D->at(i).at(j).at(k) != lrla))
                           {
                             lrla = D->at(i).at(j).at(k);
                             bi = i;
@@ -464,23 +498,25 @@ namespace Circal
 
                   }
                 else
-                  for (int k=0; k<slaps; k++)
+                  for (int k = 0; k < slaps; k++)
                     {
                       //Score of Match eg. Mismatch
-                      diagScore = D->at(i-1).at(j-1).at(k) + scoreM->ScoreOf(A.getChar(i-1),
-                          B.getChar(j -1));
+                      diagScore = D->at(i - 1).at(j - 1).at(k)
+                          + scoreM->ScoreOf(A.getChar(i - 1), B.getChar(j - 1));
 
                       //Score of Open Gap in A
-                      gapOpenP = D->at(i-1).at(j).at(k) + scoreM->ScoreOfGapOpen(B.getChar(j-1))
-                          + scoreM->ScoreOfGapExtend(B.getChar(j-1));
+                      gapOpenP = D->at(i - 1).at(j).at(k)
+                          + scoreM->ScoreOfGapOpen(B.getChar(j - 1))
+                          + scoreM->ScoreOfGapExtend(B.getChar(j - 1));
 
                       //Score of Open Gap in B
-                      gapOpenQ = D->at(i).at(j-1).at(k) + scoreM->ScoreOfGapOpen(A.getChar(i-1))
-                          + scoreM->ScoreOfGapExtend(A.getChar(i-1));
+                      gapOpenQ = D->at(i).at(j - 1).at(k)
+                          + scoreM->ScoreOfGapOpen(A.getChar(i - 1))
+                          + scoreM->ScoreOfGapExtend(A.getChar(i - 1));
 
                       //Set Distance Matrix Value
-                      D->at(i).at(j).at(k) = scoreM->BestOfThree(diagScore, gapOpenP,
-                          gapOpenQ);
+                      D->at(i).at(j).at(k) = scoreM->BestOfThree(diagScore,
+                          gapOpenP, gapOpenQ);
 
                       //Check for 0
                       if (D->at(i).at(j).at(k) < 0)
@@ -503,8 +539,8 @@ namespace Circal
 
     Alignment PseudoCircularAlignmentFactory::BacktrackingSmithWaterman(
         const SequenceProxy A, const PseudoRotatedSequence B,
-        ScoringModel* scoreM, const int &delta, const ScoreMatrix3D* D,
-        uint &i, uint &j)
+        ScoringModel* scoreM, const int &delta, const ScoreMatrix3D* D, uint &i,
+        uint &j)
       {
 
         std::vector<int> outA;
@@ -517,7 +553,7 @@ namespace Circal
         double minScore = double(0);
 
         //B is doubled=pseudorotated so correct size is B/2
-        int slaps = B.size()/2;
+        int slaps = B.size() / 2;
         if (delta != 0)
           slaps /= delta;
 
@@ -526,7 +562,7 @@ namespace Circal
         double ScoreUpD;
         double ScoreLeftD;
 
-        while ( (i>0) && (j>0))
+        while ((i > 0) && (j > 0))
           {
             int k = 0;
             bool shouldBreak = false;
@@ -534,78 +570,79 @@ namespace Circal
             ScoreD = D->at(i).at(j).at(k);
 
             //Search maximum score within k
-            for (k=0; k<slaps; k++)
+            for (int kk = 0; kk < slaps; kk++)
               {
-                if (D->at(i).at(j).at(k) == 0)
+                if (D->at(i).at(j).at(kk) == 0)
                   {
                     shouldBreak = true;
                     break;
                   }
-                if (scoreM->BestOfTwo(D->at(i).at(j).at(k), ScoreD) != ScoreD)
-                  ScoreD = D->at(i).at(j).at(k);
+                if (scoreM->BestOfTwo(D->at(i).at(j).at(kk), ScoreD) != ScoreD)
+                  ScoreD = D->at(i).at(j).at(kk);
               }
             if (shouldBreak)
               break;
 
-            ScoreDiag = D->at(i-1).at(j-1).at(k);
-            ScoreLeftD = D->at(i).at(j-1).at(k);
-            ScoreUpD = D->at(i-1).at(j).at(k);
+            ScoreDiag = D->at(i - 1).at(j - 1).at(k);
+            ScoreLeftD = D->at(i).at(j - 1).at(k);
+            ScoreUpD = D->at(i - 1).at(j).at(k);
 
             //Lonely Gap in A
-            if (ScoreD == ScoreLeftD + scoreM->ScoreOfGapOpen(A.getChar(i -1)))
+            if (ScoreD == ScoreLeftD + scoreM->ScoreOfGapOpen(A.getChar(i - 1)))
               {
                 //cout << "Left"<< std::endl;
-                minScore += scoreM->ScoreOfGapOpen(A.getChar(i-1));
+                minScore += scoreM->ScoreOfGapOpen(A.getChar(i - 1));
                 itA = outA.insert(itA, -1);
-                itB = outB.insert(itB, B.getValue(j-1));
+                itB = outB.insert(itB, B.getValue(j - 1));
                 j--;
               }
 
             //Lonely Gap in B
 
-            else if (ScoreD == ScoreUpD
-                + scoreM->ScoreOfGapOpen(B.getChar(j-1)))
+            else if (ScoreD
+                == ScoreUpD + scoreM->ScoreOfGapOpen(B.getChar(j - 1)))
               {
                 //cout << "Up"<< std::endl;
-                minScore += scoreM->ScoreOfGapOpen(B.getChar(j-1));
-                itA = outA.insert(itA, A.getValue(i-1));
+                minScore += scoreM->ScoreOfGapOpen(B.getChar(j - 1));
+                itA = outA.insert(itA, A.getValue(i - 1));
                 itB = outB.insert(itB, -1);
                 i--;
               }
             //Diagonal
 
-            else if (ScoreD == ScoreDiag + scoreM->ScoreOf(A.getChar(i-1),
-                B.getChar(j-1)))
+            else if (ScoreD
+                == ScoreDiag
+                    + scoreM->ScoreOf(A.getChar(i - 1), B.getChar(j - 1)))
               {
-                minScore += scoreM->ScoreOf(A.getChar(i-1), B.getChar(j-1));
+                minScore += scoreM->ScoreOf(A.getChar(i - 1), B.getChar(j - 1));
                 //cout << "Diag"<< std::endl;
-                itA = outA.insert(itA, A.getValue(i-1));
-                itB = outB.insert(itB, B.getValue(j-1));
+                itA = outA.insert(itA, A.getValue(i - 1));
+                itB = outB.insert(itB, B.getValue(j - 1));
                 i--;
                 j--;
               }
 
             else
               {
-                std::cout << "42!!! Lost in D"<< std::endl;
+                std::cout << "42!!! Lost in D" << std::endl;
               }
 
           }
 
-        while (i> 0)
+        while (i > 0)
           {
             //cout << "Overlapp A"<< std::endl;
-            minScore += scoreM->ScoreOfGapOpen(A.getChar(i-1));
-            itA = outA.insert(itA, A.getValue(i-1));
+            minScore += scoreM->ScoreOfGapOpen(A.getChar(i - 1));
+            itA = outA.insert(itA, A.getValue(i - 1));
             itB = outB.insert(itB, -1);
             i--;
           }
 
-        while (j> 0)
+        while (j > 0)
           {
             //cout << "Overlapp B"<< std::endl;
-            minScore += scoreM->ScoreOfGapOpen(B.getChar(j-1));
-            itB = outB.insert(itB, B.getValue(j-1));
+            minScore += scoreM->ScoreOfGapOpen(B.getChar(j - 1));
+            itB = outB.insert(itB, B.getValue(j - 1));
             itA = outA.insert(itA, -1);
             j--;
           }
@@ -625,19 +662,19 @@ namespace Circal
       }
 
     Alignment PseudoCircularAlignmentFactory::NeedlemanWunschAlignment(
-        const SequenceProxy inA, const SequenceProxy inB,
-        ScoringModel* scoreM, const int &delta, bool verbose)
+        const SequenceProxy inA, const SequenceProxy inB, ScoringModel* scoreM,
+        const int &delta, bool verbose)
       {
         //First of all check which of the sequences is longer
-        if (inA.size()>inB.size())
+        if (inA.size() > inB.size())
           return NeedlemanWunschAlignment(inB, inA, scoreM, delta);
 
         PseudoRotatedSequence B(inB);
 
         ScoreMatrix D = matrix.InitializeScoreMatrixDistances(inA, B, scoreM);
 
-        uint i = D.size()-1;
-        uint j = D.at(0).size()-1;
+        uint i = D.size() - 1;
+        uint j = D.at(0).size() - 1;
 
         //Forward Iteration
         AlignmentFactory::ForwardRecursionSmithWaterman(inA, B, scoreM, &D, i,
@@ -649,15 +686,15 @@ namespace Circal
         uint horizontalEnd = i;
 
         //Check for length of actual Alignment
-        if ((horizontalStart-horizontalEnd) < inB.size())
+        if ((horizontalStart - horizontalEnd) < inB.size())
           {
             //Seems to be ok
             return temp;
           }
         ScoreMatrix3D kD = matrix.InitScoreMatrix3DWith(inA, B, delta, 0);
 
-        i = D.size()-1;
-        j = D.at(0).size()-1;
+        i = D.size() - 1;
+        j = D.at(0).size() - 1;
 
         ForwardRecursionSmithWaterman(inA, B, scoreM, delta, &kD, i, j);
 
@@ -666,12 +703,12 @@ namespace Circal
       }
 
     Alignment PseudoCircularAlignmentFactory::GotohAlignment(
-        const SequenceProxy inA, const SequenceProxy inB,
-        ScoringModel* scoreM, const int &delta, bool verbose)
+        const SequenceProxy inA, const SequenceProxy inB, ScoringModel* scoreM,
+        const int &delta, bool verbose)
       {
 
         //First of all check which of the sequences is longer
-        if (inA.size()>inB.size())
+        if (inA.size() > inB.size())
           return GotohAlignment(inB, inA, scoreM, delta, verbose);
 
         PseudoRotatedSequence B(inB);
@@ -680,14 +717,14 @@ namespace Circal
         ScoreMatrix P = matrix.InitScoreMatrixWith(inA, B, 0);
         ScoreMatrix Q = matrix.InitScoreMatrixWith(inA, B, 0);
 
-        uint i = D.size()-1;
-        uint j = D.at(0).size()-1;
+        uint i = D.size() - 1;
+        uint j = D.at(0).size() - 1;
 
         //Forward Iteration
         //        AlignmentFactory::ForwardRecursionGotoh(inA, &B, scoreM, &D, &P, &Q);
 
-        AlignmentFactory::ForwardRecursionSmithWatermanAffin(inA, B, scoreM,
-            &D, &P, &Q, i, j);
+        AlignmentFactory::ForwardRecursionSmithWatermanAffin(inA, B, scoreM, &D,
+            &P, &Q, i, j);
 
         uint horizontalStart = j;
         Alignment temp = AlignmentFactory::BacktrackingSmithWatermanAffin(inA,
@@ -695,7 +732,7 @@ namespace Circal
         uint horizontalEnd = j;
 
         //Check for length of actual Alignment
-        if ((horizontalStart-horizontalEnd) <= inB.size())
+        if ((horizontalStart - horizontalEnd) <= inB.size())
           {
             //Seems to be ok
             if (verbose)
@@ -710,12 +747,12 @@ namespace Circal
         ScoreMatrix3D kP = matrix.InitScoreMatrix3DWith(inA, B, delta, 0);
         ScoreMatrix3D kQ = matrix.InitScoreMatrix3DWith(inA, B, delta, 0);
 
-        i = D.size()-1;
-        j = D.at(0).size()-1;
+        i = D.size() - 1;
+        j = D.at(0).size() - 1;
 
         //Forward Iteration
-        ForwardRecursionSmithWatermanAffin(inA, B, scoreM, delta, &kD, &kP,
-            &kQ, i, j);
+        ForwardRecursionSmithWatermanAffin(inA, B, scoreM, delta, &kD, &kP, &kQ,
+            i, j);
 
         return BacktrackingSmithWatermanAffin(inA, B, scoreM, delta, &kD, &kP,
             &kQ, i, j, verbose);
