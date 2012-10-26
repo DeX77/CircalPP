@@ -113,7 +113,7 @@ namespace Circal
           return bpp::BasicSequence::toString();
         }
       ;
-      std::string getChar(unsigned int pos) const
+      virtual std::string getChar(unsigned int pos) const
           throw (bpp::IndexOutOfBoundsException)
         {
           return bpp::BasicSequence::getChar(pos);
@@ -129,7 +129,7 @@ namespace Circal
           return bpp::BasicSequence::operator [](i);
         }
       ;
-      int getValue(unsigned int pos) const
+      virtual  int getValue(unsigned int pos) const
           throw (bpp::IndexOutOfBoundsException)
         {
           return bpp::BasicSequence::getValue(pos);
