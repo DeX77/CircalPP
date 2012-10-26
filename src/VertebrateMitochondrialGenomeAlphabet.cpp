@@ -72,24 +72,20 @@ namespace Circal
     void VertebrateMitochondrialGenomeAlphabet::convertModeltoAlphabet(
         const ScoringModel* scm)
       {
-//        alphabet_->resize(scm->GetModelSize() + 1);
-//
-//        int i = 1;
-//        unsigned int size;
-//        std::string temp = "";
-//
-//        for (ModelValues::const_iterator itr = scm->constitStart();
-//            itr != scm->constitEnd(); itr++)
-//          {
-//            temp = itr->first;
-//            alphabet_[i].num = i - 1;
-//            alphabet_[i].letter = temp;
-//            alphabet_[i].abbr = temp;
-//            alphabet_[i].name = temp;
-//            size = itr->second.symbol.length();
-//            i++;
-////            std::cout << "Chevron <" << temp << "> added" << std::endl;
-//          }
+        //alphabet_.resize(scm->GetModelSize() + 1);
+
+        int i = 1;
+        std::string temp = "";
+
+        for (ModelValues::const_iterator itr = scm->constitStart();
+            itr != scm->constitEnd(); itr++)
+          {
+            temp = itr->first;
+            bpp::AlphabetState alphastate(i - 1, temp, temp);
+            registerState(alphastate);
+            i++;
+//            std::cout << "Chevron <" << temp << "> added" << std::endl;
+          }
         //Add gap code
         bpp::AlphabetState gap(-1, "_", "Gap");
         registerState(gap);
