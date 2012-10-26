@@ -64,12 +64,55 @@ if(CXXTEST_FOUND)
 	CXXTEST_ADD_TEST(unittest_RandomSequenceTest RandomSequenceTest.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/test/RandomSequenceTest.h ${srcFiles})
 	
+	CXXTEST_ADD_TEST(unittest_RotatedSequenceTest RotatedSequenceTest.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/test/RotatedSequenceTest.h ${srcFiles})
+	
 	CXXTEST_ADD_TEST(unittest_PseudoRotatedSequenceTest PseudoRotatedSequenceTest.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/test/PseudoRotatedSequenceTest.h ${srcFiles})	
-		
-	target_link_libraries(unittest_MatrixHelper ${LIBS_BPP} gcov)
+	${CMAKE_CURRENT_SOURCE_DIR}/test/PseudoRotatedSequenceTest.h ${srcFiles})
+	
+	CXXTEST_ADD_TEST(unittest_AlignmentTest AlignmentTest.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/test/AlignmentTest.h ${srcFiles})
+	
+	CXXTEST_ADD_TEST(unittest_CorrectedFastaTest CorrectedFastaTest.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/test/CorrectedFastaTest.h ${srcFiles})
+	
+	CXXTEST_ADD_TEST(unittest_WhitespaceFastaTest WhitespaceFastaTest.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/test/WhitespaceFastaTest.h ${srcFiles})
+	
+	CXXTEST_ADD_TEST(unittest_ScoringModelTest ScoringModelTest.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/test/ScoringModelTest.h ${srcFiles})
+	
+	CXXTEST_ADD_TEST(unittest_VertebrateMitochondrialGenomeAlphabetTest VertebrateMitochondrialGenomeAlphabetTest.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/test/VertebrateMitochondrialGenomeAlphabetTest.h ${srcFiles})
+	
+	CXXTEST_ADD_TEST(unittest_MultiplePseudoCircularAlignmentFactoryTest MultiplePseudoCircularAlignmentFactoryTest.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/test/MultiplePseudoCircularAlignmentFactoryTest.h ${srcFiles})
+	
+	CXXTEST_ADD_TEST(unittest_MultipleCircularAlignmentFactoryTest MultipleCircularAlignmentFactoryTest.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/test/MultipleCircularAlignmentFactoryTest.h ${srcFiles})
+	
+	CXXTEST_ADD_TEST(unittest_CircularAlignmentFactoryTest CircularAlignmentFactoryTest.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/test/CircularAlignmentFactoryTest.h ${srcFiles})
+	
+	CXXTEST_ADD_TEST(unittest_OutputTest OutputTest.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/test/OutputTest.h ${srcFiles})
+	
+	
+ 	target_link_libraries(unittest_MatrixHelper ${LIBS_BPP} gcov)
 	target_link_libraries(unittest_RandomSequenceTest ${LIBS_BPP} gcov)
-	target_link_libraries(unittest_PseudoRotatedSequenceTest ${LIBS_BPP} gcov)	
+	target_link_libraries(unittest_RotatedSequenceTest ${LIBS_BPP} gcov)
+	target_link_libraries(unittest_PseudoRotatedSequenceTest ${LIBS_BPP} gcov)
+	target_link_libraries(unittest_AlignmentTest ${LIBS_BPP} gcov)
+	target_link_libraries(unittest_CorrectedFastaTest ${LIBS_BPP} gcov)
+	target_link_libraries(unittest_WhitespaceFastaTest ${LIBS_BPP} gcov)
+	target_link_libraries(unittest_ScoringModelTest ${LIBS_BPP} gcov)
+	target_link_libraries(unittest_VertebrateMitochondrialGenomeAlphabetTest ${LIBS_BPP} gcov)
+	target_link_libraries(unittest_MultiplePseudoCircularAlignmentFactoryTest ${LIBS_BPP} gcov)
+	target_link_libraries(unittest_MultipleCircularAlignmentFactoryTest ${LIBS_BPP} gcov)
+	target_link_libraries(unittest_CircularAlignmentFactoryTest ${LIBS_BPP} gcov)
+	target_link_libraries(unittest_OutputTest ${LIBS_BPP} gcov)
+	
+	
 endif()
 
 find_program(LCOV_TOOL "lcov")
