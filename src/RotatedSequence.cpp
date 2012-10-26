@@ -24,7 +24,7 @@ namespace Circal
   {
 
     RotatedSequence::RotatedSequence(const SequenceProxy a, const uint &i) :
-    SequenceProxy(a), offset(i)
+        SequenceProxy(a), offset(i)
       {
       }
 
@@ -36,24 +36,25 @@ namespace Circal
         throw (bpp::IndexOutOfBoundsException)
       {
 
-        pos = ((pos+offset) % this->size());
-        if (pos > this->size())
-          throw bpp::IndexOutOfBoundsException("SymbolList::getChar. Invalid position.", pos, 0, size() - 1);
-        return this->getValue(pos);
+        pos = ((pos + offset) % size());
+        if (pos > size())
+          throw bpp::IndexOutOfBoundsException(
+              "SymbolList::getChar. Invalid position.", pos, 0, size() - 1);
+        return  SequenceProxy::getValue(pos);
       }
 
     std::string RotatedSequence::getChar(unsigned int pos) const
         throw (bpp::IndexOutOfBoundsException)
       {
-        pos = ((pos+offset) % this->size());
+        pos = ((pos + offset) % this->size());
         if (pos > this->size())
-          throw bpp::IndexOutOfBoundsException("SymbolList::getChar. Invalid position.", pos, 0, size() - 1);
+          throw bpp::IndexOutOfBoundsException(
+              "RotatedSequence::getChar. Invalid position.", pos, 0, size() - 1);
         std::string c = "";
         try
           {
             c = this->getAlphabet()->intToChar(this->getValue(pos));
-          }
-        catch(bpp::BadIntException*)
+          } catch (bpp::BadIntException*)
           {
 
             //This should never happen!
@@ -71,14 +72,5 @@ namespace Circal
 //        i = ((i+offset) % this->size());
 //        return content_[i];
 //      }
-    std::string RotatedSequence::toString() const
-      {
-        std::string result = "";
-        for(unsigned int i = 0; i < this->size(); i++)
-          {
-            result += this->getAlphabet()->intToChar(this->getValue(i));
-          }
-        return result;
-      }
 
   }
