@@ -42,7 +42,7 @@ namespace Circal
        *
        * @param pos The position of the character to retrieve.
        */
-      virtual int getValue(unsigned int pos) const
+      int getValue(unsigned int pos) const
           throw (bpp::IndexOutOfBoundsException);
 
       /**
@@ -50,20 +50,9 @@ namespace Circal
        *
        * @param pos The position of the character to retrieve.
        */
-      virtual std::string getChar(unsigned int pos) const
+      std::string getChar(unsigned int pos) const
           throw (bpp::IndexOutOfBoundsException);
 
-
-      /** @} */
-
-      /**
-       * @brief Convert the list as a string.
-       *
-       * This method is useful for dumping a list to a file or to the screen for display.
-       *
-       * @return The whole list as a string.
-       */
-      std::string toString() const;
       };
 
   }
