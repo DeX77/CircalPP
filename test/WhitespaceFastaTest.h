@@ -34,27 +34,28 @@ public:
   Circal::ScoringModel* scorem;
   bpp::Alphabet* alpha;
 
-  const std::string fasta_input =
-      ">Lorem  Ipsum   1\n"
-          "Sed     ut      perspiciatis    unde    omnis   iste    natus   error   sit     voluptatem      accusantium     doloremque      laudantium      totam   rem     aperiam eaque   ipsa    quae    ab      illo    inventore       veritatis  et       quasi   architecto      beatae  vitae   dicta   sunt    explicabo\n"
-          ">Lorem  Ipsum   2\n"
-          "ut      perspiciatis    unde    omnis   iste    natus   error   sit     voluptatem      accusantium     doloremque      laudantium      totam   rem     aperiam eaque   ipsa    quae    ab      illo    inventore       veritatis       et quasi    architecto      beatae  vitae   dicta   sunt    explicabo       Sed\n"
-          ">Lorem  Ipsum   3\n"
-          "perspiciatis    unde    omnis   iste    natus   error   sit     voluptatem      accusantium     doloremque      laudantium      totam   rem     aperiam eaque   ipsa    quae    ab      illo    inventore       veritatis       et quasi    architecto      beatae  vitae   dicta   sunt    explicabo       Sed        ut\n"
-          ">Lorem  Ipsum   4\n"
-          "unde    omnis   iste    natus   error   sit     voluptatem      accusantium     doloremque      laudantium      totam   rem     aperiam eaque   ipsa    quae    ab      illo    inventore       veritatis       et quasi    architecto      beatae  vitae   dicta   sunt    explicabo       Sed        ut      perspiciatis\n"
-          ">Lorem  Ipsum   5\n"
-          "omnis   iste    natus   error   sit     voluptatem      accusantium     doloremque      laudantium      totam   rem     aperiam eaque   ipsa    quae    ab      illo    inventore       veritatis       et quasi    architecto      beatae  vitae   dicta   sunt    explicabo       Sed        ut      perspiciatis    unde\n"
-          ">Lorem  Ipsum   6\n"
-          "iste    natus   error   sit     voluptatem      accusantium     doloremque      laudantium      totam   rem     aperiam eaque   ipsa    quae    ab      illo    inventore       veritatis       et quasi    architecto      beatae  vitae   dicta   sunt    explicabo       Sed        ut      perspiciatis    unde    omnis\n"
-          ">Lorem  Ipsum   7\n"
-          "beatae  vitae   dicta   sunt    explicabo       Sed     ut      perspiciatis    unde    omnis   iste    natus   error   sit     voluptatem      accusantium     doloremque      laudantium      totam   rem     aperiam eaque   ipsa    quae    ab      illo    inventore       veritatis  et       quasi   architecto\n";
+  std::string fasta_input;
 
   WhitespaceFastaTest() :
       sm("p 10  1 : A B C D E F G H I J K L M N O P Q R S T U V W X Y Z\n"), smstream(
           sm), scorem(new Circal::ScoringModel(smstream)), alpha(
           new Circal::VertebrateMitochondrialGenomeAlphabet(scorem))
     {
+      fasta_input =
+          ">Lorem  Ipsum   1\n"
+              "Sed     ut      perspiciatis    unde    omnis   iste    natus   error   sit     voluptatem      accusantium     doloremque      laudantium      totam   rem     aperiam eaque   ipsa    quae    ab      illo    inventore       veritatis  et       quasi   architecto      beatae  vitae   dicta   sunt    explicabo\n"
+              ">Lorem  Ipsum   2\n"
+              "ut      perspiciatis    unde    omnis   iste    natus   error   sit     voluptatem      accusantium     doloremque      laudantium      totam   rem     aperiam eaque   ipsa    quae    ab      illo    inventore       veritatis       et quasi    architecto      beatae  vitae   dicta   sunt    explicabo       Sed\n"
+              ">Lorem  Ipsum   3\n"
+              "perspiciatis    unde    omnis   iste    natus   error   sit     voluptatem      accusantium     doloremque      laudantium      totam   rem     aperiam eaque   ipsa    quae    ab      illo    inventore       veritatis       et quasi    architecto      beatae  vitae   dicta   sunt    explicabo       Sed        ut\n"
+              ">Lorem  Ipsum   4\n"
+              "unde    omnis   iste    natus   error   sit     voluptatem      accusantium     doloremque      laudantium      totam   rem     aperiam eaque   ipsa    quae    ab      illo    inventore       veritatis       et quasi    architecto      beatae  vitae   dicta   sunt    explicabo       Sed        ut      perspiciatis\n"
+              ">Lorem  Ipsum   5\n"
+              "omnis   iste    natus   error   sit     voluptatem      accusantium     doloremque      laudantium      totam   rem     aperiam eaque   ipsa    quae    ab      illo    inventore       veritatis       et quasi    architecto      beatae  vitae   dicta   sunt    explicabo       Sed        ut      perspiciatis    unde\n"
+              ">Lorem  Ipsum   6\n"
+              "iste    natus   error   sit     voluptatem      accusantium     doloremque      laudantium      totam   rem     aperiam eaque   ipsa    quae    ab      illo    inventore       veritatis       et quasi    architecto      beatae  vitae   dicta   sunt    explicabo       Sed        ut      perspiciatis    unde    omnis\n"
+              ">Lorem  Ipsum   7\n"
+              "beatae  vitae   dicta   sunt    explicabo       Sed     ut      perspiciatis    unde    omnis   iste    natus   error   sit     voluptatem      accusantium     doloremque      laudantium      totam   rem     aperiam eaque   ipsa    quae    ab      illo    inventore       veritatis  et       quasi   architecto\n";
 
     }
   ;

@@ -28,9 +28,13 @@ class ScoringModelTest: public CxxTest::TestSuite
   {
 public:
 
-  const std::string sm =
-      "p 10  1 : A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"
-          "";
+  std::string sm;
+
+  ScoringModelTest() :
+      sm("p 10  1 : A B C D E F G H I J K L M N O P Q R S T U V W X Y Z\n")
+    {
+    }
+  ;
 
   void testConstructor(void)
     {
