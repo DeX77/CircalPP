@@ -89,7 +89,11 @@ public:
       Circal::ScoreMatrix output = mhelper.InitScoreMatrixWith(A, B, 0.5);
       TS_ASSERT_DIFFERS( output, empty);
 
+      TS_ASSERT_EQUALS(output.size(), A.size()+1);
+      TS_ASSERT_EQUALS(output.at(0).size(), B.size()+1);
+
       TS_ASSERT_EQUALS(output.at(0).at(0), 0.5);
+      TS_ASSERT_EQUALS(output.at(A.size()).at(B.size()), 0.5);
       TS_TRACE("Finishing InitScoreMatrixWith test");
     }
   ;
@@ -98,9 +102,16 @@ public:
     {
       TS_TRACE("Starting InitScoreMatrix3DWith test");
       Circal::ScoreMatrix3D empty;
-      Circal::ScoreMatrix3D output = mhelper.InitScoreMatrix3DWith(A, C, 2,
+      int delta = 2;
+      Circal::ScoreMatrix3D output = mhelper.InitScoreMatrix3DWith(A, C, delta,
           0.5);
+
+      TS_ASSERT_EQUALS(output.size(), A.size()+1);
+      TS_ASSERT_EQUALS(output.at(0).size(), C.size()+1);
+      TS_ASSERT_EQUALS(output.at(0).at(0).size(), (C.size()/2)/delta);
+
       TS_ASSERT_EQUALS(output.at(0).at(0).at(0), 0.5);
+      TS_ASSERT_EQUALS(output.at(A.size()).at(C.size()).at((C.size()/2/delta)-1), 0.5);
 
       TS_ASSERT_DIFFERS( output, empty);
 
