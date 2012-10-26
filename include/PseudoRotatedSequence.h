@@ -25,9 +25,9 @@
 namespace Circal
   {
 
-    class PseudoRotatedSequence : public RotatedSequence
+    class PseudoRotatedSequence: public RotatedSequence
       {
-  public:
+    public:
 
       PseudoRotatedSequence(const SequenceProxy a);
       virtual ~PseudoRotatedSequence();
@@ -37,14 +37,14 @@ namespace Circal
        *
        * @return The number of sites in the list.
        */
-      virtual unsigned int size() const;
+      unsigned int size() const;
 
       /**
        * @brief Get the element at position 'pos' as an int.
        *
        * @param pos The position of the character to retrieve.
        */
-      virtual int getValue(unsigned int pos) const
+      int getValue(unsigned int pos) const
           throw (bpp::IndexOutOfBoundsException);
 
       /**
@@ -52,7 +52,7 @@ namespace Circal
        *
        * @param pos The position of the character to retrieve.
        */
-      virtual std::string getChar(unsigned int pos) const
+      std::string getChar(unsigned int pos) const
           throw (bpp::IndexOutOfBoundsException);
 
       /**
@@ -71,7 +71,7 @@ namespace Circal
        * @param i The position to retrieve.
        * @return The integer value of character at position i.
        */
-      virtual const int & operator[](unsigned int i) const;
+      const int & operator[](unsigned int i) const;
 
       /**
        * @brief Operator [] overloaded for quick access to a character in list.
@@ -79,7 +79,7 @@ namespace Circal
        * @param i The position to retrieve.
        * @return The integer value of character at position i.
        */
-      virtual int & operator[](unsigned int i);
+      int & operator[](unsigned int i);
 
       /** @} */
       };
